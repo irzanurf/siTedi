@@ -12,5 +12,9 @@ class M_User extends CI_Model
         $this->db->where($data);
         $this->db->delete('user');
     }
+
+    public function checkUserexist($userName) {
+        return $this->db->get_where('user', ['username' => $userName])->num_rows();
+    }
     
 }

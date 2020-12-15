@@ -20,17 +20,26 @@ class Pengabdian extends CI_Controller {
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_SkemaPengabdian');
         $this->load->model('M_LaporanAkhirPengabdian');
-        $this->load->model('M_Profile');
     }
 
     public function index()
     {
         $user = $this->session->userdata('user_name');
-        $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->result();
+        $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->row();
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_dosen_pengabdian');
         $this->load->view("dosen/dashboardpengabdian",$data);
     }
+
+    function checkUsername(){
+        $userName = $this->input->post('username');
+        $if_exists = $this->M_User->checkUserexist($userName);
+        if ($if_exists > 0) {
+          echo json_encode('Username tidak tersedia');
+        } else {
+          echo json_encode('Username tersedia');
+        }
+      }
 
     public function addformProposal()
     {
@@ -42,7 +51,10 @@ class Pengabdian extends CI_Controller {
         $this->form_validation->set_rules('email','Email', 'required');
         $this->form_validation->set_rules('username','Username', 'required');
         $this->form_validation->set_rules('password','Password', 'required');
-        $nip = $this->session->userdata('user_name');
+        if($this->form_validation->run()==false){
+            redirect("dosen/pengabdian/pengisianform");
+        } else {
+            $nip = $this->session->userdata('user_name');
         $data = [
             "nama_instansi"=> $this->input->post('instansi',true),
             "penanggung_jwb"=>$this->input->post('pj',true),
@@ -56,12 +68,13 @@ class Pengabdian extends CI_Controller {
         $mitra=$this->M_Mitra->insert_mitra($data);
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
-        $tahun = $this->input->post('tahun',true); 
-        if($tahun=='0' || $tahun==''){
-            $lama= $bulan." bulan";
-        } else {
-            $lama = $tahun." tahun ".$bulan." bulan ";
-        }
+        $lama = $bulan." bulan";
+        // $tahun = $this->input->post('tahun',true); 
+        // if($tahun=='0' || $tahun==''){
+        //     $lama= $bulan." bulan";
+        // } else {
+        //     $lama = $tahun." tahun ".$bulan." bulan ";
+        // }
         $prop = [
             "id_mitra"=>$mitra,
             "nip"=>$nip,
@@ -129,12 +142,11 @@ class Pengabdian extends CI_Controller {
             "role"=>$role_mitra
         ];
         $this->M_User->insert_user($user_mitra);
-        if($this->form_validation->run()==false){
-            redirect("dosen/pengabdian/pengisianform");
-        } else {
             $this->session->set_flashdata('success','Pengajuan proposal berhasil ditambahkan');
             redirect("dosen/pengabdian/submitpermohonan");
         }
+        
+        
         
 
     }
