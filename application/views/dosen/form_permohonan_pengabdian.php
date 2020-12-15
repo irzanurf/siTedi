@@ -54,8 +54,6 @@
                                     <div class="form-group input-group">
                                     <input type="text" class="form-control" name="bulan">
                                     <span class="input-group-addon">bulan</span>
-                                    <input type="text" class="form-control" name="tahun">
-                                    <span class="input-group-addon">tahun</span>
                                 </div>
                                 </div>
 
@@ -180,7 +178,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Username</label>
-                                    <input class="form-control" name="username" placeholder="Masukkan username untuk mitra">
+                                    <input class="form-control" id="username" name="username" placeholder="Masukkan username untuk mitra">
+                                    <span id="username_result" style='color:red'></span>
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
@@ -194,7 +193,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" id="submit" class="btn btn-primary">Save changes</button>
                                 </div>
                             </form>
 
@@ -235,6 +234,31 @@
       });
     });
     </script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#submit').prop('disabled',true);
+            $('#username').change(function(){
+            var username = $('#username').val();
+            if(username != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
+                    method:"post",
+                    data:{username:username},
+                    dataType: 'json',
+                    success:function(data){
+                        if(data=="Username tersedia"){
+                            $('#submit').prop('disabled',false);
+                            $('#username_result').remove();
+                        }else{
+                            $('#username_result').html(data);
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
+    </script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
@@ -243,6 +267,8 @@
 <script src="<?= base_url('assets/template/js/plugins/morris/raphael.min.js');?>"></script>
 <script src="<?= base_url('assets/template/js/plugins/morris/morris.min.js');?>"></script>
 <script src="<?= base_url('assets/template/js/plugins/morris/morris-data.js');?>"></script>
+
+
 
 </body>
 
