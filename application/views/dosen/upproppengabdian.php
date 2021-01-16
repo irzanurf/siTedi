@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Form Pengajuan Mitra
+                            Edit Form Pengajuan Mitra
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -42,6 +42,19 @@
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                                 </div>
                                 <div class="form-group">
+                                    <label>Jenis Pengabdian</label>
+                                    <select class="form-control" name="skema_pengabdian" id="skema_pengabdian">
+                                        <option value="">Please Select</option>
+                                        <?php
+                                        foreach ($skema as $sd) {
+                                            ?>
+                                            <option value="<?php echo $sd->id; ?>"<?php echo ($sd->id==$proposal->id_skema) ? "selected='selected'" : "" ?>><?php echo $sd->jenis_pengabdian; ?> - <?php echo $sd->tgl; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Judul Pengabdian</label>
                                     <input class="form-control" name="judul" <?php echo "value=\"" . $proposal->judul . "\""; ?> >
                                 </div>
@@ -56,15 +69,13 @@
                                     <input class="form-control" name="lokasi" <?php echo "value=\"" . $proposal->lokasi . "\""; ?> placeholder="Kelurahan, Kota, Provinsi" >
                                 </div>
 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Lama Pelaksanaan</label>
                                     <div class="form-group input-group">
-                                    <input type="text" class="form-control" name="bulan">
+                                    <input type="text" class="form-control" name="bulan" value=<?= $proposal->lama_pelaksanaan?>>
                                     <span class="input-group-addon">bulan</span>
-                                    <input type="text" class="form-control" name="tahun">
-                                    <span class="input-group-addon">tahun</span>
                                 </div>
-                                </div> -->
+                                </div>
 
                                 <div class="form-group">
                                     <label>Biaya</label>
@@ -75,39 +86,48 @@
                                 </div>
                                 </div>
 
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Sumber Dana</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($sumberdana as $sd) {
                                             ?>
-                                            <option value="<?php echo $sd->id; ?>"><?php echo $sd->sumberdana; ?></option>
+                                            <option value="<?php echo $sd->id; ?>" <?php echo ($sd->id==$proposal->id_sumberdana) ? "selected='selected'" : "" ?>><?php echo $sd->sumberdana; ?></option>
                                             <?php
                                         }
                                         ?>
                                     </select>
-                                </div> -->
+                                </div>
                                 <h3>Keterangan Mitra</h3>
                                 <div class="form-group">
                                     <label>Nama Instansi</label>
-                                    <input class="form-control" name="instansi" value=<?= $mitra->nama_instansi?> readonly >
+                                    <input class="form-control" name="instansi" <?php echo "value=\"" . $mitra->nama_instansi . "\""; ?> >
                                 </div>
                                 <div class="form-group">
                                     <label>Penanggung Jawab</label>
-                                    <input class="form-control" name="pj" value=<?= $mitra->penanggung_jwb?> readonly >
+                                    <input class="form-control" name="pj"<?php echo "value=\"" . $mitra->penanggung_jwb . "\""; ?> >
                                 </div>
                                 <div class="form-group">
                                     <label>Nomor Telepon</label>
-                                    <input class="form-control" name="no_telp" value=<?= $mitra->no_telp?> readonly  >
+                                    <input class="form-control" name="no_telp" value=<?= $mitra->no_telp?> >
                                 </div>
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Email</label>
-                                    <input class="form-control" name="email" >
-                                </div> -->
+                                    <input class="form-control" name="email" value=<?= $mitra->email?> >
+                                </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <input class="form-control" name="alamat" value=<?= $mitra->alamat?> readonly >
+                                    <input class="form-control" name="alamat" <?php echo "value=\"" . $mitra->alamat . "\""; ?> >
+                                </div>
+                                <div class="form-group">
+                                    <label>Username</label>
+                                    <input class="form-control" id="username" name="username" value=<?=$mitra->username?> placeholder="Masukkan username untuk mitra">
+                                    <span id="username_result" style='color:red'></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password untuk mitra" >
                                 </div>
 
                                 <h3>File Proposal</h3>
@@ -119,17 +139,9 @@
                                         <input type="file" class="form-control" name="file_prop"  >
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Edit</button>
+                                <button type="submit" id='submit' class="btn btn-primary">Edit</button>
                                 
                             <?= form_close(); ?>
-                    
-                
-                
-                    
-
-                    
-            
-
                     </div>
                 </div>
                 <!-- /.row -->
@@ -148,6 +160,32 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
+
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#username').change(function(){
+            var username = $('#username').val();
+            if(username != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
+                    method:"post",
+                    data:{username:username},
+                    dataType: 'json',
+                    success:function(data){
+                        if(data=="Username tersedia"){
+                            $('#submit').prop('disabled',false);
+                            $('#username_result').remove();
+                        }else{
+                            $('#username_result').html(data);
+                            $('#submit').prop('disabled',true);
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
+    </script>
 
 </body>
 

@@ -68,7 +68,6 @@ class Pengabdian extends CI_Controller {
         $mitra=$this->M_Mitra->insert_mitra($data);
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
-        $lama = $bulan." bulan";
         // $tahun = $this->input->post('tahun',true); 
         // if($tahun=='0' || $tahun==''){
         //     $lama= $bulan." bulan";
@@ -82,7 +81,7 @@ class Pengabdian extends CI_Controller {
             "abstrak"=>$this->input->post('abstrak',true),
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
-            "lama_pelaksanaan"=>$lama,
+            "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
             "biaya"=>$this->input->post('biaya',true),
             "id_skema"=>$this->input->post('skema_pengabdian')
@@ -311,8 +310,13 @@ class Pengabdian extends CI_Controller {
     }
 
     public function editProposal($id){
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
         $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['proposal']->id_mitra;
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id);
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
 
         $this->load->view('layout/header');

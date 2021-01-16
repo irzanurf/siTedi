@@ -123,6 +123,15 @@ class M_PropPengabdian extends CI_Model
         $this->db->where('id',$id);
         $this->db->update('proposal_pengabdian', $data);
     }
+    public function dosen_update_prop($id)
+    {
+        $query = $this->db->select('dsn_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi')
+                        ->from('dsn_pengabdian')
+                        ->join('dosen','dsn_pengabdian.nip=dosen.nip','inner')
+                        ->where('dsn_pengabdian.id_proposal = '.$id.'')
+                        ->get();
+        return $query;
+    }
     public function dosen($data_dosen)
     {
         $this->db->insert_batch('dsn_pengabdian', $data_dosen);

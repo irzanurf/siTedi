@@ -9,10 +9,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Welcome <small><?php 
-                        			foreach($nama as $v) { ?>
-								<?= $v->nama ?>
-								<?php }?></small>
+                            Welcome <small>
+								<?= $nama->nama ?></small>
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
@@ -33,25 +31,22 @@
                     <h1>Profile</h1>
                     
                     <hr>
-                    <?php 
-                        foreach($nama as $v) { ?>
-                    <div class="form-group"><label>Nama</label><input class="form-control" type="text" name="nama" value="<?= $v->nama ?>" readonly></div>
-                    <div class="form-group"><label>Golongan</label><input class="form-control" type="text" name="nama" value="<?= $v->golongan ?>" readonly></div>
-                    <div class="form-group"><label>Jabatan</label><input class="form-control" type="text" name="program_studi" value="<?= $v->jabatan ?>" readonly></div>
-                    <div class="form-group"><label>Pendidikan</label><input class="form-control" type="text" name="telp" value="<?= $v->pendidikan ?>"  readonly></div>
-                    <div class="form-group"><label>Tahun Lulus</label><input class="form-control" type="text" name="email" value="<?= $v->th_lulus ?>" readonly></div>
-                    <div class="form-group"><label>Kepakaran</label><input class="form-control" type="text" name="nama" value="<?= $v->kepakaran ?>" readonly></div>
-                    <div class="form-group"><label>Status Bekerja</label><input class="form-control" type="text" name="nama" value="<?= $v->status_bekerja ?>" readonly></div>
-                    <div class="form-group"><label>Jenis Pegawai</label><input class="form-control" type="text" name="program_studi" value="<?= $v->jenis ?>" readonly></div>
-                    <div class="form-group"><label>Status Kepegawaian</label><input class="form-control" type="text" name="email" value="<?= $v->status_kepegawaian ?>" readonly></div>
-                    <div class="form-group"><label>Unit ES II</label><input class="form-control" type="text" name="program_studi" value="<?= $v->fakultas ?>" readonly></div>
-                    <div class="form-group"><label>Unit ES III</label><input class="form-control" type="text" name="telp" value="<?= $v->departemen ?>"  readonly></div>
-                    <div class="form-group"><label>Unit ES IV</label><input class="form-control" type="text" name="program_studi" value="<?= $v->program_studi ?>" readonly></div>
-                    <div class="form-group"><label>Telephone</label><input class="form-control" type="text" name="telp" value="<?= $v->no_telp ?>"  readonly></div>
-                    <div class="form-group"><label>Email</label><input class="form-control" type="text" name="email" value="<?= $v->email ?>" readonly></div>
+                
+                    <div class="form-group"><label>Nama</label><input class="form-control" type="text" name="nama" value="<?= $nama->nama ?>" readonly></div>
+                    <div class="form-group"><label>Golongan</label><input class="form-control" type="text" name="nama" value="<?= $nama->golongan ?>" readonly></div>
+                    <div class="form-group"><label>Jabatan</label><input class="form-control" type="text" name="program_studi" value="<?= $nama->jabatan ?>" readonly></div>
+                    <div class="form-group"><label>Pendidikan</label><input class="form-control" type="text" name="telp" value="<?= $nama->pendidikan ?>"  readonly></div>
+                    <div class="form-group"><label>Tahun Lulus</label><input class="form-control" type="text" name="email" value="<?= $nama->th_lulus ?>" readonly></div>
+                    <div class="form-group"><label>Kepakaran</label><input class="form-control" type="text" name="nama" value="<?= $nama->kepakaran ?>" readonly></div>
+                    <div class="form-group"><label>Status Bekerja</label><input class="form-control" type="text" name="nama" value="<?= $nama->status_bekerja ?>" readonly></div>
+                    <div class="form-group"><label>Jenis Pegawai</label><input class="form-control" type="text" name="program_studi" value="<?= $nama->jenis ?>" readonly></div>
+                    <div class="form-group"><label>Status Kepegawaian</label><input class="form-control" type="text" name="email" value="<?= $nama->status_kepegawaian ?>" readonly></div>
+                    <div class="form-group"><label>Unit ES II</label><input class="form-control" type="text" name="program_studi" value="<?= $nama->fakultas ?>" readonly></div>
+                    <div class="form-group"><label>Unit ES III</label><input class="form-control" type="text" name="telp" value="<?= $nama->departemen ?>"  readonly></div>
+                    <div class="form-group"><label>Unit ES IV</label><input class="form-control" type="text" name="program_studi" value="<?= $nama->program_studi ?>" readonly></div>
+                    <div class="form-group"><label>Telephone</label><input class="form-control" type="text" name="telp" value="<?= $nama->no_telp ?>"  readonly></div>
+                    <div class="form-group"><label>Email</label><input class="form-control" type="text" name="email" value="<?= $nama->email ?>" readonly></div>
                     <hr>
-                    
-                    <?php }?>
                     
 					
 					
