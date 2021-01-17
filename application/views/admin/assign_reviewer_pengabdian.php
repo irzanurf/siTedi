@@ -74,6 +74,7 @@
 
                                 
                     </div>
+                    
                     <div class='form-group '>
                     <label class="col-lg-4 col-form-label">Assign reviewer 2</label>
                                 <div class="col-lg-8">
@@ -88,19 +89,29 @@
                                     ?>
                                 </select>
                     </div>
+                    
                     <input type="hidden" name="id" value="<?= $prop->id;?>">
-                    
-                    
-                    <div class='form-group'>
-                        <div class="row" >
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-11">
+                
+                    <label>File proposal pengabdian</label>
+                        <div class="form-group row" >
+                        
+                        <div class="col-lg-12">
                             <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$prop->file?>" width="93%" height="400px" >
                             </iframe>
                         </div>
-                        <div class="col-lg-1"></div>
                     
                     </div>
+
+                    <label >File surat persetujuan mitra </label>
+                        <div class="form-group row" >
+                        
+                        <div class="col-lg-12">
+                            <iframe src="<?= base_url('assets/suratmitra');?>/<?=$mitra->file_persetujuan?>" width="93%" height="400px" >
+                            </iframe>
+                        </div>
+                        <!-- <div class="col-lg-1"></div> -->
+                    
+                    <!-- </div> -->
                     </div>
 
                     
@@ -108,6 +119,7 @@
                         <button class='btn btn-primary' type="submit">Assign</button>
                     </div>
                     </form> 
+                    
                     
                     
                    
