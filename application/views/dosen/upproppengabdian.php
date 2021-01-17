@@ -81,7 +81,7 @@
                                     <label>Biaya</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control" name="biaya" value=<?= number_format($proposal->biaya,0,',','.')?>  >
+                                    <input type="text" class="form-control" name="biaya" value=<?=$proposal->biaya?>  >
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
@@ -99,10 +99,107 @@
                                         ?>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                <label>Anggota Dosen</label>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div>
+                                <?php 
+                        foreach($anggota_dosen as $k=>$val){?>
+                            <div class="control-group input-group" style="margin-top:10px">
+                                <select class="form-control" name="dosen[]">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($dosen as $ds) {
+                                        ?>
+                                        <option value ="<?php echo $ds->nip; ?>" <?php echo ($ds->nip==$val->nip) ? "selected='selected'" : "" ?>><?php echo $ds->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                        <input class='form-control hidden' type="text" id="bobot" name="id_dsn_anggota[]" value=<?=$val->id?> hidden>
+                                    
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+
+                    <?php }?>
+                    <div class="after-add-more"></div>
+                                
+                
+
+                                <div class="form-group">
+                                <label><br>Anggota Mahasiswa</label>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div>
+                                <?php 
+                                foreach($anggota_mhs as $k=>$val){?>
+                                <div class="control-group1 input-group" style="margin-top:10px">
+                                    <select class="form-control" name="mahasiswa[]">
+                                        <option value="">Please Select</option>
+                                        <?php
+                                        foreach ($mahasiswa as $mhs) {
+                                            ?>
+                                            <option value ="<?php echo $mhs->nim; ?>" <?php echo ($mhs->nim==$val->nim) ? "selected='selected'" : "" ?>><?php echo $mhs->nama ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                            <input class='form-control hidden' type="text" id="bobot" name="id_mhs_anggota[]" value=<?=$val->id?> hidden>
+                                       
+                                    </select>
+                                        <div class="input-group-btn"> 
+                                        <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                        </div>
+                                    </div>
+
+                        <?php }?>
+                        <div class="after-add-more1"></div>
+                            
+
+                            <div class="copy hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                                <select class="form-control" name="dosen_new[]">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($dosen as $ds) {
+                                        ?>
+                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="copy1 hide">
+                                <div class="control-group1 input-group" style="margin-top:10px">
+                                <select class="form-control" name="mahasiswa_new[]">
+                                    <option value="">Please select</option>
+                                    <?php
+                                    foreach ($mahasiswa as $mhs) {
+                                        ?>
+                                        <option value ="<?php echo $mhs->nim; ?>"><?php echo $mhs->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+
                                 <h3>Keterangan Mitra</h3>
                                 <div class="form-group">
                                     <label>Nama Instansi</label>
                                     <input class="form-control" name="instansi" <?php echo "value=\"" . $mitra->nama_instansi . "\""; ?> >
+                                    <input class='form-control hidden' type="text" name="id_mitra" value=<?=$mitra->id?> hidden>
                                 </div>
                                 <div class="form-group">
                                     <label>Penanggung Jawab</label>
@@ -161,6 +258,30 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
 
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".add-more").click(function(){ 
+          var html = $(".copy").html();
+          $(".after-add-more").after(html);
+      });
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $(".add-more1").click(function(){ 
+          var html = $(".copy1").html();
+          $(".after-add-more1").after(html);
+      });
+      $("body").on("click",".remove1",function(){ 
+          $(this).parents(".control-group1").remove();
+      });
+    });
+    </script>
     <script type="text/javascript"> 
         $(document).ready(function(){
             $('#username').change(function(){

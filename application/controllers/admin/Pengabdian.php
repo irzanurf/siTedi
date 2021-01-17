@@ -314,9 +314,6 @@ class Pengabdian extends CI_Controller
         
 
         foreach($data_komponen as $k){
-            
-            
-            
             for($i=0;$i<count($komponen_update);$i++){
                 if($k->id == $id_komponen[$i]){
                     $komp=str_replace(PHP_EOL,"<br>",$komponen_update[$i]);

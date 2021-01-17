@@ -68,12 +68,7 @@ class Pengabdian extends CI_Controller {
         $mitra=$this->M_Mitra->insert_mitra($data);
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
-        // $tahun = $this->input->post('tahun',true); 
-        // if($tahun=='0' || $tahun==''){
-        //     $lama= $bulan." bulan";
-        // } else {
-        //     $lama = $tahun." tahun ".$bulan." bulan ";
-        // }
+        
         $prop = [
             "id_mitra"=>$mitra,
             "nip"=>$nip,
@@ -211,8 +206,22 @@ class Pengabdian extends CI_Controller {
 
     public function updateSurat()
     {
+        // $prop_file = $_FILES['file_prop'];
+        //     if(!empty($prop_file['name'])){
+        //         $config['upload_path'] = './assets/prop_pengabdian';
+        //         $config['allowed_types'] = 'pdf';
+
+        //         $this->load->library('upload',$config);
+        //         if(!$this->upload->do_upload('file_prop')){
+        //             echo "Upload Gagal"; die();
+        //         } else {
+        //             $prop_file=$this->upload->data('file_name');
+        //         }
+        //         $data_file = array('file'=>$prop_file);
+        //     $this->M_PropPengabdian->update_prop($id,$data_file);
+        //     }
         $surat = $_FILES['file_persetujuan'];
-        if($surat=''){}else{
+        if(!empty($surat['name'])){
             $config['upload_path'] = './assets/suratmitra';
             $config['allowed_types'] = 'pdf';
 
@@ -316,7 +325,8 @@ class Pengabdian extends CI_Controller {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
-        $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id);
+        $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+        $data['anggota_mhs'] = $this->M_PropPengabdian->mhs_update_prop($id)->result();
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
 
         $this->load->view('layout/header');
@@ -329,8 +339,10 @@ class Pengabdian extends CI_Controller {
         $this->form_validation->set_rules('abstrak','Abstrak', 'required');
         $id = $this->input->post('id');
         $nip = $this->session->userdata('user_name');
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
         
         $date = date('Y-m-d');
+        $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
         
         $prop = array (
             "nip"=>$nip,
@@ -359,6 +371,101 @@ class Pengabdian extends CI_Controller {
                 $data_file = array('file'=>$prop_file);
             $this->M_PropPengabdian->update_prop($id,$data_file);
             }
+            /* update anggota dosen */
+            $dsn_update = $this->input->post('dosen[]');
+            $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
+            $dsn_new = $this->input->post('dosen_new[]');
+            $data_dsn_anggota = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+            // print_r($dsn_update);
+            foreach($data_dsn_anggota as $k){
+                for($i=0;$i<count($dsn_update);$i++){
+                    if($k->id == $id_dsn_anggota[$i]){
+                        
+                        $dsn=$dsn_update[$i];
+                        $data_dosen =[
+                            'nip' => $dsn,
+                        ];
+                        $this->M_PropPengabdian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
+                        continue 2;
+                    }
+                } 
+                $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
+            }
+
+            for($j=0; $j<count($dsn_new)-1;$j++)
+                {
+                    
+                    $dosen_new=$dsn_new[$j];
+                    $data_dosen_new =[
+                        'nip' => $dosen_new,
+                        'id_proposal' => $id
+                    ];
+                    $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                }
+
+        /* update anggota mahasiswa */
+        $mhs_update = $this->input->post('mahasiswa[]');
+        $id_mhs_anggota = $this->input->post('id_mhs_anggota[]');
+        $mhs_new = $this->input->post('mahasiswa_new[]');
+        $data_mhs_anggota = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+
+        foreach($data_mhs_anggota as $k){
+            for($i=0;$i<count($mhs_update);$i++){
+                if($k->id == $id_mhs_anggota[$i]){
+                    $mhs=$mhs_update[$i];
+                    $data_mhs =[
+                        'nim' => $mhs,
+                    ];
+                    $this->M_PropPengabdian->update_mhs_anggota($data_mhs, $id_mhs_anggota[$i]);
+                    continue 2;
+                }
+            } 
+            $this->M_PropPengabdian->hapus_mhs_anggota(array('id'=>$k->id));
+        }
+
+        for($j=0; $j<count($mhs_new)-1;$j++)
+            {
+                console.log('test');
+                $mahasiswa_new=$mhs_new[$j];
+                $data_mhs_new =[
+                    'nim' => $mahasiswa_new,
+                    'id_proposal' => $id
+                ];
+                $this->M_PropPengabdian->insert_mhs_anggota($data_mhs_new);
+            }
+
+        /* edit mitra  */
+
+        $id_mitra = $this->input->post('id_mitra');
+        $data_mitra = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+        ];
+
+        $this->M_Mitra->update_mitra($id_mitra, $data_mitra);
+
+        $pass = $this->input->post('password');
+        if($pass != null){
+            $data_user_mitra = [
+                'username' =>$this->input->post('username'),
+                'password' =>md5($pass)
+            ];
+
+        } else{
+            $data_user_mitra = [
+                'username' => $this->input->post('username')
+            ];
+        }
+
+        $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+
+
+
+
             
 
         // $nip= $this->input->post('dosen[]');
@@ -392,6 +499,7 @@ class Pengabdian extends CI_Controller {
         //     "role"=>$role_mitra
         // ];
         // $this->M_User->insert_user($user_mitra);
+
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
         } else {

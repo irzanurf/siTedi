@@ -16,5 +16,11 @@ class M_User extends CI_Model
     public function checkUserexist($userName) {
         return $this->db->get_where('user', ['username' => $userName])->num_rows();
     }
+
+    public function update_user($username,array $data)
+    {
+        $this->db->where('username',$username);
+        $this->db->update('user', $data);
+    }
     
 }
