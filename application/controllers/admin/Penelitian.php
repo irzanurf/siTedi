@@ -28,6 +28,7 @@ class Penelitian extends CI_Controller
         $this->load->model('M_ReviewerPenelitian');
         $this->load->model('M_SkemaPenelitian');
         $this->load->model('M_KomponenNilaiPenelitian');
+        $this->load->model('M_JadwalPenelitian');
     }
 
     public function index()
@@ -46,6 +47,61 @@ class Penelitian extends CI_Controller
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/daftar_prop_penelitian',$data);
 
+    }
+
+    public function jadwalpenelitian()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/jadwal_penelitian',$data);
+
+    }
+
+    public function formJadwalPeneltian()
+    {
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/form_jadwal_penelitian');
+
+    }
+
+    public function editJadwalPenelitian($id)
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->getwhere_jadwal(array('id'=>$id))->row();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/edit_jadwal_penelitian', $data);
+
+    }
+
+    public function hapusJadwalPenelitian($id)
+    {
+        $this->M_JadwalPenelitian->hapus_jadwal(array('id'=>$id));
+        redirect('admin/penelitian/jadwalpenelitian');
+    }
+
+    public function submitJadwalPenelitian()
+    {
+        $data = [
+            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_selesai' => $this->input->post('tgl_selesai'),
+        ];
+        $this->M_JadwalPenelitian->insert_jadwal($data);
+        redirect('admin/penelitian/jadwalpenelitian');
+    }
+
+
+    public function updateJadwalPenelitian()
+    {
+        $id = $this->input->post('id');
+        $data = [
+            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_selesai' =>$this->input->post('tgl_selesai')
+        ];
+
+        $this->M_JadwalPenelitian->update_jadwal($data, $id);
+        redirect('admin/penelitian/jadwalpenelitian');
     }
 
     public function jadwal()

@@ -20,6 +20,7 @@ class Penelitian extends CI_Controller {
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_Jenisp');
         $this->load->model('M_Profile');
+        $this->load->model('M_JadwalPenelitian');
     }
 
     public function index()
@@ -59,12 +60,14 @@ class Penelitian extends CI_Controller {
                 $prop_file=$this->upload->data('file_name');
             }
         }
+        $jadwal = $this->M_JadwalPenelitian->get_last_jadwal()->row()->id;
         $prop = [
             "nip"=>$nip,
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
             "id_jenis"=>$this->input->post('jenis',true),
             "id_luaran"=>$this->input->post('luaran',true),
+            "id_jadwal" => $jadwal,
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
             "mitra"=>$this->input->post('mitra',true),
@@ -113,8 +116,19 @@ class Penelitian extends CI_Controller {
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
+
         $this->load->view('penelitian/header', $nama);
-        $this->load->view('dosen/penelitian/pengisianform', $data);
+        if(($now>= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/penelitian/pengisianform', $data);
+        } else{
+            $this->load->view('dosen/penelitian/closed_form', $data);
+        }
+        
         $this->load->view("penelitian/footer");
     }
     
