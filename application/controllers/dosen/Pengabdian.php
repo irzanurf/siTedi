@@ -69,6 +69,7 @@ class Pengabdian extends CI_Controller {
         $mitra=$this->M_Mitra->insert_mitra($data);
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
+        $jadwal = $this->M_JadwalPengabdian->get_last_jadwal()->row()->id;
         
         $prop = [
             "id_mitra"=>$mitra,
@@ -76,6 +77,7 @@ class Pengabdian extends CI_Controller {
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
             "tgl_upload"=>$date,
+            "id_jadwal" => $jadwal,
             "lokasi"=>$this->input->post('lokasi',true),
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
