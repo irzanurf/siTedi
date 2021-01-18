@@ -71,7 +71,6 @@ class Pengabdian extends CI_Controller
 
     }
 
-    //detail untuk melihat info dan nilai proposal. (belum dibuat)
     public function detailProposal($id)
     {
         $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
@@ -85,8 +84,6 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_dosen_pengabdian');
         $this->load->view('reviewer/detailnilai_prop_pengabdian',$data);
-
-
     }
 
     public function editProposal($id)
@@ -204,15 +201,6 @@ class Pengabdian extends CI_Controller
 
     public function finalSubmitNilai($id)
     {
-
-        // $id = $this->input->post('id',true);
-        // $komentar = $this->input->post('komentar',true);
-        // $total_nilai = $this->input->post('total_nilai');
-
-        // $data = [
-        //     'komentar'=> $komentar,
-        //     'nilai'=>$total_nilai
-        // ];
         $reviewer= $this->session->userdata('user_name');
         $assign = $this->M_AssignProposalPengabdian->getwhere_assignment(array('id_proposal'=>$id))->row();
         $prop = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
@@ -233,24 +221,7 @@ class Pengabdian extends CI_Controller
             ];
         }
         
-        
-        // $prop = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
-        // $komponen = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=>$prop->id_skema))->result();
-        // foreach($komponen as $k){
-        //     $skor = $this->input->post($k->id);
-        //     // $nilai_kom = $k->bobot * $skor;
-        //     $komp = $k->id;
-        //     $detail = [
-        //         'skor' => $skor,
-        //         'nilai' => $this->input->post('nilai'.$k->id)
-        //     ];
-        //     $id_detail = $this->M_DetailNilaiProposalPengabdian->getwhere_detailnilai(array('id_proposal'=>$id,'id_komponen_nilai'=>$k->id))->row()->id;
-        //     $this->M_DetailNilaiProposalPengabdian->update_detailnilai($id_detail,$detail);
-
-        // }
-        // $this->M_NilaiPropPengabdian->update_nilai($id,$data);
         $this->M_PropPengabdian->update_prop($id,$status);
-
 
         redirect('reviewer/pengabdian/nilaiProposal');
     
@@ -258,7 +229,6 @@ class Pengabdian extends CI_Controller
 
     public function updateNilai()
     {
-
         $id = $this->input->post('id',true);
         $reviewer = $this->session->userdata('user_name');
         $komentar = $this->input->post('komentar',true);
@@ -276,9 +246,6 @@ class Pengabdian extends CI_Controller
             ];
         }
         $this->M_NilaiPropPengabdian->update_nilai($id,$data);
-
-       
-       
         
         $prop = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $komponen = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=>$prop->id_skema))->result();
@@ -295,8 +262,6 @@ class Pengabdian extends CI_Controller
 
         }
         
-
-
         redirect('reviewer/pengabdian/nilaiProposal');
     
     }
