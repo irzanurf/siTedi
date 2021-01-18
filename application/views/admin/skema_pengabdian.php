@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Assign Reviewer Proposal Pengabdian
+                Daftar Skema Proposal Pengabdian
             </h1>
             <ol class="breadcrumb">
                 <li>

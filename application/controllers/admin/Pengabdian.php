@@ -34,6 +34,7 @@ class Pengabdian extends CI_Controller
         $this->load->model('M_LaporanAkhirPengabdian');
         $this->load->model('M_SkemaPengabdian');
         $this->load->model('M_AdminPenelitian');
+        $this->load->model('M_JadwalPengabdian');
         
     }
 
@@ -53,9 +54,62 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/approval_prop_pengabdian',$data);
 
+    }
+
+    public function jadwalpengabdian()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/jadwal_pengabdian',$data);
 
     }
 
+    public function formJadwalPengabdian()
+    {
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/form_jadwal_pengabdian');
+
+    }
+
+    public function editJadwalPengabdian($id)
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->getwhere_jadwal(array('id'=>$id))->row();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/edit_jadwal_pengabdian', $data);
+
+    }
+
+    public function hapusJadwalPengabdian($id)
+    {
+        $this->M_JadwalPengabdian->hapus_jadwal(array('id'=>$id));
+        redirect('admin/pengabdian/jadwalpengabdian');
+    }
+
+    public function submitJadwalPengabdian()
+    {
+        $data = [
+            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_selesai' => $this->input->post('tgl_selesai'),
+        ];
+        $this->M_JadwalPengabdian->insert_jadwal($data);
+        redirect('admin/pengabdian/jadwalpengabdian');
+    }
+
+
+    public function updateJadwalPengabdian()
+    {
+        $id = $this->input->post('id');
+        $data = [
+            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_selesai' =>$this->input->post('tgl_selesai')
+        ];
+
+        $this->M_JadwalPengabdian->update_jadwal($data, $id);
+        redirect('admin/pengabdian/jadwalpengabdian');
+    }
     public function daftarPengabdian()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewPengabdian()->result();
@@ -166,10 +220,6 @@ class Pengabdian extends CI_Controller
             'reviewer' => $reviewer,
             'reviewer2' => $reviewer2
         ];
-        // $data2 = [
-        //     'id_proposal' => $idProp,
-        //     'reviewer' => $reviewer2
-        // ];
         $status = [
             'status' => 'ASSIGNED'
         ];
@@ -193,8 +243,6 @@ class Pengabdian extends CI_Controller
         ];
 
         $this->M_AssignProposalPengabdian->update_reviewerAssign($idProp,$data);
-        // $this->M_AssignProposalPengabdian->insert_assignment($data2);
-        
         redirect('admin/pengabdian/assignproposal');
 
     }
@@ -208,17 +256,6 @@ class Pengabdian extends CI_Controller
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id))->result();
         $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row();
-
-        // $this->load->view('layout/header');
-        // $this->load->view('layout/sidebar_admin');
-        // $this->load->view('reviewer/editnilai_prop_pengabdian',$data);
-
-        // $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
-        // $id_mitra = $data['prop']->id_mitra;
-        // $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
-        // $nip = $data['prop']->nip;
-        // $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
-        // $data['nilai'] = $this->M_PropPengabdian->getNilaiProp(array('id_proposal'=>$id))->row();
 
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
@@ -370,22 +407,22 @@ class Pengabdian extends CI_Controller
             $this->M_LaporanAkhirPengabdian->insert_laporan($data);
         }
 
-        $from = $this->config->item('smtp_user');
-        $to = $this->M_Dosen->getwhere_dosen(array('nip'=>$prop->nip))->row()->email;
-        $subject = 'APPROVAL PROPOSAL PENGABDIAN';
-        $message = 'Proposal pengabdian anda yang berjudul '.$prop->judul.' berstatus approved';
+        // $from = $this->config->item('smtp_user');
+        // $to = $this->M_Dosen->getwhere_dosen(array('nip'=>$prop->nip))->row()->email;
+        // $subject = 'APPROVAL PROPOSAL PENGABDIAN';
+        // $message = 'Proposal pengabdian anda yang berjudul '.$prop->judul.' berstatus approved';
 
-        $this->email->set_newline("\r\n");
-        $this->email->from($from);
-        $this->email->to($to);
-        $this->email->subject($subject);
-        $this->email->message($message);
+        // $this->email->set_newline("\r\n");
+        // $this->email->from($from);
+        // $this->email->to($to);
+        // $this->email->subject($subject);
+        // $this->email->message($message);
 
-        if ($this->email->send()) {
-            echo 'Your Email has successfully been sent.';
-        } else {
-            show_error($this->email->print_debugger());
-        }
+        // if ($this->email->send()) {
+        //     echo 'Your Email has successfully been sent.';
+        // } else {
+        //     show_error($this->email->print_debugger());
+        // }
         
         redirect('admin/pengabdian/approval');
     }
@@ -407,13 +444,10 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/laporan_akhir_pengabdian', $data);
-
-    
     }
 
     public function testword()
     {
-        // $phpWord = new PhpWord();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 		$section = $phpWord->addSection();
         
@@ -478,18 +512,13 @@ class Pengabdian extends CI_Controller
         
         
         $objWriter->save( "php://output" );
-		
-        // $writer->save('php://output');
-        // $phpword->save('Perfomance_Appraisal.docx', 'Word2007', true);
     }
 
     public function proposalword()
     {
-        // $phpWord = new PhpWord();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 		$section = $phpWord->addSection();
         
-		
 		$writer = new Word2007($phpWord);
 		
         $filename = 'PengajuanProposal';
@@ -532,9 +561,6 @@ class Pengabdian extends CI_Controller
                 $celldsn->addText($noDsn++.'. '.$this->M_Dosen->getwhere_dosen(array('nip'=>$dsn->nip))->row()->nama);
             }
 
-            // foreach($dosen as $dsn){
-            //     $table->addCell(2000)->addText($noDsn++.''.$this->M_Dosen->getwhere_dosen(array('nip'=>$dsn->nip))->row()->nama);
-            // }
             $cellmhs = $table->addCell(2000,$styleCell);
             foreach($this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result() as $mhs){
                 $cellmhs->addText($noMhs++.'. '.$this->M_Mahasiswa->getwhere_mahasiswa(array('nim'=>$mhs->nim))->row()->nama);
@@ -548,11 +574,7 @@ class Pengabdian extends CI_Controller
         header('Content-Disposition: attachment;filename="'. $filename .'.docx"'); 
         header('Cache-Control: max-age=0');
         
-        
         $objWriter->save( "php://output" );
-		
-        // $writer->save('php://output');
-        // $phpword->save('Perfomance_Appraisal.docx', 'Word2007', true);
     }
     public function testexcel()
     {
@@ -596,8 +618,6 @@ class Pengabdian extends CI_Controller
         }
 
         $writer = new Xlsx($spreadsheet);
-        // $filename = 'laporan-siswa';
-        
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
         header('Cache-Control: max-age=0');
@@ -648,7 +668,6 @@ class Pengabdian extends CI_Controller
         }
 
         $writer = new Xlsx($spreadsheet);
-        // $filename = 'laporan-siswa';
         
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 

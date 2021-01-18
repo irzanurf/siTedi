@@ -20,6 +20,7 @@ class Pengabdian extends CI_Controller {
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_SkemaPengabdian');
         $this->load->model('M_LaporanAkhirPengabdian');
+        $this->load->model('M_JadwalPengabdian');
     }
 
     public function index()
@@ -151,20 +152,25 @@ class Pengabdian extends CI_Controller {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
+
+        
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_dosen_pengabdian');
-        $this->load->view('dosen/form_permohonan_pengabdian',$data);
+        if(($now >= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/form_permohonan_pengabdian',$data);
+        } else {
+            $this->load->view('dosen/closed_form', $data);
+        }
+        
 
     }
 
-    public function UploadSuratMitra()
-    {
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
-        $this->load->view('dosen/upload_surat_mitra',$data);
 
-    }
 
     public function hapusProposal($id)
     {
@@ -194,10 +200,6 @@ class Pengabdian extends CI_Controller {
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
-        // $data = array(
-        //     'sumberdana' => $this->M_SumberDana->get_sumberdana(),
-        //     'sumberdana_selected' => '',
-        // );
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_dosen_pengabdian');
         $this->load->view('dosen/formpengabdian', $data);
@@ -206,20 +208,6 @@ class Pengabdian extends CI_Controller {
 
     public function updateSurat()
     {
-        // $prop_file = $_FILES['file_prop'];
-        //     if(!empty($prop_file['name'])){
-        //         $config['upload_path'] = './assets/prop_pengabdian';
-        //         $config['allowed_types'] = 'pdf';
-
-        //         $this->load->library('upload',$config);
-        //         if(!$this->upload->do_upload('file_prop')){
-        //             echo "Upload Gagal"; die();
-        //         } else {
-        //             $prop_file=$this->upload->data('file_name');
-        //         }
-        //         $data_file = array('file'=>$prop_file);
-        //     $this->M_PropPengabdian->update_prop($id,$data_file);
-        //     }
         $surat = $_FILES['file_persetujuan'];
         if(!empty($surat['name'])){
             $config['upload_path'] = './assets/suratmitra';
@@ -462,43 +450,6 @@ class Pengabdian extends CI_Controller {
         }
 
         $this->M_User->update_user($old_username_mitra, $data_user_mitra);
-
-
-
-
-            
-
-        // $nip= $this->input->post('dosen[]');
-        // $data_dosen = array();
-        // for($i=0; $i<count($nip)-1; $i++)
-        // {
-        //     $data_dosen[$i] = array(
-        //         'nip'  =>      $nip[$i],
-        //         "id_proposal"=>$proposal,
-        //     );
-        // }
-        // $this->M_PropPengabdian->dosen($data_dosen);
-        
-        // $nim= $this->input->post('mahasiswa[]');
-        // $data_mahasiswa = array();
-        // for($i=0; $i<count($nim)-1; $i++)
-        // {
-        //     $data_mahasiswa[$i] = array(
-        //         'nim'  =>      $nim[$i],
-        //         "id_proposal"=>$proposal,
-        //     );
-        // }
-        // $this->M_PropPengabdian->mahasiswa($data_mahasiswa);
-
-
-        // $role_mitra='4';
-        // $password= md5($this->input->post('password',true));
-        // $user_mitra = [
-        //     "username"=>$this->input->post('username',true),
-        //     "password"=>$password,
-        //     "role"=>$role_mitra
-        // ];
-        // $this->M_User->insert_user($user_mitra);
 
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
