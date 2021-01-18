@@ -80,7 +80,9 @@
                     <li>
                     <a href="javascript:;" data-toggle="collapse" data-target="#penelitian"><i class="fa fa-fw fa-edit"></i> Penelitian<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="penelitian" class="collapse">
-                            
+                        <li>
+                                <a href="<?= base_url('admin/penelitian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman Penelitian</a>
+                            </li>
                             <li>
                                 <a href="<?= base_url('admin/penelitian/skemapenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Skema Penelitian</a>
                             </li>
@@ -107,6 +109,9 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Pengabdian<i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
+                            <li>
+                                <a href="<?= base_url('admin/pengabdian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman Penelitian</a>
+                            </li>
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/skemapengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Skema Pengabdian</a>
                                 </li>

@@ -92,6 +92,32 @@ class Login extends CI_Controller {
 
     }
 
+    public function ganti_password()
+    { 
+     $this->form_validation->set_rules('new','New','required|alpha_numeric');
+     $this->form_validation->set_rules('re_new', 'Retype New', 'required|matches[new]');
+     $user = $this->session->userdata('user_name');
+     $pass = md5($this->input->post('new'));
+     $new = [
+        "password" => $pass
+     ];
+       if($this->form_validation->run() == FALSE)
+     {
+      $this->load->view('change_pass');
+     }else{
+      $cek_old = $this->admin->cek_old();
+      if ($cek_old == False){
+       $this->session->set_flashdata('error','Kata sandi lama salah!' );
+       $this->load->view('change_pass');
+      }else{
+       $this->admin->save($user,$new);
+       $this->session->sess_destroy();
+       $this->session->set_flashdata('error','Your password success to change, please relogin !' );
+       $this->load->view('login');
+      }//end if valid_user
+     }
+    }
+
     public function logout()
     {
         $this->session->sess_destroy();

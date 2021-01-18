@@ -21,14 +21,19 @@ class Penelitian extends CI_Controller {
         $this->load->model('M_Jenisp');
         $this->load->model('M_ReviewerPenelitian');
         $this->load->model('M_Profile');
-        
+        $this->load->model('M_Admin');
 
     }
 
     public function index()
     {
         $nip = $this->session->userdata('user_name');
+        $username = $this->session->userdata('user_name');
+        $nama['view']= $this->M_PropPenelitian->getwhere_viewpenelitian(array('nip'=>$username))->result();
+        $nip = $this->session->userdata('user_name');
+        $nama['berita'] = $this->M_Admin->get_berita(array('id'=>1))->result();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('dashboard', $nama);
         $this->load->view("penelitian/footer");
@@ -38,6 +43,7 @@ class Penelitian extends CI_Controller {
     {
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_ReviewerPenelitian->getwhere_penilaian(array('nip'=>$username))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
@@ -56,6 +62,7 @@ class Penelitian extends CI_Controller {
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['view']= $this->M_ReviewerPenelitian->get_komponen(array('id_jenis'=>$id_jenis))->result();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/formnilai', $data);
         $this->load->view("penelitian/footer");
@@ -73,6 +80,7 @@ class Penelitian extends CI_Controller {
         $data['komponen'] = $this->M_ReviewerPenelitian->get_nilai(array('id_proposal'=>$id, 'reviewer'=>$reviewer))->result();
         $assign = $this->M_ReviewerPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$user))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         if($assign->reviewer == $reviewer){
             $data['nilai'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
             $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
@@ -261,6 +269,7 @@ class Penelitian extends CI_Controller {
         $data['view']= $this->M_ReviewerPenelitian->getwhere_monev(array('nip'=>$username))->result();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/monev', $data);
         $this->load->view("penelitian/footer");
@@ -277,6 +286,7 @@ class Penelitian extends CI_Controller {
         $nip = $data['proposal']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/formmonev', $data);
         $this->load->view("penelitian/footer");
@@ -330,6 +340,7 @@ class Penelitian extends CI_Controller {
         $nip = $data['proposal']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $reviewer = $this->session->userdata('user_name');
         $assign = $this->M_ReviewerPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
         if($assign->reviewer == $reviewer){

@@ -7,6 +7,15 @@ class M_Profile extends CI_Model
         return $this->db->get_where('dosen',$data);
     }
 
+    public function cekRevPenelitian($nip)
+    {
+        $query = $this->db->select('nip')
+                        ->from('reviewer_penelitian')
+                        ->where($nip)
+                        ->get();
+        return $query;
+    }
+
     public function getwhere_mhs(array $data)
     {
         return $this->db->get_where('mahasiswa',$data);

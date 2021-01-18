@@ -39,6 +39,26 @@ class Penelitian extends CI_Controller
         $this->load->view('admin/dashboard',$data);
     }
 
+    public function berita()
+    {
+        
+        $data = $this->M_Admin->get_berita(array('id'=>1))->row();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/berita',$data);
+    }
+
+    public function Saveberita(){
+        $berita=$this->input->post('berita');
+        $id=1;
+        $data=[
+            "berita"=>$berita,
+        ];
+        $this->M_Admin->simpan_berita($id,$data);
+        $this->session->set_flashdata('error','Pengumuman berhasil ter-update' );
+        redirect('admin/penelitian/berita');
+    }
+
     public function daftarPenelitian()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewPenelitian()->result();

@@ -48,7 +48,7 @@
                                         <?php
                                         foreach ($sumberdana as $sd) {
                                             ?>
-                                            <option value="<?php echo $proposal->id_sumberdana; ?>"><?php echo $sd->sumberdana; ?></option>
+                                            <option value="<?php echo $sd->id; ?>" <?php echo ($sd->id==$proposal->id_sumberdana) ? "selected='selected'" : "" ?>><?php echo $sd->sumberdana; ?></option>
                                             <?php
                                         }
                                         ?>
@@ -62,26 +62,108 @@
                                         <?php
                                         foreach ($luaran as $l) {
                                             ?>
-                                            <option value="<?php echo $l->id; ?>"><?php echo $l->luaran; ?></option>
+                                            <option value="<?php echo $l->id; ?>" <?php echo ($l->id==$proposal->id_luaran) ? "selected='selected'" : "" ?>><?php echo $l->luaran; ?></option>
                                             <?php
                                         }
                                         ?>
                                     </select>
                                 </div>
 
-                                <!-- <div class="form-group">
-                                    <label>Sumber Dana</label>
-                                    <select class="form-control" name="sumberdana" id="sumberdana">
+                                <div class="form-group">
+                                <label>Anggota Dosen</label>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div>
+                                <?php 
+                        foreach($anggota_dosen as $k=>$val){?>
+                            <div class="control-group input-group" style="margin-top:10px">
+                                <select class="form-control" name="dosen[]">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($dosen as $ds) {
+                                        ?>
+                                        <option value ="<?php echo $ds->nip; ?>" <?php echo ($ds->nip==$val->nip) ? "selected='selected'" : "" ?>><?php echo $ds->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                        <input class='form-control hidden' type="text" id="bobot" name="id_dsn_anggota[]" value=<?=$val->id?> hidden>
+                                    
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+
+                    <?php }?>
+                    <div class="after-add-more"></div>
+                                
+                
+
+                                <div class="form-group">
+                                <label><br>Anggota Mahasiswa</label>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div>
+                                <?php 
+                                foreach($anggota_mhs as $k=>$val){?>
+                                <div class="control-group1 input-group" style="margin-top:10px">
+                                    <select class="form-control" name="mahasiswa[]">
                                         <option value="">Please Select</option>
                                         <?php
-                                        foreach ($sumberdana as $sd) {
+                                        foreach ($mahasiswa as $mhs) {
                                             ?>
-                                            <option value="<?php echo $sd->id; ?>"><?php echo $sd->sumberdana; ?></option>
+                                            <option value ="<?php echo $mhs->nim; ?>" <?php echo ($mhs->nim==$val->nim) ? "selected='selected'" : "" ?>><?php echo $mhs->nama ?></option>
                                             <?php
                                         }
                                         ?>
+                                            <input class='form-control hidden' type="text" id="bobot" name="id_mhs_anggota[]" value=<?=$val->id?> hidden>
+                                       
                                     </select>
-                                </div> -->
+                                        <div class="input-group-btn"> 
+                                        <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                        </div>
+                                    </div>
+
+                        <?php }?>
+                        <div class="after-add-more1"></div>
+                            
+
+                            <div class="copy hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                                <select class="form-control" name="dosen_new[]">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($dosen as $ds) {
+                                        ?>
+                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="copy1 hide">
+                                <div class="control-group1 input-group" style="margin-top:10px">
+                                <select class="form-control" name="mahasiswa_new[]">
+                                    <option value="">Please select</option>
+                                    <?php
+                                    foreach ($mahasiswa as $mhs) {
+                                        ?>
+                                        <option value ="<?php echo $mhs->nim; ?>"><?php echo $mhs->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+
 
 										<button type="submit" class="btn btn-default w3ls-button">Submit</button> 
 									</form> 

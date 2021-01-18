@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</li>
 			<?php  }?>
 			
-			<?php  if($this->session->userdata('role')=='2'){ ?>
+			<?php  if(!empty($cek)){ ?>
 			<li class="has-subnav">
 				<a href="javascript:;">
 					<i class="fa fa-file-text-o nav_icon"></i>
