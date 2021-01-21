@@ -51,7 +51,7 @@
                         </div>
                     </div> 
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Biaya PEnelitian</label>
+                        <label class="col-lg-4 col-form-label">Biaya Penelitian</label>
                         <div class="col-lg-8">
                             <p>Rp <?=  number_format($prop->biaya,2,',','.');?></p>
                         </div>

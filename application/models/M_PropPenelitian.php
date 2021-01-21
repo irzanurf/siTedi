@@ -167,4 +167,56 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function dosen_update_prop($id)
+    {
+        $query = $this->db->select('dsn_penelitian.*, dosen.nama as nama, dosen.program_studi as program_studi')
+                        ->from('dsn_penelitian')
+                        ->join('dosen','dsn_penelitian.nip=dosen.nip','inner')
+                        ->where('dsn_penelitian.id_proposal = '.$id.'')
+                        ->get();
+        return $query;
+    }
+
+    public function mhs_update_prop($id)
+    {
+        $query = $this->db->select('mhs_penelitian.*, mahasiswa.nama as nama, mahasiswa.program_studi as program_studi')
+                        ->from('mhs_penelitian')
+                        ->join('mahasiswa','mhs_penelitian.nim=mahasiswa.nim','inner')
+                        ->where('mhs_penelitian.id_proposal = '.$id.'')
+                        ->get();
+        return $query;
+    }
+
+    public function update_dosen_anggota($data,$id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('dsn_penelitian',$data);
+    }
+
+    public function hapus_dosen_anggota($data)
+    {
+        $query = $this->db->delete('dsn_penelitian',$data);
+        return $query;
+    }
+
+    public function insert_dsn_anggota($data){
+        $this->db->insert('dsn_penelitian',$data);
+    }
+
+    public function update_mhs_anggota($data,$id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('mhs_penelitian',$data);
+    }
+
+    public function hapus_mhs_anggota($data)
+    {
+        $query = $this->db->delete('mhs_penelitian',$data);
+        return $query;
+    }
+
+    public function insert_mhs_anggota($data){
+        $this->db->insert('mhs_penelitian',$data);
+    }
+
 }

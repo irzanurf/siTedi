@@ -15,10 +15,12 @@ class Pengabdian extends CI_Controller {
         $this->load->model('M_PropPengabdian');
         $this->load->model('M_Mitra');
         $this->load->model('M_User');
+        $this->load->model('M_Profile');
         $this->load->model('M_SumberDana');
         $this->load->model('M_Dosen');
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_SkemaPengabdian');
+        $this->load->model('M_Admin');
         $this->load->model('M_LaporanAkhirPengabdian');
         $this->load->model('M_JadwalPengabdian');
     }
@@ -27,8 +29,11 @@ class Pengabdian extends CI_Controller {
     {
         $user = $this->session->userdata('user_name');
         $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->row();
+        $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$user))->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view("dosen/dashboardpengabdian",$data);
     }
 
@@ -151,6 +156,7 @@ class Pengabdian extends CI_Controller {
     public function PengisianForm()
     {
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $nip = $this->session->userdata('user_name');
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
@@ -159,16 +165,26 @@ class Pengabdian extends CI_Controller {
         $now = date('Y-m-d', strtotime(date('Y-m-d')));
         $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
         $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
 
         
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         if(($now >= $awal) && ($now<=$akhir)){
             $this->load->view('dosen/form_permohonan_pengabdian',$data);
         } else {
             $this->load->view('dosen/closed_form', $data);
         }
+    }
         
+    public function UploadSuratMitra()
+    {
+        $nip = $this->session->userdata('user_name');
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('dosen/upload_surat_mitra',$data);
 
     }
 
@@ -197,13 +213,19 @@ class Pengabdian extends CI_Controller {
 
     public function SubmitPermohonan()
     {
+        $nip = $this->session->userdata('user_name');
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        // $data = array(
+        //     'sumberdana' => $this->M_SumberDana->get_sumberdana(),
+        //     'sumberdana_selected' => '',
+        // );
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('dosen/formpengabdian', $data);
 
     }
@@ -318,9 +340,10 @@ class Pengabdian extends CI_Controller {
         $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id)->result();
         $data['anggota_mhs'] = $this->M_PropPengabdian->mhs_update_prop($id)->result();
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
-
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('dosen/upproppengabdian',$data);
     }
 
@@ -415,7 +438,6 @@ class Pengabdian extends CI_Controller {
 
         for($j=0; $j<count($mhs_new)-1;$j++)
             {
-                console.log('test');
                 $mahasiswa_new=$mhs_new[$j];
                 $data_mhs_new =[
                     'nim' => $mahasiswa_new,
@@ -472,8 +494,10 @@ class Pengabdian extends CI_Controller {
     public function DaftarPermohonan()
     {
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('dosen/daftar_permohonan_pengabdian', $data);
 
     }
@@ -481,8 +505,10 @@ class Pengabdian extends CI_Controller {
     public function laporanAkhir()
     {
         $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('dosen/laporan_akhir_pengabdian', $data);
 
     }

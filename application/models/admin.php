@@ -30,4 +30,19 @@ class admin extends CI_Model
             return $query->result();
         }
     }
+
+    public function cek_old()
+  {
+   $old = md5($this->input->post('old'));    
+   $this->db->where('password',$old);
+   $query = $this->db->get('user');
+      return $query->result();;
+          }
+
+    
+    public function save($user,$new)
+    {
+    $this->db->where('username', $user);
+    $this->db->update('user', $new);
+ }
 }

@@ -22,6 +22,9 @@
 
     <!-- Morris Charts CSS -->
     <link href="<?= base_url('assets/template/css/plugins/morris.css');?>" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/css/bootstrap.css'?>">
+
 
     <link href="<?= base_url("datepicker/dist/css/bootstrap-datepicker.css");?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css" rel="stylesheet" />

@@ -95,5 +95,17 @@ class M_Admin extends CI_Model
         $query = $this->db->delete('reviewer_pengabdian',$data);
         return $query;
     }
+
+    public function get_berita($data){
+        $query = $this->db->select('berita')
+                        ->from('pengumuman')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
     
+    public function simpan_berita($id, $data){
+        $this->db->where('id',$id);
+        $this->db->update('pengumuman',$data);
+    }
 }

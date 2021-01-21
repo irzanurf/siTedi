@@ -23,6 +23,7 @@ class Pengabdian extends CI_Controller
         $this->load->model('M_DetailNilaiProposalPengabdian');
         $this->load->model('M_AssignProposalPengabdian');
         $this->load->model('M_Profile');
+        $this->load->model('M_Admin');
 
     }
 
@@ -30,16 +31,21 @@ class Pengabdian extends CI_Controller
     {
         $user = $this->session->userdata('user_name');
         $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$user))->result();
+        $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view("reviewer/dashboardpengabdian",$data);
     }
 
     public function daftarProposal()
     {
+        $nip = $this->session->userdata('user_name');
         $data['view'] = $this->M_PropPengabdian->get_viewpenilaian()->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('reviewer/penilaian_prop_pengabdian',$data);
 
 
@@ -47,9 +53,11 @@ class Pengabdian extends CI_Controller
 
     public function nilaiProposal()
     {
+        $nip = $this->session->userdata('user_name');
         $data['view'] = $this->M_PropPengabdian->get_viewgrade()->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('reviewer/nilai_prop_pengabdian',$data);
 
 
@@ -63,9 +71,10 @@ class Pengabdian extends CI_Controller
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=>$data['prop']->id_skema))->result();
-
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('reviewer/formnilai_prop_pengabdian',$data);
 
 
@@ -80,9 +89,10 @@ class Pengabdian extends CI_Controller
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id))->result();
         $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row();
-
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('reviewer/detailnilai_prop_pengabdian',$data);
     }
 
@@ -105,9 +115,10 @@ class Pengabdian extends CI_Controller
             $data['komentar'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
         }
         
-
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian');
+        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
         $this->load->view('reviewer/editnilai_prop_pengabdian',$data);
 
 
