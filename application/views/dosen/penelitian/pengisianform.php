@@ -99,7 +99,7 @@
                                     ?>
                                 </select>
                                  <div class="input-group-btn"> 
-                                    <button class="btn btn-primary add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn-sm btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -117,7 +117,7 @@
                                     ?>
                                 </select>
                                  <div class="input-group-btn"> 
-                                    <button class="btn btn-primary add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn-sm btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -134,7 +134,7 @@
                                     ?>
                                 </select>
                                     <div class="input-group-btn"> 
-                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    <button class="btn-sm btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +152,7 @@
                                     ?>
                                 </select>
                                     <div class="input-group-btn"> 
-                                    <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    <button class="btn-sm btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
                                 </div>
                             </div>

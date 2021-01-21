@@ -56,6 +56,27 @@ class Pengabdian extends CI_Controller
 
     }
 
+    public function berita()
+    {
+        
+        $data = $this->M_Admin->get_berita(array('id'=>2))->row();
+        $this->load->view('layout/header');
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/berita',$data);
+    }
+
+    public function Saveberita(){
+        $berita=$this->input->post('berita');
+        $id=2;
+        $data=[
+            "berita"=>$berita,
+        ];
+        $this->M_Admin->simpan_berita($id,$data);
+        $this->session->set_flashdata('error','Pengumuman berhasil ter-update' );
+        redirect('admin/penelitian/berita');
+    }
+
+
     public function daftarPengabdian()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewPengabdian()->result();

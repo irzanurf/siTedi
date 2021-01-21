@@ -2,23 +2,33 @@
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/Profile-Edit-Form-1.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/Profile-Edit-Form.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/styles.css');?>">
+    <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/divider.css');?>">
 </head>
     <body>
 
     <div class="container profile profile-view" id="profile">
     
         <div class="col-md-0">
-            <h1>Pengumuman</h1>
+        
+        <div id="content">
+  <center><h1>Pengumuman</h1></center>
+  <div class="MasMalvenSpoiler">
+    <div class="isi">
+    <?php echo $berita[0]-> berita?>
+    </div>
+</div> 
+ </div>
+            <!-- <h1>Pengumuman</h1>
             
-            <?php echo $berita[0]-> berita?>
+            <?php echo $berita[0]-> berita?> -->
             
         </div>
          
         <div class="row">
             
-        </div>
+        </div></br></br>
         
-        <h1>Daftar Pengajuan Proposal</h1>
+        <h1><center>Daftar Pengajuan Proposal</center></h1>
                        
 					</div>
                     <table class="table" >

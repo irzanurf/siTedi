@@ -32,7 +32,7 @@
             <div class="container">
         <div class="col-md-12 col-md-offset-0">
             <h2>Pengumuman</h2><hr/>
-            <form action="<?= base_url('admin/penelitian/saveBerita');?>" method="post" enctype="multipart/form-data">
+            <form action="<?= base_url('admin/pengabdian/saveBerita');?>" method="post" enctype="multipart/form-data">
             <div class="error">
 <?= validation_errors() ?>
 <?= $this->session->flashdata('error') ?>

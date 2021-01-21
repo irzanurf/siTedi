@@ -20,6 +20,9 @@ class Penelitian extends CI_Controller {
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_Jenisp');
         $this->load->model('M_Profile');
+        $this->load->model('M_Admin');
+        $this->load->model('M_SkemaPenelitian');
+        
     }
 
     
@@ -27,8 +30,10 @@ class Penelitian extends CI_Controller {
     public function index()
     {
         $nip = $this->session->userdata('user_name');
+        $nama['view']= $this->M_PropPenelitian->getwhere_viewpenelitian(array('nip'=>$nip))->result();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $nama['berita'] = $this->M_Admin->get_berita(array('id'=>1))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('dashboard', $nama);
         $this->load->view("penelitian/footer");
@@ -127,10 +132,6 @@ class Penelitian extends CI_Controller {
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
         $data['v']= $this->M_PropPenelitian->get_penelitian()->result();
-        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
-        $data['luaran']= $this->M_Luaran->get_luaran()->result();
-        $data['dosen']= $this->M_Dosen->get_dosen()->result();
-        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
@@ -161,6 +162,7 @@ class Penelitian extends CI_Controller {
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPenelitian->get_skemapenelitian()->result();
         $data['anggota_dosen'] = $this->M_PropPenelitian->dosen_update_prop($id)->result();
         $data['anggota_mhs'] = $this->M_PropPenelitian->mhs_update_prop($id)->result();
         $nip = $this->session->userdata('user_name');
@@ -176,40 +178,37 @@ class Penelitian extends CI_Controller {
     {
             $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
             $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+            $this->form_validation->set_rules('bulan','bulan', 'required');
             $id = $this->input->post('id');
             $nip = $this->session->userdata('user_name');
             $data_proposal = $this->M_PropPenelitian->getwhere_proposal(array('id'=> $id))->row();
             
             $date = date('Y-m-d');
-            
+            $bulan = $this->input->post('bulan',true);
+        $tahun = $this->input->post('tahun',true); 
+        if(($tahun=='0' || $tahun=='')&&($bulan=='0' || $bulan=='')){
+            $lama = $this->input->post('cek');
+        }
+        elseif($tahun=='0' || $tahun==''){
+            $lama= $bulan." bulan";
+        } else {
+            $lama = $tahun." tahun ".$bulan." bulan ";
+        }
             $prop = array (
                 "nip"=>$nip,
                 "judul"=>$this->input->post('judul',true),
                 "abstrak"=>$this->input->post('abstrak',true),
-                "tgl_upload"=>$date,
                 "lokasi"=>$this->input->post('lokasi',true),
+                "id_jenis"=>$this->input->post('jenis',true),
+                "mitra"=>$this->input->post('mitra',true),
+                "tgl_upload"=>$date,
                 "biaya"=>$this->input->post('biaya',true),
+                "lama_pelaksanaan"=>$lama,
+                "id_luaran"=>$this->input->post('luaran',true),
+                "id_sumberdana"=>$this->input->post('sumberdana',true),
         );
             $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
-            /**
-             * upload file proposal
-             */
             
-                $prop_file = $_FILES['file_prop'];
-                if(!empty($prop_file['name'])){
-                    $config['upload_path'] = './assets/prop_pengabdian';
-                    $config['allowed_types'] = 'pdf';
-    
-                    $this->load->library('upload',$config);
-                    if(!$this->upload->do_upload('file_prop')){
-                        echo "Upload Gagal"; die();
-                    } else {
-                        $prop_file=$this->upload->data('file_name');
-                    }
-                    $data_file = array('file'=>$prop_file);
-                $this->M_PropPenelitian->update_prop($id,$data_file);
-                }
-                /* update anggota dosen */
                 $dsn_update = $this->input->post('dosen[]');
                 $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
                 $dsn_new = $this->input->post('dosen_new[]');
@@ -263,7 +262,7 @@ class Penelitian extends CI_Controller {
     
             for($j=0; $j<count($mhs_new)-1;$j++)
                 {
-                    console.log('test');
+                 
                     $mahasiswa_new=$mhs_new[$j];
                     $data_mhs_new =[
                         'nim' => $mahasiswa_new,
@@ -272,9 +271,9 @@ class Penelitian extends CI_Controller {
                     $this->M_PropPenelitian->insert_mhs_anggota($data_mhs_new);
                 }
         if($this->form_validation->run()==false){
-            redirect("dosen/penelitian/detailproposal");
+            redirect("dosen/penelitian/submit");
         } else {
-            redirect("dosen/penelitian/detailproposal");
+            redirect("dosen/penelitian/submit");
         }
         
 
