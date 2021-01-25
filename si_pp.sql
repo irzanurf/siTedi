@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Des 2020 pada 05.05
--- Versi server: 10.4.6-MariaDB
--- Versi PHP: 7.3.9
+-- Generation Time: Jan 25, 2021 at 10:15 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,7 +33,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`nip`, `nama`) VALUES
@@ -44,7 +43,7 @@ INSERT INTO `admin` (`nip`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `assign_proposal_penelitian`
+-- Table structure for table `assign_proposal_penelitian`
 --
 
 CREATE TABLE `assign_proposal_penelitian` (
@@ -55,7 +54,7 @@ CREATE TABLE `assign_proposal_penelitian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `assign_proposal_penelitian`
+-- Dumping data for table `assign_proposal_penelitian`
 --
 
 INSERT INTO `assign_proposal_penelitian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
@@ -68,7 +67,7 @@ INSERT INTO `assign_proposal_penelitian` (`id`, `id_proposal`, `reviewer`, `revi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `assign_proposal_pengabdian`
+-- Table structure for table `assign_proposal_pengabdian`
 --
 
 CREATE TABLE `assign_proposal_pengabdian` (
@@ -79,7 +78,7 @@ CREATE TABLE `assign_proposal_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `assign_proposal_pengabdian`
+-- Dumping data for table `assign_proposal_pengabdian`
 --
 
 INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
@@ -90,7 +89,7 @@ INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `revi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_nilai_proposal_pengabdian`
+-- Table structure for table `detail_nilai_proposal_pengabdian`
 --
 
 CREATE TABLE `detail_nilai_proposal_pengabdian` (
@@ -103,7 +102,7 @@ CREATE TABLE `detail_nilai_proposal_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `detail_nilai_proposal_pengabdian`
+-- Dumping data for table `detail_nilai_proposal_pengabdian`
 --
 
 INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `id_komponen_nilai`, `skor`, `nilai`) VALUES
@@ -136,7 +135,7 @@ INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dosen`
+-- Table structure for table `dosen`
 --
 
 CREATE TABLE `dosen` (
@@ -159,7 +158,7 @@ CREATE TABLE `dosen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dosen`
+-- Dumping data for table `dosen`
 --
 
 INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
@@ -447,7 +446,7 @@ INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lul
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dsn_penelitian`
+-- Table structure for table `dsn_penelitian`
 --
 
 CREATE TABLE `dsn_penelitian` (
@@ -457,7 +456,7 @@ CREATE TABLE `dsn_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dsn_penelitian`
+-- Dumping data for table `dsn_penelitian`
 --
 
 INSERT INTO `dsn_penelitian` (`id`, `nip`, `id_proposal`) VALUES
@@ -468,12 +467,15 @@ INSERT INTO `dsn_penelitian` (`id`, `nip`, `id_proposal`) VALUES
 (5, '21060117130076', 84),
 (6, 'pengusul', 85),
 (7, '21060117130076', 86),
-(8, '21060117130076', 87);
+(8, '21060117130076', 87),
+(9, '195901051987031002', 88),
+(10, '196602201991021001', 89),
+(11, '195905221988121001', 89);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dsn_pengabdian`
+-- Table structure for table `dsn_pengabdian`
 --
 
 CREATE TABLE `dsn_pengabdian` (
@@ -483,7 +485,7 @@ CREATE TABLE `dsn_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dsn_pengabdian`
+-- Dumping data for table `dsn_pengabdian`
 --
 
 INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
@@ -491,12 +493,13 @@ INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
 (4, '21060117130076', 4),
 (5, '21060117130076', 5),
 (6, '21060117130076', 6),
-(7, '21060117130076', 7);
+(7, '21060117130076', 7),
+(8, '195901091987031001', 7);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal`
+-- Table structure for table `jadwal`
 --
 
 CREATE TABLE `jadwal` (
@@ -508,7 +511,7 @@ CREATE TABLE `jadwal` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jadwal_penelitian`
+-- Table structure for table `jadwal_penelitian`
 --
 
 CREATE TABLE `jadwal_penelitian` (
@@ -520,21 +523,35 @@ CREATE TABLE `jadwal_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `jadwal_penelitian`
+-- Dumping data for table `jadwal_penelitian`
 --
 
 INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
-(1, '2020-08-05', '2020-08-12', '2020-08-20', '2020-08-31'),
-(2, '1970-01-01', '1970-01-01', '1970-01-01', '1970-01-01'),
-(3, '1970-01-01', '1970-01-01', '1970-01-01', '1970-01-01'),
-(4, '2020-08-08', '2020-08-05', '2020-08-17', '2020-08-23'),
-(5, '1970-01-01', '1970-01-01', '1970-01-01', '1970-01-01'),
-(6, '1970-01-01', '1970-01-01', '1970-01-01', '1970-01-01');
+(7, '2021-01-25', '0000-00-00', '0000-00-00', '2021-01-31');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenispenelitian`
+-- Table structure for table `jadwal_pengabdian`
+--
+
+CREATE TABLE `jadwal_pengabdian` (
+  `id` int(3) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jadwal_pengabdian`
+--
+
+INSERT INTO `jadwal_pengabdian` (`id`, `tgl_mulai`, `tgl_selesai`) VALUES
+(1, '2021-01-14', '2021-01-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenispenelitian`
 --
 
 CREATE TABLE `jenispenelitian` (
@@ -544,7 +561,7 @@ CREATE TABLE `jenispenelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenispenelitian`
+-- Dumping data for table `jenispenelitian`
 --
 
 INSERT INTO `jenispenelitian` (`id`, `jenis`, `tgl`) VALUES
@@ -554,7 +571,7 @@ INSERT INTO `jenispenelitian` (`id`, `jenis`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `komponen_nilai_pengabdian`
+-- Table structure for table `komponen_nilai_pengabdian`
 --
 
 CREATE TABLE `komponen_nilai_pengabdian` (
@@ -565,7 +582,7 @@ CREATE TABLE `komponen_nilai_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `komponen_nilai_pengabdian`
+-- Dumping data for table `komponen_nilai_pengabdian`
 --
 
 INSERT INTO `komponen_nilai_pengabdian` (`id`, `id_skema_pengabdian`, `komponen_penilaian`, `bobot`) VALUES
@@ -581,7 +598,7 @@ INSERT INTO `komponen_nilai_pengabdian` (`id`, `id_skema_pengabdian`, `komponen_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `komp_penilaian_penelitian`
+-- Table structure for table `komp_penilaian_penelitian`
 --
 
 CREATE TABLE `komp_penilaian_penelitian` (
@@ -592,7 +609,7 @@ CREATE TABLE `komp_penilaian_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `komp_penilaian_penelitian`
+-- Dumping data for table `komp_penilaian_penelitian`
 --
 
 INSERT INTO `komp_penilaian_penelitian` (`id`, `id_jenis`, `komponen`, `bobot`) VALUES
@@ -611,7 +628,7 @@ INSERT INTO `komp_penilaian_penelitian` (`id`, `id_jenis`, `komponen`, `bobot`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `koordinator`
+-- Table structure for table `koordinator`
 --
 
 CREATE TABLE `koordinator` (
@@ -622,7 +639,7 @@ CREATE TABLE `koordinator` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan_akhir_penelitian`
+-- Table structure for table `laporan_akhir_penelitian`
 --
 
 CREATE TABLE `laporan_akhir_penelitian` (
@@ -639,7 +656,7 @@ CREATE TABLE `laporan_akhir_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `laporan_akhir_penelitian`
+-- Dumping data for table `laporan_akhir_penelitian`
 --
 
 INSERT INTO `laporan_akhir_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `file4`, `catatan`, `status`) VALUES
@@ -661,7 +678,7 @@ INSERT INTO `laporan_akhir_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan_akhir_pengabdian`
+-- Table structure for table `laporan_akhir_pengabdian`
 --
 
 CREATE TABLE `laporan_akhir_pengabdian` (
@@ -675,7 +692,7 @@ CREATE TABLE `laporan_akhir_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `laporan_akhir_pengabdian`
+-- Dumping data for table `laporan_akhir_pengabdian`
 --
 
 INSERT INTO `laporan_akhir_pengabdian` (`id`, `id_proposal`, `nip`, `laporan_akhir`, `belanja`, `logbook`, `luaran`) VALUES
@@ -685,7 +702,7 @@ INSERT INTO `laporan_akhir_pengabdian` (`id`, `id_proposal`, `nip`, `laporan_akh
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan_monev_penelitian`
+-- Table structure for table `laporan_monev_penelitian`
 --
 
 CREATE TABLE `laporan_monev_penelitian` (
@@ -701,7 +718,7 @@ CREATE TABLE `laporan_monev_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `laporan_monev_penelitian`
+-- Dumping data for table `laporan_monev_penelitian`
 --
 
 INSERT INTO `laporan_monev_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `catatan`, `status`) VALUES
@@ -729,7 +746,7 @@ INSERT INTO `laporan_monev_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `luaran`
+-- Table structure for table `luaran`
 --
 
 CREATE TABLE `luaran` (
@@ -739,7 +756,7 @@ CREATE TABLE `luaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `luaran`
+-- Dumping data for table `luaran`
 --
 
 INSERT INTO `luaran` (`id`, `luaran`, `tgl`) VALUES
@@ -751,7 +768,7 @@ INSERT INTO `luaran` (`id`, `luaran`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -763,7 +780,7 @@ CREATE TABLE `mahasiswa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama`, `program_studi`, `angkatan`, `jenis_kelamin`) VALUES
@@ -774,7 +791,7 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `program_studi`, `angkatan`, `jenis_kela
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mhs_penelitian`
+-- Table structure for table `mhs_penelitian`
 --
 
 CREATE TABLE `mhs_penelitian` (
@@ -784,7 +801,7 @@ CREATE TABLE `mhs_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mhs_penelitian`
+-- Dumping data for table `mhs_penelitian`
 --
 
 INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
@@ -795,12 +812,15 @@ INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
 (5, '1283472834', 84),
 (6, '42352341', 85),
 (7, '1283472834', 86),
-(8, '1283472834', 87);
+(8, '1283472834', 87),
+(9, '427597123', 88),
+(10, '427597123', 89),
+(11, '42048302', 89);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mhs_pengabdian`
+-- Table structure for table `mhs_pengabdian`
 --
 
 CREATE TABLE `mhs_pengabdian` (
@@ -810,7 +830,7 @@ CREATE TABLE `mhs_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mhs_pengabdian`
+-- Dumping data for table `mhs_pengabdian`
 --
 
 INSERT INTO `mhs_pengabdian` (`id`, `nim`, `id_proposal`) VALUES
@@ -826,7 +846,7 @@ INSERT INTO `mhs_pengabdian` (`id`, `nim`, `id_proposal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mitra`
+-- Table structure for table `mitra`
 --
 
 CREATE TABLE `mitra` (
@@ -842,7 +862,7 @@ CREATE TABLE `mitra` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `mitra`
+-- Dumping data for table `mitra`
 --
 
 INSERT INTO `mitra` (`id`, `nama_instansi`, `penanggung_jwb`, `no_telp`, `email`, `alamat`, `username`, `status`, `file_persetujuan`) VALUES
@@ -851,12 +871,13 @@ INSERT INTO `mitra` (`id`, `nama_instansi`, `penanggung_jwb`, `no_telp`, `email`
 (4, 'BCA', 'Tejo Subejo', '073247627346', 'tejo@test.com', 'Jalan Tangerang, Tangerang', 'bca_test', 1, 'Note6.pdf'),
 (5, 'LP2MP Universitas Diponegoro', 'sda', 'asdas', 'sada', 'sadas', 'aa', 1, 'LPK_Wisata.pdf'),
 (6, 'mitra.test', 'penanggung jawab', '0853247889724', 'tsest@test.com', 'alamat', 'mitra-test', 1, 'LPK_Batik.pdf'),
-(7, 'adas', 'adas', 'dada', 'dsad', 'das', 'aa@gmail.com', 0, '');
+(7, 'adas', 'adas', 'dada', 'dsad', 'das', 'aa@gmail.com', 0, ''),
+(8, 'adasd', 'dsadas', '1238123921', 'yoayoa@gmail.com', 'sadasd', 'yoayoa', 0, '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai_penelitian`
+-- Table structure for table `nilai_penelitian`
 --
 
 CREATE TABLE `nilai_penelitian` (
@@ -869,7 +890,7 @@ CREATE TABLE `nilai_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `nilai_penelitian`
+-- Dumping data for table `nilai_penelitian`
 --
 
 INSERT INTO `nilai_penelitian` (`id`, `id_proposal`, `id_komponen`, `skor`, `nilai`, `reviewer`) VALUES
@@ -1041,7 +1062,7 @@ INSERT INTO `nilai_penelitian` (`id`, `id_proposal`, `id_komponen`, `skor`, `nil
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai_proposal_penelitian`
+-- Table structure for table `nilai_proposal_penelitian`
 --
 
 CREATE TABLE `nilai_proposal_penelitian` (
@@ -1054,19 +1075,18 @@ CREATE TABLE `nilai_proposal_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `nilai_proposal_penelitian`
+-- Dumping data for table `nilai_proposal_penelitian`
 --
 
 INSERT INTO `nilai_proposal_penelitian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
 (2, 71, 'moh', 990, NULL, NULL),
 (3, 84, 'Irza 1', 500, 'irza 22', 500),
-(4, 85, 'irza2', 470, 'Irza 2', 490),
 (5, 87, 'dasdaS', 650, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `nilai_proposal_pengabdian`
+-- Table structure for table `nilai_proposal_pengabdian`
 --
 
 CREATE TABLE `nilai_proposal_pengabdian` (
@@ -1079,7 +1099,7 @@ CREATE TABLE `nilai_proposal_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `nilai_proposal_pengabdian`
+-- Dumping data for table `nilai_proposal_pengabdian`
 --
 
 INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
@@ -1090,7 +1110,26 @@ INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `proposal_penelitian`
+-- Table structure for table `pengumuman`
+--
+
+CREATE TABLE `pengumuman` (
+  `id` int(11) NOT NULL,
+  `berita` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `berita`) VALUES
+(1, '<p>sdadsadas<strong>ddddddddddddddd</strong></p>\r\n'),
+(2, '<p>shaidkjashdpawois<strong>dhoaishdoas</strong></p>\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proposal_penelitian`
 --
 
 CREATE TABLE `proposal_penelitian` (
@@ -1114,7 +1153,7 @@ CREATE TABLE `proposal_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `proposal_penelitian`
+-- Dumping data for table `proposal_penelitian`
 --
 
 INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_sumberdana`, `id_luaran`, `mitra`, `id_jadwal`, `tgl_upload`, `file`, `cr_monev`, `cr_monev2`, `status`) VALUES
@@ -1123,12 +1162,14 @@ INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, 
 (84, 1, '21060117130082', 'Irza', ' Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-02', 'abe60cfb6ecb803a65c25aa436437034.pdf', 'irza11', 'irza21', 3),
 (85, 1, '21060117130081', 'Saya Irza', ' Saya Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', '02ab14c03b55ce54ae0519d340053836.pdf', 'HIHIHIHIHIHIH', 'HAHAHAAHA', 3),
 (86, 1, '21060117130081', 'Penelitian satu', ' Sadsakdpsjais', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', 'cf58cd1ae580f3e14e1be2d663212578.pdf', '', '', 1),
-(87, 4, '21060117130082', 'A', ' A', 'A', '12 bulan', '12000000', 5, 3, 'A', 0, '2020-11-11', '477316cd91ca53e3de41cbf6ddc76cee.pdf', '', '', 5);
+(87, 4, '21060117130082', 'A', ' A', 'A', '12 bulan', '12000000', 5, 3, 'A', 0, '2020-11-11', '477316cd91ca53e3de41cbf6ddc76cee.pdf', '', '', 5),
+(88, 1, '21060117130082', 'qdwas', ' dasdasd', 'adsd', '12 bulan', '121212121', 5, 3, 'sadas', 0, '2021-01-18', 'bec48aaa56f94f1c3eddaf23dfe658d9.pdf', '', '', 0),
+(89, 1, '21060117130082', 'asSa', 'aha', 'siap', '9 bulan', '11', 7, 2, 'SasA', 0, '2021-01-21', '691c3ff51b824a467c9ead38fdea4109.pdf', '', '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `proposal_pengabdian`
+-- Table structure for table `proposal_pengabdian`
 --
 
 CREATE TABLE `proposal_pengabdian` (
@@ -1150,19 +1191,20 @@ CREATE TABLE `proposal_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `proposal_pengabdian`
+-- Dumping data for table `proposal_pengabdian`
 --
 
 INSERT INTO `proposal_pengabdian` (`id`, `nip`, `id_mitra`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_skema`, `id_sumberdana`, `id_luaran`, `id_jadwal`, `tgl_upload`, `file`, `status`) VALUES
 (4, 'pengusul', 4, 'Pelatihan Menyusun Anggaran Untuk Dapat Meningkatkan Laba Operasional Pada Umkm Di Wilayah Kecamatan Ciledug Tangerang', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Tangerang', '6 bulan', '4000000', 1, 1, 0, 0, '2020-10-31', 'Document_34.pdf', 'ACCEPTED'),
 (5, '21060117130076', 5, 'Percobaan 1', 'sadasda', 'da', '12 bulan', '12000000', 1, 1, 0, 0, '2020-11-01', 'LPK_Susu.pdf', 'GRADED1'),
 (6, 'pengusul', 6, 'Pengabdian 2', 'abstra', 'INdonesia', '5 bulan', '2000000', 1, 4, 0, 0, '2020-11-03', 'LPK_Batik.pdf', 'ACCEPTED'),
-(7, '21060117130082', 7, 'Percobaan 1', 'dasd', 'asdsa', '12 bulan', '12000000', 1, 5, 0, 0, '2020-11-11', 'LPK_Batik1.pdf', '');
+(7, '21060117130082', 7, 'Percobaan 1', 'dasd', 'asdsa', '12 bulan', '12000000', 1, 5, 0, 0, '2021-01-21', 'LPK_Batik1.pdf', ''),
+(8, '21060117130082', 8, 'dasdas', 'adasd', 'dasd', '12', '12', 1, 5, 0, 0, '2021-01-18', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reviewer_penelitian`
+-- Table structure for table `reviewer_penelitian`
 --
 
 CREATE TABLE `reviewer_penelitian` (
@@ -1171,7 +1213,7 @@ CREATE TABLE `reviewer_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `reviewer_penelitian`
+-- Dumping data for table `reviewer_penelitian`
 --
 
 INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
@@ -1181,7 +1223,7 @@ INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reviewer_pengabdian`
+-- Table structure for table `reviewer_pengabdian`
 --
 
 CREATE TABLE `reviewer_pengabdian` (
@@ -1190,18 +1232,17 @@ CREATE TABLE `reviewer_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `reviewer_pengabdian`
+-- Dumping data for table `reviewer_pengabdian`
 --
 
 INSERT INTO `reviewer_pengabdian` (`nip`, `nama`) VALUES
 ('21060117130076', 'samaya'),
-('21060117130082', 'Irza'),
 ('reviewer', 'Reviewer');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role`
+-- Table structure for table `role`
 --
 
 CREATE TABLE `role` (
@@ -1210,7 +1251,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `role`
+-- Dumping data for table `role`
 --
 
 INSERT INTO `role` (`id`, `role`) VALUES
@@ -1222,7 +1263,7 @@ INSERT INTO `role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `skema_pengabdian`
+-- Table structure for table `skema_pengabdian`
 --
 
 CREATE TABLE `skema_pengabdian` (
@@ -1232,7 +1273,7 @@ CREATE TABLE `skema_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `skema_pengabdian`
+-- Dumping data for table `skema_pengabdian`
 --
 
 INSERT INTO `skema_pengabdian` (`id`, `jenis_pengabdian`, `tgl`) VALUES
@@ -1243,7 +1284,7 @@ INSERT INTO `skema_pengabdian` (`id`, `jenis_pengabdian`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `sumberdana`
+-- Table structure for table `sumberdana`
 --
 
 CREATE TABLE `sumberdana` (
@@ -1253,7 +1294,7 @@ CREATE TABLE `sumberdana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `sumberdana`
+-- Dumping data for table `sumberdana`
 --
 
 INSERT INTO `sumberdana` (`id`, `sumberdana`, `tgl`) VALUES
@@ -1263,7 +1304,7 @@ INSERT INTO `sumberdana` (`id`, `sumberdana`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -1274,7 +1315,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
@@ -1611,7 +1652,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 (331, '198902220119111108', 'a3939cb110f5f1c300aa9818d924febc', 3),
 (332, '197512210119111107', '8026431368810cefcfb3845785c45fc6', 3),
 (333, '21060117130076', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(334, '21060117130082', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(334, '21060117130082', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
 (335, '21060117130070', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
 (336, 'pengusul', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
 (337, 'reviewer', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
@@ -1639,341 +1680,359 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indeks untuk tabel `assign_proposal_penelitian`
+-- Indexes for table `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `assign_proposal_pengabdian`
+-- Indexes for table `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `detail_nilai_proposal_pengabdian`
+-- Indexes for table `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `dsn_penelitian`
+-- Indexes for table `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `dsn_pengabdian`
+-- Indexes for table `dsn_pengabdian`
 --
 ALTER TABLE `dsn_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jadwal`
+-- Indexes for table `jadwal`
 --
 ALTER TABLE `jadwal`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jadwal_penelitian`
+-- Indexes for table `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `jenispenelitian`
+-- Indexes for table `jadwal_pengabdian`
+--
+ALTER TABLE `jadwal_pengabdian`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jenispenelitian`
 --
 ALTER TABLE `jenispenelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `komponen_nilai_pengabdian`
+-- Indexes for table `komponen_nilai_pengabdian`
 --
 ALTER TABLE `komponen_nilai_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `komp_penilaian_penelitian`
+-- Indexes for table `komp_penilaian_penelitian`
 --
 ALTER TABLE `komp_penilaian_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `koordinator`
+-- Indexes for table `koordinator`
 --
 ALTER TABLE `koordinator`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indeks untuk tabel `laporan_akhir_penelitian`
+-- Indexes for table `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `laporan_akhir_pengabdian`
+-- Indexes for table `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `laporan_monev_penelitian`
+-- Indexes for table `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `luaran`
+-- Indexes for table `luaran`
 --
 ALTER TABLE `luaran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mhs_penelitian`
+-- Indexes for table `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mhs_pengabdian`
+-- Indexes for table `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `mitra`
+-- Indexes for table `mitra`
 --
 ALTER TABLE `mitra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `nilai_penelitian`
+-- Indexes for table `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `nilai_proposal_penelitian`
+-- Indexes for table `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `nilai_proposal_pengabdian`
+-- Indexes for table `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `proposal_penelitian`
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `proposal_pengabdian`
+-- Indexes for table `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `reviewer_penelitian`
+-- Indexes for table `reviewer_penelitian`
 --
 ALTER TABLE `reviewer_penelitian`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indeks untuk tabel `reviewer_pengabdian`
+-- Indexes for table `reviewer_pengabdian`
 --
 ALTER TABLE `reviewer_pengabdian`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indeks untuk tabel `role`
+-- Indexes for table `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `skema_pengabdian`
+-- Indexes for table `skema_pengabdian`
 --
 ALTER TABLE `skema_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `sumberdana`
+-- Indexes for table `sumberdana`
 --
 ALTER TABLE `sumberdana`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `assign_proposal_penelitian`
+-- AUTO_INCREMENT for table `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `assign_proposal_pengabdian`
+-- AUTO_INCREMENT for table `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `detail_nilai_proposal_pengabdian`
+-- AUTO_INCREMENT for table `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT untuk tabel `dsn_penelitian`
+-- AUTO_INCREMENT for table `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `dsn_pengabdian`
+--
+ALTER TABLE `dsn_pengabdian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `dsn_pengabdian`
---
-ALTER TABLE `dsn_pengabdian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `jadwal`
+-- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `jadwal_penelitian`
+-- AUTO_INCREMENT for table `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `jenispenelitian`
+-- AUTO_INCREMENT for table `jadwal_pengabdian`
+--
+ALTER TABLE `jadwal_pengabdian`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `jenispenelitian`
 --
 ALTER TABLE `jenispenelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `komponen_nilai_pengabdian`
+-- AUTO_INCREMENT for table `komponen_nilai_pengabdian`
 --
 ALTER TABLE `komponen_nilai_pengabdian`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `komp_penilaian_penelitian`
+-- AUTO_INCREMENT for table `komp_penilaian_penelitian`
 --
 ALTER TABLE `komp_penilaian_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `laporan_akhir_penelitian`
+-- AUTO_INCREMENT for table `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `laporan_akhir_pengabdian`
+-- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `laporan_monev_penelitian`
+-- AUTO_INCREMENT for table `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT untuk tabel `luaran`
+-- AUTO_INCREMENT for table `luaran`
 --
 ALTER TABLE `luaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `mhs_penelitian`
+-- AUTO_INCREMENT for table `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `mhs_pengabdian`
+-- AUTO_INCREMENT for table `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `mitra`
+-- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `nilai_penelitian`
+-- AUTO_INCREMENT for table `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
--- AUTO_INCREMENT untuk tabel `nilai_proposal_penelitian`
+-- AUTO_INCREMENT for table `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `nilai_proposal_pengabdian`
+-- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `proposal_penelitian`
+-- AUTO_INCREMENT for table `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- AUTO_INCREMENT untuk tabel `proposal_pengabdian`
+-- AUTO_INCREMENT for table `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `role`
+-- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `skema_pengabdian`
+-- AUTO_INCREMENT for table `skema_pengabdian`
 --
 ALTER TABLE `skema_pengabdian`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `sumberdana`
+-- AUTO_INCREMENT for table `sumberdana`
 --
 ALTER TABLE `sumberdana`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=359;

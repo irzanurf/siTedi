@@ -78,7 +78,7 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function formJadwalPeneltian()
+    public function formJadwal()
     {
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');

@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-lg-12">
         <section class="content">
-        <a href="<?=base_url('admin/Penelitian/formJadwalPenelitian');?>"><button class='btn btn-info'>Tambah Jadwal Penelitian</button></a>
+        <a href="<?=base_url('admin/penelitian/formJadwal');?>"><button class='btn btn-info'>Tambah Jadwal Penelitian</button></a>
         
         <table class="table">
             <col style='width:10%'>

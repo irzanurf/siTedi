@@ -35,6 +35,7 @@
                 <th class='text-center'>Logbook</th>
                 <th class='text-center'>Luaran</th>
                 <th class='text-center'>Laporan Belanja 100%</th>
+                <th class='text-center'>Catatan Pengusul</th>
                 
             </tr>
             <?php 
@@ -75,6 +76,11 @@
                     <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
+                    <?php endif; ?>
+                </td>
+                <td>
+                <?php if ($v->catatan==NULL) : ?> - 
+                    <?php elseif($v->file3 != NULL) : ?> <?= $v->catatan?>
                     <?php endif; ?>
                 </td>
                 

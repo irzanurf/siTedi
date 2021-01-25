@@ -34,6 +34,9 @@
                 <th class='text-center'>Logbook</th>
                 <th class='text-center'>Laporan Catatan</th>
                 <th class='text-center'>Laporan Belanja 70%</th>
+                <th class='text-center'>Catatan Pengusul</th>
+                <th class='text-center'>Komentar Reviewer 1</th>
+                <th class='text-center'>Komentar Reviewer 2</th>
                 
             </tr>
             <?php 
@@ -68,6 +71,24 @@
                     </button>
                     <?php endif; ?>
                 </td>
+                <td>
+                <?php if ($v->catatan==NULL) : ?> - 
+                    <?php elseif($v->file3 != NULL) : ?> <?= $v->catatan?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($v->komentar==NULL) : ?> -
+                        <?php elseif($v->komentar != NULL) : ?> <?= $v->komentar?>
+                    
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($v->komentar2==NULL) : ?> -
+                        <?php elseif($v->komentar != NULL) : ?> <?= $v->komentar2?>
+                    
+                    <?php endif; ?>
+                </td>
+                
                 
                
             </tr>

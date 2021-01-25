@@ -9,10 +9,6 @@ class Penelitian extends CI_Controller {
         //load model admin
         $this->load->model('admin');
         //cek session dan level user
-        if($this->admin->is_role() != "2"){
-            redirect("login/");
-            
-        }
         $this->load->model('M_PropPenelitian');
         $this->load->model('M_SumberDana');
         $this->load->model('M_Luaran');
@@ -42,9 +38,9 @@ class Penelitian extends CI_Controller {
     public function penilaian_penelitian()
     {
         $username = $this->session->userdata('user_name');
+        $nip = $this->session->userdata('user_name');
         $data['view']= $this->M_ReviewerPenelitian->getwhere_penilaian(array('nip'=>$username))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
-        $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/penilaian', $data);

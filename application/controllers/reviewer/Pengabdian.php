@@ -9,9 +9,7 @@ class Pengabdian extends CI_Controller
         //load model admin
         $this->load->model('admin');
         //cek session dan level user
-        if($this->admin->is_role() != "2"){
-            redirect("login/");
-        }
+        
         $this->load->model('M_PropPengabdian');
         $this->load->model('M_Mitra');
         $this->load->model('M_User');

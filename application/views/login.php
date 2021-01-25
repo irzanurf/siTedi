@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
     <link rel="stylesheet" href="<?php echo base_url ('assets/login/css/Google-Style-Login.css'); ?>">
+    
 </head>
 
 <body id="page-top" style="background-image: url('<?php echo base_url('assets/login/img/intro-bg.jpg'); ?>');background-size: cover;">
@@ -26,10 +27,7 @@
             <input class="form-control" type="password" name="password" required="" placeholder="Password">
             <?php echo form_error('password'); ?>
         </div>
-            <div
-                class="checkbox">
-                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Remember me</label></div>
-    </div><button class="btn btn-primary btn-block btn-lg btn-signin"  name="btn-login" id="btn-login" type="submit">Sign in</button></form>
+            <button class="btn btn-primary btn-block btn-lg btn-signin"  name="btn-login" id="btn-login" type="submit">Sign in</button></form>
     <!-- <a class="forgot-password" href="login_reviewer">Login Sebagai Reviewer</a></div> -->
     <script src="<?php echo base_url ('assets/login/js/jquery.min.js'); ?>"></script>
     <script src="<?php echo base_url ('assets/login/bootstrap/js/bootstrap.min.js'); ?>"></script>
