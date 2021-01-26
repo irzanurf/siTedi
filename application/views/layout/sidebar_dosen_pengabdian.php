@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 <?php  if($this->session->userdata('role')=='3'){ ?>
-=======
-            <?php  if($this->session->userdata('role')=='3'){ ?>
->>>>>>> fe982e3c65b8c106996bcb9f1adf088abb803f4f
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
