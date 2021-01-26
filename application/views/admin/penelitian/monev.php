@@ -77,14 +77,14 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if ($v->komentar==NULL) : ?> -
-                        <?php elseif($v->komentar != NULL) : ?> <?= $v->komentar?>
+                    <?php if ($v->cr_monev==NULL) : ?> -
+                        <?php elseif($v->cr_monev != NULL) : ?> <?= $v->cr_monev?>
                     
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if ($v->komentar2==NULL) : ?> -
-                        <?php elseif($v->komentar != NULL) : ?> <?= $v->komentar2?>
+                    <?php if ($v->cr_monev2==NULL) : ?> -
+                        <?php elseif($v->cr_monev2 != NULL) : ?> <?= $v->cr_monev2?>
                     
                     <?php endif; ?>
                 </td>

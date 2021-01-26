@@ -50,6 +50,9 @@ class Penelitian extends CI_Controller {
     public function formPenilaian()
     {
         $id = $this->input->post('id');
+        if($id==NULL){
+            redirect("reviewer/penelitian/penilaian_penelitian");
+        }
         $nip = $this->session->userdata('user_name');
         $id_jenis = $this->input->post('jenis');
         $username = $this->session->userdata('user_name');
@@ -67,6 +70,9 @@ class Penelitian extends CI_Controller {
     public function editPenilaian()
     {
         $id = $this->input->post('id',true);
+        if($id==NULL){
+            redirect("reviewer/penelitian/penilaian_penelitian");
+        }
         $id_jenis = $this->input->post('jenis');
         $user = $this->session->userdata('user_name');
         $reviewer = $this->session->userdata('user_name');
@@ -91,11 +97,11 @@ class Penelitian extends CI_Controller {
     }
 
 
-    public function reviewpenelitian(){
-        $id = $this->input->post('id');
-        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
-        $this->load->view('reviewer/reviewpenelitian',$data);
-    }
+    // public function reviewpenelitian(){
+    //     $id = $this->input->post('id');
+    //     $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+    //     $this->load->view('reviewer/reviewpenelitian',$data);
+    // }
 
     public function submitNilai()
     {
@@ -274,6 +280,9 @@ class Penelitian extends CI_Controller {
     public function cr()
     {
         $id = $this->input->post('id');
+        if($id==NULL){
+            redirect("reviewer/penelitian/monev");
+        }
         $nip = $this->session->userdata('user_name');
         $id_jenis = $this->input->post('jenis');
         $username = $this->session->userdata('user_name');
@@ -328,6 +337,9 @@ class Penelitian extends CI_Controller {
     public function editCr()
     {
         $id = $this->input->post('id');
+        if($id==NULL){
+            redirect("reviewer/penelitian/monev");
+        }
         $nip = $this->session->userdata('user_name');
         $id_jenis = $this->input->post('jenis');
         $username = $this->session->userdata('user_name');
@@ -340,9 +352,9 @@ class Penelitian extends CI_Controller {
         $reviewer = $this->session->userdata('user_name');
         $assign = $this->M_ReviewerPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
         if($assign->reviewer == $reviewer){
-            $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_proposal(array('id'=>$id))->row()->cr_monev;
+            $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_cr(array('id_proposal'=>$id))->row()->cr_monev;
         } else if($assign->reviewer2 == $reviewer){
-            $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_proposal(array('id'=>$id))->row()->cr_monev2;
+            $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_cr(array('id_proposal'=>$id))->row()->cr_monev2;
         }
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/editmonev', $data);

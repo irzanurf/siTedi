@@ -75,7 +75,7 @@
                         
                     <div class="form-group">
                         <label><br>Komentar Penilai</label>
-                        <div >
+                        <div>
                             <textarea class="form-control" name="komentar"   rows="3"><?= $komentar ?></textarea>
                         </div>
                         </div>

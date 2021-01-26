@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 10:15 AM
+-- Generation Time: Jan 26, 2021 at 06:09 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -62,7 +62,8 @@ INSERT INTO `assign_proposal_penelitian` (`id`, `id_proposal`, `reviewer`, `revi
 (4, 84, '21060117130076', '21060117130082'),
 (7, 85, '21060117130076', '21060117130082'),
 (8, 86, '21060117130076', '21060117130082'),
-(9, 87, '21060117130076', '21060117130082');
+(9, 87, '21060117130076', '21060117130082'),
+(10, 90, 'reviewer1', 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -162,286 +163,288 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
+('123456', 'b', 'b', 'b', 'b', 0000, 'b', 'b', 'b', 'b', 'b', 'b', 'b', '', 'b', 'b'),
+('195203121975011004', 'Prof. Dr. Ir. Bambang Pramudono, MS.', 'IV/e', 'Guru Besar', 'S3', 2005, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('195205051980111001', 'Prof.Ir. Totok Rusmanto, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Teori & Sejarah Ars.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('195303091981031005', 'Prof. Dr. Ir. Sri Tudjono, M.S.', 'IV/b', 'Guru Besar', 'S3', 2005, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195308191983031001', 'Prof.Dr.Ing.Ir. Gagoek Hardiman', 'IV/e', 'Guru Besar', 'S3', 1992, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
 ('195404301981032001', 'Prof. Dr. Ir. Sri Prabandiyani Retno Wardani, M.Sc', 'IV/d', 'Guru Besar', 'S3', 1999, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('196112281986031004', 'Prof. Dr. Ir. Purwanto, DEA', 'IV/e', 'Guru Besar', 'S3', 1994, 'T. Sistem Proses & T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('195407171982032001', 'Prof. Dr.Ir. Nany Yuliastuti, MSP', 'IV/d', 'Guru Besar', 'S3', 2015, 'Ilmu Perancangan Wilayah dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
 ('195409301980032001', 'Prof. Dr. Ir. Sri Sangkawati, M.S.', 'IV/d', 'Guru Besar', 'S3', 2013, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195611091985032002', 'Prof. Dr. Ir. Han Ay Lie, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 2013, 'Ilmu Teknik Sipil', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('195308191983031001', 'Prof.Dr.Ing.Ir. Gagoek Hardiman', 'IV/e', 'Guru Besar', 'S3', 1992, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
-('196204231987031003', 'Dr. Ir. Dwi Basuki Wibowo, M.S.', 'IV/c', 'Lektor Kepala', 'S3', 2019, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196005011986031003', 'Prof.Dr.Ir. Bakti Jos, DEA', 'IV/d', 'Guru Besar', 'S3', 1993, 'Tenik Energi Dan Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195704221986031001', 'Dr. Ir. Bambang Purwanggono Sukarsono, M.Eng.', 'IV/c', 'Lektor Kepala', 'S3', 2014, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('195512311983031014', 'Prof.Ir. Abdullah, M.S., Ph.D.', 'IV/d', 'Guru Besar', 'S3', 2002, 'Bioteknologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195901091987031001', 'Dr.Ir. Djoko Indrosaptono, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196110221988031002', 'Dr.T. Ir. Indro Sumantri, M.Eng.', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'T. Pengolahan Limbah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196602201991021001', 'Prof. Dr. Ir. Budiyono, M.Si.', 'IV/d', 'Guru Besar', 'S3', 2010, 'T. Pengolahan Air', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196906121994031001', 'Dr. Wahyudi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2015, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195901051987031002', 'Ir. Agung Nugroho, M.Kom.', 'IV/c', 'Lektor Kepala', 'S2', 2010, 'Biomedik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196003151987031001', 'Dr. Ir Heru Prastawa, DEA', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('195905221988121001', 'Ir. Sarjito Jokosisworo, M.Si.', 'IV/b', 'Lektor Kepala', 'S2', 1995, 'Ilmu Material', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('195811071988031001', 'Prof. Dr. Ir. Syafrudin, CES, M.T.', 'IV/c', 'Guru Besar', 'S3', 2014, 'Ilmu Teknik Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196004271987031001', 'Prof. Dr. Ir. Suripin, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 1998, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('196209171991021001', 'Ir. Sulistyo, M.T., Ph.D.', 'IV/b', 'Lektor Kepala', 'S3', 2013, 'Metallurgy Dan Corrosion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195611261987031002', 'Dr. Ir. Hargono, M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197105011997021001', 'Dr. Luqman Buchori, S.T., M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Komputasi Dinamika Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196004121986032001', 'Dr. Ir. Ratnawati, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2005, 'Teknologi Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196811111994121001', 'Sumardi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S2', 1998, 'Sistem Instrumentasi dan Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196205201989021001', 'Prof.Dr.rer.nat. Ir. Athanasius Priharyoto Bayusen', 'IV/d', 'Guru Besar', 'S3', 2006, 'Ceramic Processing and Characterization', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('195807121983031032', 'Ir. Slamet Priyanto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Tekologi Energi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196006021986021001', 'Prof. Dr. Ir. Sriyana, M.S.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196312311990031022', 'Prof. Dr. Ir. Edi Purwanto, M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Perancangan Arsitektur dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('195905281988031001', 'Ir. Indrastono Dwi Atmanto, M.Ing.', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Breeding Reproduksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195507271986031008', 'Ir. Yurianto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Hydrolic Machine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
 ('195508211983031002', 'Ir. Agus Hadiyarto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1994, 'T. Pengolahan Limbah & Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196107121988031003', 'Ir. Djoeli Satrijo, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('195510161985031001', 'Dr. Ir. Parfi Khadiyanta, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Perencanaan Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('195511081983031002', 'Prof.Ir. Edy Darmawan, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('195512311983031014', 'Prof.Ir. Abdullah, M.S., Ph.D.', 'IV/d', 'Guru Besar', 'S3', 2002, 'Bioteknologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('195606011986021001', 'Ir. Irawan Wisnu Wardhana, M.S.', 'III/b', 'Asisten Ahli', 'S2', 1992, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('195608181986031005', 'Ir. Abdul Malik, MSArs', 'III/c', 'Lektor', 'S2', 1991, 'Teori dan Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('195611091985032002', 'Prof. Dr. Ir. Han Ay Lie, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 2013, 'Ilmu Teknik Sipil', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
+('195611261987031002', 'Dr. Ir. Hargono, M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('195612281985031003', 'Dr.Ir. Ragil Haryanto, M.SP.', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('195701081986021001', 'Ir. Salamun, M.T.', 'III/d', 'Lektor', 'S2', 1997, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195702051986031003', 'Ir. Djoko Suwandono, M.Sp.', 'IV/a', 'Lektor Kepala', 'S2', 1988, 'Perenc Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('195704221986031001', 'Dr. Ir. Bambang Purwanggono Sukarsono, M.Eng.', 'IV/c', 'Lektor Kepala', 'S3', 2014, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('195706241985031001', 'Ir. Yohannes Inigo Wicaksono, M.S.', 'III/d', 'Lektor', 'S2', 1989, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195708311986021002', 'Ir. Endro Sutrisno, M.S.', 'III/d', 'Lektor', 'S2', 1992, 'Dsda Mekanik Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
 ('195709131986031001', 'Ir. Bambang Sudarsono, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1989, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('196007181989031001', 'Ir. Kiryanto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Teknik Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('195712221987031001', 'Ir. Dhanoe Iswanto, M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('195801021986031002', 'Ir. Sumar Hadi Suryo, M.T.', 'III/d', 'Lektor', 'S2', 2013, 'Production & Proses', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('195804291986021001', 'Ir. Nugroho Agus Darmanto, M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('195807121983031032', 'Ir. Slamet Priyanto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Tekologi Energi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('195807151986021001', 'Ir. EPF Eko Yuli Priyono, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195808071987031001', 'Ir. Mochtar Hadiwidodo, M.Si.', 'IV/a', 'Lektor Kepala', 'S2', 2010, 'Buangan Padat, Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('195809291986021001', 'Dr.Ir. Windu Partono, M.Sc.', 'III/c', 'Lektor', 'S3', 2015, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195810101986021001', 'Ir. Robert Johanes Kodoatie, M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2000, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195811071988031001', 'Prof. Dr. Ir. Syafrudin, CES, M.T.', 'IV/c', 'Guru Besar', 'S3', 2014, 'Ilmu Teknik Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('195811111987031002', 'Ir. Fitri Yusman, M.SP.', 'III/c', 'Lektor', 'S2', 1991, 'Perumahan', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('195812211987032001', 'Ir. Dwi Kurniani, M.S.', 'III/d', 'Lektor', 'S2', 1991, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195901051987031002', 'Ir. Agung Nugroho, M.Kom.', 'IV/c', 'Lektor Kepala', 'S2', 2010, 'Biomedik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('195901091987031001', 'Dr.Ir. Djoko Indrosaptono, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('195901181987102001', 'Ir. Diah Susetyo Retnowati, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1995, 'T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('195903231988032001', 'Ir. Hary Budieny, M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195905221988121001', 'Ir. Sarjito Jokosisworo, M.Si.', 'IV/b', 'Lektor Kepala', 'S2', 1995, 'Ilmu Material', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('195905281988031001', 'Ir. Indrastono Dwi Atmanto, M.Ing.', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Breeding Reproduksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
 ('195906191985111001', 'Ir. Sudjadi, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Elektro,Telkom,Kontrol,Robotika,Mikro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
 ('195906201987031003', 'Ir. Bambang Yunianto, M.Sc.', 'IV/b', 'Lektor Kepala', 'S2', 1993, 'Heat Transfer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196002171987032001', 'Dra. Bitta Pigawati, Dipl.GE, M.T.', 'IV/b', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Wil & Kota Tata Guna Lahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195303091981031005', 'Prof. Dr. Ir. Sri Tudjono, M.S.', 'IV/b', 'Guru Besar', 'S3', 2005, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195507271986031008', 'Ir. Yurianto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Hydrolic Machine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196210161988031003', 'Ir. Indriastjario, M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 1997, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196405261989031002', 'Dr. Ir. Jaka Windarta, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('196910021994032003', 'Dr.T. Aji Prasetyaningrum, S.T., M.Si.', 'IV/b', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195612281985031003', 'Dr.Ir. Ragil Haryanto, M.SP.', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196112171987031001', 'Dr. Ir. Nazaruddin Sinaga, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Heat Transfer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196411081990011001', 'Dr. Ir. Eddy Prianto, CES, DEA', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196002231986021001', 'Dr. Ir. Hermawan, DEA', 'IV/a', 'Lektor Kepala', 'S3', 1995, 'Analisis Sitem Tenaga Listrik, Kestabilan Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('196307111991021002', 'Ir. Purwanto, M.T., M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196203271991022001', 'Dr. Ir. Nur Rokhati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Tek. Batu Bara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196207011990031003', 'Ir. Arif Hidayat, CES, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197204221999031004', 'Dr. Abdul Syakur, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197206091998031001', 'Prof. Dr. Widayat, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2011, 'Ilmu Sistem Proses Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197106161999031003', 'Mochammad Facta, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('196310201991021001', 'Dr.Ir. Agung Budi Sardjono, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196309271993032001', 'Ir. Nurini, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perenc Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197212311998022001', 'Dr. Ratna Purwaningsih, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Sistem modelling dan Industry Sustainability', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197108181997021001', 'Dr. Agus Suprihanto, S.T, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2001, 'Failure Analisis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196711101994031003', 'Holi Bina Wijaya, S.T., MUM', 'IV/b', 'Lektor Kepala', 'S2', 1999, 'Sistem Informasi Perenc Urban Manaj Tata Guna Laha', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196312221990011003', 'Dr.Ir. Hadi Wahyono, M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perencanaan Wilayah Dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197303051997021001', 'Muchammad, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Presurre Vessel Technology', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196309141988031012', 'Dr. Ir. Suharyanto, M.Sc.', 'IV/c', 'Lektor Kepala', 'S3', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('195907221987031003', 'Dr. Ir. Berkah Fajar Tamtomo Kiono, Dipl.Ing.', 'IV/b', 'Lektor Kepala', 'S3', 2002, 'Fluid Mechanic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195702051986031003', 'Ir. Djoko Suwandono, M.Sp.', 'IV/a', 'Lektor Kepala', 'S2', 1988, 'Perenc Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196704291994032002', 'Dr. Sunarti, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perumahan Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196112261988031001', 'Dr. Ir. Setia Budi Sasongko, DEA.', 'IV/a', 'Lektor Kepala', 'S3', 2001, 'Tekn. Sistem Proses; Komputasi Proses', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196702081994031005', 'Prof. Ir. Mochamad Agung Wibowo, M.M., M.Sc., Ph.D', 'IV/c', 'Guru Besar', 'S3', 2004, 'Teknik Sipil (Manajemen Konstruksi)', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('195808071987031001', 'Ir. Mochtar Hadiwidodo, M.Si.', 'IV/a', 'Lektor Kepala', 'S2', 2010, 'Buangan Padat, Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196803171997022002', 'Retno Susanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Kota Pariwisata', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196912211995121001', 'Achmad Hidayatno, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Pengolahan Sinyal Digital', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197604161999032002', 'Dr. Aprilina Purbasari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'T. Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197011231995121001', 'Prof. Dr.rer.nat. Imam Buchori, S.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Perenc Wil & Kota Aplikasi Geomatika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197107191998022001', 'Ajub Ajulian Zahra Macrina, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196608221997022001', 'Dr.Ars. Ir. Rina Kurniati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197302261998021001', 'Dr. Adian Fatchur Rochim, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Network System', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197002171994121001', 'Dr. Susilo Adi Widyanto, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2009, 'Production &Automatic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197206061999031001', 'Darjat, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Elektronika', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195706241985031001', 'Ir. Yohannes Inigo Wicaksono, M.S.', 'III/d', 'Lektor', 'S2', 1989, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195801021986031002', 'Ir. Sumar Hadi Suryo, M.T.', 'III/d', 'Lektor', 'S2', 2013, 'Production & Proses', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196107221986021001', 'Ir. Himawan Indarto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195701081986021001', 'Ir. Salamun, M.T.', 'III/d', 'Lektor', 'S2', 1997, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195510161985031001', 'Dr. Ir. Parfi Khadiyanta, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Perencanaan Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195911071987032001', 'Dr. Ir. Ismiyati, M.S.', 'III/d', 'Lektor', 'S3', 2011, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196704301992032002', 'Dr. Ir. Suzanna Ratih Sari, M.M., M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196402141991022002', 'Ir. Kristinah Haryani, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196806281998022001', 'Dr. Ir. R. Siti Rukayah, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196711141993031001', 'Prof. Ir. Didi Dwi Anggoro, M.Eng., Ph.D.', 'IV/c', 'Guru Besar', 'S3', 2004, 'Zeolite', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196205161990011001', 'Ir. Parang Sabdono, M.Eng.', 'III/d', 'Lektor', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197302041997021001', 'Aghus Sofwan, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196904291998021006', 'Hardi Wibowo, S.T., M.Eng.', 'III/d', 'Lektor', 'S2', 2004, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196303161991031002', 'Dr. Ir. Nuroji, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Teknik Struktur/Analisa Struktur 2', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('197011231998021001', 'Dr.Eng. Gunawan Dwi Haryadi, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2012, 'Material Handling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195708311986021002', 'Ir. Endro Sutrisno, M.S.', 'III/d', 'Lektor', 'S2', 1992, 'Dsda Mekanik Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('195901181987102001', 'Ir. Diah Susetyo Retnowati, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1995, 'T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197208302000031001', 'Dr. Badrus Zaman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Pengelolaan Wilayah Pesisir, Pengelolaan Kualitas ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197303171999031001', 'Ojo Kurdi, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Dynamic Of Vehicle', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197004231995121001', 'Prof. Dr. I Nyoman Widiasa, S.T., M.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197510211999031004', 'Dr.Eng. Hartono Yudo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Perancangan Teknik Teknik Mesin', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196001251987031001', 'Ir. Sugiyanto, DEA', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197012121998022001', 'Dr. Dyah Ari Wulandari, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2016, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196503131991021001', 'Ir. Budi Setiyana, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1996, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196807111997021001', 'Yuli Christyono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Telekokunikasi Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196408041991021002', 'Dr. Ir. Budi Sudarwanto, M.Si.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Studi Pembangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196103041993032001', 'Dr. Ir. Retno Widjajanti, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perec Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197503062000121001', 'Dr.rer.oec. Arfan Bakhtiar, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197402142000121001', 'Parlindungan Manik, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Operasional', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197710032000121001', 'Dr. Purnawan Adi Wicaksono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Manajemen Operasional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197102071995121001', 'Prof. Dr. Moh. Djaeni, S.T., M.Eng.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Energi Tek (Drying) Pengeringan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196605061995121001', 'Dr. Jawoto Sih Setyono, S.T., MDP', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Pwk Sustainable Development', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197103011997021001', 'Prof. Dr. Istadi, S.T., M.T.', 'IV/c', 'Guru Besar', 'S3', 2006, 'Ilmu Teknik Kimia/Thermodinamika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197312211999031002', 'Dr. Denny Nurkertamanda, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197007272000121001', 'Dr. Ir. R. Rizal Isnanto, S.T., M.M., M.T., IPM', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Informasi Dan Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197404262000121001', 'Darminto Pujotomo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197309262000121001', 'Dr. Iwan Setiawan, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197403081999031005', 'Syaiful, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2010, 'Internal Combution Engine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197409302001121002', 'Mochamad Arief Budihardjo, S.T., M.Eng.Sc, Env.Eng', 'III/d', 'Lektor Kepala', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196201101989021001', 'Dr. Ir. Agung Dwiyanto, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Teknologi Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196907091997021001', 'Karnoto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197006252002122001', 'Sri Hartini, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197410202000121001', 'Sukawi, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197307021999031001', 'Dr.Eng. Achmad Widodo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Nodal Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197107241997021001', 'Dr. Ing. Asnawi, S.T.', 'IV/a', 'Lektor Kepala', 'S3', 2005, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197505291998021001', 'Prof. Dr.rer.nat. Heru Susanto, S.T., M.M., M.T.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197402141999031002', 'Haryono Setiyo Huboyo, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2013, 'Pencemaran Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197504281999031001', 'Jati Utomo Dwi Hatmoko, S.T., M.M., M.Sc., Ph.D.', 'III/d', 'Lektor', 'S3', 2008, 'Manajemen Konstruksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('197510281999031004', 'Prof. Dr. Hadiyanto, S.T., M.Sc.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Ilmu Teknik Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197501172000032001', 'Nita Aryanti, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Teknologi Membran Emulsi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195810101986021001', 'Ir. Robert Johanes Kodoatie, M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2000, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195608181986031005', 'Ir. Abdul Malik, MSArs', 'III/c', 'Lektor', 'S2', 1991, 'Teori dan Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196005261987101001', 'Ir. Djoko Purwanto, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195907141987031001', 'Ir. Muhrozi, M.S.', 'III/c', 'Lektor', 'S2', 1991, 'geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196111171988031001', 'Ir. Tejo Sukmadi, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195809291986021001', 'Dr.Ir. Windu Partono, M.Sc.', 'III/c', 'Lektor', 'S3', 2015, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196208091988031001', 'Ir. Toni Prahasto, MAsc., Ph.D.', 'III/c', 'Lektor', 'S3', 1999, 'Geometric Modeling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196001151988101001', 'Ir. Hantoro Satriadi, M.T.', 'III/c', 'Lektor', 'S2', 1998, 'Agro Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195804291986021001', 'Ir. Nugroho Agus Darmanto, M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196204281990012001', 'Ir. Eflita Yohana, M.T., Ph.D.', 'III/c', 'Lektor Kepala', 'S3', 2011, 'Energy Conservasion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('196811102005011001', 'Joga Dharma Setiawan, B.Sc., M.Sc., Ph.D.', 'III/c', 'Lektor', 'S3', 2001, 'Rotor Dinamics', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196307111990012001', 'Dr.Ars. Ir. Wijayanti, M.Eng.', 'III/c', 'Lektor', 'S3', 2018, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196203271988031004', 'Ir. Satrio Nugroho, M.Si.', 'III/c', 'Lektor', 'S2', 1996, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195903231988032001', 'Ir. Hary Budieny, M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196610051992031003', 'Dr. Ir. Hari Nugroho, M.T.', 'III/c', 'Lektor', 'S3', 2019, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195712221987031001', 'Ir. Dhanoe Iswanto, M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196605212006041010', 'Dr.Ing. Ir. Ismoyo Haryanto, M.T.', 'III/c', 'Lektor', 'S3', 2005, 'Getaran Mekanik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197112181995121001', 'Dr. Wahyul Amien Syafei, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197106061995121003', 'Agung Budi Prasetijo, S.T., M.I.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2016, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197104201998021001', 'Dr. Sulardjaka, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Engenering Mechanical', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196509131998032001', 'Dr. Ir. Atik Suprapti, MTA.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('195812211987032001', 'Ir. Dwi Kurniani, M.S.', 'III/d', 'Lektor', 'S2', 1991, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197005201999031002', 'Rusnaldy, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2008, 'Proses Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197402231997021001', 'Edward Endrianto Pandelaki, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
-('197305072002122002', 'Dr. Naniek Utami Handayani, S.Si., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('196704041998022001', 'Prof. Dr. Ir. Erni Setyowati, M.T.', 'IV/a', 'Guru Besar', 'S3', 2011, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197107231998022001', 'Dr. Yulita Arni Priastiwi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197301302000032001', 'Nurandani Hardyanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2013, 'Pengelolaan Limbah Cair dan Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196909291997021001', 'Dr. Fadjar Hari Mardiansjah, S.T., M.T., MDP', 'III/c', 'Lektor', 'S3', 2014, 'Tata Guna Lahan Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196106161993031002', 'Ir. Bambang Winardi, M.Kom.', 'III/d', 'Lektor', 'S2', 2013, 'Kependudukan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197406271999031002', 'Dr. Maman Somantri, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Rekayasa Perangkat Lunak, IT Management, Sistem In', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197012031997021001', 'Imam Santoso, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196805081999031002', 'Dr. Wilma Amiruddin, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Teknik Managemen Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197501222000121001', 'Dr.Eng. Ahmad Fauzan Zakki, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Struktur Kapal dan FSI Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197312172000121001', 'Dr.Eng. Deddy Chrismianto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Produksi & Material Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196904292002121001', 'Dr. Hery Suliantoro, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197301121998032001', 'Wido Prananing Tyas, S.T., MDP, Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perenc Wil & Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197407201998032001', 'Dr.Ars. Anita Ratnasari Rakhmatulloh, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2018, 'Perenc Wil & Kota Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197104211999031003', 'Mohamad Said Kartono Tony Suryo Utomo, S.T., M.T.,', 'III/c', 'Lektor', 'S3', 2008, 'Teknik Sistem & Pengendalian Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197406181999031002', 'Untung Budiarto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Teknik Sistem & Pengendalian Kelautan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197509152000121001', 'Dr.nat.tech. Siswo Sumardiono, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2005, 'Modifikasi Starch', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('195907021987032001', 'Ir. Frida Kistiani, M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Manaj. Konstruksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196807261997021001', 'Mardwi Rahdriawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197310172000121001', 'Eko Sasmito Hadi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2002, 'Sistem Perkapalan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196609011998021001', 'Junaidi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Air Limbah', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197403271999031002', 'Dr.sc.agr. Iwan Rudiarto, S.T., M.Sc.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Manajemen Sumber Daya Manusia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197006271998031005', 'Dr. Mussadun, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2012, 'Pengembangan Wil Pesisir Dan Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197608121999031002', 'Rukuh Setiadi, S.T., MEM.,Ph.D.', 'III/c', 'Lektor', 'S3', 2017, 'Perencanaan Wil Kota Majemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197111241998031002', 'Mohammad Muktiali, S.E., M.Si., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Sintesis Biomaterial Untuk Implantasi Ulang', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197412162000122001', 'Dr.Ing. Silviana, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197508112000121001', 'Dr.Eng. Maryono, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Perencanaan Manjemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196905051995122001', 'Dr. Artiningsih, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2018, 'Pernec Wil &Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196901011997021001', 'Dr.Ing. Wisnu Pradoto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Perencaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197605252000122001', 'Dr. Ing. Wiwandari Handayani, S.T., M.T., MPS', 'IV/a', 'Lektor Kepala', 'S3', 2011, 'Pernc Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196808141999031002', 'Dr.Eng. Sukamta, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2008, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('197509222003122002', 'Maya Damayanti, S.T., M.A., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Manajemen Kota Ek Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197705242003122001', 'Landung Esariti, S.T., MPS', 'III/c', 'Lektor', 'S2', 2005, 'Perenc Wil & Kota Properti', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197506082005011001', 'Eko Handoyo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197409122000121002', 'Sriyanto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Teknik Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197403162001121001', 'Dr. Singgih Saptadi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('195811111987031002', 'Ir. Fitri Yusman, M.SP.', 'III/c', 'Lektor', 'S2', 1991, 'Perumahan', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197310242000031001', 'Wiharyanto Oktiawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197305262000121001', 'Dr. Susatyo Handoko, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197603052000122001', 'Dr.Ing. Wakhidah Kurniawati, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197602252000121001', 'Ilham Nurhuda, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2011, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197310022000121001', 'Dr. Okto Risdianto Manullang, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197605282000122001', 'Dyah Hesti Wardhani, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2009, 'Pangan Fungsional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197902192003122001', 'Diana Puspita Sari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2008, 'Teknik Industri', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197103271999032002', 'Prof. Dr. Aries Susanty, S.T., M.T.', 'IV/a', 'Guru Besar', 'S3', 2008, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197405231998021001', 'Prof. Dr. Andri Cahyo Kumoro, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Fenomena Perpindahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197110231998022001', 'Sri Rahayu, S.Si., M.Si.', 'III/c', 'Lektor', 'S2', 2005, 'Geografi Kota Sistem Informasi Perenc', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197403042000121001', 'Prof. Dr. Jamari, S.T., M.T.', 'III/d', 'Guru Besar', 'S3', 2006, 'Tribologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('198109132003121002', 'Ary Arvianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Teknik Industri Scm', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('196907141997021001', 'Sukiswo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Elektronika,Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('195907141987031001', 'Ir. Muhrozi, M.S.', 'III/c', 'Lektor', 'S2', 1991, 'geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195907221987031003', 'Dr. Ir. Berkah Fajar Tamtomo Kiono, Dipl.Ing.', 'IV/b', 'Lektor Kepala', 'S3', 2002, 'Fluid Mechanic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('195909061988031003', 'Ir. Supriyono, M.T.', 'III/b', 'Lektor', 'S2', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195909091987031001', 'Ir. Wahju Krisna Hidajat, M.T.', 'III/b', 'Asisten Ahli', 'S2', 1999, 'Hidrogeologi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
+('195911071987032001', 'Dr. Ir. Ismiyati, M.S.', 'III/d', 'Lektor', 'S3', 2011, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('195912101987031002', 'Ir. Wahyudi Kushardjoko, M.T.', 'III/b', 'Lektor', 'S2', 2001, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196001151988101001', 'Ir. Hantoro Satriadi, M.T.', 'III/c', 'Lektor', 'S2', 1998, 'Agro Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196001251987031001', 'Ir. Sugiyanto, DEA', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196002171987032001', 'Dra. Bitta Pigawati, Dipl.GE, M.T.', 'IV/b', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Wil & Kota Tata Guna Lahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196002231986021001', 'Dr. Ir. Hermawan, DEA', 'IV/a', 'Lektor Kepala', 'S3', 1995, 'Analisis Sitem Tenaga Listrik, Kestabilan Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('196003151987031001', 'Dr. Ir Heru Prastawa, DEA', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('196004121986032001', 'Dr. Ir. Ratnawati, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2005, 'Teknologi Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196004271987031001', 'Prof. Dr. Ir. Suripin, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 1998, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
+('196005011986031003', 'Prof.Dr.Ir. Bakti Jos, DEA', 'IV/d', 'Guru Besar', 'S3', 1993, 'Tenik Energi Dan Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196005261987101001', 'Ir. Djoko Purwanto, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196006021986021001', 'Prof. Dr. Ir. Sriyana, M.S.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196007181989031001', 'Ir. Kiryanto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Teknik Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('196010211990032002', 'Ir. Hermin Werdiningsih, M.T.', 'III/d', 'Lektor', 'S2', 2004, 'Peranc. Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
 ('196010251998021001', 'Ir. Imam Pujo Mulyatno, M.T.', 'III/d', 'Lektor', 'S2', 2002, 'Teknik Produksi & Material Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('196103041993032001', 'Dr. Ir. Retno Widjajanti, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perec Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196106161993031002', 'Ir. Bambang Winardi, M.Kom.', 'III/d', 'Lektor', 'S2', 2013, 'Kependudukan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196107121988031003', 'Ir. Djoeli Satrijo, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196107221986021001', 'Ir. Himawan Indarto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196110221988031002', 'Dr.T. Ir. Indro Sumantri, M.Eng.', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'T. Pengolahan Limbah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196111171988031001', 'Ir. Tejo Sukmadi, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196112171987031001', 'Dr. Ir. Nazaruddin Sinaga, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Heat Transfer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196112261988031001', 'Dr. Ir. Setia Budi Sasongko, DEA.', 'IV/a', 'Lektor Kepala', 'S3', 2001, 'Tekn. Sistem Proses; Komputasi Proses', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196112281986031004', 'Prof. Dr. Ir. Purwanto, DEA', 'IV/e', 'Guru Besar', 'S3', 1994, 'T. Sistem Proses & T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196201101989021001', 'Dr. Ir. Agung Dwiyanto, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Teknologi Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196203271988031004', 'Ir. Satrio Nugroho, M.Si.', 'III/c', 'Lektor', 'S2', 1996, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196203271991022001', 'Dr. Ir. Nur Rokhati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Tek. Batu Bara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196204031993031003', 'Ir. Agung Sugiri, S.T., M.P.St.', 'IV/a', 'Lektor Kepala', 'S2', 1999, 'Transfortasi Pemb Kerkelanjutan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196204231987031003', 'Dr. Ir. Dwi Basuki Wibowo, M.S.', 'IV/c', 'Lektor Kepala', 'S3', 2019, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196204281990012001', 'Ir. Eflita Yohana, M.T., Ph.D.', 'III/c', 'Lektor Kepala', 'S3', 2011, 'Energy Conservasion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('196205161990011001', 'Ir. Parang Sabdono, M.Eng.', 'III/d', 'Lektor', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196205201989021001', 'Prof.Dr.rer.nat. Ir. Athanasius Priharyoto Bayusen', 'IV/d', 'Guru Besar', 'S3', 2006, 'Ceramic Processing and Characterization', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('196207011990031003', 'Ir. Arif Hidayat, CES, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196208091988031001', 'Ir. Toni Prahasto, MAsc., Ph.D.', 'III/c', 'Lektor', 'S3', 1999, 'Geometric Modeling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196209171991021001', 'Ir. Sulistyo, M.T., Ph.D.', 'IV/b', 'Lektor Kepala', 'S3', 2013, 'Metallurgy Dan Corrosion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196210161988031003', 'Ir. Indriastjario, M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 1997, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196303161991031002', 'Dr. Ir. Nuroji, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Teknik Struktur/Analisa Struktur 2', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
+('196307111990012001', 'Dr.Ars. Ir. Wijayanti, M.Eng.', 'III/c', 'Lektor', 'S3', 2018, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196307111991021002', 'Ir. Purwanto, M.T., M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196309141988031012', 'Dr. Ir. Suharyanto, M.Sc.', 'IV/c', 'Lektor Kepala', 'S3', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
+('196309271993032001', 'Ir. Nurini, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perenc Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196310201991021001', 'Dr.Ir. Agung Budi Sardjono, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196312221990011003', 'Dr.Ir. Hadi Wahyono, M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perencanaan Wilayah Dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196312311990031022', 'Prof. Dr. Ir. Edi Purwanto, M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Perancangan Arsitektur dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
+('196402141991022002', 'Ir. Kristinah Haryani, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196405261989031002', 'Dr. Ir. Jaka Windarta, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('196406021991021001', 'Ir. Rudi Yuniarto Adi, M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196408041991021002', 'Dr. Ir. Budi Sudarwanto, M.Si.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Studi Pembangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196411081990011001', 'Dr. Ir. Eddy Prianto, CES, DEA', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
+('196412021999032001', 'Ir. Dwi Siwi Handayani, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 1990, 'Penyediaaan Air Bersih, Manajemen Lingk.', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('196503131991021001', 'Ir. Budi Setiyana, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1996, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196509131998032001', 'Dr. Ir. Atik Suprapti, MTA.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
+('196602201991021001', 'Prof. Dr. Ir. Budiyono, M.Si.', 'IV/d', 'Guru Besar', 'S3', 2010, 'T. Pengolahan Air', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196603231999031008', 'Ir. Sawitri Subiyanto, M.Si.', 'III/c', 'Lektor', 'S2', 2006, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
+('196605061995121001', 'Dr. Jawoto Sih Setyono, S.T., MDP', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Pwk Sustainable Development', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196605212006041010', 'Dr.Ing. Ir. Ismoyo Haryanto, M.T.', 'III/c', 'Lektor', 'S3', 2005, 'Getaran Mekanik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196608221997022001', 'Dr.Ars. Ir. Rina Kurniati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196609011998021001', 'Junaidi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Air Limbah', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('196610051992031003', 'Dr. Ir. Hari Nugroho, M.T.', 'III/c', 'Lektor', 'S3', 2019, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196701231994012001', 'Ir. Sri Hartuti Wahyuningrum, M.T.', 'III/b', 'Lektor', 'S2', 2007, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196702081994031005', 'Prof. Ir. Mochamad Agung Wibowo, M.M., M.Sc., Ph.D', 'IV/c', 'Guru Besar', 'S3', 2004, 'Teknik Sipil (Manajemen Konstruksi)', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
+('196704011999032001', 'Dr. Ir. Anik Sarminingsih, M.T.', 'III/a', 'Asisten Ahli', 'S3', 2015, 'Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('196704041998022001', 'Prof. Dr. Ir. Erni Setyowati, M.T.', 'IV/a', 'Guru Besar', 'S3', 2011, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196704291994032002', 'Dr. Sunarti, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perumahan Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196704301992032002', 'Dr. Ir. Suzanna Ratih Sari, M.M., M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('196709191999031003', 'Ir. Winardi Dwi Nugraha, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Pengelolalingkungan Kualitas Air', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('196711101994031003', 'Holi Bina Wijaya, S.T., MUM', 'IV/b', 'Lektor Kepala', 'S2', 1999, 'Sistem Informasi Perenc Urban Manaj Tata Guna Laha', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196711141993031001', 'Prof. Ir. Didi Dwi Anggoro, M.Eng., Ph.D.', 'IV/c', 'Guru Besar', 'S3', 2004, 'Zeolite', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196803171997022002', 'Retno Susanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Kota Pariwisata', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196805081999031002', 'Dr. Wilma Amiruddin, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Teknik Managemen Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('196806281998022001', 'Dr. Ir. R. Siti Rukayah, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
+('196807111997021001', 'Yuli Christyono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Telekokunikasi Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196807261997021001', 'Mardwi Rahdriawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196808141999031002', 'Dr.Eng. Sukamta, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2008, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
+('196811102005011001', 'Joga Dharma Setiawan, B.Sc., M.Sc., Ph.D.', 'III/c', 'Lektor', 'S3', 2001, 'Rotor Dinamics', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('196811111994121001', 'Sumardi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S2', 1998, 'Sistem Instrumentasi dan Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196901011997021001', 'Dr.Ing. Wisnu Pradoto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Perencaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196903111997021001', 'Susatyo Nugroho Widyo Pramono, S.T., M.M.', 'III/a', 'Lektor', 'S2', 1999, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('196904291998021006', 'Hardi Wibowo, S.T., M.Eng.', 'III/d', 'Lektor', 'S2', 2004, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('196904292002121001', 'Dr. Hery Suliantoro, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('196905051995122001', 'Dr. Artiningsih, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2018, 'Pernec Wil &Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196906121994031001', 'Dr. Wahyudi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2015, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196907091997021001', 'Karnoto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196907141997021001', 'Sukiswo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Elektronika,Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('196909291997021001', 'Dr. Fadjar Hari Mardiansjah, S.T., M.T., MDP', 'III/c', 'Lektor', 'S3', 2014, 'Tata Guna Lahan Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196910021994032003', 'Dr.T. Aji Prasetyaningrum, S.T., M.Si.', 'IV/b', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('196912061999031002', 'Samsul Ma\'rif, S.P., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Ek Wil Kota Perenc Wil', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('196912211995121001', 'Achmad Hidayatno, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Pengolahan Sinyal Digital', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197002171994121001', 'Dr. Susilo Adi Widyanto, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2009, 'Production &Automatic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('197004231995121001', 'Prof. Dr. I Nyoman Widiasa, S.T., M.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197005201999031002', 'Rusnaldy, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2008, 'Proses Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('197005212000121001', 'Budi Setiyono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197006252002122001', 'Sri Hartini, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197006271998031005', 'Dr. Mussadun, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2012, 'Pengembangan Wil Pesisir Dan Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197007272000121001', 'Dr. Ir. R. Rizal Isnanto, S.T., M.M., M.T., IPM', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Informasi Dan Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('197008061998021001', 'Yusuf Umardani, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Metallurgy Dan Casting', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197011231995121001', 'Prof. Dr.rer.nat. Imam Buchori, S.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Perenc Wil & Kota Aplikasi Geomatika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197011231998021001', 'Dr.Eng. Gunawan Dwi Haryadi, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2012, 'Material Handling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197012031997021001', 'Imam Santoso, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197012121998022001', 'Dr. Dyah Ari Wulandari, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2016, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197102071995121001', 'Prof. Dr. Moh. Djaeni, S.T., M.Eng.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Energi Tek (Drying) Pengeringan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197103011997021001', 'Prof. Dr. Istadi, S.T., M.T.', 'IV/c', 'Guru Besar', 'S3', 2006, 'Ilmu Teknik Kimia/Thermodinamika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197103011998031001', 'Ika Bagus Priyambada, S.T., M.Eng.', 'III/a', 'Asisten Ahli', 'S2', 1997, 'Buangan Padat, Amdal', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197103271999032002', 'Prof. Dr. Aries Susanty, S.T., M.T.', 'IV/a', 'Guru Besar', 'S3', 2008, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197103301998022001', 'Dr.Ling Sri Sumiyati, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2019, 'Kes. Lingk. Biologi Dan Mikrobiologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197104201998021001', 'Dr. Sulardjaka, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Engenering Mechanical', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197104211999031003', 'Mohamad Said Kartono Tony Suryo Utomo, S.T., M.T.,', 'III/c', 'Lektor', 'S3', 2008, 'Teknik Sistem & Pengendalian Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197104291998021001', 'Priyo Nugroho Parmantoro, S.T., M.Eng.', 'III/c', 'Lektor', 'S2', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197105011997021001', 'Dr. Luqman Buchori, S.T., M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Komputasi Dinamika Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197106061995121003', 'Agung Budi Prasetijo, S.T., M.I.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2016, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('197106161999031003', 'Mochammad Facta, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('197107191998022001', 'Ajub Ajulian Zahra Macrina, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197107231998022001', 'Dr. Yulita Arni Priastiwi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197107241997021001', 'Dr. Ing. Asnawi, S.T.', 'IV/a', 'Lektor Kepala', 'S3', 2005, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197108181997021001', 'Dr. Agus Suprihanto, S.T, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2001, 'Failure Analisis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197110231998022001', 'Sri Rahayu, S.Si., M.Si.', 'III/c', 'Lektor', 'S2', 2005, 'Geografi Kota Sistem Informasi Perenc', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197111241998031002', 'Mohammad Muktiali, S.E., M.Si., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Sintesis Biomaterial Untuk Implantasi Ulang', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197112181995121001', 'Dr. Wahyul Amien Syafei, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('197204221999031004', 'Dr. Abdul Syakur, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197205102001121001', 'Bagus Hario Setiadji, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
+('197205312000031001', 'Kami Hari Basuki, S.T., M.T.', 'III/a', 'Lektor', 'S2', 2001, 'Transportasi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197206061999031001', 'Darjat, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Elektronika', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197206091998031001', 'Prof. Dr. Widayat, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2011, 'Ilmu Sistem Proses Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197206172000121001', 'Dr. Yudi Basuki, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2002, 'Perec Wil &Kota Perec Transformasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197208302000031001', 'Dr. Badrus Zaman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Pengelolaan Wilayah Pesisir, Pengelolaan Kualitas ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197212311998022001', 'Dr. Ratna Purwaningsih, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Sistem modelling dan Industry Sustainability', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197301121998032001', 'Wido Prananing Tyas, S.T., MDP, Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perenc Wil & Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197301302000032001', 'Nurandani Hardyanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2013, 'Pengelolaan Limbah Cair dan Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197302041997021001', 'Aghus Sofwan, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197302261998021001', 'Dr. Adian Fatchur Rochim, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Network System', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('197303051997021001', 'Muchammad, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Presurre Vessel Technology', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197303171999031001', 'Ojo Kurdi, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Dynamic Of Vehicle', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197305072002122002', 'Dr. Naniek Utami Handayani, S.Si., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197305262000121001', 'Dr. Susatyo Handoko, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197306161999031001', 'Bharoto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Sejarah, Teori & Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('197306211997021001', 'Prof. Tutuk Djoko Kusworo, S.T., M.Eng., Ph.D.', 'IV/b', 'Guru Besar', 'S3', 2008, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197307021999031001', 'Dr.Eng. Achmad Widodo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Nodal Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197309262000121001', 'Dr. Iwan Setiawan, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197310022000121001', 'Dr. Okto Risdianto Manullang, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197310172000121001', 'Eko Sasmito Hadi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2002, 'Sistem Perkapalan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197310242000031001', 'Wiharyanto Oktiawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197311061998022001', 'Rani Rumita, S.T., M.T.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197312172000121001', 'Dr.Eng. Deddy Chrismianto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Produksi & Material Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197312211999031002', 'Dr. Denny Nurkertamanda, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197401311999031003', 'Dr. Ing. Sudarno, S.T., M.Sc.', 'III/d', 'Lektor', 'S3', 2011, 'Buangan B3, Pencemaran Tanah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197402141999031002', 'Haryono Setiyo Huboyo, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2013, 'Pencemaran Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197402142000121001', 'Parlindungan Manik, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Operasional', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197402231997021001', 'Edward Endrianto Pandelaki, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
+('197403042000121001', 'Prof. Dr. Jamari, S.T., M.T.', 'III/d', 'Guru Besar', 'S3', 2006, 'Tribologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('197403081999031005', 'Syaiful, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2010, 'Internal Combution Engine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
+('197403162001121001', 'Dr. Singgih Saptadi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197403271999031002', 'Dr.sc.agr. Iwan Rudiarto, S.T., M.Sc.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Manajemen Sumber Daya Manusia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197404092008012010', 'Diah Intan Kusumo Dewi, S.T., M.Eng.', 'III/b', 'Asisten Ahli', 'S2', 2004, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197404262000121001', 'Darminto Pujotomo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197405231998021001', 'Prof. Dr. Andri Cahyo Kumoro, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Fenomena Perpindahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197406181999031002', 'Untung Budiarto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Teknik Sistem & Pengendalian Kelautan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197406271999031002', 'Dr. Maman Somantri, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Rekayasa Perangkat Lunak, IT Management, Sistem In', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197407201998032001', 'Dr.Ars. Anita Ratnasari Rakhmatulloh, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2018, 'Perenc Wil & Kota Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197408032008011008', 'Widjonarko, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Manaj & Rekayasa Infrastruktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197409122000121002', 'Sriyanto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Teknik Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197409212000031002', 'Dr.Ing Prihadi Nugroho, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Perenc Wil &Kota Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', '');
+INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
+('197409302001121002', 'Mochamad Arief Budihardjo, S.T., M.Eng.Sc, Env.Eng', 'III/d', 'Lektor Kepala', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197410202000121001', 'Sukawi, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('197412162000122001', 'Dr.Ing. Silviana, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197501172000032001', 'Nita Aryanti, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Teknologi Membran Emulsi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197501181999031001', 'Sri Nugroho, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2009, 'Material Science', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197501222000121001', 'Dr.Eng. Ahmad Fauzan Zakki, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Struktur Kapal dan FSI Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197503062000121001', 'Dr.rer.oec. Arfan Bakhtiar, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197503252003121002', 'Ari Wibawa Budi Santosa, S.T., M.Si.', 'III/d', 'Lektor', 'S2', 2005, 'Managemen Sumber Daya Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197504281999031001', 'Jati Utomo Dwi Hatmoko, S.T., M.M., M.Sc., Ph.D.', 'III/d', 'Lektor', 'S3', 2008, 'Manajemen Konstruksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
+('197505291998021001', 'Prof. Dr.rer.nat. Heru Susanto, S.T., M.M., M.T.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197506082005011001', 'Eko Handoyo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197508112000121001', 'Dr.Eng. Maryono, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Perencanaan Manjemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197509081999031002', 'Dr. Aris Triwiyatno, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Kecerdasan Buatan, Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('197509152000121001', 'Dr.nat.tech. Siswo Sumardiono, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2005, 'Modifikasi Starch', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197509222003122002', 'Maya Damayanti, S.T., M.A., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Manajemen Kota Ek Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197510211999031004', 'Dr.Eng. Hartono Yudo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Perancangan Teknik Teknik Mesin', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
+('197510281999031004', 'Prof. Dr. Hadiyanto, S.T., M.Sc.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Ilmu Teknik Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197602162009121001', 'Dr. techn. Khoiri Rozi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2019, 'Sistem Cerdas', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('197602252000121001', 'Ilham Nurhuda, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2011, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197603052000122001', 'Dr.Ing. Wakhidah Kurniawati, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
 ('197603212000122001', 'Amelia Kusuma Indriastuti, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2002, 'Sipil Transportasi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197604161999032002', 'Dr. Aprilina Purbasari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'T. Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197605252000122001', 'Dr. Ing. Wiwandari Handayani, S.T., M.T., MPS', 'IV/a', 'Lektor Kepala', 'S3', 2011, 'Pernc Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197605282000122001', 'Dyah Hesti Wardhani, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2009, 'Pangan Fungsional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197608042000121002', 'Dr. Ing. Suherman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Teknik Reaksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
+('197608121999031002', 'Rukuh Setiadi, S.T., MEM.,Ph.D.', 'III/c', 'Lektor', 'S3', 2017, 'Perencanaan Wil Kota Majemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197608122010121002', 'Dr. Dian Agus Widiarso, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2020, 'Ilmu Kesehatan Anak', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
+('197609112002121001', 'Septana Bagus Pribadi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2001, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
+('197703092008121001', 'Dr. L.M. Sabri, S.T., M.T.', 'III/b', 'Lektor', 'S3', 2018, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
+('197705242003122001', 'Landung Esariti, S.T., MPS', 'III/c', 'Lektor', 'S2', 2005, 'Perenc Wil & Kota Properti', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('197705262010121001', 'Eko Didik Widianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2004, 'Sistem Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('197706152008011011', 'Rinta Kridalukmana, S.Kom., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Teknologi Informasi', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('197706222010121001', 'Teguh Prakoso, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Medan Elektro Magnetik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('197708262006041001', 'Munawar Agus Riyadi, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Elektronika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
+('197710032000121001', 'Dr. Purnawan Adi Wicaksono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Manajemen Operasional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197712112005011002', 'Dr.rer.nat. Thomas Triadi Putranto, S.T., M.Eng.', 'III/c', 'Lektor Kepala', 'S3', 2014, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
+('197802062010121003', 'Bandi Sasmito, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Penginderaan Jauh', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
+('197803032010122001', 'Titik Istirokhatun, S.T., M.Sc.', 'III/d', 'Lektor Kepala', 'S2', 2009, 'Teknologi Pengelolaan Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197805142005011001', 'Dr. Budi Prasetyo Samadikun, S.T., M.Si.', 'III/b', 'Lektor', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('197808112008121003', 'Ferry Hermawan, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('197811252008121001', 'Andri Suprayogi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
+('197902192003122001', 'Diana Puspita Sari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2008, 'Teknik Industri', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('197910022009122001', 'Dr. Oky Dwi Nurhayati, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('198007162008011017', 'Dr. Rifky Ismail, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2013, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('198012112010121001', 'Enda Wista Sinuraya, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
+('198109132003121002', 'Ary Arvianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Teknik Industri Scm', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('198201202008011005', 'Ganjar Samudro, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Bioenergi dan Sanitasi Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
+('198201312010121003', 'Wahyu Caesarendra, S.T., M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'MEKATRONIKA', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('198207162012121004', 'Dr. Kresno Wikan Sadono, S.T., M.Eng.', 'III/b', 'Pengajar', 'S3', 2019, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
+('198207212003122001', 'Dr.Ing. Santy Paulla Dewi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2017, 'Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('198211072005012001', 'Dr.Ing. Novie Susanto, S.T., M.Eng.', 'III/c', 'Lektor', 'S3', 2015, 'Ilmu Perancangan Sistem Kerja dan Ergonomi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('198301222006041002', 'Fahrudin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Geoteknik', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
+('198303192010121002', 'Kurniawan Teguh Martono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Human Computer Interaction, Komputer Grafik, Game ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('198305012012121003', 'Sariffuddin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Manajemen bencana', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
+('198401292009121003', 'Dr.Eng. Bangun Indrakusumo Radityo Harsritanto, S.', 'III/c', 'Lektor', 'S3', 2016, 'universal desain', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
 ('198402172006042002', 'Nia Budi Puspitasari, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Teknik Industri', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
 ('198403262006042001', 'Dyah Ika Rinawati, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197706152008011011', 'Rinta Kridalukmana, S.Kom., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Teknologi Informasi', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('195909061988031003', 'Ir. Supriyono, M.T.', 'III/b', 'Lektor', 'S2', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195807151986021001', 'Ir. EPF Eko Yuli Priyono, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196010211990032002', 'Ir. Hermin Werdiningsih, M.T.', 'III/d', 'Lektor', 'S2', 2004, 'Peranc. Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195606011986021001', 'Ir. Irawan Wisnu Wardhana, M.S.', 'III/b', 'Asisten Ahli', 'S2', 1992, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', '');
-INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
-('195909091987031001', 'Ir. Wahju Krisna Hidajat, M.T.', 'III/b', 'Asisten Ahli', 'S2', 1999, 'Hidrogeologi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('195912101987031002', 'Ir. Wahyudi Kushardjoko, M.T.', 'III/b', 'Lektor', 'S2', 2001, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197205102001121001', 'Bagus Hario Setiadji, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('197609112002121001', 'Septana Bagus Pribadi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2001, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197306211997021001', 'Prof. Tutuk Djoko Kusworo, S.T., M.Eng., Ph.D.', 'IV/b', 'Guru Besar', 'S3', 2008, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197805142005011001', 'Dr. Budi Prasetyo Samadikun, S.T., M.Si.', 'III/b', 'Lektor', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197008061998021001', 'Yusuf Umardani, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Metallurgy Dan Casting', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197708262006041001', 'Munawar Agus Riyadi, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Elektronika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197401311999031003', 'Dr. Ing. Sudarno, S.T., M.Sc.', 'III/d', 'Lektor', 'S3', 2011, 'Buangan B3, Pencemaran Tanah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('198007162008011017', 'Dr. Rifky Ismail, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2013, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197404092008012010', 'Diah Intan Kusumo Dewi, S.T., M.Eng.', 'III/b', 'Asisten Ahli', 'S2', 2004, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197408032008011008', 'Widjonarko, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Manaj & Rekayasa Infrastruktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('198201202008011005', 'Ganjar Samudro, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Bioenergi dan Sanitasi Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197808112008121003', 'Ferry Hermawan, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197703092008121001', 'Dr. L.M. Sabri, S.T., M.T.', 'III/b', 'Lektor', 'S3', 2018, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('197811252008121001', 'Andri Suprayogi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('197910022009122001', 'Dr. Oky Dwi Nurhayati, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197602162009121001', 'Dr. techn. Khoiri Rozi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2019, 'Sistem Cerdas', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('198401292009121003', 'Dr.Eng. Bangun Indrakusumo Radityo Harsritanto, S.', 'III/c', 'Lektor', 'S3', 2016, 'universal desain', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197608042000121002', 'Dr. Ing. Suherman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Teknik Reaksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197103301998022001', 'Dr.Ling Sri Sumiyati, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2019, 'Kes. Lingk. Biologi Dan Mikrobiologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196912061999031002', 'Samsul Ma\'rif, S.P., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Ek Wil Kota Perenc Wil', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197409212000031002', 'Dr.Ing Prihadi Nugroho, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Perenc Wil &Kota Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197206172000121001', 'Dr. Yudi Basuki, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2002, 'Perec Wil &Kota Perec Transformasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197005212000121001', 'Budi Setiyono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('198207212003122001', 'Dr.Ing. Santy Paulla Dewi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2017, 'Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197503252003121002', 'Ari Wibawa Budi Santosa, S.T., M.Si.', 'III/d', 'Lektor', 'S2', 2005, 'Managemen Sumber Daya Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196204031993031003', 'Ir. Agung Sugiri, S.T., M.P.St.', 'IV/a', 'Lektor Kepala', 'S2', 1999, 'Transfortasi Pemb Kerkelanjutan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197705262010121001', 'Eko Didik Widianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2004, 'Sistem Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197706222010121001', 'Teguh Prakoso, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Medan Elektro Magnetik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197802062010121003', 'Bandi Sasmito, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Penginderaan Jauh', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('198303192010121002', 'Kurniawan Teguh Martono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Human Computer Interaction, Komputer Grafik, Game ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
+('198406272012121003', 'Resza Riskiyanto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Perancangan Arsitektur', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
 ('198412062010122008', 'Ike Pertiwi Windasari, S.T., M.T.', 'III/b', 'Lektor', 'S2', 2009, 'Teknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
 ('198412112010122005', 'Dessy Ariyanti, S.T., M.T., Ph.D.', 'III/b', 'Lektor', 'S3', 2018, 'Teknik Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197608122010121002', 'Dr. Dian Agus Widiarso, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2020, 'Ilmu Kesehatan Anak', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('197803032010122001', 'Titik Istirokhatun, S.T., M.Sc.', 'III/d', 'Lektor Kepala', 'S2', 2009, 'Teknologi Pengelolaan Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('198012112010121001', 'Enda Wista Sinuraya, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('198201312010121003', 'Wahyu Caesarendra, S.T., M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'MEKATRONIKA', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
+('198501252012121005', 'Arwan Putra Wijaya, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Geomatika, Pertanahan dan Sistem Informasi Geograf', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
 ('198505262010121005', 'Dr. Eng. Andi Trimulyono, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2010, 'Teknik perkapalan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
 ('198601152010122004', 'Noer Abyor Handayani (Noera), S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Kimia', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('198608262010121005', 'Berlian Arswendo Adietya, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2010, 'Teknik Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('198211072005012001', 'Dr.Ing. Novie Susanto, S.T., M.Eng.', 'III/c', 'Lektor', 'S3', 2015, 'Ilmu Perancangan Sistem Kerja dan Ergonomi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197712112005011002', 'Dr.rer.nat. Thomas Triadi Putranto, S.T., M.Eng.', 'III/c', 'Lektor Kepala', 'S3', 2014, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('196406021991021001', 'Ir. Rudi Yuniarto Adi, M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('198305012012121003', 'Sariffuddin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Manajemen bencana', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('198406272012121003', 'Resza Riskiyanto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Perancangan Arsitektur', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('198207162012121004', 'Dr. Kresno Wikan Sadono, S.T., M.Eng.', 'III/b', 'Pengajar', 'S3', 2019, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('198501252012121005', 'Arwan Putra Wijaya, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Geomatika, Pertanahan dan Sistem Informasi Geograf', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
 ('198603192012121002', 'Wiwik Budiawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Teknik Industri, IT for Ergonomics', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
+('198608262010121005', 'Berlian Arswendo Adietya, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2010, 'Teknik Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
 ('198706212012121001', 'Asep Muhamad Samsudin, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Teknologi Membran', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('198802252012121003', 'Arya Rezagama, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2012, 'Akun Biaya & Manaj. Bisnis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197509081999031002', 'Dr. Aris Triwiyatno, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Kecerdasan Buatan, Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('198301222006041002', 'Fahrudin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Geoteknik', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('197306161999031001', 'Bharoto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Sejarah, Teori & Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196701231994012001', 'Ir. Sri Hartuti Wahyuningrum, M.T.', 'III/b', 'Lektor', 'S2', 2007, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196903111997021001', 'Susatyo Nugroho Widyo Pramono, S.T., M.M.', 'III/a', 'Lektor', 'S2', 1999, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197104291998021001', 'Priyo Nugroho Parmantoro, S.T., M.Eng.', 'III/c', 'Lektor', 'S2', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197311061998022001', 'Rani Rumita, S.T., M.T.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197103011998031001', 'Ika Bagus Priyambada, S.T., M.Eng.', 'III/a', 'Asisten Ahli', 'S2', 1997, 'Buangan Padat, Amdal', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197501181999031001', 'Sri Nugroho, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2009, 'Material Science', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196704011999032001', 'Dr. Ir. Anik Sarminingsih, M.T.', 'III/a', 'Asisten Ahli', 'S3', 2015, 'Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196709191999031003', 'Ir. Winardi Dwi Nugraha, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Pengelolalingkungan Kualitas Air', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196603231999031008', 'Ir. Sawitri Subiyanto, M.Si.', 'III/c', 'Lektor', 'S2', 2006, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('196412021999032001', 'Ir. Dwi Siwi Handayani, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 1990, 'Penyediaaan Air Bersih, Manajemen Lingk.', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197205312000031001', 'Kami Hari Basuki, S.T., M.T.', 'III/a', 'Lektor', 'S2', 2001, 'Transportasi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
 ('21060117130076', 'Valentinaa', 'a', 'a', 'a', 2001, 'a', 'a', 'a', 'a', 'a', 'a', 'Teknik Elektroa', 'Perempuan', '2385780751', 'vval_sajj@hfasd.comi'),
-('pengusul', 'Dosen', '', '', '', 0000, '', '', '', '', '', '', 'Teknik Elektro', 'Laki-laki', '0853722847', 'pengusul@test.com'),
 ('21060117130082', 'irza', '', '', '', 0000, '', '', '', '', '', '', 'elektro', 'Laki-laki', '342342', 'irzadexter@gmail.com'),
-('123456', 'b', 'b', 'b', 'b', 0000, 'b', 'b', 'b', 'b', 'b', 'b', 'b', '', 'b', 'b'),
-('195511081983031002', 'Prof.Ir. Edy Darmawan, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195203121975011004', 'Prof. Dr. Ir. Bambang Pramudono, MS.', 'IV/e', 'Guru Besar', 'S3', 2005, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', '');
+('pengusul', 'Dosen', '', '', '', 0000, '', '', '', '', '', '', 'Teknik Elektro', 'Laki-laki', '0853722847', 'pengusul@test.com'),
+('reviewer1', 'reviewer1', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', ''),
+('reviewer2', 'reviewer2', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', '');
 
 -- --------------------------------------------------------
 
@@ -470,7 +473,9 @@ INSERT INTO `dsn_penelitian` (`id`, `nip`, `id_proposal`) VALUES
 (8, '21060117130076', 87),
 (9, '195901051987031002', 88),
 (10, '196602201991021001', 89),
-(11, '195905221988121001', 89);
+(11, '195905221988121001', 89),
+(12, '195205051980111001', 90),
+(13, '195901091987031001', 90);
 
 -- --------------------------------------------------------
 
@@ -673,7 +678,8 @@ INSERT INTO `laporan_akhir_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`
 (15, 80, '21060117130076', '0000-00-00', '', '', '', '', '', 0),
 (16, 81, '21060117130076', '0000-00-00', '', '', '', '', '', 0),
 (17, 84, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(18, 85, '21060117130081', '2020-11-03', 'f1f5c64a51ce40bb5587131cb731ba98.pdf', '33ca370850688e25a200693722a2d8c3.pdf', 'f3a70e3b34d1c540cea652805cc98cd0.pdf', '06e561d6a0557e96d38580107d981b0f.pdf', ' sadasdas', 1);
+(18, 85, '21060117130081', '2020-11-03', 'f1f5c64a51ce40bb5587131cb731ba98.pdf', '33ca370850688e25a200693722a2d8c3.pdf', 'f3a70e3b34d1c540cea652805cc98cd0.pdf', '06e561d6a0557e96d38580107d981b0f.pdf', ' sadasdas', 1),
+(19, 90, 'pengusul', '0000-00-00', '', '', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -741,7 +747,8 @@ INSERT INTO `laporan_monev_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`
 (29, 80, '21060117130076', '0000-00-00', '', '', '', '', 0),
 (30, 81, '21060117130076', '2020-10-23', 'f5cca6bb7d1e91af27045e8d31243fbb.pdf', '07443e59433c30934aef064e48564fac.pdf', '18cfab2bd0477df807cfd533597779c6.pdf', ' Monitoring dan Evaluasi', 1),
 (31, 84, '21060117130082', '2020-11-02', 'aa88505f62f2692112611f9ebe342299.pdf', 'dbf8f30670e4ae4b3843356d603ff79f.pdf', 'a0fedec4190c75342fa55037dcea4761.pdf', ' sadad', 1),
-(32, 85, '21060117130081', '2020-11-03', '70400118338541e4a93330b621d3f9d6.pdf', '1db1403b433dee7d1236addb36ca097b.pdf', '3194ba0b76578d9e0f8356a1c7669212.pdf', ' sadasd', 1);
+(32, 85, '21060117130081', '2020-11-03', '70400118338541e4a93330b621d3f9d6.pdf', '1db1403b433dee7d1236addb36ca097b.pdf', '3194ba0b76578d9e0f8356a1c7669212.pdf', ' sadasd', 1),
+(33, 90, 'pengusul', '2021-01-26', 'fd5f2f9b97c385c2d0bd8af66d6ae4b8.pdf', '526696e1b23b60d022e8d32abc63bcfb.pdf', '6c9c263fbba5a415c16cfc75bac45015.pdf', ' monev', 1);
 
 -- --------------------------------------------------------
 
@@ -815,7 +822,9 @@ INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
 (8, '1283472834', 87),
 (9, '427597123', 88),
 (10, '427597123', 89),
-(11, '42048302', 89);
+(11, '42048302', 89),
+(12, '1283472834', 90),
+(13, '427597123', 90);
 
 -- --------------------------------------------------------
 
@@ -1057,7 +1066,23 @@ INSERT INTO `nilai_penelitian` (`id`, `id_proposal`, `id_komponen`, `skor`, `nil
 (209, 85, 8, 5, 50, '21060117130082'),
 (210, 87, 11, 5, 200, '21060117130076'),
 (211, 87, 12, 5, 200, '21060117130076'),
-(212, 87, 13, 5, 250, '21060117130076');
+(212, 87, 13, 5, 250, '21060117130076'),
+(213, 90, 1, 5, 100, 'reviewer1'),
+(214, 90, 2, 5, 50, 'reviewer1'),
+(215, 90, 3, 5, 50, 'reviewer1'),
+(216, 90, 4, 5, 100, 'reviewer1'),
+(217, 90, 5, 5, 50, 'reviewer1'),
+(218, 90, 6, 5, 100, 'reviewer1'),
+(219, 90, 7, 5, 50, 'reviewer1'),
+(220, 90, 8, 4, 80, 'reviewer1'),
+(221, 90, 1, 5, 100, 'reviewer2'),
+(222, 90, 2, 5, 50, 'reviewer2'),
+(223, 90, 3, 5, 50, 'reviewer2'),
+(224, 90, 4, 5, 100, 'reviewer2'),
+(225, 90, 5, 5, 50, 'reviewer2'),
+(226, 90, 6, 5, 100, 'reviewer2'),
+(227, 90, 7, 5, 50, 'reviewer2'),
+(228, 90, 8, 5, 100, 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -1069,8 +1094,10 @@ CREATE TABLE `nilai_proposal_penelitian` (
   `id` bigint(10) NOT NULL,
   `id_proposal` bigint(10) NOT NULL,
   `komentar` varchar(1000) DEFAULT NULL,
+  `cr_monev` varchar(1000) NOT NULL,
   `nilai` int(4) DEFAULT NULL,
   `komentar2` varchar(1000) DEFAULT NULL,
+  `cr_monev2` varchar(1000) NOT NULL,
   `nilai2` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1078,10 +1105,11 @@ CREATE TABLE `nilai_proposal_penelitian` (
 -- Dumping data for table `nilai_proposal_penelitian`
 --
 
-INSERT INTO `nilai_proposal_penelitian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
-(2, 71, 'moh', 990, NULL, NULL),
-(3, 84, 'Irza 1', 500, 'irza 22', 500),
-(5, 87, 'dasdaS', 650, NULL, NULL);
+INSERT INTO `nilai_proposal_penelitian` (`id`, `id_proposal`, `komentar`, `cr_monev`, `nilai`, `komentar2`, `cr_monev2`, `nilai2`) VALUES
+(2, 71, 'moh', '', 990, NULL, '', NULL),
+(3, 84, 'Irza 1', '', 500, 'irza 22', '', 500),
+(5, 87, 'dasdaS', '', 650, NULL, '', NULL),
+(6, 90, 'Reviewer 1', 'monev1', 580, 'Reviewer2', 'monev2', 600);
 
 -- --------------------------------------------------------
 
@@ -1147,8 +1175,6 @@ CREATE TABLE `proposal_penelitian` (
   `id_jadwal` int(3) NOT NULL,
   `tgl_upload` date NOT NULL,
   `file` varchar(1000) NOT NULL,
-  `cr_monev` varchar(300) NOT NULL,
-  `cr_monev2` varchar(300) NOT NULL,
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1156,15 +1182,16 @@ CREATE TABLE `proposal_penelitian` (
 -- Dumping data for table `proposal_penelitian`
 --
 
-INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_sumberdana`, `id_luaran`, `mitra`, `id_jadwal`, `tgl_upload`, `file`, `cr_monev`, `cr_monev2`, `status`) VALUES
-(82, 1, '21060117130076', 'fjaksjdf', ' fkjlkjsdaf dsfalsj dfsdfjlkjails ldsaiw', 'Tembalang', '2 bulan', '1000000', 2, 1, 'fjalsjfa', 0, '2020-10-26', '361e2b3f3b8f974d5747cafcd63067f6.pdf', '', '', 0),
-(83, 1, '21060117130076', '121', ' 12212', 'sa', '12 bulan', '12000000', 2, 1, 'AKu', 0, '2020-11-01', '4efaf989c28a2ebd306f6e6268052e51.pdf', '', '', 1),
-(84, 1, '21060117130082', 'Irza', ' Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-02', 'abe60cfb6ecb803a65c25aa436437034.pdf', 'irza11', 'irza21', 3),
-(85, 1, '21060117130081', 'Saya Irza', ' Saya Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', '02ab14c03b55ce54ae0519d340053836.pdf', 'HIHIHIHIHIHIH', 'HAHAHAAHA', 3),
-(86, 1, '21060117130081', 'Penelitian satu', ' Sadsakdpsjais', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', 'cf58cd1ae580f3e14e1be2d663212578.pdf', '', '', 1),
-(87, 4, '21060117130082', 'A', ' A', 'A', '12 bulan', '12000000', 5, 3, 'A', 0, '2020-11-11', '477316cd91ca53e3de41cbf6ddc76cee.pdf', '', '', 5),
-(88, 1, '21060117130082', 'qdwas', ' dasdasd', 'adsd', '12 bulan', '121212121', 5, 3, 'sadas', 0, '2021-01-18', 'bec48aaa56f94f1c3eddaf23dfe658d9.pdf', '', '', 0),
-(89, 1, '21060117130082', 'asSa', 'aha', 'siap', '9 bulan', '11', 7, 2, 'SasA', 0, '2021-01-21', '691c3ff51b824a467c9ead38fdea4109.pdf', '', '', 0);
+INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_sumberdana`, `id_luaran`, `mitra`, `id_jadwal`, `tgl_upload`, `file`, `status`) VALUES
+(82, 1, '21060117130076', 'fjaksjdf', ' fkjlkjsdaf dsfalsj dfsdfjlkjails ldsaiw', 'Tembalang', '2 bulan', '1000000', 2, 1, 'fjalsjfa', 0, '2020-10-26', '361e2b3f3b8f974d5747cafcd63067f6.pdf', 0),
+(83, 1, '21060117130076', '121', ' 12212', 'sa', '12 bulan', '12000000', 2, 1, 'AKu', 0, '2020-11-01', '4efaf989c28a2ebd306f6e6268052e51.pdf', 1),
+(84, 1, '21060117130082', 'Irza', ' Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-02', 'abe60cfb6ecb803a65c25aa436437034.pdf', 3),
+(85, 1, '21060117130081', 'Saya Irza', ' Saya Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', '02ab14c03b55ce54ae0519d340053836.pdf', 3),
+(86, 1, '21060117130081', 'Penelitian satu', ' Sadsakdpsjais', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', 'cf58cd1ae580f3e14e1be2d663212578.pdf', 1),
+(87, 4, '21060117130082', 'A', ' A', 'A', '12 bulan', '12000000', 5, 3, 'A', 0, '2020-11-11', '477316cd91ca53e3de41cbf6ddc76cee.pdf', 5),
+(88, 1, '21060117130082', 'qdwas', ' dasdasd', 'adsd', '12 bulan', '121212121', 5, 3, 'sadas', 0, '2021-01-18', 'bec48aaa56f94f1c3eddaf23dfe658d9.pdf', 0),
+(89, 1, '21060117130082', 'asSa', 'aha', 'siap', '9 bulan', '11', 7, 2, 'SasA', 0, '2021-01-21', '691c3ff51b824a467c9ead38fdea4109.pdf', 0),
+(90, 1, 'pengusul', 'Penleitian1', ' aku adalah seorang anak gembalang', 'Solo', '5 bulan', '120000', 5, 3, 'Pertamina', 7, '2021-01-26', '6b9e65df8e5156a3f901c9f59646b4e3.pdf', 3);
 
 -- --------------------------------------------------------
 
@@ -1218,7 +1245,9 @@ CREATE TABLE `reviewer_penelitian` (
 
 INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
 ('21060117130076', 'Valentina'),
-('21060117130082', 'irza');
+('21060117130082', 'irza'),
+('reviewer1', 'reviewer1'),
+('reviewer2', 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -1673,7 +1702,9 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 (352, 'aa', '827ccb0eea8a706c4c34a16891f84e7b', 4),
 (354, 'mitra-test', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
 (355, 'aa@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(358, '12345', 'd41d8cd98f00b204e9800998ecf8427e', 2);
+(358, '12345', 'd41d8cd98f00b204e9800998ecf8427e', 2),
+(359, 'reviewer1', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
+(360, 'reviewer2', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
 
 --
 -- Indexes for dumped tables
@@ -1702,6 +1733,12 @@ ALTER TABLE `assign_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dosen`
+--
+ALTER TABLE `dosen`
+  ADD PRIMARY KEY (`nip`);
 
 --
 -- Indexes for table `dsn_penelitian`
@@ -1879,7 +1916,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `assign_proposal_pengabdian`
@@ -1897,7 +1934,7 @@ ALTER TABLE `detail_nilai_proposal_pengabdian`
 -- AUTO_INCREMENT for table `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `dsn_pengabdian`
@@ -1945,7 +1982,7 @@ ALTER TABLE `komp_penilaian_penelitian`
 -- AUTO_INCREMENT for table `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
@@ -1957,7 +1994,7 @@ ALTER TABLE `laporan_akhir_pengabdian`
 -- AUTO_INCREMENT for table `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `luaran`
@@ -1969,7 +2006,7 @@ ALTER TABLE `luaran`
 -- AUTO_INCREMENT for table `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `mhs_pengabdian`
@@ -1987,13 +2024,13 @@ ALTER TABLE `mitra`
 -- AUTO_INCREMENT for table `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
@@ -2005,7 +2042,7 @@ ALTER TABLE `nilai_proposal_pengabdian`
 -- AUTO_INCREMENT for table `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT for table `proposal_pengabdian`
@@ -2035,7 +2072,7 @@ ALTER TABLE `sumberdana`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=359;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -54,7 +54,7 @@ class M_ReviewerPenelitian extends CI_Model
     }
     public function getwhere_monev(array $data)
     {
-        $query = $this->db->select('assign_proposal_penelitian.*,proposal_penelitian.cr_monev,proposal_penelitian.cr_monev2,proposal_penelitian.id,proposal_penelitian.id_jenis,proposal_penelitian.status,proposal_penelitian.tgl_upload,proposal_penelitian.judul,nilai_proposal_penelitian.nilai,nilai_proposal_penelitian.nilai2,jenispenelitian.jenis as jenis,jenispenelitian.id as id_jenis')
+        $query = $this->db->select('assign_proposal_penelitian.*,nilai_proposal_penelitian.cr_monev,nilai_proposal_penelitian.cr_monev2,proposal_penelitian.id,proposal_penelitian.id_jenis,proposal_penelitian.status,proposal_penelitian.tgl_upload,proposal_penelitian.judul,nilai_proposal_penelitian.nilai,nilai_proposal_penelitian.nilai2,jenispenelitian.jenis as jenis,jenispenelitian.id as id_jenis')
                         ->from('proposal_penelitian')
                         ->join('nilai_proposal_penelitian','nilai_proposal_penelitian.id_proposal=proposal_penelitian.id','left')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
@@ -99,8 +99,8 @@ class M_ReviewerPenelitian extends CI_Model
 
     public function update_monev($id,$data)
     {
-        $this->db->where('id',$id);
-        $this->db->update('proposal_penelitian',$data);
+        $this->db->where('id_proposal',$id);
+        $this->db->update('nilai_proposal_penelitian',$data);
     }
     
     public function status_nilai($id,array $data)
@@ -112,6 +112,11 @@ class M_ReviewerPenelitian extends CI_Model
     public function getwhere_proposal(array $data)
     {
         return $this->db->get_where('proposal_penelitian',$data);
+    }
+
+    public function getwhere_cr(array $data)
+    {
+        return $this->db->get_where('nilai_proposal_penelitian',$data);
     }
 
     public function getwhere_detailnilai(array $data)
