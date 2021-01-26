@@ -32,7 +32,7 @@
                 <th>No</th>
                 <th>Judul Proposal</th>
                 <th class='text-center'>Logbook</th>
-                <th class='text-center'>Laporan Catatan</th>
+                <th class='text-center'>Laporan Kemajuan</th>
                 <th class='text-center'>Laporan Belanja 70%</th>
                 <th class='text-center'>Catatan Pengusul</th>
                 <th class='text-center'>Komentar Reviewer 1</th>
@@ -165,7 +165,7 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">File Laporan Catatan</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">File Laporan Kemajuan</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>

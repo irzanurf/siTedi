@@ -54,7 +54,7 @@
                             <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file3?>" width="93%" height="400px" >
                             </iframe>
                             <div class="form-group"> 
-											<label><br>Laporan Catatan</label> 
+											<label><br>Laporan Kemajuan</label> 
 											
                             </div> 
                             <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file2?>" width="93%" height="400px" >
