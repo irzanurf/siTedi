@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-// require_once APPPATH.'vendor/autoload.php';
+require_once APPPATH.'vendor/autoload.php';
+// require_once 'vendor/autoload.php';
 
 use PhpOffice\PhpWord\PhpWord;
 use PhpOffice\PhpWord\Writer\Word2007;
@@ -534,6 +535,109 @@ class Pengabdian extends CI_Controller
         
         $objWriter->save( "php://output" );
     }
+
+    public function laporanAkhirWord()
+    {
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+		$section = $phpWord->addSection();
+        
+		
+		$writer = new Word2007($phpWord);
+		
+        $filename = 'SubmittedLaporanAkhirPengabdian';
+        
+        $cellRowSpan = array('vMerge' => 'restart', 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
+
+
+        $prop = $this->M_PropPengabdian->get_word_laporanakhir()->result();
+
+
+        $table->addRow();
+        $table->addCell(2000, $cellRowSpan)->addText("No");
+        $table->addCell(2000, $cellRowSpan)->addText("Judul Pengabdian");
+        $table->addCell(2000, $cellRowSpan)->addText("Ketua Pengabdian");
+        // $table->addCell(4000, $cellColSpan)->addText("Anggota Pengabdian");
+        $table->addCell(2000, $cellRowSpan)->addText("Kelengkapan laporan akhir");
+
+        $table->addRow();
+        $table->addCell(null, $cellRowContinue);
+        $table->addCell(null, $cellRowContinue);
+        $table->addCell(null, $cellRowContinue);
+        // $table->addCell(2000,$styleCell)->addText("Dosen");
+        // $table->addCell(2000,$styleCell)->addText("Mahasiswa");
+        $table->addCell(null, $cellRowContinue);
+        $no = 1;
+        foreach($prop as $p){
+            $noDsn= 1;
+            $noMhs = 1;
+            $table->addRow();
+            $table->addCell(2000,$styleCell)->addText($no++);
+            $table->addCell(2000,$styleCell)->addText($p->judul);
+            $table->addCell(2000,$styleCell)->addText($p->nama);
+            $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
+            // $celldsn = $table->addCell(2000,$styleCell);
+            // foreach( $dosen as $dsn){
+            //     $celldsn->addText($noDsn++.'. '.$this->M_Dosen->getwhere_dosen(array('nip'=>$dsn->nip))->row()->nama);
+            // }
+
+            // // foreach($dosen as $dsn){
+            // //     $table->addCell(2000)->addText($noDsn++.''.$this->M_Dosen->getwhere_dosen(array('nip'=>$dsn->nip))->row()->nama);
+            // // }
+            // $cellmhs = $table->addCell(2000,$styleCell);
+            // foreach($this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result() as $mhs){
+            //     $cellmhs->addText($noMhs++.'. '.$this->M_Mahasiswa->getwhere_mahasiswa(array('nim'=>$mhs->nim))->row()->nama);
+            // }
+            $table->addCell(2000,$styleCell)->addText('Lengkap');
+
+        }
+        
+		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter( $phpWord, "Word2007" );
+		header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document" );
+        header('Content-Disposition: attachment;filename="'. $filename .'.docx"'); 
+        header('Cache-Control: max-age=0');
+        
+        
+        $objWriter->save( "php://output" );
+    }
+
+    public function laporanAkhirExcel()
+    {
+        $fileName = 'ListLaporanAkhirSubmitted';  
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_PropPengabdian->get_word_laporanakhir()->result();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Judul Pengabdian');
+        $sheet->setCellValue('C1', 'Ketua Pengabdian');
+        $sheet->setCellValue('D1', 'Kelengkapan');
+        
+        $no = 1;
+        $rows = 2;
+
+        foreach($prop as $p){
+            $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
+            $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result();
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, 'Lengkap');
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
 
     public function proposalword()
     {

@@ -112,6 +112,26 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function get_word_monev()
+    {
+        // $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, laporan_monev_penelitian.file1 as logbook, laporan_monev_penelitian.file2 as kemajuan,laporan_monev_penelitian.file3 as belanja')
+        //                 ->from('proposal_penelitian')
+        //                 ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
+        //                 ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
+        //                 ->where('laporan_monev_penelitian.file1 is NOT NULL')
+        //                 ->get();
+
+        $query = $this->db->select('proposal_penelitian.*,dosen.nama as nama, laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan')
+                        ->from('proposal_penelitian')
+                        ->join('dosen','dosen.nip = proposal_penelitian.nip')
+                        ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
+                        ->where('file1 is NOT NULL')
+                        ->where('file2 != ""')
+                        ->where('file3 != ""')
+                        ->get();
+        return $query;
+    }
+
     public function get_viewakhir()
     {
         $query = $this->db->select('*')

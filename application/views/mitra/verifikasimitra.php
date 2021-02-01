@@ -62,22 +62,31 @@
 
                                 <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$proposal->file?>" width="93%" height="400px" >
                             </iframe>
-                                <?php if($mitra->status==0){ ?>
-
+                            <?php if($mitra->status==0){?>
+                        
+                                <?php echo form_open_multipart('mitra/verifikasi/approval') ?>
+                                        <div class="form-group">
+                                            <label>Upload Surat Mitra</label>
+                                            <input type="file" class="form-control" name="file"   >
+                                        </div>
                                 <div class="col-3 d-inline-block">
-                                <form class="" action="<?= base_url('mitra/verifikasi/approval'); ?>" method="post">
+                                
                                         <input type="hidden" name="mitra" value="<?= $mitra->id; ?>">
                                         <button type="submit" class="btn-sm btn-success tombol-cetak mr-4 ml-3" name="submit" value="submit" data-toggle="tooltip" data-placement="top" title="DISETUJUI" onclick="return confirm('Setujui kerjasama dengan pengabdian ini?');">Setujui Kerjasama Pengabdian
                                         </button>
-                                    </form>
                                 </div>
+                                <?= form_close() ?>
                                 <?php
                                 } else { ?>
+                                <iframe src="<?= base_url('assets/suratmitra');?>/<?=$mitra->file_persetujuan?>" width="93%" height="400px" >
+                            </iframe>
                                     <div class="col-3 d-inline-block">
                                         <span class="badge badge-info">Proposal telah disetujui</span>
-                                        </form>
+                                      
                                     </div>
                                 <?php }?>
+
+                                
                             
                             </section>
                                 

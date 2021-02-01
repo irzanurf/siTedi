@@ -118,6 +118,20 @@ class M_PropPengabdian extends CI_Model
                         ->get();
         return $query;
     }
+
+    public function get_word_laporanakhir()
+    {
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran ')
+                        ->from('proposal_pengabdian')
+                        ->join('laporan_akhir_pengabdian','proposal_pengabdian.id=laporan_akhir_pengabdian.id_proposal','inner')
+                        ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->where('laporan_akhir is NOT NULL')
+                        ->where('belanja is NOT NULL')
+                        ->where('logbook is NOT NULL')
+                        ->where('luaran is NOT NULL')
+                        ->get();
+        return $query;
+    }
     public function update_prop($id,array $data)
     {
         $this->db->where('id',$id);
@@ -135,9 +149,8 @@ class M_PropPengabdian extends CI_Model
 
     public function mhs_update_prop($id)
     {
-        $query = $this->db->select('mhs_pengabdian.*, mahasiswa.nama as nama, mahasiswa.program_studi as program_studi')
+        $query = $this->db->select('mhs_pengabdian.*')
                         ->from('mhs_pengabdian')
-                        ->join('mahasiswa','mhs_pengabdian.nim=mahasiswa.nim','inner')
                         ->where('mhs_pengabdian.id_proposal = '.$id.'')
                         ->get();
         return $query;

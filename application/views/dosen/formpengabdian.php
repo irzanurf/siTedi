@@ -29,9 +29,8 @@
                     <section class="content">
                     <table class="table">
                         <col style='width:5%'>
-                        <col style='width:40%'>
-                        <col style='width:10%'>
-                        <col style='width:10%'>
+                        <col style='width:45%'>
+                        <col style='width:15%'>
                         <col style='width:15%'>
                         <col style='width:20%'> 
                         <thead>
@@ -40,7 +39,7 @@
                             <th>Judul Proposal</th>
                             <th>Instansi Mitra</th>
                             <th>Mitra Approval</th>
-                            <th>Upload Surat Persetujuan</th>
+                            <!-- <th>Upload Surat Persetujuan</th> -->
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -55,7 +54,7 @@
                             <td><?= $v->judul?></td>
                             <td><?= $v->nama_instansi ?></td>
                             <td><?= ($v->status_mitra==1) ? "Approved" :  "Unapproved" ?></td>
-                            <td><?php if ($v->file_persetujuan==NULL && $v->status_mitra!=1) : ?>
+                            <!-- <td><?php if ($v->file_persetujuan==NULL && $v->status_mitra!=1) : ?>
                                 <button type="button" class="btn-sm btn-default" data-toggle="modal" disabled>
                                     <span class="glyphicon glyphicon-upload"></span><?php if ($v->file_persetujuan==NULL) : ?> Upload <?php endif; ?>
                                         <?php if($v->file_persetujuan != NULL) : ?> Edit <?php endif; ?>
@@ -69,7 +68,7 @@
                             <?php if($v->file_persetujuan != NULL) : ?>
                                 <i>UPLOADED</i>
                             <?php endif; ?>
-                            </td>
+                            </td> -->
                             <td>
                             <?php if(($v->status_mitra==0 || $v->file_persetujuan==NULL)&& $v->status==NULL ) : ?>
                                     <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>

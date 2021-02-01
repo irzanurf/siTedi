@@ -33,9 +33,27 @@ class Verifikasi extends CI_Controller {
     }
 
     public function approval(){
+        // $this->form_validation->set_rules('file_persetujuan','File Persetujuan', 'required');
         $id_mitra=$this->input->post('mitra');
-        $data = array('status' => "1");
-        $this->M_Mitra->update_mitra($id_mitra,$data);
+        // $data = array('status' => "1");
+        // $this->M_Mitra->update_mitra($id_mitra,$data);
+        $surat = $_FILES['file'];
+        if($surat=''){}else{
+            $config['upload_path'] = './assets/suratmitra';
+            $config['allowed_types'] = 'pdf';
+            // echo $config['upload_path'];
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file')){
+                echo $surat; die();
+            } else {
+                $surat=$this->upload->data('file_name');
+            }
+        }
+        
+        $data_surat = array(
+            'status' => 1,
+            'file_persetujuan'=>$surat);
+        $this->M_Mitra->update_mitra($id_mitra,$data_surat);
         redirect('mitra/verifikasi');
     }
     public function logout()

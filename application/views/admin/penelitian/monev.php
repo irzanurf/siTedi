@@ -21,6 +21,8 @@
         </div>
     </div>
     <!-- /.row -->
+    <a href="<?=base_url('admin/penelitian/laporanKemajuanWord');?>"><button class='btn btn-info'>List Laporan Kemajuan Lengkap</button></a>
+    <a href="<?=base_url('admin/penelitian/laporanKemajuanExcel');?>"><button class='btn btn-success'>List Laporan Kemajuan Lengkap</button></a>
 
     <div class="row">
         <div class="col-lg-12">

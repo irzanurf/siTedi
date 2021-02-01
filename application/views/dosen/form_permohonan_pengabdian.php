@@ -99,9 +99,11 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label><br>Anggota Mahasiswa</label>
+                                <label><br>Anggota Mahasiswa (NIM)</label>
                                 <div class="input-group control-group1 after-add-more1">
-                               <select class="form-control" name="mahasiswa[]">
+                                <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
+                                <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
+                               <!-- <select class="form-control" name="mahasiswa[]">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($mahasiswa as $mhs) {
@@ -109,8 +111,8 @@
                                         <option value ="<?php echo $mhs->nim; ?>"><?php echo $mhs->nama ?></option>
                                         <?php
                                     }
-                                    ?>
-                                </select>
+                                    ?> -->
+                                <!-- </select> -->
                                  <div class="input-group-btn"> 
                                     <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
@@ -139,7 +141,9 @@
 
                             <div class="copy1 hide">
                                 <div class="control-group1 input-group" style="margin-top:10px">
-                                <select class="form-control" name="mahasiswa[]">
+                                <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
+                                <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
+                                <!-- <select class="form-control" name="mahasiswa[]">
                                     <option value="">Please select</option>
                                     <?php
                                     foreach ($mahasiswa as $mhs) {
@@ -148,7 +152,7 @@
                                         <?php
                                     }
                                     ?>
-                                </select>
+                                </select> -->
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
