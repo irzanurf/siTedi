@@ -579,6 +579,96 @@ class Penelitian extends CI_Controller
 
 
 
+    public function laporanAkhirExcel()
+    {
+        $fileName = 'ListLaporanAkhirSubmitted';  
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_PropPenelitian->get_word_akhir()->result();
+        $sheet->setCellValue('A1', 'No');
+        $sheet->setCellValue('B1', 'Judul Pengabdian');
+        $sheet->setCellValue('C1', 'Ketua Pengabdian');
+        $sheet->setCellValue('D1', 'Kelengkapan dokumen');
+        
+        $no = 1;
+        $rows = 2;
+
+        foreach($prop as $p){
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, 'Lengkap');
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        // $filename = 'laporan-siswa';
+        
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
+    public function laporanAkhirWord()
+    {
+        // $phpWord = new PhpWord();
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+		$section = $phpWord->addSection();
+        
+		
+		$writer = new Word2007($phpWord);
+		
+        $filename = 'ListLaporanAkhirSubmitted';
+        
+        $cellRowSpan = array('vMerge' => 'restart', 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
+        $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
+
+
+        $prop = $this->M_PropPenelitian->get_word_akhir()->result();
+
+
+        $table->addRow();
+        $table->addCell(2000, $cellRowSpan)->addText("No");
+        $table->addCell(2000, $cellRowSpan)->addText("Judul Penelitian");
+        $table->addCell(2000, $cellRowSpan)->addText("Ketua Penelitian");
+        $table->addCell(2000, $cellRowSpan)->addText("Kelengkapan dokumen");
+
+        $table->addRow();
+        $table->addCell(null, $cellRowContinue);
+        $table->addCell(null, $cellRowContinue);
+        $table->addCell(null, $cellRowContinue);
+        $table->addCell(null, $cellRowContinue);
+        $no = 1;
+        foreach($prop as $p){
+            $table->addRow();
+            $table->addCell(2000,$styleCell)->addText($no++);
+            $table->addCell(2000,$styleCell)->addText($p->judul);
+            $table->addCell(2000,$styleCell)->addText($p->nama);
+            $table->addCell(2000,$styleCell)->addText('Lengkap');
+
+        }
+        
+		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter( $phpWord, "Word2007" );
+		header( "Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document" );
+        header('Content-Disposition: attachment;filename="'. $filename .'.docx"'); 
+        header('Cache-Control: max-age=0');
+        
+        
+        $objWriter->save( "php://output" );
+		
+        // $writer->save('php://output');
+        // $phpword->save('Perfomance_Appraisal.docx', 'Word2007', true);
+    }
+
+
+
 
 
 
