@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Pengisian Penelitian
@@ -51,7 +51,7 @@
                         </div>
                     </div> 
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Biaya PEnelitian</label>
+                        <label class="col-lg-4 col-form-label">Biaya Penelitian</label>
                         <div class="col-lg-8">
                             <p>Rp <?=  number_format($prop->biaya,2,',','.');?></p>
                         </div>

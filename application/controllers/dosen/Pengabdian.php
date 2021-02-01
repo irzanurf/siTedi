@@ -515,8 +515,23 @@ class Pengabdian extends CI_Controller {
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('layout/header');
         $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
-        $this->load->view('dosen/laporan_akhir_pengabdian', $data);
+        $cekjad=$data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
+        if (empty($cekjad)){
+            $this->load->view('dosen/closed_form_akhir', $data);
+        }
+        else{
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_akhir));
+        if(($now>= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/laporan_akhir_pengabdian', $data);
 
+        } 
+     else {
+        $this->load->view('dosen/closed_form_akhir', $data);
+    }
+}
+        
     }
 
 

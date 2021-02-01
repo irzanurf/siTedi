@@ -63,10 +63,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<ul>
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
         
-      </div>
+	  </div>
+	  <li>
+				<a href="<?= base_url('/');?>">
+					<i class="fa fa-home nav_icon"></i>
+					<span class="nav-text">
+					Home
+					</span>
+				</a>
+			</li>
 			<li>
 				<a href="<?= base_url('dosen/penelitian/');?>">
-					<i class="fa fa-home nav_icon"></i>
+					<i class="fa fa-file-text-o nav_icon"></i>
 					<span class="nav-text">
 					Dashboard
 					</span>
@@ -164,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</nav>
 		<section class="title-bar">
 			<div class="logo">
-				<h1><img src="<?= base_url('assets/undip.png');?>" alt="logo" width="60" height="70" /><a href="<?= base_url('dosen/welcome/');?>">Penelitian</a></h1>
+				<h1><img src="<?= base_url('assets/undip.png');?>" alt="logo" width="60" height="70" />Penelitian</h1>
 			</div>
 			
 			
@@ -181,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</div>	
 								</a>
 								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="<?= base_url('dosen/penelitian/');?>"><i class="fa fa-user"></i> Profile</a> </li> 
+									<li> <a href="<?= base_url('login/profile/');?>"><i class="fa fa-user"></i> Profile</a> </li> 
 									<li> <a href="<?= base_url('dosen/penelitian/logout');?>"><i class="fa fa-sign-out"></i> Logout</a> </li>
 								</ul>
 							</li>

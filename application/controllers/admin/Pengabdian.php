@@ -93,6 +93,7 @@ class Pengabdian extends CI_Controller
     {
         $data = [
             'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' => $this->input->post('tgl_selesai'),
         ];
         $this->M_JadwalPengabdian->insert_jadwal($data);
@@ -104,7 +105,8 @@ class Pengabdian extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = [
-            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_mulai' => $this->input->post('tgl_mulai'),   
+            'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' =>$this->input->post('tgl_selesai')
         ];
 

@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Jadwal Penelitian
@@ -29,8 +29,12 @@
                         <div class="panel-body">
                             <label>Tanggal Awal</label>
                             <input type="text" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
+                            <label>Batas Pengumpulan Monev</label>
+                            <input type="text" class="form-control"  name="tgl_monev" id="tgl_monev" value = <?=$jadwal->tgl_monev?>><br>
+                            <label>Batas Pengumpulan Laporan Akhir</label>
+                            <input type="text" class="form-control"  name="tgl_akhir" id="tgl_akhir" value = <?=$jadwal->tgl_akhir?>><br>
                             <label>Tanggal Akhir</label>
-                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_akhir" value = <?=$jadwal->tgl_selesai?>>
+                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
                             <input type="text" class="form-control hidden" name="id" value = <?=$jadwal->id?> hidden>
                         </div>
                         
@@ -95,7 +99,9 @@
         $(function()
         {
             $('#tgl_awal').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
-            $('#tgl_akhir').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'})
+            $('#tgl_monev').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
+            $('#tgl_akhir').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
+            $('#tgl_selesai').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'})
         });
     </script>
 

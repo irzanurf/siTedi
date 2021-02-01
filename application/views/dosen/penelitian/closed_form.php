@@ -6,17 +6,15 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Jadwal Form Pengajuan Proposal Belum Dibuka 
+                        <?php if(empty($jadwal->tgl_mulai) || empty($jadwal->tgl_selesai)) : ?>
+                            <label>Belum ada jadwal pengajuan proposal Penelitian</label>
+                            <?php else : ?>
+
+                            <label>Jadwal terdekat pengajuan proposal Penelitian <?=$jadwal->tgl_mulai?> sampai tanggal <?=$jadwal->tgl_selesai?></label>
+                            <?php endif;?>
                         </h1>
 
-                        <ol class="breadcrumb">
-                            <li>
-                                <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
-                            </li>
-                            <li class="active">
-                                <i class="fa fa-edit"></i> Pengajuan proposal
-                            </li>
-                        </ol>
+                        
                     </div>
                 </div>
                 <!-- /.row -->
@@ -26,8 +24,7 @@
                     <section class="content">
                     
                         <div class="panel-body">
-                            <label>Jadwal terdekat pengajuan proposal Penelitian <?=$jadwal->tgl_mulai?> sampai tanggal <?=$jadwal->tgl_selesai?></label>
-                            
+                        
                         </div>
                         
                     

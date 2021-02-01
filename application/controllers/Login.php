@@ -10,6 +10,7 @@ class Login extends CI_Controller {
         $this->load->library('form_validation');
         //load model admin
         $this->load->model('admin');
+        $this->load->model('M_Profile');
     }
 
     public function index()
@@ -117,6 +118,18 @@ class Login extends CI_Controller {
       }//end if valid_user
      }
     }
+
+    public function profile()
+    {
+        $nip = $this->session->userdata('user_name');
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        
+        $this->load->view('header', $nama);
+        $this->load->view('profile', $nama);
+        $this->load->view("penelitian/footer");
+    }
+
 
     public function logout()
     {

@@ -12,7 +12,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Approval proposal
@@ -59,7 +59,7 @@
                 <!-- <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
                     Detail
                 </a> -->
-                <?php if($v->status=='NEED_APPROVAL') :?>
+                <?php if($v->status=='NEED_APPROVAL'||$v->status=='ACCEPTED'||$v->status=='REJECTED') :?>
                 <?php $rata = ($v->nilai+$v->nilai2)/2?><?= $rata?>
                 <?php else : ?> - 
                 <?php endif ?>

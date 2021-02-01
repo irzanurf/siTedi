@@ -23,9 +23,9 @@
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
                     <li class="nav-item" role="presentation"></li>
-                    
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo base_url('login/profile'); ?>" style="color: rgb(0,255,255);font-family: 'Kaushan Script', cursive;font-size: 16 px;">Profile</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo base_url('login/ganti_password'); ?>" style="color: rgb(122,255,122);font-family: 'Kaushan Script', cursive;font-size: 16 px;">Ganti Password</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo base_url('reviewer/dashboard/logout'); ?>" style="color: rgb(255,122,122);font-family: 'Kaushan Script', cursive;font-size: 16 px;">Logout</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="<?php echo base_url('dosen/Welcome/logout'); ?>" style="color: rgb(255,122,122);font-family: 'Kaushan Script', cursive;font-size: 16 px;">Logout</a></li>
                 </ul>
             </div>
         </div>

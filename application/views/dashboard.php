@@ -3,6 +3,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/Profile-Edit-Form.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/styles.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/divider.css');?>">
+    
+</head>
 </head>
     <body>
 
@@ -11,7 +13,15 @@
         <div class="col-md-0">
         
         <div id="content">
-  <center><h1>Pengumuman</h1></center>
+        <div class="card bg-primary text-white">
+	<div class="card-header">
+    <center><h1>Pengumuman</h1></center>
+	</div>
+ 
+	
+ 
+</div>
+  
   <div class="MasMalvenSpoiler">
     <div class="isi">
     <?php echo $berita[0]-> berita?>
@@ -28,71 +38,78 @@
             
         </div></br></br>
         
-        <h1><center>Daftar Pengajuan Proposal</center></h1>
-                       
-					</div>
-                    <table class="table" >
-                    <thead>
-                        <tr>
-                            <th>Tanggal Upload</th>
-                            <th>Jenis Skema Penelitian</th>
-                            <th>Judul Proposal</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                        <?php 
-                        $no = 1;
-                        foreach($view as $v) { ?>
-                        <tr>
-                            <td align="center"><?= $v->tgl_upload?></td>
-                            <td align="center"><?= $v->jenis?></td>
-                            <td align="center"><?= $v->judul?></td>
-                            
-
-                            
-                            
-
-                            <td align="center">
-                            <?php if($v->status=="5" ) : ?>
-                                <button type="button" class="btn-sm btn-danger" dissabled>
-                                        Rejected
-                                    </button>
-
-                            <?php elseif($v->status=="2") : ?>
-                                <button type="button" class="btn-sm btn-success" dissabled>
-                                        Accepted
-                                    </button>
-                                    <?php elseif($v->status=="11" || $v->status=="12") : ?>
-                                <button type="button" class="btn-sm btn-success" dissabled>
-                                        Reviewing
-                                    </button>
-
-                                    <?php elseif($v->status=="2") : ?>
-                                <button type="button" class="btn-sm btn-success" dissabled>
-                                        Monitoring & Evaluasi
-                                    </button>
-
-                                    <?php elseif($v->status=="3") : ?>
-                                <button type="button" class="btn-sm btn-success" dissabled>
-                                        Laporan Akhir
-                                    </button>
-                               
-                            <?php else : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Waiting
-                                    </button>
-                            <?php endif;?>
-                            
-                            
-                            </td>
-
-
-                        </tr>
-                        <?php } ?>
-                    </table>
-</div>
+       
         <form>
-            <div class="form-row profile-row">
+        <div class="card">	
+ 
+	<div class="card-footer bg-success text-white">
+    <h1><center>Daftar Pengajuan Proposal</center></h1>
+	</div>
+</div>
+        
+                       
+                       </div>
+                       <table class="table" >
+                       <thead>
+                           <tr>
+                               <th>Tanggal Upload</th>
+                               <th>Jenis Skema Penelitian</th>
+                               <th>Judul Proposal</th>
+                               <th>Status</th>
+                           </tr>
+                       </thead>
+                           <?php 
+                           $no = 1;
+                           foreach($view as $v) { ?>
+                           <tr>
+                               <td align="center"><?= $v->tgl_upload?></td>
+                               <td align="center"><?= $v->jenis?></td>
+                               <td align="center"><?= $v->judul?></td>
+                               
+   
+                               
+                               
+   
+                               <td align="center">
+                               <?php if($v->status=="5" ) : ?>
+                                   <button type="button" class="btn-sm btn-danger" dissabled>
+                                           Rejected
+                                       </button>
+   
+                               <?php elseif($v->status=="2") : ?>
+                                   <button type="button" class="btn-sm btn-success" dissabled>
+                                           Accepted
+                                       </button>
+                                       <?php elseif($v->status=="11" || $v->status=="12") : ?>
+                                   <button type="button" class="btn-sm btn-success" dissabled>
+                                           Reviewing
+                                       </button>
+   
+                                       <?php elseif($v->status=="2") : ?>
+                                   <button type="button" class="btn-sm btn-success" dissabled>
+                                           Monitoring & Evaluasi
+                                       </button>
+   
+                                       <?php elseif($v->status=="3") : ?>
+                                   <button type="button" class="btn-sm btn-success" dissabled>
+                                           Laporan Akhir
+                                       </button>
+                                  
+                               <?php else : ?>
+                                   <button type="button" class="btn-sm btn-default" dissabled>
+                                           Waiting
+                                       </button>
+                               <?php endif;?>
+                               
+                               
+                               </td>
+   
+   
+                           </tr>
+                           <?php } ?>
+                       </table>
+   </div>
+            <!-- <div class="form-row profile-row">
                 <div class="col-md-4 relative">
                     <div class="avatar">
                         <div class="text-center center"><img src="<?= base_url('assets/profile/assets/profile.png');?>" alt="profile" width="200" height="200" /></div>
@@ -124,7 +141,7 @@
 					
 					
                 </div>
-            </div>
+            </div> -->
         </form>
     </div>
     <script src="<?= base_url('assets/profile/assets/js/jquery.min.js');?>"></script>

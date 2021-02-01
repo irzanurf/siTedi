@@ -69,7 +69,7 @@
         <form class="form-signin" method="POST" action="<?php echo base_url() ?>login/ganti_password">
         <div class="form-group">
         <label for="upass" id="ps">Kata Sandi Lama</label>
-            <input class="form-control" type="text" name="old" value="<?php echo set_value('old');?>" required>
+            <input class="form-control" type="password" name="old" value="<?php echo set_value('old');?>" required>
            
         </div>
         <div class="form-group">
