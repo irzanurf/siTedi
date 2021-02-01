@@ -124,19 +124,24 @@ class Penelitian extends CI_Controller {
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
-
-        $data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
+        $cekjad=$data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
+        $this->load->view('penelitian/header', $nama);
+        if (empty($cekjad)){
+            $this->load->view('dosen/penelitian/closed_form', $data);
+        }
+        else{
         $now = date('Y-m-d', strtotime(date('Y-m-d')));
         $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
         $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
-
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
-        $this->load->view('penelitian/header', $nama);
+        
         if(($now>= $awal) && ($now<=$akhir)){
             $this->load->view('dosen/penelitian/pengisianform', $data);
-        } else{
-            $this->load->view('dosen/penelitian/closed_form', $data);
-        }
+        } 
+     else {
+        $this->load->view('dosen/penelitian/closed_form', $data);
+    }
+}
         
         $this->load->view("penelitian/footer");
     }
@@ -313,7 +318,7 @@ class Penelitian extends CI_Controller {
         $data = [
             "file"=>$prop,];
         $this->M_PropPenelitian->update_prop($id,$data);
-        redirect('dosen/penelitian/');
+        redirect('dosen/penelitian/submit');
 
     }
 
@@ -352,8 +357,23 @@ class Penelitian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $cekjad=$data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
         $this->load->view('penelitian/header', $nama);
-        $this->load->view('dosen/penelitian/monev', $data);
+        if (empty($cekjad)){
+            $this->load->view('dosen/penelitian/closed_form', $data);
+        }
+        else{
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_monev));
+        if(($now>= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/penelitian/monev', $data);
+        } 
+     else {
+        $this->load->view('dosen/penelitian/closed_form_monev', $data);
+    }
+}
+        
         $this->load->view("penelitian/footer");
     }
 
@@ -443,8 +463,23 @@ class Penelitian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $cekjad=$data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
         $this->load->view('penelitian/header', $nama);
-        $this->load->view('dosen/penelitian/akhir', $data);
+        if (empty($cekjad)){
+            $this->load->view('dosen/penelitian/closed_form', $data);
+        }
+        else{
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_akhir));
+        if(($now>= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/penelitian/akhir', $data);
+        } 
+     else {
+        $this->load->view('dosen/penelitian/closed_form_akhir', $data);
+    }
+}
+        
         $this->load->view("penelitian/footer");
     }
 

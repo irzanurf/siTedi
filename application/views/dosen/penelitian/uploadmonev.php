@@ -19,7 +19,7 @@
                             </div> 
 
                             <div class="form-group"> 
-											<label><br>Laporan Catatan</label> 
+											<label><br>Laporan Kemajuan</label> 
 											<input type="file" name="file2"> 
                             </div> 
 

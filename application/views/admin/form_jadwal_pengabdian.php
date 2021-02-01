@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Jadwal Pengabdian
@@ -26,11 +26,13 @@
                     
                     <form method='POST' action="<?= base_url('admin/pengabdian/submitJadwalPengabdian');?>" >
                 
-                        <div class="panel-body">
+                    <div class="panel-body">
                             <label>Tanggal Awal</label>
                             <input type="text" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
+                            <label>Batas Pengumpulan Laporan Akhir</label>
+                            <input type="text" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
                             <label>Tanggal Akhir</label>
-                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_akhir">
+                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_selesai">
                         </div>
                         
                     
@@ -94,7 +96,8 @@
         $(function()
         {
             $('#tgl_awal').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
-            $('#tgl_akhir').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'})
+            $('#tgl_akhir').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
+            $('#tgl_selesai').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'})
         });
     </script>
 

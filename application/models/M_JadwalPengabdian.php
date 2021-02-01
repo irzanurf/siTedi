@@ -4,7 +4,7 @@ class M_JadwalPengabdian extends CI_Model
 {
     public function get_jadwal()
     {
-        return $this->db->get('jadwal_pengabdian');
+        return $this->db->query ("SELECT * FROM jadwal_pengabdian ORDER BY id DESC");
         
     }
 

@@ -26,7 +26,7 @@
                                    
                                     <div class="form-group">
                                     <label>Judul Penelitian</label>
-                                    <input class="form-control" name="judul" value=<?= $proposal->judul?>  >
+                                    <textarea class="form-control" rows="1" name="judul"  ><?= $proposal->judul?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
@@ -39,12 +39,12 @@
 
                                 <div class="form-group">
                                     <label>Lokasi</label>
-                                    <textarea class="form-control" rows="3" name="lokasi"  ><?= $proposal->lokasi?></textarea>
+                                    <textarea class="form-control" rows="1" name="lokasi"  ><?= $proposal->lokasi?></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Mitra</label>
-                                    <input class="form-control" name="mitra" value=<?= $proposal->mitra?> >
+                                    <textarea class="form-control" rows="1" name="mitra"  ><?= $proposal->mitra?></textarea>
                                 </div>
                                 <label>Lama Penelitian</label></br>
                                 <font color="green"><?= $proposal->lama_pelaksanaan?></font>

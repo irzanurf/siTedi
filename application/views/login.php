@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="<?php echo base_url ('assets/login/css/Google-Style-Login.css'); ?>">
     
 </head>
-
 <body id="page-top" style="background-image: url('<?php echo base_url('assets/login/img/intro-bg.jpg'); ?>');background-size: cover;">
     <div class="text-left flex-fill justify-content-center align-items-center align-content-center align-self-center login-card" style="background-color: rgba(247,247,247,0.51);">
     <h1 style="text-align:center; color:black">Si TeDi</h1>

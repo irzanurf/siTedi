@@ -105,6 +105,8 @@ class Penelitian extends CI_Controller
     {
         $data = [
             'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_monev' => $this->input->post('tgl_monev'),
+            'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' => $this->input->post('tgl_selesai'),
         ];
         $this->M_JadwalPenelitian->insert_jadwal($data);
@@ -116,7 +118,9 @@ class Penelitian extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = [
-            'tgl_mulai' => $this->input->post('tgl_mulai'),
+            'tgl_mulai' => $this->input->post('tgl_mulai'),       
+            'tgl_monev' => $this->input->post('tgl_monev'),
+            'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' =>$this->input->post('tgl_selesai')
         ];
 
@@ -308,22 +312,22 @@ class Penelitian extends CI_Controller
             $this->M_PropPenelitian->insert_monev($insert);
             $this->M_PropPenelitian->insert_akhir($insert);
 
-        $from = $this->config->item('smtp_user');
-        $to = $this->M_Dosen->getwhere_dosen(array('nip'=>$prop->nip))->row()->email;
-        $subject = 'APPROVAL PROPOSAL PENELITIAN';
-        $message = 'Proposal penelitian anda yang berjudul '.$prop->judul.' berstatus approved';
+        // $from = $this->config->item('smtp_user');
+        // $to = $this->M_Dosen->getwhere_dosen(array('nip'=>$prop->nip))->row()->email;
+        // $subject = 'APPROVAL PROPOSAL PENELITIAN';
+        // $message = 'Proposal penelitian anda yang berjudul '.$prop->judul.' berstatus approved';
 
-        $this->email->set_newline("\r\n");
-        $this->email->from($from);
-        $this->email->to($to);
-        $this->email->subject($subject);
-        $this->email->message($message);
+        // $this->email->set_newline("\r\n");
+        // $this->email->from($from);
+        // $this->email->to($to);
+        // $this->email->subject($subject);
+        // $this->email->message($message);
 
-        if ($this->email->send()) {
-            echo 'Your Email has successfully been sent.';
-        } else {
-            show_error($this->email->print_debugger());
-        }
+        // if ($this->email->send()) {
+        //     echo 'Your Email has successfully been sent.';
+        // } else {
+        //     show_error($this->email->print_debugger());
+        // }
         redirect('admin/penelitian/approval');
     }
 

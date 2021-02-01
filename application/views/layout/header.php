@@ -60,6 +60,9 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
+                    <a href="<?= base_url('login/profile/');?>"><i class="fa fa-fw fa-address-book-o"></i> Profile</a>
+                </li>
+                <li class="dropdown">
                     <a href="<?= base_url('login/logout');?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                 </li>
             </ul>

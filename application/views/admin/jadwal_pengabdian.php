@@ -12,7 +12,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Jadwal pengabdian
@@ -33,13 +33,10 @@
         <a href="<?=base_url('admin/pengabdian/formJadwalPengabdian');?>"><button class='btn btn-info'>Tambah Jadwal Pengabdian</button></a>
         
         <table class="table">
-            <col style='width:10%'>
-            <col style='width:25%'>
-            <col style='width:25%'>
-            <col style='width:40%'>
             <tr>
                 <th>No</th>
                 <th>Tanggal Mulai</th>
+                <th>Batas Akhir Pengumpulan Laporan Akhir</th>
                 <th>Tanggal Selesai</th>
                 <th>Aksi</th>
                 <!-- <th>Tahun</th> -->
@@ -51,14 +48,19 @@
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->tgl_mulai?></td>
+                <td><?= $v->tgl_akhir?></td>
                 <td><?= $v->tgl_selesai?></td>
                 <td>
                 <a type="button" class="btn-sm btn-success" href="<?= base_url('admin/pengabdian/editJadwalPengabdian') ;?>/<?= $v->id; ?>">
                     Edit Jadwal
                 </a>
-                <a type="button" class="btn-sm btn-danger" href="<?= base_url('admin/pengabdian/hapusJadwalPengabdian') ;?>/<?= $v->id; ?>">
-                    Hapus Jadwal
-                </a>
+                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?');" action="<?= base_url('admin/pengabdian/hapusJadwalPengabdian');?>/<?= $v->id; ?>" >
+
+                                    <button type="submit" class="btn-sm btn-danger">
+                                        Hapus Jadwal
+                                    </button>
+                                    
+                                </form>
                 <!-- <a type="button" class="btn-sm btn-info" href="<?= base_url('#') ;?>/<?= $v->id; ?>">
                     Edit reviewer
                 </a> -->
