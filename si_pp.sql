@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2021 at 06:09 AM
+-- Generation Time: Feb 01, 2021 at 05:49 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -63,7 +63,10 @@ INSERT INTO `assign_proposal_penelitian` (`id`, `id_proposal`, `reviewer`, `revi
 (7, 85, '21060117130076', '21060117130082'),
 (8, 86, '21060117130076', '21060117130082'),
 (9, 87, '21060117130076', '21060117130082'),
-(10, 90, 'reviewer1', 'reviewer2');
+(10, 90, 'reviewer1', 'reviewer2'),
+(11, 91, 'reviewer1', 'reviewer2'),
+(12, 92, 'reviewer1', 'reviewer2'),
+(13, 93, 'reviewer1', 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -163,7 +166,6 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
-('123456', 'b', 'b', 'b', 'b', 0000, 'b', 'b', 'b', 'b', 'b', 'b', 'b', '', 'b', 'b'),
 ('195203121975011004', 'Prof. Dr. Ir. Bambang Pramudono, MS.', 'IV/e', 'Guru Besar', 'S3', 2005, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('195205051980111001', 'Prof.Ir. Totok Rusmanto, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Teori & Sejarah Ars.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
 ('195303091981031005', 'Prof. Dr. Ir. Sri Tudjono, M.S.', 'IV/b', 'Guru Besar', 'S3', 2005, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
@@ -475,7 +477,12 @@ INSERT INTO `dsn_penelitian` (`id`, `nip`, `id_proposal`) VALUES
 (10, '196602201991021001', 89),
 (11, '195905221988121001', 89),
 (12, '195205051980111001', 90),
-(13, '195901091987031001', 90);
+(13, '195901091987031001', 90),
+(14, '195611091985032002', 91),
+(15, '195611091985032002', 91),
+(16, '195611261987031002', 92),
+(17, '195701081986021001', 93),
+(18, '195510161985031001', 93);
 
 -- --------------------------------------------------------
 
@@ -532,7 +539,7 @@ CREATE TABLE `jadwal_penelitian` (
 --
 
 INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
-(7, '2021-01-25', '0000-00-00', '0000-00-00', '2021-01-31');
+(10, '2021-01-24', '2021-01-31', '2021-01-30', '2021-01-31');
 
 -- --------------------------------------------------------
 
@@ -543,6 +550,7 @@ INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `t
 CREATE TABLE `jadwal_pengabdian` (
   `id` int(3) NOT NULL,
   `tgl_mulai` date NOT NULL,
+  `tgl_akhir` date NOT NULL,
   `tgl_selesai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -550,8 +558,8 @@ CREATE TABLE `jadwal_pengabdian` (
 -- Dumping data for table `jadwal_pengabdian`
 --
 
-INSERT INTO `jadwal_pengabdian` (`id`, `tgl_mulai`, `tgl_selesai`) VALUES
-(1, '2021-01-14', '2021-01-19');
+INSERT INTO `jadwal_pengabdian` (`id`, `tgl_mulai`, `tgl_akhir`, `tgl_selesai`) VALUES
+(5, '0006-08-13', '2021-02-02', '2021-02-03');
 
 -- --------------------------------------------------------
 
@@ -665,21 +673,9 @@ CREATE TABLE `laporan_akhir_penelitian` (
 --
 
 INSERT INTO `laporan_akhir_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `file4`, `catatan`, `status`) VALUES
-(1, 65, '21060117130082', '2020-08-19', '29a24a992b192533df78680f441e77', 'fbec872b828ae48cbf51c729776f03', 'e701a9a3eae16f3687473be51e133d', '', ' jsldjaskla', 1),
-(2, 66, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(3, 67, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(4, 67, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(5, 67, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(6, 67, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(7, 71, 'pengusul', '0000-00-00', '', '', '', '', '', 0),
-(8, 75, 'pengusul', '0000-00-00', '', '', '', '', '', 0),
-(9, 76, '21060117130076', '2020-10-22', '69e7b3bd36bd3bf42109f76592760f39.pdf', 'cd3ad1f2d7fd766744351a2e107adff8.pdf', 'ea3cb03c9d7ab3b471213b13108dcd88.pdf', '781222c822abbcae19f202712ba375bc.pdf', ' erafdas', 0),
-(10, 77, 'pengusul', '0000-00-00', '', '', '', '', '', 0),
-(15, 80, '21060117130076', '0000-00-00', '', '', '', '', '', 0),
-(16, 81, '21060117130076', '0000-00-00', '', '', '', '', '', 0),
-(17, 84, '21060117130082', '0000-00-00', '', '', '', '', '', 0),
-(18, 85, '21060117130081', '2020-11-03', 'f1f5c64a51ce40bb5587131cb731ba98.pdf', '33ca370850688e25a200693722a2d8c3.pdf', 'f3a70e3b34d1c540cea652805cc98cd0.pdf', '06e561d6a0557e96d38580107d981b0f.pdf', ' sadasdas', 1),
-(19, 90, 'pengusul', '0000-00-00', '', '', '', '', '', 0);
+(20, 91, 'pengusul', '0000-00-00', '', '', '', '', '', 0),
+(21, 92, 'pengusul', '2021-01-26', '581147536828f95e65aa65417b2559d5.pdf', '54d2d1ebea672df66f64f23c37c115d4.pdf', '75a862d69b93497c7fecc15abb08f922.pdf', '217bbf4d046d3312971e8051cc0ae848.pdf', ' catatan', 1),
+(22, 93, 'pengusul', '2021-01-26', 'd518184513a022d5b334efa1ae2cfacd.pdf', 'd664c2a717bb646539bb844ad6fc55ae.pdf', '0f084fc84e06f3910a8995386b1d3c0e.pdf', '97fcebad64bb9b47e73597a5f49e512b.pdf', ' Akhir', 1);
 
 -- --------------------------------------------------------
 
@@ -728,27 +724,9 @@ CREATE TABLE `laporan_monev_penelitian` (
 --
 
 INSERT INTO `laporan_monev_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `catatan`, `status`) VALUES
-(1, 26, '', '2020-08-13', 'eeb63d683f61f3192f261295f977bf', '0', '0', '', 0),
-(2, 52, '12345', '2020-08-13', '953e9b577eea5a14952d034940f7c4', '0', '0', '', 0),
-(11, 59, '21060117130082', '2020-08-16', '4ada08a18b9b3b8ee5c00fbdadf637', 'ec85b793642725e8941b2c0b40ee17', 'e2aec40a7a7a0bce845ebf05946408', ' sadasdasdas', 1),
-(12, 60, '21060117130082', '2020-08-16', 'c5852f860d8886e30add098d3df28a', '88c7d80b39c9f3fae7cebe495f11a8', '65b9dbed4650d092a3a157299336b4', ' asasasasasa', 1),
-(14, 64, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(15, 65, '21060117130082', '0000-00-00', '', '', '', '', 1),
-(16, 66, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(17, 67, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(18, 67, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(19, 67, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(20, 67, '21060117130082', '0000-00-00', '', '', '', '', 0),
-(21, 71, 'pengusul', '2020-10-22', 'a762bad660d3d1c53eb9aca8860faa', 'b8030bca3531ec46c3c413e6d117df', '7d75993a1a1f910fc9205f77314683', ' aad', 1),
-(22, 75, 'pengusul', '0000-00-00', '', '', '', '', 0),
-(23, 76, '21060117130076', '2020-10-22', '2309e747092a79f1170705bf1d28ee3c.pdf', '4b59f33f2f07275c680016171a47cd59.pdf', 'f65edbb32dbbf4face26623b490231bd.pdf', ' sasd', 1),
-(24, 77, 'pengusul', '0000-00-00', '', '', '', '', 0),
-(25, 78, '21060117130076', '0000-00-00', '', '', '', '', 0),
-(29, 80, '21060117130076', '0000-00-00', '', '', '', '', 0),
-(30, 81, '21060117130076', '2020-10-23', 'f5cca6bb7d1e91af27045e8d31243fbb.pdf', '07443e59433c30934aef064e48564fac.pdf', '18cfab2bd0477df807cfd533597779c6.pdf', ' Monitoring dan Evaluasi', 1),
-(31, 84, '21060117130082', '2020-11-02', 'aa88505f62f2692112611f9ebe342299.pdf', 'dbf8f30670e4ae4b3843356d603ff79f.pdf', 'a0fedec4190c75342fa55037dcea4761.pdf', ' sadad', 1),
-(32, 85, '21060117130081', '2020-11-03', '70400118338541e4a93330b621d3f9d6.pdf', '1db1403b433dee7d1236addb36ca097b.pdf', '3194ba0b76578d9e0f8356a1c7669212.pdf', ' sadasd', 1),
-(33, 90, 'pengusul', '2021-01-26', 'fd5f2f9b97c385c2d0bd8af66d6ae4b8.pdf', '526696e1b23b60d022e8d32abc63bcfb.pdf', '6c9c263fbba5a415c16cfc75bac45015.pdf', ' monev', 1);
+(34, 91, 'pengusul', '0000-00-00', '', '', '', '', 0),
+(35, 92, 'pengusul', '2021-01-26', 'de6d6e337aed9245ad5b064a89f65d6f.pdf', 'c717a388f1852e2a7b20b4618dd7fc17.pdf', 'ccb7ac213292cac69f7b0e2096f53de5.pdf', ' laporan monev', 1),
+(36, 93, 'pengusul', '2021-01-26', 'a09dc298046f8978c08f05f49b2ce8bd.pdf', '899782fa4fdb939b60166685d892812b.pdf', 'e6ddf726a11378d2262eac3a7ac74e64.pdf', ' MOnev Pengusul', 1);
 
 -- --------------------------------------------------------
 
@@ -767,10 +745,8 @@ CREATE TABLE `luaran` (
 --
 
 INSERT INTO `luaran` (`id`, `luaran`, `tgl`) VALUES
-(1, 'E', 0000),
-(2, 'B', 0000),
-(3, 'C', 2020),
-(4, 'D', 2020);
+(3, 'A', 2020),
+(4, 'B', 2020);
 
 -- --------------------------------------------------------
 
@@ -824,7 +800,12 @@ INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
 (10, '427597123', 89),
 (11, '42048302', 89),
 (12, '1283472834', 90),
-(13, '427597123', 90);
+(13, '427597123', 90),
+(14, '427597123', 91),
+(15, '1283472834', 91),
+(16, '427597123', 92),
+(17, '1283472834', 93),
+(18, '427597123', 93);
 
 -- --------------------------------------------------------
 
@@ -903,186 +884,54 @@ CREATE TABLE `nilai_penelitian` (
 --
 
 INSERT INTO `nilai_penelitian` (`id`, `id_proposal`, `id_komponen`, `skor`, `nilai`, `reviewer`) VALUES
-(49, 66, 9, 5, 50, ''),
-(50, 66, 1, 0, 0, ''),
-(51, 66, 2, 0, 0, ''),
-(52, 66, 3, 0, 0, ''),
-(53, 66, 4, 0, 0, ''),
-(54, 66, 5, 0, 0, ''),
-(55, 66, 6, 0, 0, ''),
-(56, 66, 7, 0, 0, ''),
-(57, 66, 8, 4, 40, ''),
-(58, 67, 1, 5, 50, ''),
-(59, 67, 2, 5, 50, ''),
-(60, 67, 3, 5, 50, ''),
-(61, 67, 4, 5, 100, ''),
-(62, 67, 5, 5, 50, ''),
-(63, 67, 6, 5, 100, ''),
-(64, 67, 7, 5, 50, ''),
-(65, 67, 8, 5, 50, ''),
-(66, 70, 1, 4, 40, ''),
-(67, 70, 2, 5, 50, ''),
-(68, 70, 3, 5, 50, ''),
-(69, 70, 4, 5, 100, ''),
-(70, 70, 5, 5, 50, ''),
-(71, 70, 6, 5, 100, ''),
-(72, 70, 7, 5, 50, ''),
-(73, 70, 8, 5, 50, ''),
-(74, 80, 1, 5, 50, ''),
-(75, 80, 2, 5, 50, ''),
-(76, 80, 3, 5, 50, ''),
-(77, 80, 4, 5, 100, ''),
-(78, 80, 5, 5, 50, ''),
-(79, 80, 6, 5, 100, ''),
-(80, 80, 7, 5, 50, ''),
-(81, 80, 8, 5, 50, ''),
-(82, 78, 1, 5, 50, '21060117130076'),
-(83, 78, 2, 5, 50, '21060117130076'),
-(84, 78, 3, 5, 50, '21060117130076'),
-(85, 78, 4, 5, 100, '21060117130076'),
-(86, 78, 5, 5, 50, '21060117130076'),
-(87, 78, 6, 5, 100, '21060117130076'),
-(88, 78, 7, 5, 50, '21060117130076'),
-(89, 78, 8, 5, 50, '21060117130076'),
-(90, 81, 1, 4, 40, '21060117130076'),
-(91, 81, 2, 4, 40, '21060117130076'),
-(92, 81, 3, 5, 50, '21060117130076'),
-(93, 81, 4, 5, 100, '21060117130076'),
-(94, 81, 5, 5, 50, '21060117130076'),
-(95, 81, 6, 5, 100, '21060117130076'),
-(96, 81, 7, 5, 50, '21060117130076'),
-(97, 81, 8, 5, 50, '21060117130076'),
-(98, 83, 1, 5, 50, '21060117130076'),
-(99, 83, 2, 5, 50, '21060117130076'),
-(100, 83, 3, 5, 50, '21060117130076'),
-(101, 83, 4, 5, 100, '21060117130076'),
-(102, 83, 5, 5, 50, '21060117130076'),
-(103, 83, 6, 5, 100, '21060117130076'),
-(104, 83, 7, 5, 50, '21060117130076'),
-(105, 83, 8, 5, 50, '21060117130076'),
-(106, 83, 1, 5, 50, '21060117130076'),
-(107, 83, 2, 5, 50, '21060117130076'),
-(108, 83, 3, 5, 50, '21060117130076'),
-(109, 83, 4, 5, 100, '21060117130076'),
-(110, 83, 5, 5, 50, '21060117130076'),
-(111, 83, 6, 5, 100, '21060117130076'),
-(112, 83, 7, 5, 50, '21060117130076'),
-(113, 83, 8, 5, 50, '21060117130076'),
-(114, 83, 1, 5, 50, '21060117130076'),
-(115, 83, 2, 5, 50, '21060117130076'),
-(116, 83, 3, 5, 50, '21060117130076'),
-(117, 83, 4, 5, 100, '21060117130076'),
-(118, 83, 5, 5, 50, '21060117130076'),
-(119, 83, 6, 5, 100, '21060117130076'),
-(120, 83, 7, 5, 50, '21060117130076'),
-(121, 83, 8, 5, 50, '21060117130076'),
-(122, 83, 1, 5, 50, '21060117130076'),
-(123, 83, 2, 5, 50, '21060117130076'),
-(124, 83, 3, 5, 50, '21060117130076'),
-(125, 83, 4, 5, 100, '21060117130076'),
-(126, 83, 5, 5, 50, '21060117130076'),
-(127, 83, 6, 5, 100, '21060117130076'),
-(128, 83, 7, 5, 50, '21060117130076'),
-(129, 83, 8, 5, 50, '21060117130076'),
-(130, 83, 1, 5, 50, '21060117130076'),
-(131, 83, 2, 5, 50, '21060117130076'),
-(132, 83, 3, 5, 50, '21060117130076'),
-(133, 83, 4, 5, 100, '21060117130076'),
-(134, 83, 5, 5, 50, '21060117130076'),
-(135, 83, 6, 5, 100, '21060117130076'),
-(136, 83, 7, 5, 50, '21060117130076'),
-(137, 83, 8, 5, 50, '21060117130076'),
-(138, 81, 1, 5, 50, '21060117130076'),
-(139, 81, 2, 5, 50, '21060117130076'),
-(140, 81, 3, 5, 50, '21060117130076'),
-(141, 81, 4, 5, 100, '21060117130076'),
-(142, 81, 5, 5, 50, '21060117130076'),
-(143, 81, 6, 5, 100, '21060117130076'),
-(144, 81, 7, 5, 50, '21060117130076'),
-(145, 81, 8, 5, 50, '21060117130076'),
-(146, 81, 1, 5, 50, '21060117130076'),
-(147, 81, 2, 5, 50, '21060117130076'),
-(148, 81, 3, 5, 50, '21060117130076'),
-(149, 81, 4, 5, 100, '21060117130076'),
-(150, 81, 5, 5, 50, '21060117130076'),
-(151, 81, 6, 5, 100, '21060117130076'),
-(152, 81, 7, 5, 50, '21060117130076'),
-(153, 81, 8, 5, 50, '21060117130076'),
-(154, 81, 1, 5, 50, '21060117130076'),
-(155, 81, 2, 5, 50, '21060117130076'),
-(156, 81, 3, 5, 50, '21060117130076'),
-(157, 81, 4, 5, 100, '21060117130076'),
-(158, 81, 5, 5, 50, '21060117130076'),
-(159, 81, 6, 5, 100, '21060117130076'),
-(160, 81, 7, 5, 50, '21060117130076'),
-(161, 81, 8, 5, 50, '21060117130076'),
-(162, 71, 1, 5, 50, '21060117130076'),
-(163, 71, 2, 5, 50, '21060117130076'),
-(164, 71, 3, 5, 50, '21060117130076'),
-(165, 71, 4, 5, 100, '21060117130076'),
-(166, 71, 5, 5, 50, '21060117130076'),
-(167, 71, 6, 5, 100, '21060117130076'),
-(168, 71, 7, 5, 50, '21060117130076'),
-(169, 71, 8, 5, 50, '21060117130076'),
-(170, 71, 1, 5, 50, '21060117130076'),
-(171, 71, 2, 5, 50, '21060117130076'),
-(172, 71, 3, 5, 50, '21060117130076'),
-(173, 71, 4, 5, 100, '21060117130076'),
-(174, 71, 5, 5, 50, '21060117130076'),
-(175, 71, 6, 5, 100, '21060117130076'),
-(176, 71, 7, 5, 50, '21060117130076'),
-(177, 71, 8, 5, 50, '21060117130076'),
-(178, 84, 1, 5, 50, '21060117130076'),
-(179, 84, 2, 5, 50, '21060117130076'),
-(180, 84, 3, 5, 50, '21060117130076'),
-(181, 84, 4, 5, 100, '21060117130076'),
-(182, 84, 5, 5, 50, '21060117130076'),
-(183, 84, 6, 5, 100, '21060117130076'),
-(184, 84, 7, 5, 50, '21060117130076'),
-(185, 84, 8, 5, 50, '21060117130076'),
-(186, 84, 1, 5, 50, '21060117130082'),
-(187, 84, 2, 5, 50, '21060117130082'),
-(188, 84, 3, 5, 50, '21060117130082'),
-(189, 84, 4, 5, 100, '21060117130082'),
-(190, 84, 5, 5, 50, '21060117130082'),
-(191, 84, 6, 5, 100, '21060117130082'),
-(192, 84, 7, 5, 50, '21060117130082'),
-(193, 84, 8, 5, 50, '21060117130082'),
-(194, 85, 1, 5, 50, '21060117130076'),
-(195, 85, 2, 5, 50, '21060117130076'),
-(196, 85, 3, 5, 50, '21060117130076'),
-(197, 85, 4, 5, 100, '21060117130076'),
-(198, 85, 5, 5, 50, '21060117130076'),
-(199, 85, 6, 5, 100, '21060117130076'),
-(200, 85, 7, 5, 50, '21060117130076'),
-(201, 85, 8, 4, 40, '21060117130076'),
-(202, 85, 1, 5, 50, '21060117130082'),
-(203, 85, 2, 5, 50, '21060117130082'),
-(204, 85, 3, 5, 50, '21060117130082'),
-(205, 85, 4, 5, 100, '21060117130082'),
-(206, 85, 5, 5, 50, '21060117130082'),
-(207, 85, 6, 5, 100, '21060117130082'),
-(208, 85, 7, 5, 50, '21060117130082'),
-(209, 85, 8, 5, 50, '21060117130082'),
-(210, 87, 11, 5, 200, '21060117130076'),
-(211, 87, 12, 5, 200, '21060117130076'),
-(212, 87, 13, 5, 250, '21060117130076'),
-(213, 90, 1, 5, 100, 'reviewer1'),
-(214, 90, 2, 5, 50, 'reviewer1'),
-(215, 90, 3, 5, 50, 'reviewer1'),
-(216, 90, 4, 5, 100, 'reviewer1'),
-(217, 90, 5, 5, 50, 'reviewer1'),
-(218, 90, 6, 5, 100, 'reviewer1'),
-(219, 90, 7, 5, 50, 'reviewer1'),
-(220, 90, 8, 4, 80, 'reviewer1'),
-(221, 90, 1, 5, 100, 'reviewer2'),
-(222, 90, 2, 5, 50, 'reviewer2'),
-(223, 90, 3, 5, 50, 'reviewer2'),
-(224, 90, 4, 5, 100, 'reviewer2'),
-(225, 90, 5, 5, 50, 'reviewer2'),
-(226, 90, 6, 5, 100, 'reviewer2'),
-(227, 90, 7, 5, 50, 'reviewer2'),
-(228, 90, 8, 5, 100, 'reviewer2');
+(229, 91, 1, 5, 100, 'reviewer1'),
+(230, 91, 2, 5, 50, 'reviewer1'),
+(231, 91, 3, 5, 50, 'reviewer1'),
+(232, 91, 4, 5, 100, 'reviewer1'),
+(233, 91, 5, 5, 50, 'reviewer1'),
+(234, 91, 6, 5, 100, 'reviewer1'),
+(235, 91, 7, 5, 50, 'reviewer1'),
+(236, 91, 8, 4, 80, 'reviewer1'),
+(237, 91, 1, 5, 100, 'reviewer2'),
+(238, 91, 2, 5, 50, 'reviewer2'),
+(239, 91, 3, 5, 50, 'reviewer2'),
+(240, 91, 4, 5, 100, 'reviewer2'),
+(241, 91, 5, 5, 50, 'reviewer2'),
+(242, 91, 6, 5, 100, 'reviewer2'),
+(243, 91, 7, 5, 50, 'reviewer2'),
+(244, 91, 8, 5, 100, 'reviewer2'),
+(245, 92, 1, 5, 100, 'reviewer1'),
+(246, 92, 2, 5, 50, 'reviewer1'),
+(247, 92, 3, 5, 50, 'reviewer1'),
+(248, 92, 4, 5, 100, 'reviewer1'),
+(249, 92, 5, 5, 50, 'reviewer1'),
+(250, 92, 6, 5, 100, 'reviewer1'),
+(251, 92, 7, 5, 50, 'reviewer1'),
+(252, 92, 8, 5, 100, 'reviewer1'),
+(253, 92, 1, 5, 100, 'reviewer2'),
+(254, 92, 2, 5, 50, 'reviewer2'),
+(255, 92, 3, 5, 50, 'reviewer2'),
+(256, 92, 4, 5, 100, 'reviewer2'),
+(257, 92, 5, 5, 50, 'reviewer2'),
+(258, 92, 6, 4, 80, 'reviewer2'),
+(259, 92, 7, 5, 50, 'reviewer2'),
+(260, 92, 8, 5, 100, 'reviewer2'),
+(261, 93, 1, 5, 100, 'reviewer1'),
+(262, 93, 2, 5, 50, 'reviewer1'),
+(263, 93, 3, 5, 50, 'reviewer1'),
+(264, 93, 4, 5, 100, 'reviewer1'),
+(265, 93, 5, 5, 50, 'reviewer1'),
+(266, 93, 6, 5, 100, 'reviewer1'),
+(267, 93, 7, 5, 50, 'reviewer1'),
+(268, 93, 8, 4, 80, 'reviewer1'),
+(269, 93, 1, 5, 100, 'reviewer2'),
+(270, 93, 2, 5, 50, 'reviewer2'),
+(271, 93, 3, 5, 50, 'reviewer2'),
+(272, 93, 4, 5, 100, 'reviewer2'),
+(273, 93, 5, 5, 50, 'reviewer2'),
+(274, 93, 6, 5, 100, 'reviewer2'),
+(275, 93, 7, 5, 50, 'reviewer2'),
+(276, 93, 8, 5, 100, 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -1106,10 +955,9 @@ CREATE TABLE `nilai_proposal_penelitian` (
 --
 
 INSERT INTO `nilai_proposal_penelitian` (`id`, `id_proposal`, `komentar`, `cr_monev`, `nilai`, `komentar2`, `cr_monev2`, `nilai2`) VALUES
-(2, 71, 'moh', '', 990, NULL, '', NULL),
-(3, 84, 'Irza 1', '', 500, 'irza 22', '', 500),
-(5, 87, 'dasdaS', '', 650, NULL, '', NULL),
-(6, 90, 'Reviewer 1', 'monev1', 580, 'Reviewer2', 'monev2', 600);
+(7, 91, 're1', '', 580, 're2', '', 600),
+(8, 92, 'rev1', 'rev1', 600, 'rev2', 'rev2', 580),
+(9, 93, 'Reviewer1', 'Reviewer 1', 580, 'reviewer2', 'Reviewer2', 600);
 
 -- --------------------------------------------------------
 
@@ -1151,7 +999,7 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id`, `berita`) VALUES
-(1, '<p>sdadsadas<strong>ddddddddddddddd</strong></p>\r\n'),
+(1, '<h1>Penelitian</h1>\r\n\r\n<p><img alt=\"img\" src=\"https://hypetuts.com/wp-content/uploads/2020/11/Contoh-Artikel-Penelitian-859x639.jpg\" /></p>\r\n\r\n<p>Dalam bidang akademisi artikel penelitian merupakan salah satu jenis artikel yang banyak dibuat. Artikel ini biasanya bertujuan menemukan hal baru yang berguna bagi kehidupan manusia.</p>\r\n\r\n<p>Perlu diketahui bahwa artikel penelitian berbeda dengan artikel biasa yang sering kita jumpai di internet atau di media sosial.</p>\r\n\r\n<p>Artikel penelitian sifatnya lebih serius, formal, dan biasanya digunakan untuk kepentingan akademisi.</p>\r\n\r\n<p>Artikel penelitian terkadang mengandung banyak istilah &ndash; istilah sehingga untuk memahaminya tidak bisa dengan membaca sekilas saja. Pada artikel ini kami akan merangkum untuk Sahabat pengertian dari artikel penelitian, ciri &ndash; ciri, beserta contoh artikel penelitian.</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
 (2, '<p>shaidkjashdpawois<strong>dhoaishdoas</strong></p>\r\n');
 
 -- --------------------------------------------------------
@@ -1183,15 +1031,8 @@ CREATE TABLE `proposal_penelitian` (
 --
 
 INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_sumberdana`, `id_luaran`, `mitra`, `id_jadwal`, `tgl_upload`, `file`, `status`) VALUES
-(82, 1, '21060117130076', 'fjaksjdf', ' fkjlkjsdaf dsfalsj dfsdfjlkjails ldsaiw', 'Tembalang', '2 bulan', '1000000', 2, 1, 'fjalsjfa', 0, '2020-10-26', '361e2b3f3b8f974d5747cafcd63067f6.pdf', 0),
-(83, 1, '21060117130076', '121', ' 12212', 'sa', '12 bulan', '12000000', 2, 1, 'AKu', 0, '2020-11-01', '4efaf989c28a2ebd306f6e6268052e51.pdf', 1),
-(84, 1, '21060117130082', 'Irza', ' Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-02', 'abe60cfb6ecb803a65c25aa436437034.pdf', 3),
-(85, 1, '21060117130081', 'Saya Irza', ' Saya Irza', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', '02ab14c03b55ce54ae0519d340053836.pdf', 3),
-(86, 1, '21060117130081', 'Penelitian satu', ' Sadsakdpsjais', 'INdonesia', '12 bulan', '12000000', 1, 2, 'AKu', 0, '2020-11-03', 'cf58cd1ae580f3e14e1be2d663212578.pdf', 1),
-(87, 4, '21060117130082', 'A', ' A', 'A', '12 bulan', '12000000', 5, 3, 'A', 0, '2020-11-11', '477316cd91ca53e3de41cbf6ddc76cee.pdf', 5),
-(88, 1, '21060117130082', 'qdwas', ' dasdasd', 'adsd', '12 bulan', '121212121', 5, 3, 'sadas', 0, '2021-01-18', 'bec48aaa56f94f1c3eddaf23dfe658d9.pdf', 0),
-(89, 1, '21060117130082', 'asSa', 'aha', 'siap', '9 bulan', '11', 7, 2, 'SasA', 0, '2021-01-21', '691c3ff51b824a467c9ead38fdea4109.pdf', 0),
-(90, 1, 'pengusul', 'Penleitian1', ' aku adalah seorang anak gembalang', 'Solo', '5 bulan', '120000', 5, 3, 'Pertamina', 7, '2021-01-26', '6b9e65df8e5156a3f901c9f59646b4e3.pdf', 3);
+(92, 1, 'pengusul', 'Penelitian1', ' adsadas', 'adsad', '12 bulan', '120000', 5, 3, 'sadasd', 8, '2021-01-26', 'cf372e6077dcc2ec807036c0ee82b01a.pdf', 3),
+(93, 1, 'pengusul', 'Peneliitian Percobaan pertama', ' blablalba', 'Tembalang, Semarang', '7 bulan', '100000', 5, 3, 'Kemenresitek', 9, '2021-01-26', 'e8571108900fee024b4b217026770be9.pdf', 3);
 
 -- --------------------------------------------------------
 
@@ -1244,8 +1085,6 @@ CREATE TABLE `reviewer_penelitian` (
 --
 
 INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
-('21060117130076', 'Valentina'),
-('21060117130082', 'irza'),
 ('reviewer1', 'reviewer1'),
 ('reviewer2', 'reviewer2');
 
@@ -1328,7 +1167,7 @@ CREATE TABLE `sumberdana` (
 
 INSERT INTO `sumberdana` (`id`, `sumberdana`, `tgl`) VALUES
 (5, 'Sumbangan', 2020),
-(7, 'sumberdana 2', 2020);
+(8, 'Hibah', 2021);
 
 -- --------------------------------------------------------
 
@@ -1680,29 +1519,8 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 (330, '198909122019032012', '06ee333ce671bebb207222ff2b33a1ba', 3),
 (331, '198902220119111108', 'a3939cb110f5f1c300aa9818d924febc', 3),
 (332, '197512210119111107', '8026431368810cefcfb3845785c45fc6', 3),
-(333, '21060117130076', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(334, '21060117130082', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(335, '21060117130070', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
 (336, 'pengusul', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(337, 'reviewer', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (338, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
-(339, 'mitra', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(340, 'mitra1', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(341, 'mitra3', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(342, 'mitra4', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(343, 'mitra.test', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(344, 'mitra_test', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(345, 'mitra_undip', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(346, 'v_samaya', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(347, 'mitra123', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(348, 'irza', '827ccb0eea8a706c4c34a16891f84e7b', 4),
-(349, 'nur', '827ccb0eea8a706c4c34a16891f84e7b', 4),
-(350, 'kusuka', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(351, 'bca_test', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(352, 'aa', '827ccb0eea8a706c4c34a16891f84e7b', 4),
-(354, 'mitra-test', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(355, 'aa@gmail.com', '5f4dcc3b5aa765d61d8327deb882cf99', 4),
-(358, '12345', 'd41d8cd98f00b204e9800998ecf8427e', 2),
 (359, 'reviewer1', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (360, 'reviewer2', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
 
@@ -1916,7 +1734,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `assign_proposal_pengabdian`
@@ -1934,7 +1752,7 @@ ALTER TABLE `detail_nilai_proposal_pengabdian`
 -- AUTO_INCREMENT for table `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `dsn_pengabdian`
@@ -1952,13 +1770,13 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `jadwal_pengabdian`
 --
 ALTER TABLE `jadwal_pengabdian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `jenispenelitian`
@@ -1982,7 +1800,7 @@ ALTER TABLE `komp_penilaian_penelitian`
 -- AUTO_INCREMENT for table `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
@@ -1994,7 +1812,7 @@ ALTER TABLE `laporan_akhir_pengabdian`
 -- AUTO_INCREMENT for table `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `luaran`
@@ -2006,7 +1824,7 @@ ALTER TABLE `luaran`
 -- AUTO_INCREMENT for table `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `mhs_pengabdian`
@@ -2024,13 +1842,13 @@ ALTER TABLE `mitra`
 -- AUTO_INCREMENT for table `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
@@ -2042,7 +1860,7 @@ ALTER TABLE `nilai_proposal_pengabdian`
 -- AUTO_INCREMENT for table `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `proposal_pengabdian`
@@ -2066,7 +1884,7 @@ ALTER TABLE `skema_pengabdian`
 -- AUTO_INCREMENT for table `sumberdana`
 --
 ALTER TABLE `sumberdana`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
