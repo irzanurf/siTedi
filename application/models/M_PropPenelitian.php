@@ -55,6 +55,11 @@ class M_PropPenelitian extends CI_Model
         $this->db->where('id',$id);
         $this->db->update('proposal_penelitian', $data);
     }
+    public function delete_prop($id)
+    {
+        $this->db->where('id',$id);
+        $this->db->delete('proposal_penelitian');
+    }
     public function dosen($data_dosen)
     {
         $this->db->insert_batch('dsn_penelitian', $data_dosen);

@@ -84,7 +84,7 @@
                                     
                                 </form>
 
-                                <?php elseif($v->status=="1" || $v->status=="11" || $v->status=="12" || $v->status=="2" || $v->status=="3" || $v->status=="5") : ?>
+                                <?php elseif($v->status=="1" || $v->status=="11" || $v->status=="12" || $v->status=="13" || $v->status=="2" || $v->status=="3" || $v->status=="5") : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Finished
                                     </button>
@@ -94,6 +94,13 @@
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn-sm btn-primary">
                                         Finalisasi
+                                    </button>
+                                    
+                                </form>
+                                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('dosen/penelitian/deleteForm');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <button type="Submit" class="btn-sm btn-danger">
+                                        Hapus
                                     </button>
                                     
                                 </form>

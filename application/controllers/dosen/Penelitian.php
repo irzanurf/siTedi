@@ -355,6 +355,14 @@ class Penelitian extends CI_Controller {
         redirect('dosen/penelitian/submit');
     }
 
+    public function deleteForm(){
+        $id = $this->input->post('id');
+        
+            $this->M_PropPenelitian->delete_prop($id,$data);
+
+        redirect('dosen/penelitian/submit');
+    }
+
     public function monev()
     {
         $username = $this->session->userdata('user_name');
