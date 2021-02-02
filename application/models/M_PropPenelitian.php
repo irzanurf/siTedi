@@ -220,9 +220,8 @@ class M_PropPenelitian extends CI_Model
 
     public function mhs_update_prop($id)
     {
-        $query = $this->db->select('mhs_penelitian.*, mahasiswa.nama as nama, mahasiswa.program_studi as program_studi')
+        $query = $this->db->select('mhs_penelitian.*')
                         ->from('mhs_penelitian')
-                        ->join('mahasiswa','mhs_penelitian.nim=mahasiswa.nim','inner')
                         ->where('mhs_penelitian.id_proposal = '.$id.'')
                         ->get();
         return $query;

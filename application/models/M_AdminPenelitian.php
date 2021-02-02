@@ -22,6 +22,7 @@ class M_AdminPenelitian extends CI_Model
                         ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','left')
                         ->join('reviewer_penelitian r1', 'assign_proposal_penelitian.reviewer=r1.nip','left')
                         ->join('reviewer_penelitian r2', 'assign_proposal_penelitian.reviewer2=r2.nip','left')
+                        ->where('proposal_penelitian.status>0')
                         ->get();
 
         return $query;
@@ -87,9 +88,10 @@ class M_AdminPenelitian extends CI_Model
 
     public function get_viewApproval()
     {
-        $query = $this->db->select('nilai_proposal_penelitian.*, proposal_penelitian.*')
+        $query = $this->db->select('nilai_proposal_penelitian.*, dosen.*, proposal_penelitian.*')
                         ->from('proposal_penelitian')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
+                        ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                        
                         ->get();
         return $query;
@@ -103,10 +105,11 @@ class M_AdminPenelitian extends CI_Model
     
     public function getwhere_viewmonev()
     {
-        $query = $this->db->select('proposal_penelitian.*,laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan,nilai_proposal_penelitian.*')
+        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan,nilai_proposal_penelitian.*')
                         ->from('proposal_penelitian')
                         ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
+                        ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                         ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
@@ -114,9 +117,10 @@ class M_AdminPenelitian extends CI_Model
 
     public function getwhere_viewakhir()
     {
-        $query = $this->db->select('proposal_penelitian.*,laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, laporan_akhir_penelitian.catatan as catatan')
+        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, laporan_akhir_penelitian.catatan as catatan')
                         ->from('proposal_penelitian')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
+                        ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                         ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;

@@ -34,6 +34,7 @@
             <tr>
                 <th>No</th>
                 <th>Judul Proposal</th>
+                <th>Ketua Penelitian</th>
                 <th class='text-center'>Laporan Final</th>
                 <th class='text-center'>Logbook</th>
                 <th class='text-center'>Luaran</th>
@@ -49,6 +50,7 @@
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
+                <td><?= $v->nama ?></td>
                 <td class='text-center'>
                     <?php if ($v->file1==NULL) : ?> -
                         <?php elseif($v->file1 != NULL) : ?><i>UPLOADED</i>  

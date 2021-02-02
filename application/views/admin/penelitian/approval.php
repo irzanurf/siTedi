@@ -31,6 +31,7 @@
             <tr>
                 <th>No</th>
                 <th>Judul Proposal</th>
+                <th>Ketua Penelitian</th>
                 <th>Nilai Reviewer1</th>
                 <th>Nilai Reviewer2</th>
                 <th>Nilai rata-rata</th>
@@ -44,7 +45,7 @@
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
-                
+                <td><?= $v->nama ?></td>
                 <td><?php if($v->status==12) : ?><?php else :?><?=$v->nilai?><?php endif?></td>
                 <td><?php if($v->status==11) : ?> <?php else :?><?=$v->nilai2 ?><?php endif?></td>
                 <td>

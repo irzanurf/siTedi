@@ -70,7 +70,7 @@
                 <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
                     Assign
                 </a>
-                <?php elseif($v->status == 11 || $v->status == 12 || $v->status == 13 || $v->status == 2|| $v->status == 3|| $v->status == 4|| $v->status == 5 ) :?>
+                <?php elseif($v->status == 11 || $v->status == 12 || $v->status == 13 || $v->status == 2|| $v->status == 3|| $v->status == 4|| $v->status == 5|| $v->status == 0 ) :?>
                 
                 <?php else :?>
                     <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">

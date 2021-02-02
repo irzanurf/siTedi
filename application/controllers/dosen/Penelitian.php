@@ -98,12 +98,14 @@ class Penelitian extends CI_Controller {
         }
         $this->M_PropPenelitian->dosen($data_dosen);
         
-        $nim= $this->input->post('mahasiswa[]');
+        $nim= $this->input->post('nim_mahasiswa[]');
+        $nama_mhs = $this->input->post('nama_mahasiswa[]');
         $data_mahasiswa = array();
         for($i=0; $i<count($nim)-1; $i++)
         {
             $data_mahasiswa[$i] = array(
                 'nim'  =>      $nim[$i],
+                'nama' => $nama_mhs[$i],
                 "id_proposal"=>$proposal,
             );
         }
@@ -262,9 +264,11 @@ class Penelitian extends CI_Controller {
                     }
     
             /* update anggota mahasiswa */
-            $mhs_update = $this->input->post('mahasiswa[]');
+            $mhs_update = $this->input->post('nim_mahasiswa[]');
+            $mhs_nama_update = $this->input->post('nama_mahasiswa[]');
             $id_mhs_anggota = $this->input->post('id_mhs_anggota[]');
-            $mhs_new = $this->input->post('mahasiswa_new[]');
+            $mhs_new = $this->input->post('nim_mahasiswa_new[]');
+            $mhs_nama_new = $this->input->post('nama_mahasiswa_new[]');
             $data_mhs_anggota = $this->M_PropPenelitian->mhs_update_prop($id)->result();
     
             foreach($data_mhs_anggota as $k){
@@ -273,6 +277,7 @@ class Penelitian extends CI_Controller {
                         $mhs=$mhs_update[$i];
                         $data_mhs =[
                             'nim' => $mhs,
+                            'nama'=> $mhs_nama_update[$i],
                         ];
                         $this->M_PropPenelitian->update_mhs_anggota($data_mhs, $id_mhs_anggota[$i]);
                         continue 2;
