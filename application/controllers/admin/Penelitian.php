@@ -495,13 +495,15 @@ class Penelitian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPenelitian->get_word_monev()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Kelengkapan dokumen');
+        $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Kemajuan');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Kelengkapan dokumen');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $sheet->setCellValue('A'.$rows, $no++);
@@ -538,12 +540,18 @@ class Penelitian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        
+
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("List Penelitian yang Telah Mengumpulkan Laporan Kemajuan"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
-
-
         $prop = $this->M_PropPenelitian->get_word_monev()->result();
-
-
         $table->addRow();
         $table->addCell(2000, $cellRowSpan)->addText("No");
         $table->addCell(2000, $cellRowSpan)->addText("Judul Penelitian");
@@ -585,10 +593,12 @@ class Penelitian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPenelitian->get_word_akhir()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Kelengkapan dokumen');
+        $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Akhir');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Kelengkapan dokumen');
         
         $no = 1;
         $rows = 2;
@@ -628,6 +638,15 @@ class Penelitian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("List Penelitian yang Telah Mengumpulkan Laporan Akhir"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+        
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -687,6 +706,15 @@ class Penelitian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("Proposal Penelitian yang Akan Diberi Pendanaan"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -759,6 +787,15 @@ class Penelitian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("List Semua Proposal Penelitian"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+        
+        
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -821,16 +858,18 @@ class Penelitian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPenelitian->get_viewAnnouncement()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Dosen Anggota');
-	    $sheet->setCellValue('E1', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F1', 'Program Studi');
-        $sheet->setCellValue('G1', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('A1', 'Proposal Penelitian yang Akan Diberi Pendanaan');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Dosen Anggota');
+	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('F3', 'Program Studi');
+        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $noDsn= 1;
@@ -873,16 +912,18 @@ class Penelitian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPenelitian->get_viewListProp()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Dosen Anggota');
-	    $sheet->setCellValue('E1', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F1', 'Program Studi');
-        $sheet->setCellValue('G1', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('A1', 'List Semua Proposal Penelitian');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Dosen Anggota');
+	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('F3', 'Program Studi');
+        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $noDsn= 1;

@@ -484,6 +484,15 @@ class Pengabdian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("Proposal Pengabdian yang Akan Diberi Pendanaan"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+        
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -552,6 +561,15 @@ class Pengabdian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("List Pengabdian yang Telah Mengumpulkan Laporan Akhir"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+        
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -612,13 +630,15 @@ class Pengabdian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPengabdian->get_word_laporanakhir()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Kelengkapan');
+        $sheet->setCellValue('A1', 'List Pengabdian yang Telah Mengumpulkan Laporan Akhir');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Kelengkapan');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
@@ -654,6 +674,14 @@ class Pengabdian extends CI_Controller
         $cellRowContinue = array('vMerge' => 'continue',  'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $cellColSpan = array('gridSpan' => 2, 'borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black');
         $styleCell = array('borderTopSize'=>1 ,'borderTopColor' =>'black','borderLeftSize'=>1,'borderLeftColor' =>'black','borderRightSize'=>1,'borderRightColor'=>'black','borderBottomSize' =>1,'borderBottomColor'=>'black' );
+        $section_style = $section->getStyle();
+        $phpWord->addFontStyle('tFont', array('name' => 'Times New Roman', 'bold' => true, 'italic' => false, 'size' => 16, 'allCaps' => true));
+        $phpWord->addFontStyle('dFont', array('name' => 'Times New Roman', 'bold' => false, 'italic' => false, 'size' => 12, 'allCaps' => true));
+        $phpWord->addParagraphStyle('tStyle', array('align' => 'center', 'spaceAfter' => 100));
+        $section->addText(htmlspecialchars("List Semua Proposal Pengabdian"), 'tFont','tStyle');
+        $section->addText(htmlspecialchars(date('Y-m-d')), 'dFont','tStyle');
+    
+        
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
@@ -709,16 +737,18 @@ class Pengabdian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPengabdian->get_viewAnnouncement()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Dosen Anggota');
-	    $sheet->setCellValue('E1', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F1', 'Program Studi');
-        $sheet->setCellValue('G1', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('A1', 'Proposal Pengabdian yang Akan Diberi Pendanaan');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Dosen Anggota');
+	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('F3', 'Program Studi');
+        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $noDsn= 1;
@@ -759,16 +789,18 @@ class Pengabdian extends CI_Controller
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $prop = $this->M_PropPengabdian->get_viewListProp()->result();
-        $sheet->setCellValue('A1', 'No');
-        $sheet->setCellValue('B1', 'Judul Pengabdian');
-        $sheet->setCellValue('C1', 'Ketua Pengabdian');
-        $sheet->setCellValue('D1', 'Dosen Anggota');
-	    $sheet->setCellValue('E1', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F1', 'Program Studi');
-        $sheet->setCellValue('G1', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('A1', 'List Semua Proposal Pengabdian');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Dosen Anggota');
+	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('F3', 'Program Studi');
+        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $noDsn= 1;
