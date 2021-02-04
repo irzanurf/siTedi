@@ -9,14 +9,14 @@ class Login extends CI_Controller {
         //load library form validasi
         $this->load->library('form_validation');
         //load model admin
-        $this->load->model('admin');
+        $this->load->model('Admin');
         $this->load->model('M_Profile');
     }
 
     public function index()
     {
 
-            if($this->admin->is_logged_in())
+            if($this->Admin->is_logged_in())
             {
                 //jika memang session sudah terdaftar, maka redirect ke halaman dahsboard
                 //redirect berdasarkan level user
@@ -50,7 +50,7 @@ class Login extends CI_Controller {
                 $password = MD5($this->input->post('password', TRUE));
 
                 //checking data via model
-                $checking = $this->admin->check_login('user', array('username' => $username), array('password' => $password));
+                $checking = $this->Admin->check_login('user', array('username' => $username), array('password' => $password));
 
                 //jika ditemukan, maka create session
                 if ($checking != FALSE) {
@@ -106,12 +106,12 @@ class Login extends CI_Controller {
      {
       $this->load->view('change_pass');
      }else{
-      $cek_old = $this->admin->cek_old();
+      $cek_old = $this->Admin->cek_old();
       if ($cek_old == False){
        $this->session->set_flashdata('error','Kata sandi lama salah!' );
        $this->load->view('change_pass');
       }else{
-       $this->admin->save($user,$new);
+       $this->Admin->save($user,$new);
        $this->session->sess_destroy();
        $this->session->set_flashdata('error','Your password success to change, please relogin !' );
        $this->load->view('login');

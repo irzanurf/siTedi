@@ -11,9 +11,9 @@ class Penelitian extends CI_Controller
     {
         parent::__construct();
         //load model admin
-        $this->load->model('admin');
+        $this->load->model('Admin');
         //cek session dan level user
-        if($this->admin->is_role() != "1"){
+        if($this->Admin->is_role() != "1"){
             redirect("login/");
         }
         $this->load->config('email');

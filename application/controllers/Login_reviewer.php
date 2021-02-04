@@ -9,7 +9,7 @@ class Login_reviewer extends CI_Controller {
         //load library form validasi
         $this->load->library('form_validation');
         //load model admin
-        $this->load->model('admin');
+        $this->load->model('Admin');
     }
 
     public function index()
