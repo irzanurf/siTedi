@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2021 at 05:49 AM
+-- Generation Time: Feb 02, 2021 at 12:28 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -53,21 +53,6 @@ CREATE TABLE `assign_proposal_penelitian` (
   `reviewer2` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `assign_proposal_penelitian`
---
-
-INSERT INTO `assign_proposal_penelitian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
-(2, 71, '21060117130076', 'pengusul'),
-(4, 84, '21060117130076', '21060117130082'),
-(7, 85, '21060117130076', '21060117130082'),
-(8, 86, '21060117130076', '21060117130082'),
-(9, 87, '21060117130076', '21060117130082'),
-(10, 90, 'reviewer1', 'reviewer2'),
-(11, 91, 'reviewer1', 'reviewer2'),
-(12, 92, 'reviewer1', 'reviewer2'),
-(13, 93, 'reviewer1', 'reviewer2');
-
 -- --------------------------------------------------------
 
 --
@@ -80,15 +65,6 @@ CREATE TABLE `assign_proposal_pengabdian` (
   `reviewer` varchar(30) NOT NULL,
   `reviewer2` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `assign_proposal_pengabdian`
---
-
-INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
-(1, 4, '21060117130082', 'reviewer'),
-(3, 5, '21060117130082', 'reviewer'),
-(4, 6, '21060117130082', '21060117130076');
 
 -- --------------------------------------------------------
 
@@ -104,37 +80,6 @@ CREATE TABLE `detail_nilai_proposal_pengabdian` (
   `skor` varchar(3) NOT NULL,
   `nilai` varchar(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `detail_nilai_proposal_pengabdian`
---
-
-INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `id_komponen_nilai`, `skor`, `nilai`) VALUES
-(1, 4, '21060117130082', 1, '4', '100'),
-(2, 4, '21060117130082', 2, '4', '100'),
-(3, 4, '21060117130082', 3, '5', '125'),
-(4, 4, '21060117130082', 4, '2', '30'),
-(5, 4, '21060117130082', 5, '5', '50'),
-(6, 4, 'reviewer', 1, '5', '125'),
-(7, 4, 'reviewer', 2, '5', '125'),
-(8, 4, 'reviewer', 3, '4', '100'),
-(9, 4, 'reviewer', 4, '4', '60'),
-(10, 4, 'reviewer', 5, '5', '50'),
-(11, 5, '21060117130076', 1, '5', '125'),
-(12, 5, '21060117130076', 2, '5', '125'),
-(13, 5, '21060117130076', 3, '5', '125'),
-(14, 5, '21060117130076', 4, '5', '75'),
-(15, 5, '21060117130076', 5, '4', '40'),
-(16, 6, '21060117130082', 1, '4', '100'),
-(17, 6, '21060117130082', 2, '4', '100'),
-(18, 6, '21060117130082', 3, '5', '125'),
-(19, 6, '21060117130082', 4, '4', '60'),
-(20, 6, '21060117130082', 5, '5', '50'),
-(21, 6, '21060117130076', 1, '4', '100'),
-(22, 6, '21060117130076', 2, '5', '125'),
-(23, 6, '21060117130076', 3, '5', '125'),
-(24, 6, '21060117130076', 4, '4', '60'),
-(25, 6, '21060117130076', 5, '4', '40');
 
 -- --------------------------------------------------------
 
@@ -460,30 +405,6 @@ CREATE TABLE `dsn_penelitian` (
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `dsn_penelitian`
---
-
-INSERT INTO `dsn_penelitian` (`id`, `nip`, `id_proposal`) VALUES
-(1, '21060117130076', 80),
-(2, 'pengusul', 81),
-(3, 'pengusul', 82),
-(4, '21060117130076', 83),
-(5, '21060117130076', 84),
-(6, 'pengusul', 85),
-(7, '21060117130076', 86),
-(8, '21060117130076', 87),
-(9, '195901051987031002', 88),
-(10, '196602201991021001', 89),
-(11, '195905221988121001', 89),
-(12, '195205051980111001', 90),
-(13, '195901091987031001', 90),
-(14, '195611091985032002', 91),
-(15, '195611091985032002', 91),
-(16, '195611261987031002', 92),
-(17, '195701081986021001', 93),
-(18, '195510161985031001', 93);
-
 -- --------------------------------------------------------
 
 --
@@ -495,18 +416,6 @@ CREATE TABLE `dsn_pengabdian` (
   `nip` varchar(20) NOT NULL,
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `dsn_pengabdian`
---
-
-INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
-(2, '21060117130076', 2),
-(4, '21060117130076', 4),
-(5, '21060117130076', 5),
-(6, '21060117130076', 6),
-(7, '21060117130076', 7),
-(8, '195901091987031001', 7);
 
 -- --------------------------------------------------------
 
@@ -539,7 +448,7 @@ CREATE TABLE `jadwal_penelitian` (
 --
 
 INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
-(10, '2021-01-24', '2021-01-31', '2021-01-30', '2021-01-31');
+(13, '2021-02-01', '2021-02-25', '2021-02-25', '2021-02-28');
 
 -- --------------------------------------------------------
 
@@ -559,7 +468,7 @@ CREATE TABLE `jadwal_pengabdian` (
 --
 
 INSERT INTO `jadwal_pengabdian` (`id`, `tgl_mulai`, `tgl_akhir`, `tgl_selesai`) VALUES
-(5, '0006-08-13', '2021-02-02', '2021-02-03');
+(6, '2021-02-01', '2021-02-25', '2021-02-28');
 
 -- --------------------------------------------------------
 
@@ -578,8 +487,7 @@ CREATE TABLE `jenispenelitian` (
 --
 
 INSERT INTO `jenispenelitian` (`id`, `jenis`, `tgl`) VALUES
-(1, 'AB', 2020),
-(4, 'B', 2020);
+(1, 'Skema Penelitian', 2020);
 
 -- --------------------------------------------------------
 
@@ -633,10 +541,7 @@ INSERT INTO `komp_penilaian_penelitian` (`id`, `id_jenis`, `komponen`, `bobot`) 
 (5, 1, 'Kesesuaian penelitian dengan rekam jejak', 10),
 (6, 1, 'Potensi tercapainya luaran: Publikasi internasional (terindeks Scopus/ Clarivate Analitics)<br>', 20),
 (7, 1, 'Kewajaran RAB', 10),
-(8, 1, 'Kesesuaian jadwal pelaksanaan penelitian ', 20),
-(11, 4, 'satu adalah satuy', 40),
-(12, 4, 'tiga adalah tiga', 40),
-(13, 4, 'dua <br>adalah<br>dua', 50);
+(8, 1, 'Kesesuaian jadwal pelaksanaan penelitian ', 20);
 
 -- --------------------------------------------------------
 
@@ -668,15 +573,6 @@ CREATE TABLE `laporan_akhir_penelitian` (
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `laporan_akhir_penelitian`
---
-
-INSERT INTO `laporan_akhir_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `file4`, `catatan`, `status`) VALUES
-(20, 91, 'pengusul', '0000-00-00', '', '', '', '', '', 0),
-(21, 92, 'pengusul', '2021-01-26', '581147536828f95e65aa65417b2559d5.pdf', '54d2d1ebea672df66f64f23c37c115d4.pdf', '75a862d69b93497c7fecc15abb08f922.pdf', '217bbf4d046d3312971e8051cc0ae848.pdf', ' catatan', 1),
-(22, 93, 'pengusul', '2021-01-26', 'd518184513a022d5b334efa1ae2cfacd.pdf', 'd664c2a717bb646539bb844ad6fc55ae.pdf', '0f084fc84e06f3910a8995386b1d3c0e.pdf', '97fcebad64bb9b47e73597a5f49e512b.pdf', ' Akhir', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -692,14 +588,6 @@ CREATE TABLE `laporan_akhir_pengabdian` (
   `logbook` varchar(100) DEFAULT NULL,
   `luaran` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `laporan_akhir_pengabdian`
---
-
-INSERT INTO `laporan_akhir_pengabdian` (`id`, `id_proposal`, `nip`, `laporan_akhir`, `belanja`, `logbook`, `luaran`) VALUES
-(1, 4, 'pengusul', 'Document_3.pdf', NULL, NULL, NULL),
-(2, 6, 'pengusul', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -718,15 +606,6 @@ CREATE TABLE `laporan_monev_penelitian` (
   `catatan` varchar(300) NOT NULL,
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `laporan_monev_penelitian`
---
-
-INSERT INTO `laporan_monev_penelitian` (`id`, `id_proposal`, `nip`, `tgl_upload`, `file1`, `file2`, `file3`, `catatan`, `status`) VALUES
-(34, 91, 'pengusul', '0000-00-00', '', '', '', '', 0),
-(35, 92, 'pengusul', '2021-01-26', 'de6d6e337aed9245ad5b064a89f65d6f.pdf', 'c717a388f1852e2a7b20b4618dd7fc17.pdf', 'ccb7ac213292cac69f7b0e2096f53de5.pdf', ' laporan monev', 1),
-(36, 93, 'pengusul', '2021-01-26', 'a09dc298046f8978c08f05f49b2ce8bd.pdf', '899782fa4fdb939b60166685d892812b.pdf', 'e6ddf726a11378d2262eac3a7ac74e64.pdf', ' MOnev Pengusul', 1);
 
 -- --------------------------------------------------------
 
@@ -762,15 +641,6 @@ CREATE TABLE `mahasiswa` (
   `jenis_kelamin` varchar(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mahasiswa`
---
-
-INSERT INTO `mahasiswa` (`nim`, `nama`, `program_studi`, `angkatan`, `jenis_kelamin`) VALUES
-('427597123', 'sabrina', 'elektro', 2018, 'perempuan'),
-('1283472834', 'samaya', 'elektro', 2017, 'perempuan'),
-('42048302', 'jihan', 'sipil', 2016, 'perempun');
-
 -- --------------------------------------------------------
 
 --
@@ -780,32 +650,9 @@ INSERT INTO `mahasiswa` (`nim`, `nama`, `program_studi`, `angkatan`, `jenis_kela
 CREATE TABLE `mhs_penelitian` (
   `id` int(10) NOT NULL,
   `nim` varchar(14) NOT NULL,
+  `nama` varchar(70) NOT NULL,
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mhs_penelitian`
---
-
-INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
-(1, '1283472834', 80),
-(2, '1283472834', 81),
-(3, '42352341', 82),
-(4, '1283472834', 83),
-(5, '1283472834', 84),
-(6, '42352341', 85),
-(7, '1283472834', 86),
-(8, '1283472834', 87),
-(9, '427597123', 88),
-(10, '427597123', 89),
-(11, '42048302', 89),
-(12, '1283472834', 90),
-(13, '427597123', 90),
-(14, '427597123', 91),
-(15, '1283472834', 91),
-(16, '427597123', 92),
-(17, '1283472834', 93),
-(18, '427597123', 93);
 
 -- --------------------------------------------------------
 
@@ -816,22 +663,9 @@ INSERT INTO `mhs_penelitian` (`id`, `nim`, `id_proposal`) VALUES
 CREATE TABLE `mhs_pengabdian` (
   `id` int(10) NOT NULL,
   `nim` varchar(14) NOT NULL,
+  `nama` varchar(70) NOT NULL,
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `mhs_pengabdian`
---
-
-INSERT INTO `mhs_pengabdian` (`id`, `nim`, `id_proposal`) VALUES
-(3, '42352341', 2),
-(4, '42048302', 2),
-(7, '1283472834', 4),
-(8, '427597123', 4),
-(9, '42352341', 4),
-(10, '427597123', 5),
-(11, '1283472834', 6),
-(12, '427597123', 7);
 
 -- --------------------------------------------------------
 
@@ -851,19 +685,6 @@ CREATE TABLE `mitra` (
   `file_persetujuan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `mitra`
---
-
-INSERT INTO `mitra` (`id`, `nama_instansi`, `penanggung_jwb`, `no_telp`, `email`, `alamat`, `username`, `status`, `file_persetujuan`) VALUES
-(2, 'fdslkjlasd', 'fsdjifjasla', '23984294', 'jdlskajdsa@faslkdfjalsj.com', 'Jalan Kendeng V nomor 36, Bendan Ngisor', 'lalala', 0, ''),
-(3, 'Universitas Diponegoro', 'Saya', '99994830982', 'admin_legal@app.com', 'Jalan Kendeng V nomor 36, Bendan Ngisor', 'huhuhuuh', 0, ''),
-(4, 'BCA', 'Tejo Subejo', '073247627346', 'tejo@test.com', 'Jalan Tangerang, Tangerang', 'bca_test', 1, 'Note6.pdf'),
-(5, 'LP2MP Universitas Diponegoro', 'sda', 'asdas', 'sada', 'sadas', 'aa', 1, 'LPK_Wisata.pdf'),
-(6, 'mitra.test', 'penanggung jawab', '0853247889724', 'tsest@test.com', 'alamat', 'mitra-test', 1, 'LPK_Batik.pdf'),
-(7, 'adas', 'adas', 'dada', 'dsad', 'das', 'aa@gmail.com', 0, ''),
-(8, 'adasd', 'dsadas', '1238123921', 'yoayoa@gmail.com', 'sadasd', 'yoayoa', 0, '');
-
 -- --------------------------------------------------------
 
 --
@@ -878,60 +699,6 @@ CREATE TABLE `nilai_penelitian` (
   `nilai` int(10) NOT NULL,
   `reviewer` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `nilai_penelitian`
---
-
-INSERT INTO `nilai_penelitian` (`id`, `id_proposal`, `id_komponen`, `skor`, `nilai`, `reviewer`) VALUES
-(229, 91, 1, 5, 100, 'reviewer1'),
-(230, 91, 2, 5, 50, 'reviewer1'),
-(231, 91, 3, 5, 50, 'reviewer1'),
-(232, 91, 4, 5, 100, 'reviewer1'),
-(233, 91, 5, 5, 50, 'reviewer1'),
-(234, 91, 6, 5, 100, 'reviewer1'),
-(235, 91, 7, 5, 50, 'reviewer1'),
-(236, 91, 8, 4, 80, 'reviewer1'),
-(237, 91, 1, 5, 100, 'reviewer2'),
-(238, 91, 2, 5, 50, 'reviewer2'),
-(239, 91, 3, 5, 50, 'reviewer2'),
-(240, 91, 4, 5, 100, 'reviewer2'),
-(241, 91, 5, 5, 50, 'reviewer2'),
-(242, 91, 6, 5, 100, 'reviewer2'),
-(243, 91, 7, 5, 50, 'reviewer2'),
-(244, 91, 8, 5, 100, 'reviewer2'),
-(245, 92, 1, 5, 100, 'reviewer1'),
-(246, 92, 2, 5, 50, 'reviewer1'),
-(247, 92, 3, 5, 50, 'reviewer1'),
-(248, 92, 4, 5, 100, 'reviewer1'),
-(249, 92, 5, 5, 50, 'reviewer1'),
-(250, 92, 6, 5, 100, 'reviewer1'),
-(251, 92, 7, 5, 50, 'reviewer1'),
-(252, 92, 8, 5, 100, 'reviewer1'),
-(253, 92, 1, 5, 100, 'reviewer2'),
-(254, 92, 2, 5, 50, 'reviewer2'),
-(255, 92, 3, 5, 50, 'reviewer2'),
-(256, 92, 4, 5, 100, 'reviewer2'),
-(257, 92, 5, 5, 50, 'reviewer2'),
-(258, 92, 6, 4, 80, 'reviewer2'),
-(259, 92, 7, 5, 50, 'reviewer2'),
-(260, 92, 8, 5, 100, 'reviewer2'),
-(261, 93, 1, 5, 100, 'reviewer1'),
-(262, 93, 2, 5, 50, 'reviewer1'),
-(263, 93, 3, 5, 50, 'reviewer1'),
-(264, 93, 4, 5, 100, 'reviewer1'),
-(265, 93, 5, 5, 50, 'reviewer1'),
-(266, 93, 6, 5, 100, 'reviewer1'),
-(267, 93, 7, 5, 50, 'reviewer1'),
-(268, 93, 8, 4, 80, 'reviewer1'),
-(269, 93, 1, 5, 100, 'reviewer2'),
-(270, 93, 2, 5, 50, 'reviewer2'),
-(271, 93, 3, 5, 50, 'reviewer2'),
-(272, 93, 4, 5, 100, 'reviewer2'),
-(273, 93, 5, 5, 50, 'reviewer2'),
-(274, 93, 6, 5, 100, 'reviewer2'),
-(275, 93, 7, 5, 50, 'reviewer2'),
-(276, 93, 8, 5, 100, 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -950,15 +717,6 @@ CREATE TABLE `nilai_proposal_penelitian` (
   `nilai2` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `nilai_proposal_penelitian`
---
-
-INSERT INTO `nilai_proposal_penelitian` (`id`, `id_proposal`, `komentar`, `cr_monev`, `nilai`, `komentar2`, `cr_monev2`, `nilai2`) VALUES
-(7, 91, 're1', '', 580, 're2', '', 600),
-(8, 92, 'rev1', 'rev1', 600, 'rev2', 'rev2', 580),
-(9, 93, 'Reviewer1', 'Reviewer 1', 580, 'reviewer2', 'Reviewer2', 600);
-
 -- --------------------------------------------------------
 
 --
@@ -973,15 +731,6 @@ CREATE TABLE `nilai_proposal_pengabdian` (
   `komentar2` varchar(1000) DEFAULT NULL,
   `nilai2` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `nilai_proposal_pengabdian`
---
-
-INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
-(1, 4, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 405, 'kusuka sekali lalala', 460),
-(2, 5, 'asdasd', 490, NULL, NULL),
-(3, 6, 'komentar pengabdian', 435, 'komentar reviewer2', 450);
 
 -- --------------------------------------------------------
 
@@ -999,8 +748,8 @@ CREATE TABLE `pengumuman` (
 --
 
 INSERT INTO `pengumuman` (`id`, `berita`) VALUES
-(1, '<h1>Penelitian</h1>\r\n\r\n<p><img alt=\"img\" src=\"https://hypetuts.com/wp-content/uploads/2020/11/Contoh-Artikel-Penelitian-859x639.jpg\" /></p>\r\n\r\n<p>Dalam bidang akademisi artikel penelitian merupakan salah satu jenis artikel yang banyak dibuat. Artikel ini biasanya bertujuan menemukan hal baru yang berguna bagi kehidupan manusia.</p>\r\n\r\n<p>Perlu diketahui bahwa artikel penelitian berbeda dengan artikel biasa yang sering kita jumpai di internet atau di media sosial.</p>\r\n\r\n<p>Artikel penelitian sifatnya lebih serius, formal, dan biasanya digunakan untuk kepentingan akademisi.</p>\r\n\r\n<p>Artikel penelitian terkadang mengandung banyak istilah &ndash; istilah sehingga untuk memahaminya tidak bisa dengan membaca sekilas saja. Pada artikel ini kami akan merangkum untuk Sahabat pengertian dari artikel penelitian, ciri &ndash; ciri, beserta contoh artikel penelitian.</p>\r\n\r\n<p>&nbsp;</p>\r\n'),
-(2, '<p>shaidkjashdpawois<strong>dhoaishdoas</strong></p>\r\n');
+(1, ''),
+(2, '');
 
 -- --------------------------------------------------------
 
@@ -1026,14 +775,6 @@ CREATE TABLE `proposal_penelitian` (
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `proposal_penelitian`
---
-
-INSERT INTO `proposal_penelitian` (`id`, `id_jenis`, `nip`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_sumberdana`, `id_luaran`, `mitra`, `id_jadwal`, `tgl_upload`, `file`, `status`) VALUES
-(92, 1, 'pengusul', 'Penelitian1', ' adsadas', 'adsad', '12 bulan', '120000', 5, 3, 'sadasd', 8, '2021-01-26', 'cf372e6077dcc2ec807036c0ee82b01a.pdf', 3),
-(93, 1, 'pengusul', 'Peneliitian Percobaan pertama', ' blablalba', 'Tembalang, Semarang', '7 bulan', '100000', 5, 3, 'Kemenresitek', 9, '2021-01-26', 'e8571108900fee024b4b217026770be9.pdf', 3);
-
 -- --------------------------------------------------------
 
 --
@@ -1057,17 +798,6 @@ CREATE TABLE `proposal_pengabdian` (
   `file` varchar(100) NOT NULL,
   `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `proposal_pengabdian`
---
-
-INSERT INTO `proposal_pengabdian` (`id`, `nip`, `id_mitra`, `judul`, `abstrak`, `lokasi`, `lama_pelaksanaan`, `biaya`, `id_skema`, `id_sumberdana`, `id_luaran`, `id_jadwal`, `tgl_upload`, `file`, `status`) VALUES
-(4, 'pengusul', 4, 'Pelatihan Menyusun Anggaran Untuk Dapat Meningkatkan Laba Operasional Pada Umkm Di Wilayah Kecamatan Ciledug Tangerang', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 'Tangerang', '6 bulan', '4000000', 1, 1, 0, 0, '2020-10-31', 'Document_34.pdf', 'ACCEPTED'),
-(5, '21060117130076', 5, 'Percobaan 1', 'sadasda', 'da', '12 bulan', '12000000', 1, 1, 0, 0, '2020-11-01', 'LPK_Susu.pdf', 'GRADED1'),
-(6, 'pengusul', 6, 'Pengabdian 2', 'abstra', 'INdonesia', '5 bulan', '2000000', 1, 4, 0, 0, '2020-11-03', 'LPK_Batik.pdf', 'ACCEPTED'),
-(7, '21060117130082', 7, 'Percobaan 1', 'dasd', 'asdsa', '12 bulan', '12000000', 1, 5, 0, 0, '2021-01-21', 'LPK_Batik1.pdf', ''),
-(8, '21060117130082', 8, 'dasdas', 'adasd', 'dasd', '12', '12', 1, 5, 0, 0, '2021-01-18', '', '');
 
 -- --------------------------------------------------------
 
@@ -1104,8 +834,8 @@ CREATE TABLE `reviewer_pengabdian` (
 --
 
 INSERT INTO `reviewer_pengabdian` (`nip`, `nama`) VALUES
-('21060117130076', 'samaya'),
-('reviewer', 'Reviewer');
+('reviewer1', 'reviewer1'),
+('reviewer2', 'reviewer2');
 
 -- --------------------------------------------------------
 
@@ -1145,9 +875,7 @@ CREATE TABLE `skema_pengabdian` (
 --
 
 INSERT INTO `skema_pengabdian` (`id`, `jenis_pengabdian`, `tgl`) VALUES
-(1, 'Pengabdian Inovatif', 0000),
-(2, 'pengabdan 2', 0000),
-(3, 'ab', 2020);
+(1, 'Pengabdian Inovatif', 2021);
 
 -- --------------------------------------------------------
 
@@ -1297,7 +1025,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 (108, '197102071995121001', '922ea59ce34d40783bcec32bbc28a716', 3),
 (109, '196605061995121001', 'c099706bcb773579cf6e60a78103919c', 3),
 (110, '197103011997021001', '3ac98e173b7e116530039915d55f856a', 3),
-(111, '197312211999031002', '438ecf8933d0482f419e110c15f04d58', 3),
+(111, '197312211999031002', '438ecf8933d0482f419e110c15f04d58', 2),
 (112, '197007272000121001', '702b1754b59ab11367c3592c78ca2bf5', 3),
 (113, '197404262000121001', 'f98673dd2c27950a3bfd6168d1080a1d', 3),
 (114, '197309262000121001', '9e444d2ff6f919c062eee7ff88f793d5', 3),
@@ -1520,7 +1248,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
 (331, '198902220119111108', 'a3939cb110f5f1c300aa9818d924febc', 3),
 (332, '197512210119111107', '8026431368810cefcfb3845785c45fc6', 3),
 (336, 'pengusul', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(338, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(338, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1),
 (359, 'reviewer1', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
 (360, 'reviewer2', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
 
@@ -1734,31 +1462,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `dsn_pengabdian`
 --
 ALTER TABLE `dsn_pengabdian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jadwal`
@@ -1770,13 +1498,13 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jadwal_pengabdian`
 --
 ALTER TABLE `jadwal_pengabdian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `jenispenelitian`
@@ -1800,19 +1528,19 @@ ALTER TABLE `komp_penilaian_penelitian`
 -- AUTO_INCREMENT for table `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `luaran`
@@ -1824,49 +1552,49 @@ ALTER TABLE `luaran`
 -- AUTO_INCREMENT for table `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=277;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -1890,7 +1618,7 @@ ALTER TABLE `sumberdana`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
