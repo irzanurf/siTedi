@@ -7,7 +7,19 @@
 </head>
 </head>
     <body>
-
+    <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            &nbsp; Welcome <small>
+                            <?php 
+                        			foreach($nama as $v) { ?>
+								<?= $v->nama ?>
+								<?php }?>
+								</small>
+                        </h1>
+                        
+                    </div>
+                </div>
     <div class="container profile profile-view" id="profile">
     
         <div class="col-md-0">

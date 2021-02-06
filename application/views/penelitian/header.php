@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<?php  if(!empty($cek)){ ?>
 			<li class="has-subnav">
 				<a href="javascript:;">
-					<i class="fa fa-file-text-o nav_icon"></i>
+					<i class="fa fa-bar-chart nav_icon"></i>
 						<span class="nav-text">Reviewer</span>
 					<i class="icon-angle-right"></i><i class="icon-angle-down"></i>
 				</a>
@@ -128,7 +128,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</li>
 			<?php  }?>
 
-			<li>
+			<!-- <li>
 				<a href="error.html">
 					<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
 					<span class="nav-text">
@@ -150,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<a class="subnav-text" href="blank.html">Blank Page</a>
 					</li>
 				</ul>
-			</li>
+			</li> -->
 		</ul>
 		<ul class="logout">
 			<li>
@@ -180,30 +180,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="profile_details_left">
 					
 					<div class="profile_details">		
-						<ul>
-							<li class="dropdown profile_details_drop">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<div class="profile_img">	
-										<span class="prfil-img"><i class="fa fa-user" aria-hidden="true"></i></span> 
-										<div class="clearfix"></div>	
-									</div>	
-								</a>
-								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="<?= base_url('login/profile/');?>"><i class="fa fa-user"></i> Profile</a> </li> 
-									<li> <a href="<?= base_url('dosen/penelitian/logout');?>"><i class="fa fa-sign-out"></i> Logout</a> </li>
-								</ul>
+					<ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="<?= base_url('login/profile/');?>">
+                               <p>Profile</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?= base_url('dosen/pengabdian/logout');?>">
+                                <p>Log out</p>
+                            </a>
+                        </li>
+						<li class="separator hidden-lg"></li>
+                    </ul>
 							</li>
 						</ul>
 					</div>
 					<div class="profile_details">		
 						<ul>
 							<li class="dropdown profile_details_drop">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<?php 
-                        			foreach($nama as $v) { ?>
-								<?= $v->nama ?>
-								<?php }?>
-								</a>
+					
 							</li>
 						</ul>
 					</div>

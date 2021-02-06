@@ -32,9 +32,9 @@ class Pengabdian extends CI_Controller {
         $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$user))->result();
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view("dosen/dashboardpengabdian",$data);
+        $this->load->view("pengabdian/footer");
     }
 
     function checkUsername(){
@@ -170,13 +170,13 @@ class Pengabdian extends CI_Controller {
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
 
         
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         if(($now >= $awal) && ($now<=$akhir)){
             $this->load->view('dosen/form_permohonan_pengabdian',$data);
         } else {
             $this->load->view('dosen/closed_form', $data);
         }
+        $this->load->view('pengabdian/footer');
     }
         
     public function UploadSuratMitra()
@@ -184,9 +184,9 @@ class Pengabdian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/upload_surat_mitra',$data);
+        $this->load->view('pengabdian/footer');
 
     }
 
@@ -226,9 +226,9 @@ class Pengabdian extends CI_Controller {
         //     'sumberdana_selected' => '',
         // );
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/formpengabdian', $data);
+        $this->load->view('pengabdian/footer');
 
     }
 
@@ -344,9 +344,9 @@ class Pengabdian extends CI_Controller {
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/upproppengabdian',$data);
+        $this->load->view('pengabdian/footer');
     }
 
     public function updateProposal(){
@@ -502,9 +502,9 @@ class Pengabdian extends CI_Controller {
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/daftar_permohonan_pengabdian', $data);
+        $this->load->view('pengabdian/footer');
 
     }
 
@@ -513,8 +513,7 @@ class Pengabdian extends CI_Controller {
         $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
-        $this->load->view('layout/sidebar_dosen_pengabdian',$nama);
+        $this->load->view('pengabdian/header',$nama);
         $cekjad=$data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
         if (empty($cekjad)){
             $this->load->view('dosen/closed_form_akhir', $data);
@@ -531,6 +530,7 @@ class Pengabdian extends CI_Controller {
         $this->load->view('dosen/closed_form_akhir', $data);
     }
 }
+$this->load->view('pengabdian/footer');
         
     }
 

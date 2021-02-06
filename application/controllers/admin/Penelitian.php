@@ -35,18 +35,19 @@ class Penelitian extends CI_Controller
     {
         $user = $this->session->userdata('user_name');
         $data['user'] = $this->M_Admin->getwhere_admin(array('nip'=>$user))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/dashboard',$data);
+        $this->load->view('layout/footer');
     }
 
     public function berita()
     {
         
         $data = $this->M_Admin->get_berita(array('id'=>1))->row();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/berita',$data);
+        $this->load->view('layout/footer');
     }
 
     public function Saveberita(){
@@ -63,35 +64,37 @@ class Penelitian extends CI_Controller
     public function daftarPenelitian()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewPenelitian()->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/daftar_prop_penelitian',$data);
+        $this->load->view('layout/footer'); 
 
     }
 
     public function jadwalpenelitian()
     {
         $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
-        $this->load->view('layout/header');
+       
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/jadwal_penelitian',$data);
+        $this->load->view('layout/footer'); 
 
     }
 
     public function formJadwal()
     {
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/form_jadwal_penelitian');
+        $this->load->view('layout/footer'); 
 
     }
 
     public function editJadwalPenelitian($id)
     {
         $data['jadwal'] = $this->M_JadwalPenelitian->getwhere_jadwal(array('id'=>$id))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/edit_jadwal_penelitian', $data);
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -131,9 +134,9 @@ class Penelitian extends CI_Controller
     public function jadwal()
     {
         $data['view'] = $this->M_AdminPenelitian->get_jadwal()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/jadwal',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function tambahJadwal()
@@ -151,9 +154,9 @@ class Penelitian extends CI_Controller
     public function assignProposal()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewAssign()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/assign',$data);
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -163,10 +166,9 @@ class Penelitian extends CI_Controller
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['reviewer'] = $this->M_ReviewerPenelitian->get_reviewer()->result();
-        
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/setreviewer',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function EditReviewer($id)
@@ -177,9 +179,9 @@ class Penelitian extends CI_Controller
         $data['reviewer'] = $this->M_ReviewerPenelitian->get_reviewer()->result();
         $data['assigned'] = $this->M_AdminPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
 
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/editreviewer',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function submitAssignEdit()
@@ -220,9 +222,9 @@ class Penelitian extends CI_Controller
     {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['view'] = $this->M_ReviewerPenelitian->get_reviewer()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/showrev',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function tambahReviewer()
@@ -257,9 +259,9 @@ class Penelitian extends CI_Controller
     public function approval()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewApproval()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/approval',$data);
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -276,10 +278,9 @@ class Penelitian extends CI_Controller
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/detail',$data);
-        
+        $this->load->view('layout/footer'); 
     }
 
     public function detailNilai($id)
@@ -291,9 +292,9 @@ class Penelitian extends CI_Controller
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['nilai']= $this->M_ReviewerPenelitian->get_nilai(array('id_proposal'=>$id))->result();
         $data['total'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/detailnilai', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function acceptProposal($id)
@@ -345,35 +346,34 @@ class Penelitian extends CI_Controller
     public function monev()
     {
         $data['view']= $this->M_AdminPenelitian->getwhere_viewmonev()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/monev', $data);
-    
+        $this->load->view('layout/footer'); 
     }
 
     public function akhir()
     {
         $data['view']= $this->M_AdminPenelitian->getwhere_viewakhir()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/akhir', $data);
-    
+        $this->load->view('layout/footer'); 
     }
 
     public function skemaPenelitian()
     {
         $data['skema'] = $this->M_SkemaPenelitian->get_skemapenelitian()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/skema_penelitian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function detailSkemaPenelitian($id)
     {
         $data['komponen'] = $this->M_KomponenNilaiPenelitian->getwhere_komponen(array('id_jenis'=> $id))->result();
-        $this->load->view('layout/header');
+     
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/detail_skema_penelitian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function hapusSkemaPenelitian($id)
@@ -392,10 +392,9 @@ class Penelitian extends CI_Controller
 
     public function formTambahSkema()
     {
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/form_skema_penelitian');
-
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -432,9 +431,9 @@ class Penelitian extends CI_Controller
         $data['id_skema'] = $id;
         $data['skema'] = $this->M_KomponenNilaiPenelitian->getwhere_skema(array('id'=> $id))->result();
         $data['komponen'] = $this->M_KomponenNilaiPenelitian->getwhere_komponen(array('id_jenis'=> $id))->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/edit_skema_penelitian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function updateSkemaPenelitian()

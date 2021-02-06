@@ -76,31 +76,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="header-right">
 				<div class="profile_details_left">
 					
-					<div class="profile_details">		
-						<ul>
-							<li class="dropdown profile_details_drop">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-									<div class="profile_img">	
-										<span class="prfil-img"><i class="fa fa-user" aria-hidden="true"></i></span> 
-										<div class="clearfix"></div>	
-									</div>	
-								</a>
-								<ul class="dropdown-menu drp-mnu">
-									<li> <a href="<?= base_url('login/profile/');?>"><i class="fa fa-user"></i> Profile</a> </li> 
-									<li> <a href="<?= base_url('login/logout');?>"><i class="fa fa-sign-out"></i> Logout</a> </li>
-								</ul>
+				<div class="profile_details">		
+					<ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="<?= base_url('login/profile/');?>">
+                               <p>Profile</p>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="<?= base_url('dosen/penelitian/logout');?>">
+                                <p>Log out</p>
+                            </a>
+                        </li>
+						<li class="separator hidden-lg"></li>
+                    </ul>
 							</li>
 						</ul>
 					</div>
 					<div class="profile_details">		
 						<ul>
 							<li class="dropdown profile_details_drop">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<?php 
-                        			foreach($nama as $v) { ?>
-								<?= $v->nama ?>
-								<?php }?>
-								</a>
+					
 							</li>
 						</ul>
 					</div>

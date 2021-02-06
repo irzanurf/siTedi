@@ -20,9 +20,10 @@ class Dashboard extends CI_Controller {
     {
         $user = $this->session->userdata('user_name');
         $data['user'] = $this->M_Admin->getwhere_admin(array('nip'=>$user))->row();
-        $this->load->view('layout/header');  
+          
         $this->load->view('layout/sidebar_admin');
-        $this->load->view('admin/dashboard',$data);          
+        $this->load->view('admin/dashboard',$data);  
+        $this->load->view('layout/footer');        
 
     }
 //sumber dana
@@ -30,9 +31,9 @@ class Dashboard extends CI_Controller {
     {
         $data['view'] = $this->M_Admin->get_sumberdana()->result();
         
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/sumberdana',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function deletesd()
@@ -70,9 +71,10 @@ class Dashboard extends CI_Controller {
     {
         $id = $this->input->post('id');
         $data['view'] = $this->M_Admin->get_luaran()->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/luaran',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function deleteluaran()
@@ -113,17 +115,19 @@ class Dashboard extends CI_Controller {
     public function viewMahasiswa()
     {
         $data['view']= $this->M_Profile->get_mhs()->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/mahasiswa',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function tambahMhs()
     {
         $data['view']= $this->M_Profile->get_mhs()->result();
-        $this->load->view('layout/header');
+     
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/tambahMhs',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function addMhsToDb()
@@ -148,9 +152,10 @@ class Dashboard extends CI_Controller {
     {
         $nim = $this->input->post('nim');
         $data['view']= $this->M_Profile->getwhere_mhs(array('nim'=> $nim))->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/editMhs',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function hapusMhs()
@@ -182,26 +187,29 @@ class Dashboard extends CI_Controller {
     public function viewDosen()
     {
         $data['view']= $this->M_Profile->get_profile()->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/dosen',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function tambahDosen()
     {
         $data['view']= $this->M_Profile->get_profile()->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/tambahDosen',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function editDosen()
     {
         $nip = $this->input->post('nip');
         $data['view']= $this->M_Profile->getwhere_profile(array('nip'=> $nip))->result();
-        $this->load->view('layout/header');
+        
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/editDosen',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function hapusDosen()

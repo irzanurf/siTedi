@@ -43,44 +43,40 @@ class Pengabdian extends CI_Controller
     {
         $user = $this->session->userdata('user_name');
         $data['user'] = $this->M_Admin->getwhere_admin(array('nip'=>$user))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/dashboard',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function approval()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewApproval()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/approval_prop_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
     }
 
     public function jadwalpengabdian()
     {
         $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/jadwal_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
     }
 
     public function formJadwalPengabdian()
     {
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/form_jadwal_pengabdian');
-
+        $this->load->view('layout/footer'); 
     }
 
     public function editJadwalPengabdian($id)
     {
         $data['jadwal'] = $this->M_JadwalPengabdian->getwhere_jadwal(array('id'=>$id))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/edit_jadwal_pengabdian', $data);
-
+        $this->load->view('layout/footer'); 
     }
 
     public function hapusJadwalPengabdian($id)
@@ -117,9 +113,9 @@ class Pengabdian extends CI_Controller
     {
         
         $data = $this->M_Admin->get_berita(array('id'=>2))->row();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/berita',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function Saveberita(){
@@ -137,19 +133,17 @@ class Pengabdian extends CI_Controller
     public function daftarPengabdian()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewPengabdian()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/daftar_prop_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
     }
 
     public function assignProposal()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewAssign()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/assign_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
     }
 
     public function assignReviewerProposal($id)
@@ -161,10 +155,9 @@ class Pengabdian extends CI_Controller
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['reviewer'] = $this->M_ReviewerPengabdian->get_reviewer()->result();
 
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/assign_reviewer_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -180,10 +173,9 @@ class Pengabdian extends CI_Controller
         $data['reviewer'] = $this->M_ReviewerPengabdian->get_reviewer()->result();
         $data['assigned'] = $this->M_AssignProposalPengabdian->getwhere_assignment(array('id_proposal'=>$id))->row();
 
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/edit_reviewer_pengabdian',$data);
-
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -191,9 +183,9 @@ class Pengabdian extends CI_Controller
     {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['view'] = $this->M_ReviewerPengabdian->get_reviewer()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/show_reviewer_pengabdian',$data);
+        $this->load->view('layout/footer'); 
     }
 
     public function tambahReviewer()
@@ -281,27 +273,26 @@ class Pengabdian extends CI_Controller
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id))->result();
         $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row();
 
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/detail_proposal',$data);
-
+        $this->load->view('layout/footer'); 
 
     }
 
     public function skemaPengabdian()
     {
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/skema_pengabdian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function detailSkemaPengabdian($id)
     {
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=> $id))->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/detail_skema_pengabdian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function editSkemaPengabdian($id)
@@ -310,9 +301,9 @@ class Pengabdian extends CI_Controller
         $data['skema'] = $this->M_KomponenNilaiPengabdian->getwhere_skema(array('id'=> $id))->result();
         $data['komponen'] = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=> $id))->result();
         // $data['count'] = $data['komponen']->count;
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/edit_skema_pengabdian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function hapusSkemaPengabdian($id)
@@ -332,10 +323,9 @@ class Pengabdian extends CI_Controller
 
     public function formTambahSkema()
     {
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/form_skema_pengabdian');
-
+        $this->load->view('layout/footer'); 
 
     }
 
@@ -465,9 +455,9 @@ class Pengabdian extends CI_Controller
     public function laporanAkhir()
     {
         $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
-        $this->load->view('layout/header');
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/laporan_akhir_pengabdian', $data);
+        $this->load->view('layout/footer'); 
     }
 
     public function testword()

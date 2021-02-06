@@ -55,7 +55,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistem Penelitian Pengabdian</a>
+                <a class="navbar-brand" href="<?= base_url('admin/dashboard/');?>">Sistem Penelitian Pengabdian</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
