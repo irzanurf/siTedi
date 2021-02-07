@@ -131,16 +131,7 @@
     
     
 
-    <!-- jQuery Version 1.11.0 -->
-    <script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>">
-        
-
-
-    </script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
 
     <script type="text/javascript">
     $(document).ready(function() {
@@ -154,9 +145,3 @@
     });
     </script>
 
-
-
-
-</body>
-
-</html>

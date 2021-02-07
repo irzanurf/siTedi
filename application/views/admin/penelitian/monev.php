@@ -54,7 +54,7 @@
                 <td class='text-center'>
                     <?php if ($v->file1==NULL) : ?> -
                         <?php elseif($v->file1 != NULL) : ?><i>UPLOADED</i>  
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -62,7 +62,7 @@
                 <td class='text-center'>
                     <?php if ($v->file2==NULL) : ?> -
                         <?php elseif($v->file2 != NULL) : ?> <i>UPLOADED</i>
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadCatatan<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadCatatan<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -70,7 +70,7 @@
                 <td class='text-center'>
                     <?php if ($v->file3==NULL) : ?> - 
                         <?php elseif($v->file3 != NULL) : ?> <i>UPLOADED</i> 
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -232,11 +232,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -261,7 +256,3 @@ $(this).parents(".control-group1").remove();
 });
 });
 </script>
-
-</body>
-
-</html>

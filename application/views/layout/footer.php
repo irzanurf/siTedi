@@ -1,5 +1,7 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="<?= base_url('assets/admin/assets/js/jquery.3.2.1.min.js');?>" type="text/javascript"></script>
-	<script src="<?= base_url('assets/admin/assets/js/bootstrap.min.js');?>" type="text/javascript"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 	<!--  Charts Plugin -->
 	<script src="<?= base_url('assets/admin/assets/js/chartist.min.js');?>"></script>
@@ -15,5 +17,6 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="<?= base_url('assets/admin/assets/js/demo.js');?>"></script>
+	</body>
 
 </html>

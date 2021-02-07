@@ -116,11 +116,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript">
 $( ".selector" ).datepicker({
   dateFormat: "dd/mm/yyyy"
@@ -151,6 +146,3 @@ $(this).parents(".control-group1").remove();
 });
 </script>
 
-</body>
-
-</html>

@@ -63,7 +63,7 @@
                 
                 <form method="post" action=<?= base_url('admin/dashboard/editDosen');?>>
                                     <input type='hidden' name="nip" value="<?= $v->nip ?>">
-                                    <button type="submit" class="btn-sm btn-success">
+                                    <button type="submit" class="btn btn-success">
                                         Edit
                                     </button>
                                     
@@ -72,7 +72,7 @@
             <td>
                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?');" action=<?= base_url('admin/dashboard/hapusDosen');?>>
                                     <input type='hidden' name="nip" value="<?= $v->nip ?>">
-                                    <button type="submit" class="btn-sm btn-danger">
+                                    <button type="submit" class="btn btn-danger">
                                         Hapus
                                     </button>
                                     
@@ -109,12 +109,3 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>

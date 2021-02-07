@@ -56,7 +56,7 @@
                 <td class='text-center'>
                     <?php if ($v->laporan_akhir==NULL) : ?> -
                         <?php elseif($v->laporan_akhir != NULL) : ?>  
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadLaporanAkhir<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLaporanAkhir<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -64,7 +64,7 @@
                 <td class='text-center'>
                     <?php if ($v->logbook==NULL) : ?> -
                         <?php elseif($v->logbook != NULL) : ?> 
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -72,7 +72,7 @@
                 <td class='text-center'>
                     <?php if ($v->luaran==NULL) : ?> - 
                         <?php elseif($v->luaran != NULL) : ?> 
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -80,7 +80,7 @@
                 <td class='text-center'>
                     <?php if ($v->belanja==NULL) : ?> -
                         <?php elseif($v->belanja != NULL) : ?>
-                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
@@ -252,12 +252,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
 <script type="text/javascript">
 $(document).ready(function() {
 $(".add-more").click(function(){ 
@@ -281,7 +275,3 @@ $(this).parents(".control-group1").remove();
 });
 });
 </script>
-
-</body>
-
-</html>

@@ -4,14 +4,14 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Light Bootstrap Dashboard by Creative Tim</title>
+	<title>Admin || SiTeDi</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="<?= base_url('assets/admin/assets/css/bootstrap.min.css');?>" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Animation library for notifications   -->
     <link href="<?= base_url('assets/admin/assets/css/animate.min.css');?>" rel="stylesheet"/>
@@ -28,11 +28,11 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="<?= base_url('assets/admin/assets/css/pe-icon-7-stroke.css');?>" rel="stylesheet" />
-    <link href="<?= base_url("datepicker/dist/css/bootstrap-datepicker.css");?>" rel="stylesheet">
+    <link href="<?= base_url('datepicker/dist/css/bootstrap-datepicker.css');?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/css/bootstrap-datepicker.css" rel="stylesheet" />
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 
@@ -48,8 +48,8 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
+                <a href="<?= base_url('/');?>" class="simple-text">
+                    Sistem <br> Penelitian dan Pengabdian
                 </a>
             </div>
 
@@ -58,7 +58,7 @@
                         <a href="<?= base_url('admin/dashboard/');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                    <a href="javascript:;" data-toggle="collapse" data-target="#penelitian"><i class="fa fa-fw fa-edit"></i> Penelitian<i class="fa fa-fw fa-caret-down"></i></a>
+                    <a href="#" data-toggle="collapse" data-target="#penelitian"><i class="fa fa-fw fa-edit"></i> Penelitian<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="penelitian" class="collapse">
                             <li>
                                 <a href="<?= base_url('admin/penelitian/jadwalpenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Jadwal Penelitian</a>
@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Pengabdian<i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="#" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-edit"></i> Pengabdian<i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="demo" class="collapse">
                             <li>
                                     <a href="<?= base_url('admin/pengabdian/jadwalpengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Jadwal Pengabdian</a>

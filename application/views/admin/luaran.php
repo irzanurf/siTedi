@@ -44,7 +44,7 @@
                 <td><?= $v->tgl?></td>
                 <td>
                 <form method="post" ;?>
-                                    <button type="button" class="btn-sm btn-success" data-toggle="modal" data-target="#a<?= $v->id?>">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#a<?= $v->id?>">
                                         Edit
                                     </button>
                                     
@@ -53,7 +53,7 @@
                 <td>
                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Luaran?');" action=<?= base_url('admin/dashboard/deleteluaran');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
-                                    <button type="submit" class="btn-sm btn-danger">
+                                    <button type="submit" class="btn btn-danger">
                                         Hapus
                                     </button>
                                     
@@ -160,11 +160,6 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
 <script type="text/javascript">
 $( ".selector" ).datepicker({
   dateFormat: "dd/mm/yyyy"
@@ -195,6 +190,4 @@ $(this).parents(".control-group1").remove();
 });
 </script>
 
-</body>
 
-</html>

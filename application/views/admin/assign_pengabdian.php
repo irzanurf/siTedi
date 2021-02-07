@@ -67,11 +67,11 @@
                 </td>
                 <td>
                 <?php if($v->status =="SUBMITTED") : ?>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/pengabdian/assignreviewerproposal') ;?>/<?= $v->id; ?>">
+                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/assignreviewerproposal') ;?>/<?= $v->id; ?>">
                     Assign
                 </a>
                 <?php elseif($v->status == "ASSIGNED" ) :?>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/pengabdian/editreviewerproposal') ;?>/<?= $v->id; ?>">
+                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/editreviewerproposal') ;?>/<?= $v->id; ?>">
                     Edit reviewer
                 </a>
                 <?php else :?>
@@ -110,12 +110,3 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>

@@ -68,11 +68,6 @@
         CKEDITOR.replace('ckeditor');
       });
     </script>
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
 
 <!-- Morris Charts JavaScript -->
 <script src="<?= base_url('assets/template/js/plugins/morris/raphael.min.js');?>"></script>

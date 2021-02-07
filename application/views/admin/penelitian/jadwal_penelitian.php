@@ -53,17 +53,17 @@
                 <td><?= $v->tgl_akhir?></td>
                 <td><?= $v->tgl_selesai?></td>
                 <td>
-                <a type="button" class="btn-sm btn-success" href="<?= base_url('admin/penelitian/editJadwalPenelitian') ;?>/<?= $v->id; ?>">
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/editJadwalPenelitian') ;?>/<?= $v->id; ?>">
                     Edit Jadwal
                 </a>
                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?');" action="<?= base_url('admin/penelitian/hapusJadwalPenelitian');?>/<?= $v->id; ?>" >
 
-                                    <button type="submit" class="btn-sm btn-danger">
+                                    <button type="submit" class="btn btn-danger">
                                         Hapus Jadwal
                                     </button>
                                     
                                 </form>
-                <!-- <a type="button" class="btn-sm btn-info" href="<?= base_url('#') ;?>/<?= $v->id; ?>">
+                <!-- <a type="button" class="btn btn-info" href="<?= base_url('#') ;?>/<?= $v->id; ?>">
                     Edit reviewer
                 </a> -->
                 </td>
@@ -98,12 +98,3 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>

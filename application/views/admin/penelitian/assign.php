@@ -67,13 +67,13 @@
                 </td>
                 <td>
                 <?php if($v->status == 1 && ($v->nama_reviewer1 ==""||$v->nama_reviewer1 =="0"||$v->nama_reviewer1 ==NULL)) : ?>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
+                <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
                     Assign
                 </a>
                 <?php elseif($v->status == 11 || $v->status == 12 || $v->status == 13 || $v->status == 2|| $v->status == 3|| $v->status == 4|| $v->status == 5|| $v->status == 0 ) :?>
                 
                 <?php else :?>
-                    <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">
+                    <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">
                     Edit reviewer
                 </a>
                 <?php endif;?>
@@ -109,13 +109,3 @@
 
 </div>
 <!-- /#wrapper -->
-
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>

@@ -57,7 +57,7 @@
                 <td><?= $v->nama_instansi ?></td>
                 <td><?php $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?></td>
                 <!-- <td>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
                     Detail
                 </a>
                 
@@ -93,12 +93,3 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>

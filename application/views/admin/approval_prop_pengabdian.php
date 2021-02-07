@@ -56,7 +56,7 @@
                 <td><?php if($v->status=='GRADED2' || ($v->status=='ASSIGNED')) : ?><?php else :?><?=$v->nilai?><?php endif?></td>
                 <td><?php if($v->status=='GRADED1' || ($v->status=='ASSIGNED')) : ?> <?php else :?><?=$v->nilai2 ?><?php endif?></td>
                 <td>
-                <!-- <a type="button" class="btn-sm btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
+                <!-- <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
                     Detail
                 </a> -->
                 <?php if($v->status=='NEED_APPROVAL'||$v->status=='ACCEPTED'||$v->status=='REJECTED') :?>
@@ -66,10 +66,10 @@
                 </td>
                 <td>
                 <?php if($v->status=='NEED_APPROVAL') :?>
-                <a type="button" class="btn-sm btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
                     Accept
                 </a>
-                <a type="button" class="btn-sm btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
                     Reject
                 </a>       
                 <?php else : ?> 
@@ -105,12 +105,3 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery Version 1.11.0 -->
-<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
-
-</body>
-
-</html>
