@@ -85,7 +85,7 @@ class Penelitian extends CI_Controller
     {
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/form_jadwal_penelitian');
-        
+        $this->load->view('layout/footer'); 
 
     }
 

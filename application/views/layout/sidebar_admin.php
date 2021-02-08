@@ -147,7 +147,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="">
+                           <a href="<?= base_url('login/profile/');?>">
                                <p>Profile</p>
                             </a>
                         </li>
