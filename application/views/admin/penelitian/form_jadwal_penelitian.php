@@ -28,13 +28,13 @@
                 
                         <div class="panel-body">
                             <label>Tanggal Awal</label>
-                            <input type="text" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
+                            <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
                             <label>Batas Pengumpulan Monev</label>
-                            <input type="text" class="form-control"  name="tgl_monev" id="tgl_monev"><br>
+                            <input type="date" class="form-control"  name="tgl_monev" id="tgl_monev"><br>
                             <label>Batas Pengumpulan Laporan Akhir</label>
-                            <input type="text" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
+                            <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
                             <label>Tanggal Akhir</label>
-                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_selesai">
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai">
                         </div>
                         
                     
@@ -64,6 +64,15 @@
     <!-- /#wrapper -->
 
     
+    <script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>">
+        
+
+
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
 
     <script src="<?= base_url("datepicker/dist/js/jquery.js");?>"></script>

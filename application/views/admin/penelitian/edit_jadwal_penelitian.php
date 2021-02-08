@@ -28,13 +28,13 @@
                 
                         <div class="panel-body">
                             <label>Tanggal Awal</label>
-                            <input type="text" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
+                            <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
                             <label>Batas Pengumpulan Monev</label>
-                            <input type="text" class="form-control"  name="tgl_monev" id="tgl_monev" value = <?=$jadwal->tgl_monev?>><br>
-                            <label>Batas Pengumpulan Laporan Akhir</label>
+                            <input type="date" class="form-control"  name="tgl_monev" id="tgl_monev" value = <?=$jadwal->tgl_monev?>><br>
+                            <label>Batas date Laporan Akhir</label>
                             <input type="text" class="form-control"  name="tgl_akhir" id="tgl_akhir" value = <?=$jadwal->tgl_akhir?>><br>
                             <label>Tanggal Akhir</label>
-                            <input type="text" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
                             <input type="text" class="form-control hidden" name="id" value = <?=$jadwal->id?> hidden>
                         </div>
                         
@@ -66,13 +66,6 @@
 
     
     
-
-    </script>
-    <script src="<?= base_url("datepicker/dist/js/jquery.js");?>"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.0/js/bootstrap-datepicker.js"></script>
-    <script src="<?= base_url("datepicker/dist/js/bootstrap-datepicker.js");?>"></script>
-
     <script type="text/javascript">
     // Data Picker Initialization
     $(document).ready(function() {
@@ -86,15 +79,6 @@
     });
     </script>
 
-    <script type="text/javascript">
-        $(function()
-        {
-            $('#tgl_awal').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
-            $('#tgl_monev').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
-            $('#tgl_akhir').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'}),
-            $('#tgl_selesai').datepicker({autoclose: true,todayHighlight: true,format: 'yyyy-mm-dd'})
-        });
-    </script>
 
 
 

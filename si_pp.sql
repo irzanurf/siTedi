@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2021 at 12:28 PM
+-- Generation Time: Feb 08, 2021 at 05:57 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -66,6 +66,13 @@ CREATE TABLE `assign_proposal_pengabdian` (
   `reviewer2` varchar(30) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `assign_proposal_pengabdian`
+--
+
+INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
+(1, 1, 'reviewer1', 'reviewer2');
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +87,22 @@ CREATE TABLE `detail_nilai_proposal_pengabdian` (
   `skor` varchar(3) NOT NULL,
   `nilai` varchar(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_nilai_proposal_pengabdian`
+--
+
+INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `id_komponen_nilai`, `skor`, `nilai`) VALUES
+(1, 1, 'reviewer1', 1, '5', '125'),
+(2, 1, 'reviewer1', 2, '5', '125'),
+(3, 1, 'reviewer1', 3, '5', '125'),
+(4, 1, 'reviewer1', 4, '5', '75'),
+(5, 1, 'reviewer1', 5, '5', '50'),
+(6, 1, 'reviewer2', 1, '5', '125'),
+(7, 1, 'reviewer2', 2, '5', '125'),
+(8, 1, 'reviewer2', 3, '5', '125'),
+(9, 1, 'reviewer2', 4, '5', '75'),
+(10, 1, 'reviewer2', 5, '5', '50');
 
 -- --------------------------------------------------------
 
@@ -387,8 +410,6 @@ INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lul
 ('198608262010121005', 'Berlian Arswendo Adietya, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2010, 'Teknik Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
 ('198706212012121001', 'Asep Muhamad Samsudin, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Teknologi Membran', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
 ('198802252012121003', 'Arya Rezagama, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2012, 'Akun Biaya & Manaj. Bisnis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('21060117130076', 'Valentinaa', 'a', 'a', 'a', 2001, 'a', 'a', 'a', 'a', 'a', 'a', 'Teknik Elektroa', 'Perempuan', '2385780751', 'vval_sajj@hfasd.comi'),
-('21060117130082', 'irza', '', '', '', 0000, '', '', '', '', '', '', 'elektro', 'Laki-laki', '342342', 'irzadexter@gmail.com'),
 ('pengusul', 'Dosen', '', '', '', 0000, '', '', '', '', '', '', 'Teknik Elektro', 'Laki-laki', '0853722847', 'pengusul@test.com'),
 ('reviewer1', 'reviewer1', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', ''),
 ('reviewer2', 'reviewer2', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', '');
@@ -416,6 +437,13 @@ CREATE TABLE `dsn_pengabdian` (
   `nip` varchar(20) NOT NULL,
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dsn_pengabdian`
+--
+
+INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
+(1, '195612281985031003', 1);
 
 -- --------------------------------------------------------
 
@@ -448,7 +476,7 @@ CREATE TABLE `jadwal_penelitian` (
 --
 
 INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
-(13, '2021-02-01', '2021-02-25', '2021-02-25', '2021-02-28');
+(14, '2021-02-01', '2021-02-09', '2021-02-19', '2021-03-12');
 
 -- --------------------------------------------------------
 
@@ -462,13 +490,6 @@ CREATE TABLE `jadwal_pengabdian` (
   `tgl_akhir` date NOT NULL,
   `tgl_selesai` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `jadwal_pengabdian`
---
-
-INSERT INTO `jadwal_pengabdian` (`id`, `tgl_mulai`, `tgl_akhir`, `tgl_selesai`) VALUES
-(6, '2021-02-01', '2021-02-25', '2021-02-28');
 
 -- --------------------------------------------------------
 
@@ -667,6 +688,13 @@ CREATE TABLE `mhs_pengabdian` (
   `id_proposal` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `mhs_pengabdian`
+--
+
+INSERT INTO `mhs_pengabdian` (`id`, `nim`, `nama`, `id_proposal`) VALUES
+(1, '214523', 'sdadsawsadd', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -682,7 +710,7 @@ CREATE TABLE `mitra` (
   `alamat` varchar(40) NOT NULL,
   `username` varchar(20) NOT NULL,
   `status` int(1) NOT NULL,
-  `file_persetujuan` varchar(30) NOT NULL
+  `file_persetujuan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -731,6 +759,13 @@ CREATE TABLE `nilai_proposal_pengabdian` (
   `komentar2` varchar(1000) DEFAULT NULL,
   `nilai2` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai_proposal_pengabdian`
+--
+
+INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
+(1, 1, 'ded', 500, 'sadasd', 500);
 
 -- --------------------------------------------------------
 
@@ -1468,13 +1503,13 @@ ALTER TABLE `assign_proposal_penelitian`
 -- AUTO_INCREMENT for table `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `dsn_penelitian`
@@ -1486,7 +1521,7 @@ ALTER TABLE `dsn_penelitian`
 -- AUTO_INCREMENT for table `dsn_pengabdian`
 --
 ALTER TABLE `dsn_pengabdian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `jadwal`
@@ -1498,7 +1533,7 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `jadwal_pengabdian`
@@ -1534,7 +1569,7 @@ ALTER TABLE `laporan_akhir_penelitian`
 -- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `laporan_monev_penelitian`
@@ -1546,7 +1581,7 @@ ALTER TABLE `laporan_monev_penelitian`
 -- AUTO_INCREMENT for table `luaran`
 --
 ALTER TABLE `luaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `mhs_penelitian`
@@ -1558,13 +1593,13 @@ ALTER TABLE `mhs_penelitian`
 -- AUTO_INCREMENT for table `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `nilai_penelitian`
@@ -1582,7 +1617,7 @@ ALTER TABLE `nilai_proposal_penelitian`
 -- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
-  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `proposal_penelitian`
@@ -1594,7 +1629,7 @@ ALTER TABLE `proposal_penelitian`
 -- AUTO_INCREMENT for table `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -1618,7 +1653,7 @@ ALTER TABLE `sumberdana`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=363;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
