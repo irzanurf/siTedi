@@ -252,8 +252,10 @@
                     success:function(data){
                         if(data=="Username tersedia"){
                             $('#submit').prop('disabled',false);
-                            $('#username_result').remove();
+                            $('#username_result').hide();
                         }else{
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
                             $('#username_result').html(data);
                         }
                         //console.log(data);
