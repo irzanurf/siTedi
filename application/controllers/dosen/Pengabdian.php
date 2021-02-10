@@ -195,9 +195,9 @@ class Pengabdian extends CI_Controller {
     public function hapusProposal($id)
     {
         $data = array('id' => $id);
-        $mitra_id = $this->M_PropPengabdian->getwhere_proposal($data)->result();
+        $mitra_id = $this->M_PropPengabdian->getwhere_proposal($data)->row();
         $data_mitra = array('id' => $mitra_id->id_mitra);
-        $mitra = $this->M_Mitra->getwhere_mitra($data_mitra)->result();
+        $mitra = $this->M_Mitra->getwhere_mitra($data_mitra)->row();
         $data_user = array(
             'username' => $mitra->username
         );
