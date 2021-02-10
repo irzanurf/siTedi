@@ -60,6 +60,18 @@ class Pengabdian extends CI_Controller {
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
         } else {
+            $prop_file = $_FILES['file_prop'];
+        if($prop_file=''){}else{
+            $config['upload_path'] = './assets/prop_pengabdian';
+            $config['allowed_types'] = 'pdf';
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file_prop')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop_file=$this->upload->data('file_name');
+            }
+        }
             $nip = $this->session->userdata('user_name');
         $data = [
             "nama_instansi"=> $this->input->post('instansi',true),
@@ -96,18 +108,7 @@ class Pengabdian extends CI_Controller {
         /**
          * upload file proposal
          */
-        $prop_file = $_FILES['file_prop'];
-        if($prop_file=''){}else{
-            $config['upload_path'] = './assets/prop_pengabdian';
-            $config['allowed_types'] = 'pdf';
-
-            $this->load->library('upload',$config);
-            if(!$this->upload->do_upload('file_prop')){
-                echo "Upload Gagal"; die();
-            } else {
-                $prop_file=$this->upload->data('file_name');
-            }
-        }
+        
         $data_file = array('file'=>$prop_file);
         $this->M_PropPengabdian->update_prop($proposal,$data_file);
 
