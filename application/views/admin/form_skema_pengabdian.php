@@ -61,57 +61,19 @@
                             </div>
                         </div>
        
-                        <!-- <tr>
-                        <div class="copy hide">
-                                <div class="control-group input-group" style="margin-top:10px">
-                                <td><?= $no?></td>
-                        <td><input type="text" id='komponen' name='komponen[]'></td>
-                        <td><input type="text" id="bobot<?=$no?>" name="bobot[]" ></td>
-                                 <select class="form-control" name="dosen[]">
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    foreach ($dosen as $ds) {
-                                        ?>
-                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select> -->
-                                <!-- <td>
-                                    <div class="input-group-btn"> 
-                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                    </div>
-                                    </td> -->
+                        
                                 </div>
                             </div>
                         
-                        <!-- <td><button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td> -->
-                        </tr>
-                        <!-- <tr>
-                        <td colspan='4'>Total</td>
-                        <td><input type="text" name="total_nilai" id="totalnilai" value="0" readonly></td>
-                        </tr>
-                        <input type="text" id="total" value=<?=$no?> hidden> -->
+                    
                     </table>
                     
                     
-                    
-                    <!-- <p>Keterangan: Skor : 1, 2, 4, 5 (1 = sangat kurang, 2 = kurang, 4 = baik, 5 = sangat baik); Nilai = Bobot x Skor</p>
-
-                    <div class="form-group">
-                        <label>Komentar Penilai</label>
-                        <div >
-                            <textarea class="form-control" name="komentar"  rows="3"></textarea>
-                        </div>
-                    </div> -->
                     <button type="submit">Submit</button>
                     </form>
                     </section>
 
-                    <!-- <input type="text" name="input1" id="input1" value="5">
-<input type="text" name="input2" id="input2" value=""> <a href="javascript: void(0)" onClick="calc()">Calculate</a>
-
-<input type="text" name="output" id="output" value=""> -->
+                   
                     
 
                     
