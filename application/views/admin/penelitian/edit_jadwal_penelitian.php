@@ -20,7 +20,7 @@
         </div>
     </div>
 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6" style="float:none;margin:auto;">
                     
                     <section class="content">
                     
@@ -37,7 +37,8 @@
                             <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir" value = <?=$jadwal->tgl_akhir?>><br>
                             <label>Tanggal Akhir</label>
                             <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
-                            <input type="text" class="form-control hidden" name="id" value = <?=$jadwal->id?> hidden>
+                            <input type="text" class="form-control hidden" name="id" value = <?=$jadwal->id?> hidden><br>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                         
                     

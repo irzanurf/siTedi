@@ -49,7 +49,7 @@
     	<div class="sidebar-wrapper">
             <div class="logo">
                 <a href="<?= base_url('/');?>" class="simple-text">
-                    Sistem <br> Penelitian dan Pengabdian
+                    SiTedi
                 </a>
             </div>
 
@@ -128,7 +128,7 @@
                         <a href="<?= base_url('admin/dashboard/viewMahasiswa');?>"><i class="fa fa-fw fa-folder"></i> Mahasiswa</a>
                     </li> -->
                     <li>
-                        <a href="<?= base_url('admin/dashboard/sumberdana');?>"><i class="fa fa-fw fa-folder"></i> RKT</a>
+                        <a href="<?= base_url('admin/dashboard/sumberdana');?>"><i class="fa fa-fw fa-folder"></i> Pendanaan</a>
                     </li>
                     <li>
                         <a href="<?= base_url('admin/dashboard/luaran');?>"><i class="fa fa-fw fa-folder"></i> Luaran</a>

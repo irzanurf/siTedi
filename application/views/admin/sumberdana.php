@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-            RKT
+            Pendanaan
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> RKT
+                    <i class="fa fa-edit"></i> Pendanaan
                 </li>
             </ol>
         </div>
@@ -30,7 +30,7 @@
         <table class="table">
             <tr>
                 <th>No</th>
-                <th>RKT</th>
+                <th>Pendanaan</th>
                 <th>Tahun</th>
                 <th>Edit</th>
                 <th>hapus</th>
