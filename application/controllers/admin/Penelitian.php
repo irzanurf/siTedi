@@ -107,6 +107,7 @@ class Penelitian extends CI_Controller
     public function submitJadwalPenelitian()
     {
         $data = [
+            'keterangan' => $this->input->post('keterangan'),
             'tgl_mulai' => $this->input->post('tgl_mulai'),
             'tgl_monev' => $this->input->post('tgl_monev'),
             'tgl_akhir' => $this->input->post('tgl_akhir'),
@@ -121,6 +122,7 @@ class Penelitian extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = [
+            'keterangan' => $this->input->post('keterangan'),
             'tgl_mulai' => $this->input->post('tgl_mulai'),       
             'tgl_monev' => $this->input->post('tgl_monev'),
             'tgl_akhir' => $this->input->post('tgl_akhir'),
