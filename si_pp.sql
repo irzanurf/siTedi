@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2021 at 05:57 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 8.0.0
+-- Waktu pembuatan: 11 Feb 2021 pada 08.52
+-- Versi server: 10.4.17-MariaDB
+-- Versi PHP: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`nip`, `nama`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `admin` (`nip`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assign_proposal_penelitian`
+-- Struktur dari tabel `assign_proposal_penelitian`
 --
 
 CREATE TABLE `assign_proposal_penelitian` (
@@ -56,7 +56,7 @@ CREATE TABLE `assign_proposal_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `assign_proposal_pengabdian`
+-- Struktur dari tabel `assign_proposal_pengabdian`
 --
 
 CREATE TABLE `assign_proposal_pengabdian` (
@@ -67,7 +67,7 @@ CREATE TABLE `assign_proposal_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `assign_proposal_pengabdian`
+-- Dumping data untuk tabel `assign_proposal_pengabdian`
 --
 
 INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `reviewer2`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `assign_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `revi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detail_nilai_proposal_pengabdian`
+-- Struktur dari tabel `detail_nilai_proposal_pengabdian`
 --
 
 CREATE TABLE `detail_nilai_proposal_pengabdian` (
@@ -89,7 +89,7 @@ CREATE TABLE `detail_nilai_proposal_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `detail_nilai_proposal_pengabdian`
+-- Dumping data untuk tabel `detail_nilai_proposal_pengabdian`
 --
 
 INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`, `id_komponen_nilai`, `skor`, `nilai`) VALUES
@@ -107,317 +107,359 @@ INSERT INTO `detail_nilai_proposal_pengabdian` (`id`, `id_proposal`, `reviewer`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Struktur dari tabel `dosen`
 --
 
 CREATE TABLE `dosen` (
   `nip` varchar(20) NOT NULL,
+  `nomor_induk` varchar(20) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `golongan` varchar(5) NOT NULL,
   `jabatan` varchar(20) NOT NULL,
   `pendidikan` varchar(20) NOT NULL,
-  `th_lulus` year(4) NOT NULL,
-  `kepakaran` varchar(50) NOT NULL,
-  `status_bekerja` varchar(50) NOT NULL,
-  `jenis` varchar(50) NOT NULL,
   `status_kepegawaian` varchar(20) NOT NULL,
-  `fakultas` varchar(30) NOT NULL,
-  `departemen` varchar(60) NOT NULL,
-  `program_studi` varchar(30) NOT NULL,
-  `jenis_kelamin` varchar(9) NOT NULL,
-  `no_telp` varchar(13) NOT NULL,
-  `email` varchar(30) NOT NULL
+  `program_studi` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dosen`
+-- Dumping data untuk tabel `dosen`
 --
 
-INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
-('195203121975011004', 'Prof. Dr. Ir. Bambang Pramudono, MS.', 'IV/e', 'Guru Besar', 'S3', 2005, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195205051980111001', 'Prof.Ir. Totok Rusmanto, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Teori & Sejarah Ars.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195303091981031005', 'Prof. Dr. Ir. Sri Tudjono, M.S.', 'IV/b', 'Guru Besar', 'S3', 2005, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195308191983031001', 'Prof.Dr.Ing.Ir. Gagoek Hardiman', 'IV/e', 'Guru Besar', 'S3', 1992, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
-('195404301981032001', 'Prof. Dr. Ir. Sri Prabandiyani Retno Wardani, M.Sc', 'IV/d', 'Guru Besar', 'S3', 1999, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('195407171982032001', 'Prof. Dr.Ir. Nany Yuliastuti, MSP', 'IV/d', 'Guru Besar', 'S3', 2015, 'Ilmu Perancangan Wilayah dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195409301980032001', 'Prof. Dr. Ir. Sri Sangkawati, M.S.', 'IV/d', 'Guru Besar', 'S3', 2013, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195507271986031008', 'Ir. Yurianto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Hydrolic Machine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195508211983031002', 'Ir. Agus Hadiyarto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1994, 'T. Pengolahan Limbah & Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195510161985031001', 'Dr. Ir. Parfi Khadiyanta, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Perencanaan Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195511081983031002', 'Prof.Ir. Edy Darmawan, M.Eng.', 'IV/e', 'Guru Besar', 'S2', 1988, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195512311983031014', 'Prof.Ir. Abdullah, M.S., Ph.D.', 'IV/d', 'Guru Besar', 'S3', 2002, 'Bioteknologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195606011986021001', 'Ir. Irawan Wisnu Wardhana, M.S.', 'III/b', 'Asisten Ahli', 'S2', 1992, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('195608181986031005', 'Ir. Abdul Malik, MSArs', 'III/c', 'Lektor', 'S2', 1991, 'Teori dan Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195611091985032002', 'Prof. Dr. Ir. Han Ay Lie, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 2013, 'Ilmu Teknik Sipil', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('195611261987031002', 'Dr. Ir. Hargono, M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195612281985031003', 'Dr.Ir. Ragil Haryanto, M.SP.', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195701081986021001', 'Ir. Salamun, M.T.', 'III/d', 'Lektor', 'S2', 1997, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195702051986031003', 'Ir. Djoko Suwandono, M.Sp.', 'IV/a', 'Lektor Kepala', 'S2', 1988, 'Perenc Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195704221986031001', 'Dr. Ir. Bambang Purwanggono Sukarsono, M.Eng.', 'IV/c', 'Lektor Kepala', 'S3', 2014, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('195706241985031001', 'Ir. Yohannes Inigo Wicaksono, M.S.', 'III/d', 'Lektor', 'S2', 1989, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195708311986021002', 'Ir. Endro Sutrisno, M.S.', 'III/d', 'Lektor', 'S2', 1992, 'Dsda Mekanik Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('195709131986031001', 'Ir. Bambang Sudarsono, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1989, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('195712221987031001', 'Ir. Dhanoe Iswanto, M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195801021986031002', 'Ir. Sumar Hadi Suryo, M.T.', 'III/d', 'Lektor', 'S2', 2013, 'Production & Proses', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195804291986021001', 'Ir. Nugroho Agus Darmanto, M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195807121983031032', 'Ir. Slamet Priyanto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Tekologi Energi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195807151986021001', 'Ir. EPF Eko Yuli Priyono, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195808071987031001', 'Ir. Mochtar Hadiwidodo, M.Si.', 'IV/a', 'Lektor Kepala', 'S2', 2010, 'Buangan Padat, Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('195809291986021001', 'Dr.Ir. Windu Partono, M.Sc.', 'III/c', 'Lektor', 'S3', 2015, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195810101986021001', 'Ir. Robert Johanes Kodoatie, M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2000, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195811071988031001', 'Prof. Dr. Ir. Syafrudin, CES, M.T.', 'IV/c', 'Guru Besar', 'S3', 2014, 'Ilmu Teknik Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('195811111987031002', 'Ir. Fitri Yusman, M.SP.', 'III/c', 'Lektor', 'S2', 1991, 'Perumahan', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('195812211987032001', 'Ir. Dwi Kurniani, M.S.', 'III/d', 'Lektor', 'S2', 1991, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195901051987031002', 'Ir. Agung Nugroho, M.Kom.', 'IV/c', 'Lektor Kepala', 'S2', 2010, 'Biomedik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195901091987031001', 'Dr.Ir. Djoko Indrosaptono, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('195901181987102001', 'Ir. Diah Susetyo Retnowati, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1995, 'T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('195903231988032001', 'Ir. Hary Budieny, M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195905221988121001', 'Ir. Sarjito Jokosisworo, M.Si.', 'IV/b', 'Lektor Kepala', 'S2', 1995, 'Ilmu Material', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('195905281988031001', 'Ir. Indrastono Dwi Atmanto, M.Ing.', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Breeding Reproduksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195906191985111001', 'Ir. Sudjadi, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Elektro,Telkom,Kontrol,Robotika,Mikro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('195906201987031003', 'Ir. Bambang Yunianto, M.Sc.', 'IV/b', 'Lektor Kepala', 'S2', 1993, 'Heat Transfer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195907021987032001', 'Ir. Frida Kistiani, M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Manaj. Konstruksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195907141987031001', 'Ir. Muhrozi, M.S.', 'III/c', 'Lektor', 'S2', 1991, 'geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195907221987031003', 'Dr. Ir. Berkah Fajar Tamtomo Kiono, Dipl.Ing.', 'IV/b', 'Lektor Kepala', 'S3', 2002, 'Fluid Mechanic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('195909061988031003', 'Ir. Supriyono, M.T.', 'III/b', 'Lektor', 'S2', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195909091987031001', 'Ir. Wahju Krisna Hidajat, M.T.', 'III/b', 'Asisten Ahli', 'S2', 1999, 'Hidrogeologi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('195911071987032001', 'Dr. Ir. Ismiyati, M.S.', 'III/d', 'Lektor', 'S3', 2011, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('195912101987031002', 'Ir. Wahyudi Kushardjoko, M.T.', 'III/b', 'Lektor', 'S2', 2001, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196001151988101001', 'Ir. Hantoro Satriadi, M.T.', 'III/c', 'Lektor', 'S2', 1998, 'Agro Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196001251987031001', 'Ir. Sugiyanto, DEA', 'IV/a', 'Lektor Kepala', 'S2', 1993, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196002171987032001', 'Dra. Bitta Pigawati, Dipl.GE, M.T.', 'IV/b', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Wil & Kota Tata Guna Lahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196002231986021001', 'Dr. Ir. Hermawan, DEA', 'IV/a', 'Lektor Kepala', 'S3', 1995, 'Analisis Sitem Tenaga Listrik, Kestabilan Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('196003151987031001', 'Dr. Ir Heru Prastawa, DEA', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('196004121986032001', 'Dr. Ir. Ratnawati, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2005, 'Teknologi Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196004271987031001', 'Prof. Dr. Ir. Suripin, M.Eng.', 'IV/d', 'Guru Besar', 'S3', 1998, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('196005011986031003', 'Prof.Dr.Ir. Bakti Jos, DEA', 'IV/d', 'Guru Besar', 'S3', 1993, 'Tenik Energi Dan Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196005261987101001', 'Ir. Djoko Purwanto, M.S.', 'III/c', 'Lektor', 'S2', 1992, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196006021986021001', 'Prof. Dr. Ir. Sriyana, M.S.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196007181989031001', 'Ir. Kiryanto, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Teknik Energi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196010211990032002', 'Ir. Hermin Werdiningsih, M.T.', 'III/d', 'Lektor', 'S2', 2004, 'Peranc. Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196010251998021001', 'Ir. Imam Pujo Mulyatno, M.T.', 'III/d', 'Lektor', 'S2', 2002, 'Teknik Produksi & Material Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196103041993032001', 'Dr. Ir. Retno Widjajanti, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perec Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196106161993031002', 'Ir. Bambang Winardi, M.Kom.', 'III/d', 'Lektor', 'S2', 2013, 'Kependudukan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196107121988031003', 'Ir. Djoeli Satrijo, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196107221986021001', 'Ir. Himawan Indarto, M.S.', 'IV/a', 'Lektor Kepala', 'S2', 1990, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196110221988031002', 'Dr.T. Ir. Indro Sumantri, M.Eng.', 'IV/b', 'Lektor Kepala', 'S3', 2019, 'T. Pengolahan Limbah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196111171988031001', 'Ir. Tejo Sukmadi, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196112171987031001', 'Dr. Ir. Nazaruddin Sinaga, M.S.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Heat Transfer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196112261988031001', 'Dr. Ir. Setia Budi Sasongko, DEA.', 'IV/a', 'Lektor Kepala', 'S3', 2001, 'Tekn. Sistem Proses; Komputasi Proses', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196112281986031004', 'Prof. Dr. Ir. Purwanto, DEA', 'IV/e', 'Guru Besar', 'S3', 1994, 'T. Sistem Proses & T. Reaksi Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196201101989021001', 'Dr. Ir. Agung Dwiyanto, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Teknologi Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196203271988031004', 'Ir. Satrio Nugroho, M.Si.', 'III/c', 'Lektor', 'S2', 1996, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196203271991022001', 'Dr. Ir. Nur Rokhati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Tek. Batu Bara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196204031993031003', 'Ir. Agung Sugiri, S.T., M.P.St.', 'IV/a', 'Lektor Kepala', 'S2', 1999, 'Transfortasi Pemb Kerkelanjutan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196204231987031003', 'Dr. Ir. Dwi Basuki Wibowo, M.S.', 'IV/c', 'Lektor Kepala', 'S3', 2019, 'Struktural Dynamic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196204281990012001', 'Ir. Eflita Yohana, M.T., Ph.D.', 'III/c', 'Lektor Kepala', 'S3', 2011, 'Energy Conservasion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('196205161990011001', 'Ir. Parang Sabdono, M.Eng.', 'III/d', 'Lektor', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196205201989021001', 'Prof.Dr.rer.nat. Ir. Athanasius Priharyoto Bayusen', 'IV/d', 'Guru Besar', 'S3', 2006, 'Ceramic Processing and Characterization', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('196207011990031003', 'Ir. Arif Hidayat, CES, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196208091988031001', 'Ir. Toni Prahasto, MAsc., Ph.D.', 'III/c', 'Lektor', 'S3', 1999, 'Geometric Modeling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196209171991021001', 'Ir. Sulistyo, M.T., Ph.D.', 'IV/b', 'Lektor Kepala', 'S3', 2013, 'Metallurgy Dan Corrosion', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196210161988031003', 'Ir. Indriastjario, M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 1997, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196303161991031002', 'Dr. Ir. Nuroji, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2004, 'Teknik Struktur/Analisa Struktur 2', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('196307111990012001', 'Dr.Ars. Ir. Wijayanti, M.Eng.', 'III/c', 'Lektor', 'S3', 2018, 'Peranc. Kota & Perum.', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196307111991021002', 'Ir. Purwanto, M.T., M.Eng.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Struktur', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196309141988031012', 'Dr. Ir. Suharyanto, M.Sc.', 'IV/c', 'Lektor Kepala', 'S3', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('196309271993032001', 'Ir. Nurini, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perenc Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196310201991021001', 'Dr.Ir. Agung Budi Sardjono, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196312221990011003', 'Dr.Ir. Hadi Wahyono, M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perencanaan Wilayah Dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196312311990031022', 'Prof. Dr. Ir. Edi Purwanto, M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Perancangan Arsitektur dan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196402141991022002', 'Ir. Kristinah Haryani, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196405261989031002', 'Dr. Ir. Jaka Windarta, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('196406021991021001', 'Ir. Rudi Yuniarto Adi, M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196408041991021002', 'Dr. Ir. Budi Sudarwanto, M.Si.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Studi Pembangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196411081990011001', 'Dr. Ir. Eddy Prianto, CES, DEA', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196412021999032001', 'Ir. Dwi Siwi Handayani, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 1990, 'Penyediaaan Air Bersih, Manajemen Lingk.', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196503131991021001', 'Ir. Budi Setiyana, M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1996, 'Stress Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196509131998032001', 'Dr. Ir. Atik Suprapti, MTA.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196602201991021001', 'Prof. Dr. Ir. Budiyono, M.Si.', 'IV/d', 'Guru Besar', 'S3', 2010, 'T. Pengolahan Air', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196603231999031008', 'Ir. Sawitri Subiyanto, M.Si.', 'III/c', 'Lektor', 'S2', 2006, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('196605061995121001', 'Dr. Jawoto Sih Setyono, S.T., MDP', 'IV/a', 'Lektor Kepala', 'S3', 2017, 'Pwk Sustainable Development', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196605212006041010', 'Dr.Ing. Ir. Ismoyo Haryanto, M.T.', 'III/c', 'Lektor', 'S3', 2005, 'Getaran Mekanik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196608221997022001', 'Dr.Ars. Ir. Rina Kurniati, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196609011998021001', 'Junaidi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Air Limbah', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196610051992031003', 'Dr. Ir. Hari Nugroho, M.T.', 'III/c', 'Lektor', 'S3', 2019, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196701231994012001', 'Ir. Sri Hartuti Wahyuningrum, M.T.', 'III/b', 'Lektor', 'S2', 2007, 'Perancangan Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196702081994031005', 'Prof. Ir. Mochamad Agung Wibowo, M.M., M.Sc., Ph.D', 'IV/c', 'Guru Besar', 'S3', 2004, 'Teknik Sipil (Manajemen Konstruksi)', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('196704011999032001', 'Dr. Ir. Anik Sarminingsih, M.T.', 'III/a', 'Asisten Ahli', 'S3', 2015, 'Penyediaan Air Bersih', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196704041998022001', 'Prof. Dr. Ir. Erni Setyowati, M.T.', 'IV/a', 'Guru Besar', 'S3', 2011, 'Fisika Bangunan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196704291994032002', 'Dr. Sunarti, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2016, 'Perumahan Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196704301992032002', 'Dr. Ir. Suzanna Ratih Sari, M.M., M.A.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('196709191999031003', 'Ir. Winardi Dwi Nugraha, M.Si.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Pengelolalingkungan Kualitas Air', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('196711101994031003', 'Holi Bina Wijaya, S.T., MUM', 'IV/b', 'Lektor Kepala', 'S2', 1999, 'Sistem Informasi Perenc Urban Manaj Tata Guna Laha', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196711141993031001', 'Prof. Ir. Didi Dwi Anggoro, M.Eng., Ph.D.', 'IV/c', 'Guru Besar', 'S3', 2004, 'Zeolite', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196803171997022002', 'Retno Susanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2001, 'Perencanaan Kota Pariwisata', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196805081999031002', 'Dr. Wilma Amiruddin, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Teknik Managemen Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('196806281998022001', 'Dr. Ir. R. Siti Rukayah, M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S2', '', '', ''),
-('196807111997021001', 'Yuli Christyono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Telekokunikasi Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196807261997021001', 'Mardwi Rahdriawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2001, 'Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196808141999031002', 'Dr.Eng. Sukamta, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2008, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('196811102005011001', 'Joga Dharma Setiawan, B.Sc., M.Sc., Ph.D.', 'III/c', 'Lektor', 'S3', 2001, 'Rotor Dinamics', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('196811111994121001', 'Sumardi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S2', 1998, 'Sistem Instrumentasi dan Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196901011997021001', 'Dr.Ing. Wisnu Pradoto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Perencaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196903111997021001', 'Susatyo Nugroho Widyo Pramono, S.T., M.M.', 'III/a', 'Lektor', 'S2', 1999, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('196904291998021006', 'Hardi Wibowo, S.T., M.Eng.', 'III/d', 'Lektor', 'S2', 2004, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('196904292002121001', 'Dr. Hery Suliantoro, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('196905051995122001', 'Dr. Artiningsih, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2018, 'Pernec Wil &Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196906121994031001', 'Dr. Wahyudi, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2015, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196907091997021001', 'Karnoto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196907141997021001', 'Sukiswo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Elektronika,Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('196909291997021001', 'Dr. Fadjar Hari Mardiansjah, S.T., M.T., MDP', 'III/c', 'Lektor', 'S3', 2014, 'Tata Guna Lahan Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196910021994032003', 'Dr.T. Aji Prasetyaningrum, S.T., M.Si.', 'IV/b', 'Lektor Kepala', 'S3', 2018, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('196912061999031002', 'Samsul Ma\'rif, S.P., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 1998, 'Ek Wil Kota Perenc Wil', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('196912211995121001', 'Achmad Hidayatno, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Pengolahan Sinyal Digital', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197002171994121001', 'Dr. Susilo Adi Widyanto, S.T., M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2009, 'Production &Automatic', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197004231995121001', 'Prof. Dr. I Nyoman Widiasa, S.T., M.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197005201999031002', 'Rusnaldy, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2008, 'Proses Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197005212000121001', 'Budi Setiyono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Kontrol', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197006252002122001', 'Sri Hartini, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2000, 'Sistem Produksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197006271998031005', 'Dr. Mussadun, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2012, 'Pengembangan Wil Pesisir Dan Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197007272000121001', 'Dr. Ir. R. Rizal Isnanto, S.T., M.M., M.T., IPM', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Informasi Dan Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197008061998021001', 'Yusuf Umardani, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Metallurgy Dan Casting', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197011231995121001', 'Prof. Dr.rer.nat. Imam Buchori, S.T.', 'IV/d', 'Guru Besar', 'S3', 2005, 'Perenc Wil & Kota Aplikasi Geomatika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197011231998021001', 'Dr.Eng. Gunawan Dwi Haryadi, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2012, 'Material Handling', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197012031997021001', 'Imam Santoso, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197012121998022001', 'Dr. Dyah Ari Wulandari, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2016, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197102071995121001', 'Prof. Dr. Moh. Djaeni, S.T., M.Eng.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Energi Tek (Drying) Pengeringan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197103011997021001', 'Prof. Dr. Istadi, S.T., M.T.', 'IV/c', 'Guru Besar', 'S3', 2006, 'Ilmu Teknik Kimia/Thermodinamika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197103011998031001', 'Ika Bagus Priyambada, S.T., M.Eng.', 'III/a', 'Asisten Ahli', 'S2', 1997, 'Buangan Padat, Amdal', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197103271999032002', 'Prof. Dr. Aries Susanty, S.T., M.T.', 'IV/a', 'Guru Besar', 'S3', 2008, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197103301998022001', 'Dr.Ling Sri Sumiyati, S.T., M.Si.', 'III/c', 'Lektor', 'S3', 2019, 'Kes. Lingk. Biologi Dan Mikrobiologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197104201998021001', 'Dr. Sulardjaka, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Engenering Mechanical', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197104211999031003', 'Mohamad Said Kartono Tony Suryo Utomo, S.T., M.T.,', 'III/c', 'Lektor', 'S3', 2008, 'Teknik Sistem & Pengendalian Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197104291998021001', 'Priyo Nugroho Parmantoro, S.T., M.Eng.', 'III/c', 'Lektor', 'S2', 2003, 'Keairan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197105011997021001', 'Dr. Luqman Buchori, S.T., M.T.', 'IV/c', 'Lektor Kepala', 'S3', 2018, 'Komputasi Dinamika Fluida', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197106061995121003', 'Agung Budi Prasetijo, S.T., M.I.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2016, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197106161999031003', 'Mochammad Facta, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2012, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197107191998022001', 'Ajub Ajulian Zahra Macrina, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197107231998022001', 'Dr. Yulita Arni Priastiwi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197107241997021001', 'Dr. Ing. Asnawi, S.T.', 'IV/a', 'Lektor Kepala', 'S3', 2005, 'Perencanaan Kota Pwk', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197108181997021001', 'Dr. Agus Suprihanto, S.T, M.T.', 'IV/b', 'Lektor Kepala', 'S3', 2001, 'Failure Analisis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197110231998022001', 'Sri Rahayu, S.Si., M.Si.', 'III/c', 'Lektor', 'S2', 2005, 'Geografi Kota Sistem Informasi Perenc', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197111241998031002', 'Mohammad Muktiali, S.E., M.Si., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2006, 'Sintesis Biomaterial Untuk Implantasi Ulang', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197112181995121001', 'Dr. Wahyul Amien Syafei, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Telekomunikasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197204221999031004', 'Dr. Abdul Syakur, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Teknik Tenaga Listrik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197205102001121001', 'Bagus Hario Setiadji, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S3', '', '', ''),
-('197205312000031001', 'Kami Hari Basuki, S.T., M.T.', 'III/a', 'Lektor', 'S2', 2001, 'Transportasi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197206061999031001', 'Darjat, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2005, 'Elektronika', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197206091998031001', 'Prof. Dr. Widayat, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2011, 'Ilmu Sistem Proses Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197206172000121001', 'Dr. Yudi Basuki, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2002, 'Perec Wil &Kota Perec Transformasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197208302000031001', 'Dr. Badrus Zaman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Pengelolaan Wilayah Pesisir, Pengelolaan Kualitas ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197212311998022001', 'Dr. Ratna Purwaningsih, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2013, 'Sistem modelling dan Industry Sustainability', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197301121998032001', 'Wido Prananing Tyas, S.T., MDP, Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2015, 'Perenc Wil & Kota Manajemen Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197301302000032001', 'Nurandani Hardyanti, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2013, 'Pengelolaan Limbah Cair dan Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197302041997021001', 'Aghus Sofwan, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Sistem Komputer Dan Informasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197302261998021001', 'Dr. Adian Fatchur Rochim, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2019, 'Network System', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197303051997021001', 'Muchammad, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2003, 'Presurre Vessel Technology', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197303171999031001', 'Ojo Kurdi, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2002, 'Dynamic Of Vehicle', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197305072002122002', 'Dr. Naniek Utami Handayani, S.Si., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197305262000121001', 'Dr. Susatyo Handoko, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Ketenagaan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197306161999031001', 'Bharoto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Sejarah, Teori & Kritik Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197306211997021001', 'Prof. Tutuk Djoko Kusworo, S.T., M.Eng., Ph.D.', 'IV/b', 'Guru Besar', 'S3', 2008, 'Teknologi Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197307021999031001', 'Dr.Eng. Achmad Widodo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Nodal Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197309262000121001', 'Dr. Iwan Setiawan, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2016, 'Teknik Elektro', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197310022000121001', 'Dr. Okto Risdianto Manullang, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197310172000121001', 'Eko Sasmito Hadi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2002, 'Sistem Perkapalan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197310242000031001', 'Wiharyanto Oktiawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2000, 'Air Bersih Dan Air Buangan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197311061998022001', 'Rani Rumita, S.T., M.T.', 'III/a', 'Asisten Ahli', 'S2', 2005, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197312172000121001', 'Dr.Eng. Deddy Chrismianto, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2013, 'Teknik Produksi & Material Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197312211999031002', 'Dr. Denny Nurkertamanda, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197401311999031003', 'Dr. Ing. Sudarno, S.T., M.Sc.', 'III/d', 'Lektor', 'S3', 2011, 'Buangan B3, Pencemaran Tanah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197402141999031002', 'Haryono Setiyo Huboyo, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2013, 'Pencemaran Udara', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197402142000121001', 'Parlindungan Manik, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Operasional', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197402231997021001', 'Edward Endrianto Pandelaki, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2010, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Ilmu Arsitektur dan Perkotaan ', '', '', ''),
-('197403042000121001', 'Prof. Dr. Jamari, S.T., M.T.', 'III/d', 'Guru Besar', 'S3', 2006, 'Tribologi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197403081999031005', 'Syaiful, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2010, 'Internal Combution Engine', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S2', '', '', ''),
-('197403162001121001', 'Dr. Singgih Saptadi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2016, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197403271999031002', 'Dr.sc.agr. Iwan Rudiarto, S.T., M.Sc.', 'IV/a', 'Lektor Kepala', 'S3', 2010, 'Manajemen Sumber Daya Manusia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197404092008012010', 'Diah Intan Kusumo Dewi, S.T., M.Eng.', 'III/b', 'Asisten Ahli', 'S2', 2004, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197404262000121001', 'Darminto Pujotomo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Manajemen Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197405231998021001', 'Prof. Dr. Andri Cahyo Kumoro, S.T., M.T.', 'IV/b', 'Guru Besar', 'S3', 2007, 'Ilmu Fenomena Perpindahan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197406181999031002', 'Untung Budiarto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2003, 'Teknik Sistem & Pengendalian Kelautan', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197406271999031002', 'Dr. Maman Somantri, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Rekayasa Perangkat Lunak, IT Management, Sistem In', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197407201998032001', 'Dr.Ars. Anita Ratnasari Rakhmatulloh, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2018, 'Perenc Wil & Kota Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197408032008011008', 'Widjonarko, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2007, 'Manaj & Rekayasa Infrastruktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197409122000121002', 'Sriyanto, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Teknik Industri', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197409212000031002', 'Dr.Ing Prihadi Nugroho, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Perenc Wil &Kota Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', '');
-INSERT INTO `dosen` (`nip`, `nama`, `golongan`, `jabatan`, `pendidikan`, `th_lulus`, `kepakaran`, `status_bekerja`, `jenis`, `status_kepegawaian`, `fakultas`, `departemen`, `program_studi`, `jenis_kelamin`, `no_telp`, `email`) VALUES
-('197409302001121002', 'Mochamad Arief Budihardjo, S.T., M.Eng.Sc, Env.Eng', 'III/d', 'Lektor Kepala', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197410202000121001', 'Sukawi, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2002, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197412162000122001', 'Dr.Ing. Silviana, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2014, 'Teknik Separasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197501172000032001', 'Nita Aryanti, S.T., M.T., Ph.D.', 'IV/a', 'Lektor Kepala', 'S3', 2009, 'Teknologi Membran Emulsi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197501181999031001', 'Sri Nugroho, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2009, 'Material Science', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197501222000121001', 'Dr.Eng. Ahmad Fauzan Zakki, S.T., M.T.', 'III/c', 'Lektor Kepala', 'S3', 2012, 'Struktur Kapal dan FSI Analysis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197503062000121001', 'Dr.rer.oec. Arfan Bakhtiar, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Manajemen Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197503252003121002', 'Ari Wibawa Budi Santosa, S.T., M.Si.', 'III/d', 'Lektor', 'S2', 2005, 'Managemen Sumber Daya Pantai', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197504281999031001', 'Jati Utomo Dwi Hatmoko, S.T., M.M., M.Sc., Ph.D.', 'III/d', 'Lektor', 'S3', 2008, 'Manajemen Konstruksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S2', '', '', ''),
-('197505291998021001', 'Prof. Dr.rer.nat. Heru Susanto, S.T., M.M., M.T.', 'IV/c', 'Guru Besar', 'S3', 2007, 'Tek. Membran', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197506082005011001', 'Eko Handoyo, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2003, 'Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197508112000121001', 'Dr.Eng. Maryono, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2015, 'Perencanaan Manjemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197509081999031002', 'Dr. Aris Triwiyatno, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2012, 'Kecerdasan Buatan, Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('197509152000121001', 'Dr.nat.tech. Siswo Sumardiono, S.T., M.T.', 'III/d', 'Lektor Kepala', 'S3', 2005, 'Modifikasi Starch', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197509222003122002', 'Maya Damayanti, S.T., M.A., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Manajemen Kota Ek Wil Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197510211999031004', 'Dr.Eng. Hartono Yudo, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2014, 'Perancangan Teknik Teknik Mesin', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('197510281999031004', 'Prof. Dr. Hadiyanto, S.T., M.Sc.', 'IV/a', 'Guru Besar', 'S3', 2007, 'Ilmu Teknik Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197602162009121001', 'Dr. techn. Khoiri Rozi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2019, 'Sistem Cerdas', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('197602252000121001', 'Ilham Nurhuda, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2011, 'Struktur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197603052000122001', 'Dr.Ing. Wakhidah Kurniawati, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Perenc & Perenc Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197603212000122001', 'Amelia Kusuma Indriastuti, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2002, 'Sipil Transportasi', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197604161999032002', 'Dr. Aprilina Purbasari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'T. Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197605252000122001', 'Dr. Ing. Wiwandari Handayani, S.T., M.T., MPS', 'IV/a', 'Lektor Kepala', 'S3', 2011, 'Pernc Ekonomi Wilayah', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197605282000122001', 'Dyah Hesti Wardhani, S.T., M.T., Ph.D.', 'III/d', 'Lektor Kepala', 'S3', 2009, 'Pangan Fungsional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197608042000121002', 'Dr. Ing. Suherman, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2007, 'Teknik Reaksi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('197608121999031002', 'Rukuh Setiadi, S.T., MEM.,Ph.D.', 'III/c', 'Lektor', 'S3', 2017, 'Perencanaan Wil Kota Majemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197608122010121002', 'Dr. Dian Agus Widiarso, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2020, 'Ilmu Kesehatan Anak', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('197609112002121001', 'Septana Bagus Pribadi, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2001, 'Perancangan Arsitektur', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('197703092008121001', 'Dr. L.M. Sabri, S.T., M.T.', 'III/b', 'Lektor', 'S3', 2018, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('197705242003122001', 'Landung Esariti, S.T., MPS', 'III/c', 'Lektor', 'S2', 2005, 'Perenc Wil & Kota Properti', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('197705262010121001', 'Eko Didik Widianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2004, 'Sistem Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197706152008011011', 'Rinta Kridalukmana, S.Kom., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Teknologi Informasi', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('197706222010121001', 'Teguh Prakoso, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2014, 'Medan Elektro Magnetik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197708262006041001', 'Munawar Agus Riyadi, S.T., M.T., Ph.D.', 'III/d', 'Lektor', 'S3', 2012, 'Elektronika', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S2', '', '', ''),
-('197710032000121001', 'Dr. Purnawan Adi Wicaksono, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S3', 2018, 'Manajemen Operasional', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197712112005011002', 'Dr.rer.nat. Thomas Triadi Putranto, S.T., M.Eng.', 'III/c', 'Lektor Kepala', 'S3', 2014, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('197802062010121003', 'Bandi Sasmito, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Penginderaan Jauh', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('197803032010122001', 'Titik Istirokhatun, S.T., M.Sc.', 'III/d', 'Lektor Kepala', 'S2', 2009, 'Teknologi Pengelolaan Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197805142005011001', 'Dr. Budi Prasetyo Samadikun, S.T., M.Si.', 'III/b', 'Lektor', 'S3', 2015, 'Manajemen Lingkungan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('197808112008121003', 'Ferry Hermawan, S.T., M.T., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('197811252008121001', 'Andri Suprayogi, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2008, 'Geodesi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('197902192003122001', 'Diana Puspita Sari, S.T., M.T.', 'IV/a', 'Lektor Kepala', 'S2', 2008, 'Teknik Industri', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('197910022009122001', 'Dr. Oky Dwi Nurhayati, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2011, 'Software Engineering', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('198007162008011017', 'Dr. Rifky Ismail, S.T., M.T.', 'III/d', 'Lektor', 'S3', 2013, 'Perenc Wil & Kota', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('198012112010121001', 'Enda Wista Sinuraya, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Komputer', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Elektro', 'Teknik Elektro S1', '', '', ''),
-('198109132003121002', 'Ary Arvianto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Teknik Industri Scm', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('198201202008011005', 'Ganjar Samudro, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2007, 'Bioenergi dan Sanitasi Lingkungan', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('198201312010121003', 'Wahyu Caesarendra, S.T., M.Eng., Ph.D.', 'III/c', 'Lektor', 'S3', 2015, 'MEKATRONIKA', 'Non Aktif', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Mesin', 'Teknik Mesin S1', '', '', ''),
-('198207162012121004', 'Dr. Kresno Wikan Sadono, S.T., M.Eng.', 'III/b', 'Pengajar', 'S3', 2019, 'Geoteknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Sipil', 'Teknik Sipil S1', '', '', ''),
-('198207212003122001', 'Dr.Ing. Santy Paulla Dewi, S.T., M.T.', 'III/c', 'Lektor', 'S3', 2017, 'Perenc Transportasi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('198211072005012001', 'Dr.Ing. Novie Susanto, S.T., M.Eng.', 'III/c', 'Lektor', 'S3', 2015, 'Ilmu Perancangan Sistem Kerja dan Ergonomi', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('198301222006041002', 'Fahrudin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Geoteknik', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geologi', 'Teknik Geologi S1', '', '', ''),
-('198303192010121002', 'Kurniawan Teguh Martono, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Human Computer Interaction, Komputer Grafik, Game ', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('198305012012121003', 'Sariffuddin, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Manajemen bencana', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Perencanaan Wilayah dan Kota', 'Perencanaan Wilayah dan Kota S', '', '', ''),
-('198401292009121003', 'Dr.Eng. Bangun Indrakusumo Radityo Harsritanto, S.', 'III/c', 'Lektor', 'S3', 2016, 'universal desain', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('198402172006042002', 'Nia Budi Puspitasari, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2009, 'Teknik Industri', 'Ijin Belajar', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('198403262006042001', 'Dyah Ika Rinawati, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Industri', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('198406272012121003', 'Resza Riskiyanto, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Perancangan Arsitektur', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Arsitektur', 'Arsitektur S1', '', '', ''),
-('198412062010122008', 'Ike Pertiwi Windasari, S.T., M.T.', 'III/b', 'Lektor', 'S2', 2009, 'Teknik', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Komputer', 'Teknik Komputer S1', '', '', ''),
-('198412112010122005', 'Dessy Ariyanti, S.T., M.T., Ph.D.', 'III/b', 'Lektor', 'S3', 2018, 'Teknik Kimia', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('198501252012121005', 'Arwan Putra Wijaya, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Geomatika, Pertanahan dan Sistem Informasi Geograf', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Geodesi', 'Teknik Geodesi S1', '', '', ''),
-('198505262010121005', 'Dr. Eng. Andi Trimulyono, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S3', 2010, 'Teknik perkapalan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('198601152010122004', 'Noer Abyor Handayani (Noera), S.T., M.T.', 'III/c', 'Lektor', 'S2', 2010, 'Teknik Kimia', 'Tugas Belajar DN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('198603192012121002', 'Wiwik Budiawan, S.T., M.T.', 'III/c', 'Lektor', 'S2', 2011, 'Teknik Industri, IT for Ergonomics', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Industri', 'Teknik Industri S1', '', '', ''),
-('198608262010121005', 'Berlian Arswendo Adietya, S.T., M.T.', 'III/d', 'Lektor', 'S2', 2010, 'Teknik Kelautan', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Perkapalan', 'Teknik Perkapalan S1', '', '', ''),
-('198706212012121001', 'Asep Muhamad Samsudin, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2011, 'Teknologi Membran', 'Tugas Belajar LN', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Kimia', 'Teknik Kimia S1', '', '', ''),
-('198802252012121003', 'Arya Rezagama, S.T., M.T.', 'III/b', 'Asisten Ahli', 'S2', 2012, 'Akun Biaya & Manaj. Bisnis', 'Aktif Bekerja', 'Tenaga Dosen', 'PNS', 'Fakultas Teknik', 'Departemen Teknik Lingkungan', 'Teknik Lingkungan S1', '', '', ''),
-('pengusul', 'Dosen', '', '', '', 0000, '', '', '', '', '', '', 'Teknik Elektro', 'Laki-laki', '0853722847', 'pengusul@test.com'),
-('reviewer1', 'reviewer1', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', ''),
-('reviewer2', 'reviewer2', '4', '', '', 0000, '', '', '', '', 'teknik', 'elektro', 'elektro', 'laki laki', '', '');
+INSERT INTO `dosen` (`nip`, `nomor_induk`, `nama`, `jabatan`, `pendidikan`, `status_kepegawaian`, `program_studi`) VALUES
+('', '199207222020121012', 'Banu Ardi Hidayat, S.T., M.T.', 'Pengajar', 'S2', 'CPNS', 'Departemen Teknik Sipil'),
+('0001016903', '196901011997021001', 'Dr.Ing. Wisnu Pradoto, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0001037105', '197103011998031001', 'Ika Bagus Priyambada, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0001037106', '197103011997021001', 'Prof. Dr. Istadi, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0001046704', '196704011999032001', 'Dr. Ir. Anik Sarminingsih, M.T., IPM.', 'Asisten Ahli', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0001056008', '196005011986031003', 'Prof.Dr.Ir. Bakti Jos, DEA', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0001057104', '197105011997021001', 'Dr. Ir. Luqman Buchori, S.T., M.T., IPM.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0001058302', '198305012012121003', 'Sariffuddin, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0001065609', '195606011986021001', 'Ir. Irawan Wisnu Wardhana, M.S.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0001067702', '197706012003121004', 'Dr.Eng. Munadi, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0001076202', '196207011990031003', 'Ir. Arif Hidayat, CES, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0001096603', '196609011998021001', 'Junaidi, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0002015803', '195801021986031002', 'Dr. Ir. Sumar Hadi Suryo, M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0002066010', '196006021986021001', 'Prof. Dr. Ir. Sriyana, M.S.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0002066403', '196406021991021001', 'Ir. Rudi Yuniarto Adi, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0002075907', '195907021987032001', 'Ir. Frida Kistiani, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0002077303', '197307021999031001', 'Dr.Eng. Achmad Widodo, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0002106902', '196910021994032003', 'Dr.T. Aji Prasetyaningrum, S.T., M.Si.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0002107304', '197310022000121001', 'Dr. Okto Risdianto Manullang, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0002107903', '197910022009122001', 'Dr. Oky Dwi Nurhayati, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Komputer'),
+('0002126403', '196412021999032001', 'Ir. Dwi Siwi Handayani, M.Si.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0003037805', '197803032010122001', 'Titik Istirokhatun, S.T., M.Sc.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0003046203', '196204031993031003', 'Ir. Agung Sugiri, S.T., M.P.St.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0003058302', '198305032010122002', 'Dr. Anak Agung Sagung Manik Mahachandra Jayanthi M', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0003087407', '197408032008011008', 'Widjonarko, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0003107703', '197710032000121001', 'Dr. Purnawan Adi Wicaksono, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0003118402', '198411032008121004', 'Dr. Eng. Samuel, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0003127004', '197012031997021001', 'Imam Santoso, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0004027303', '197302041997021001', 'Aghus Sofwan, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0004036105', '196103041993032001', 'Dr. Ir. Retno Widjajanti, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0004037403', '197403042000121001', 'Prof. Dr. Jamari, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0004046704', '196704041998022001', 'Prof. Dr. Ir. Erni Setyowati, M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0004058504', '198505042018031001', 'Rinal Khaidar Ali, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0004059202', '199205042019032023', 'Masyiana Arifah Alfia Riza, S.T., M.Arch.', 'Pengajar', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0004068907', 'H.7.1989060420180710', 'Yudi Eko Windarto, S.T., M.Kom.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Komputer'),
+('0004086404', '196408041991021002', 'Dr. Ir. Budi Sudarwanto, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0004087601', '197608042000121002', 'Prof. Dr.Ing. Suherman, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0004099105', 'H.7.1991090420180710', 'Kuntoro Adi Nugroho, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Komputer'),
+('0005015907', '195901051987031002', 'Ir. Agung Nugroho, M.Kom., IPM.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0005025702', '195702051986031003', 'Ir. Djoko Suwandono, M.Sp.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0005037304', '197303051997021001', 'Muchammad, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0005037606', '197603052000122001', 'Dr.Ing. Wakhidah Kurniawati, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0005055205', '195205051980111001', 'Prof.Ir. Totok Rusmanto, M.Eng.', 'Guru Besar', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0005056908', '196905051995122001', 'Dr. Artiningsih, S.T., M.Si.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0005106606', '196610051992031003', 'Dr. Ir. Hari Nugroho, M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0006027801', '197802062010121003', 'Bandi Sasmito, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0006037502', '197503062000121001', 'Dr.rer.oec. Arfan Bakhtiar, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0006048803', '198804062015041002', 'Good Rindo, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0006056605', '196605061995121001', 'Dr. Jawoto Sih Setyono, S.T., MDP', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0006057105', '197106061995121003', 'Agung Budi Prasetijo, S.T., M.I.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Komputer'),
+('0006067205', '197206061999031001', 'Darjat, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0006087002', '197008061998021001', 'Yusuf Umardani, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0006095910', '195909061988031003', 'Ir. Supriyono, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0006117302', '197311061998022001', 'Rani Rumita, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0006126902', '196912061999031002', 'Samsul Ma\'rif, S.P., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0006128402', '198412062010122008', 'Ike Pertiwi Windasari, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0007027104', '197102071995121001', 'Prof. Dr. Moh. Djaeni, S.T., M.Eng.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0007048506', 'H.7.1985040720180710', 'Dr. Anang Wahyu Sejati, S.T., M.T.', 'Lektor', 'S3', 'Pegawai Undip Non AS', 'Departemen Perencanaan Wilayah'),
+('0007057301', '197305072002122002', 'Dr. Naniek Utami Handayani, S.Si., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0007085804', '195808071987031001', 'Ir. Mochtar Hadiwidodo, M.Si.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0007115805', '195811071988031001', 'Prof. Dr. Ir. Syafrudin, CES, M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0007115909', '195911071987032001', 'Dr. Ir. Ismiyati, M.S.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0007118202', '198211072005012001', 'Dr.Ing. Novie Susanto, S.T., M.Eng.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0008015711', '195701081986021001', 'Ir. Salamun, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0008026702', '196702081994031005', 'Prof. Ir. Mochamad Agung Wibowo, M.M., M.Sc., Ph.D', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0008037405', '197403081999031005', 'Syaiful, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0008056802', '196805081999031002', 'Dr. Wilma Amiruddin, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0008067505', '197506082005011001', 'Eko Handoyo, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0008089101', 'H.7.1991080820180720', 'Hana Sugiastu Firdaus, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geodesi'),
+('0008097504', '197509081999031002', 'Dr. Aris Triwiyatno, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0008115504', '195511081983031002', 'Prof.Ir. Edy Darmawan, M.Eng.', 'Guru Besar', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0008116405', '196411081990011001', 'Dr. Ir. Eddy Prianto, CES, DEA', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0008128604', 'H.7.1986120820180720', 'Devina Trisnawati, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geologi'),
+('0009015905', '195901091987031001', 'Dr.Ir. Djoko Indrosaptono, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0009037705', '197703092008121001', 'Dr. L.M. Sabri, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Geodesi'),
+('0009047403', '197404092008012010', 'Diah Intan Kusumo Dewi, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0009067204', '197206091998031001', 'Prof. Dr. Ir. Widayat, S.T., M.T., IPM.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0009076905', '196907091997021001', 'Karnoto, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0009086207', '196208091988031001', 'Ir. Toni Prahasto, MAsc., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0009095912', '195909091987031001', 'Ir. Wahju Krisna Hidajat, M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0009098506', 'H.7.1985090920180810', 'Dr.-Ing. Paryanto, S.T., M.T.', 'Lektor', 'S3', 'Pegawai Undip Non AS', 'Departemen Teknik Mesin'),
+('0009115601', '195611091985032002', 'Prof. Dr. Ir. Han Ay Lie, M.Eng.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0009118605', 'H.7.1986110920180720', 'Novia Sari Ristianti, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Perencanaan Wilayah'),
+('0010016210', '196201101989021001', 'Dr. Ir. Agung Dwiyanto, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0010057203', '197205102001121001', 'Bagus Hario Setiadji, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0010105814', '195810101986021001', 'Ir. Robert Johanes Kodoatie, M.Eng., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0010116707', '196711101994031003', 'Holi Bina Wijaya, S.T., MUM', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0010116804', '196811102005011001', 'Joga Dharma Setiawan, B.Sc., M.Sc., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0010117603', '197611102000121003', 'Mohammad Sahid Indraswara, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0010125907', '195912101987031002', 'Ir. Wahyudi Kushardjoko, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0011036905', '196903111997021001', 'Susatyo Nugroho Widyo Pramono, S.T., M.M.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0011058805', 'H.7.1988051120180720', 'Nurakhmi Qadaryati, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geologi'),
+('0011069003', '199006112018031001', 'Grandy Loranessa Wungo, S.T., M.T', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0011076303', '196307111991021002', 'Ir. Purwanto, M.T., M.Eng.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0011076304', '196307111990012001', 'Dr.Ars. Ir. Wijayanti, M.Eng.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0011076805', '196807111997021001', 'Yuli Christyono, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0011087503', '197508112000121001', 'Dr.Eng. Maryono, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0011087806', '197808112008121003', 'Ferry Hermawan, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0011097602', '197609112002121001', 'Septana Bagus Pribadi, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0011116801', '196811111994121001', 'Ir. Sumardi, S.T., M.T., IPM.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0011127705', '197712112005011002', 'Dr.rer.nat. Thomas Triadi Putranto, S.T., M.Eng.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Geologi'),
+('0011128005', '198012112010121001', 'Enda Wista Sinuraya, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0011128402', '198412112010122005', 'Dessy Ariyanti, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0011129301', 'H.7.1993121120180720', 'Desyta Ulfiana, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Sipil'),
+('0012017301', '197301121998032001', 'Wido Prananing Tyas, S.T., MDP, Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0012035205', '195203121975011004', 'Prof. Dr. Ir. Bambang Pramudono, MS.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0012046008', '196004121986032001', 'Dr. Ir. Ratnawati, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0012066904', '196906121994031001', 'Dr. Wahyudi, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0012075806', '195807121983031032', 'Ir. Slamet Priyanto, M.S.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0012076106', '196107121988031003', 'Ir. Djoeli Satrijo, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0012087601', '197608121999031002', 'Rukuh Setiadi, S.T., MEM.,Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0012087611', '197608122010121002', 'Dr. Dian Agus Widiarso, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Geologi'),
+('0012097402', '197409122000121002', 'Sriyanto, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0012098905', '198909122019032012', 'Risma Septiana, S.T., M.Eng.', 'Pengajar', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0012127002', '197012121998022001', 'Dr. Dyah Ari Wulandari, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0013036507', '196503131991021001', 'Ir. Budi Setiyana, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0013095704', '195709131986031001', 'Ir. Bambang Sudarsono, M.S.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0013098101', '198109132003121002', 'Ary Arvianto, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0013108903', '198910132015042002', 'Dania Eridani, S.T., M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0013109008', 'H.7.1990101320180710', 'Yosua Alvin Adi Soetrisno, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Elektro'),
+('0013116504', '196509131998032001', 'Prof. Dr. Ir. Atik Suprapti, MTA.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0014026405', '196402141991022002', 'Ir. Kristinah Haryani, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0014027401', '197402141999031002', 'Ir. Haryono Setiyo Huboyo, S.T., M.T., Ph.D., IPM.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0014027402', '197402142000121001', 'Parlindungan Manik, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0014057803', '197805142005011001', 'Dr. Ir. Budi Prasetyo Samadikun, S.T., M.Si., IPM.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0014069202', '199206142018032001', 'Undayani Cita Sari, S.T, M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0014075904', '195907141987031001', 'Ir. Muhrozi, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0014076902', '196907141997021001', 'Sukiswo, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0014086805', '196808141999031002', 'Dr.Eng. Sukamta, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0014095408', '196309141988031012', 'Prof. Dr. Ir. Suharyanto, M.Sc.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0014108705', 'H.7.1987101420180720', 'Jenian Marin, S.T.,M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geologi'),
+('0014116702', '196711141993031001', 'Prof. Ir. Didi Dwi Anggoro, M.Eng., Ph.D.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0014129003', '199012142019031014', 'Muhammad Iqbal, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0015016005', '196001151988101001', 'Ir. Hantoro Satriadi, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0015018601', '198601152010122004', 'Noer Abyor Handayani (Noera), S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0015036004', '196003151987031001', 'Dr. Ir Heru Prastawa, DEA', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0015047110', '197105152000031014', 'Zainal Fanani Rosyada, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0015067710', '197706152008011011', 'Rinta Kridalukmana, S.Kom., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0015075803', '195807151986021001', 'Ir. EPF Eko Yuli Priyono, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0015097503', '197509152000121001', 'Dr.nat.tech. Siswo Sumardiono, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0016027606', '197602162009121001', 'Dr. techn. Khoiri Rozi, S.T., M.T.', 'Asisten Ahli', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0016036304', '196303161991031002', 'Dr. Ir. Nuroji, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0016037401', '197403162001121001', 'Dr. Singgih Saptadi, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0016047603', '197604161999032002', 'Dr. Aprilina Purbasari, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0016056203', '196205161990011001', 'Ir. Parang Sabdono, M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0016066104', '196106161993031002', 'Ir. Bambang Winardi, M.Kom.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0016067104', '197106161999031003', 'Mochammad Facta, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0016067304', '197306161999031001', 'Bharoto, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0016078205', '198207162012121004', 'Dr. Kresno Wikan Sadono, S.T., M.Eng.', 'Pengajar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0016106202', '196210161988031003', 'Ir. Indriastjario, M.Eng.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0016127402', '197412162000122001', 'Dr.Ing. Ir. Silviana, S.T., M.T., IPM., ASEAN Eng.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0017017502', '197501172000032001', 'Prof. Nita Aryanti, S.T., M.T., Ph.D.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0017026008', '196002171987032001', 'Dra. Bitta Pigawati, Dipl.GE, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0017027002', '197002171994121001', 'Dr. Susilo Adi Widyanto, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0017028401', '198402172006042002', 'Nia Budi Puspitasari, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0017036804', '196803171997022002', 'Retno Susanti, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0017037303', '197303171999031001', 'Ojo Kurdi, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0017049107', 'H.7.1991041720180710', 'Hadha Afrisal, S.T., M.Sc.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Elektro'),
+('0017049108', 'H.7.1991041720180710', 'Denis, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Elektro'),
+('0017058702', '198705172014042001', 'Arnis Rochma Harani, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0017067206', '197206172000121001', 'Dr. Yudi Basuki, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0017067906', '197906172005011003', 'Yoga Aribowo, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0017075408', '195407171982032001', 'Prof. Dr.Ir. Nany Yuliastuti, MSP', 'Guru Besar', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0017096205', '196209171991021001', 'Ir. Sulistyo, M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0017097904', '197909172008121004', 'Tri Winarno, S.T., M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0017107301', '197310172000121001', 'Eko Sasmito Hadi, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0017116105', '196111171988031001', 'Ir. Tejo Sukmadi, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0017126106', '196112171987031001', 'Dr. Ir. Nazaruddin Sinaga, M.S.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0017127302', '197312172000121001', 'Dr.Eng. Deddy Chrismianto, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0018015903', '195901181987102001', 'Ir. Diah Susetyo Retnowati, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0018017503', '197501181999031001', 'Sri Nugroho, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0018067403', '197406181999031002', 'Untung Budiarto, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0018076004', '196007181989031001', 'Ir. Kiryanto, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0018078004', '198007162008011017', 'Dr. Rifky Ismail, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0018085604', '195608181986031005', 'Ir. Abdul Malik, MSArs', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0018087103', '197108181997021001', 'Dr. Agus Suprihanto, S.T, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0018118802', '198811182014041002', 'Abdi Sukmono, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0018119004', 'H.7.1990111820180710', 'Ahmad Syauqi Hidayatillah, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geologi'),
+('0018127102', '197112181995121001', 'Dr. Wahyul Amien Syafei, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0019027901', '197902192003122001', 'Diana Puspita Sari, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0019038304', '198303192010121002', 'Kurniawan Teguh Martono, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0019038603', '198603192012121002', 'Wiwik Budiawan, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0019065904', '195906191985111001', 'Ir. Sudjadi, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0019077103', '197107191998022001', 'Ajub Ajulian Zahra Macrina, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0019085301', '195308191983031001', 'Prof.Dr.Ing.Ir. Gagoek Hardiman', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0019096704', '196709191999031003', 'Ir. Winardi Dwi Nugraha, M.Si.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0020018203', '198201202008011005', 'Ganjar Samudro, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0020026602', '196602201991021001', 'Prof. Dr. Ir. Budiyono, M.Si.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0020047102', '197104201998021001', 'Dr. Sulardjaka, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0020048703', '198704202014012001', 'Pertiwi Andarani, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0020056203', '196205201989021001', 'Prof.Dr.rer.nat. Ir. Athanasius Priharyoto Bayusen', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0020057004', '197005201999031002', 'Rusnaldy, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0020058102', '198105202003121002', 'Dr. Mohammad Tauviqirrahman, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0020065904', '195906201987031003', 'Ir. Bambang Yunianto, M.Sc.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0020077403', '197407201998032001', 'Dr.Ars. Anita Ratnasari Rakhmatulloh, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0020106308', '196310201991021001', 'Dr.Ir. Agung Budi Sardjono, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0020107401', '197410202000121001', 'Sukawi, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0020107707', '197710202005011001', 'Najib, S.T., M.Eng., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Geologi'),
+('0021028107', '198102212008121001', 'Norman Iskandar, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0021037603', '197603212000122001', 'Amelia Kusuma Indriastuti, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0021047108', '197104211999031003', 'Mohamad Said Kartono Tony Suryo Utomo, S.T., M.T.,', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0021056604', '196605212006041010', 'Dr.Ing. Ir. Ismoyo Haryanto, M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0021057010', '197005212000121001', 'Budi Setiyono, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0021067301', '197306211997021001', 'Prof. Tutuk Djoko Kusworo, S.T., M.Eng., Ph.D.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0021068701', '198706212012121001', 'Asep Muhamad Samsudin, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Kimia'),
+('0021078202', '198207212003122001', 'Dr.Ing. Santy Paulla Dewi, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0021087404', '197408212005011001', 'Moehammad Awaluddin, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0021097404', '197409212000031002', 'Dr.Ing Prihadi Nugroho, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0021106008', '196010211990032002', 'Ir. Hermin Werdiningsih, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0021107502', '197510211999031004', 'Dr.Eng. Hartono Yudo, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0021125803', '195812211987032001', 'Ir. Dwi Kurniani, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0021126905', '196912211995121001', 'Achmad Hidayatno, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0021127303', '197312211999031002', 'Dr. Denny Nurkertamanda, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0022017502', '197501222000121001', 'Dr.Eng. Ahmad Fauzan Zakki, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0022018302', '198301222006041002', 'Fahrudin, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0022045710', '195704221986031001', 'Dr. Ir. Bambang Purwanggono Sukarsono, M.Eng.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0022047201', '197204221999031004', 'Dr. Abdul Syakur, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0022055903', '195905221988121001', 'Ir. Sarjito Jokosisworo, M.Si.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0022067709', '197706222010121001', 'Teguh Prakoso, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0022075906', '195907221987031003', 'Prof. Dr. Dipl.Ing. Ir. Berkah Fajar Tamtomo Kiono', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0022076105', '196107221986021001', 'Ir. Himawan Indarto, M.S.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0022086606', '196608221997022001', 'Dr.Ars. Ir. Rina Kurniati, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0022097503', '197509222003122002', 'Maya Damayanti, S.T., M.A., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0022106109', '196110221988031002', 'Dr.T. Ir. Indro Sumantri, M.Eng.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0022125705', '195712221987031001', 'Ir. Dhanoe Iswanto, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0022126303', '196312221990011003', 'Dr.Ir. Hadi Wahyono, M.A.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0023016705', '196701231994012001', 'Ir. Sri Hartuti Wahyuningrum, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0023026003', '196002231986021001', 'Dr. Ir. Hermawan, DEA', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0023027404', '197402231997021001', 'Edward Endrianto Pandelaki, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0023035909', '195903231988032001', 'Ir. Hary Budieny, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0023036005', '196003231990011001', 'Ir. Bambang Pardoyo, CES., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0023036603', '196603231999031008', 'Ir. Sawitri Subiyanto, M.Si.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0023046204', '196204231987031003', 'Dr. Ir. Dwi Basuki Wibowo, M.S.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0023047003', '197004231995121001', 'Prof. Dr. I Nyoman Widiasa, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0023047905', '197904232006041001', 'Dr. Yudo Prasetyo, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Geodesi'),
+('0023057403', '197405231998021001', 'Prof. Dr. Andri Cahyo Kumoro, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0023077103', '197107231998022001', 'Dr. Yulita Arni Priastiwi, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0023107101', '197110231998022001', 'Sri Rahayu, S.Si., M.Si.', 'Lektor', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0023108804', 'H.7.1988102320180710', 'Reddy Setyawan, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geologi'),
+('0023117005', '197011231998021001', 'Dr. Eng. Gunawan Dwi Haryadi, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0023117006', '197011231995121001', 'Prof. Dr.rer.nat. Imam Buchori, S.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0024039202', '199203242019031016', 'Bimastyaji Surya Ramadan, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0024046904', '196904291998021006', 'Hardi Wibowo, S.T., M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0024057703', '197705242003122001', 'Landung Esariti, S.T., MPS', 'Lektor', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0024065706', '195706241985031001', 'Ir. Yohannes Inigo Wicaksono, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0024077103', '197107241997021001', 'Dr. Ing. Asnawi, S.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0024088102', '198108242006042001', 'Sri Hapsari Budisulistiorini, S.T., M.Eng.Sc., Ph.', 'Asisten Ahli', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0024107302', '197310242000031001', 'Wiharyanto Oktiawan, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0024117101', '197111241998031002', 'Mohammad Muktiali, S.E., M.Si., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0025016004', '196001251987031001', 'Ir. Sugiyanto, DEA', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0025017402', '197401252006041001', 'Bambang Darmo Yuwono, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0025018501', '198501252012121005', 'Arwan Putra Wijaya, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0025027601', '197602252000121001', 'Ilham Nurhuda, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0025028801', '198802252012121003', 'Arya Rezagama, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0025037505', '197503252003121002', 'Ari Wibawa Budi Santosa, S.T., M.Si.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0025057601', '197605252000122001', 'Dr. Ing. Wiwandari Handayani, S.T., M.T., MPS', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0025067003', '197006252002122001', 'Dr Sri Hartini, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0025106012', '196010251998021001', 'Ir. Imam Pujo Mulyatno, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0025117805', '197811252008121001', 'Andri Suprayogi, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0026027301', '197302261998021001', 'Dr. Adian Fatchur Rochim, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Komputer'),
+('0026038401', '198403262006042001', 'Dyah Ika Rinawati, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0026047402', '197404262000121001', 'Darminto Pujotomo, S.T., M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0026056003', '196005261987101001', 'Ir. Djoko Purwanto, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0026056407', '196405261989031002', 'Dr. Ir. Jaka Windarta, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0026057302', '197305262000121001', 'Dr. Susatyo Handoko, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0026057713', '197705262010121001', 'Eko Didik Widianto, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Komputer'),
+('0026058501', '198505262010121005', 'Andi Trimulyono, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Perkapalan'),
+('0026076805', '196807261997021001', 'Mardwi Rahdriawan, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0026087703', '197708262006041001', 'Munawar Agus Riyadi, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0026088601', '198608262010121005', 'Berlian Arswendo Adietya, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Perkapalan'),
+('0026097304', '197309262000121001', 'Dr. Iwan Setiawan, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0026115604', '195611261987031002', 'Prof. Dr. Ir. Hargono, M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0026126104', '196112261988031001', 'Dr. Ir. Setia Budi Sasongko, DEA.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0027018112', 'H.7.1981012720180710', 'Adnan Fauzi, S.T., M.Kom.', 'Pengajar', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Komputer'),
+('0027036203', '196203271991022001', 'Dr. Ir. Nur Rokhati, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0027036204', '196203271988031004', 'Ir. Satrio Nugroho, M.Si.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0027037104', '197103271999032002', 'Prof. Dr. Aries Susanty, S.T., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0027037404', '197403271999031002', 'Dr.sc.agr. Iwan Rudiarto, S.T., M.Sc.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0027046004', '196004271987031001', 'Prof. Dr. Ir. Suripin, M.Eng.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0027067003', '197006271998031005', 'Dr. Mussadun, S.T., M.Si.', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0027067403', '197406271999031002', 'Dr. Maman Somantri, S.T., M.T.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0027068402', '198406272012121003', 'Resza Riskiyanto, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Arsitektur'),
+('0027077008', '197007272000121001', 'Dr. Ir. R. Rizal Isnanto, S.T., M.M., M.T., IPM', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Komputer'),
+('0027096302', '196309271993032001', 'Ir. Nurini, M.T.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0027098602', '198609272014042001', 'Anis Kurniasih, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Geologi'),
+('0027108012', '198010272015041001', 'Yusuf Widharto, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Industri'),
+('0028028506', '198502282015041001', 'Mochammad Ariyanto, S.T.,M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Mesin'),
+('0028038705', '198703282015041002', 'Riqi Radian Khasani, S.T., M.T.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0028047501', '197504281999031001', 'Jati Utomo Dwi Hatmoko, S.T., M.M., M.Sc., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0028055911', '195905281988031001', 'Ir. Indrastono Dwi Atmanto, M.Ing.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0028056209', '196204281990012001', 'Ir. Eflita Yohana, M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0028057601', '197605282000122001', 'Dyah Hesti Wardhani, S.T., M.T., Ph.D.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0028066802', '196806281998022001', 'Dr. Ir. R. Siti Rukayah, M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0028107503', '197510281999031004', 'Prof. Dr. Ir. Hadiyanto, S.T., M.Sc., IPU', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0028125613', '195612281985031003', 'Dr.Ir. Ragil Haryanto, M.SP.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0028126103', '196112281986031004', 'Prof. Dr. Ir. Purwanto, DEA', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0029018403', '198401292009121003', 'Dr.Eng. Bangun Indrakusumo Radityo Harsritanto, S.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0029045805', '195804291986021001', 'Ir. Nugroho Agus Darmanto, M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('0029046703', '196704291994032002', 'Dr. Sunarti, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0029046902', '196904292002121001', 'Dr. Hery Suliantoro, S.T., M.T.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('0029047102', '197104291998021001', 'Priyo Nugroho Parmantoro, S.T., M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0029057502', '197505291998021001', 'Prof. Dr.rer.nat. Heru Susanto, S.T., M.M., M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0029095805', '195809291986021001', 'Dr. Ir. Windu Partono, M.Sc.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0029096908', '196909291997021001', 'Dr. Fadjar Hari Mardiansjah, S.T., M.T., MDP', 'Lektor', 'S3', 'PNS', 'Departemen Perencanaan Wilayah'),
+('0030017303', '197301302000032001', 'Ir. Nurandani Hardyanti, S.T., M.T., IPM.', 'Lektor Kepala', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0030037103', '197103301998022001', 'Dr.Ling., Ir. Sri Sumiyati, S.T., M.Si., IPM.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0030039004', 'H.7.1990033020180710', 'Satriya Wahyu Firmandhani, S.T., M.T.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Arsitektur'),
+('0030045403', '195404301981032001', 'Prof. Dr. Ir. Sri Prabandiyani Retno Wardani, M.Sc', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('0030046702', '196704301992032002', 'Dr. Ir. Suzanna Ratih Sari, M.M., M.A.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0030058102', '198105302006041001', 'Arief Laila Nugraha, S.T., M.Eng.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Geodesi'),
+('0030058503', 'H.7.1985053020180720', 'Mada Sophianingrum, S.T., M.T., M.Sc.', 'Pengajar', 'S2', 'Pegawai Undip Non AS', 'Departemen Perencanaan Wilayah'),
+('0030067203', '197206302000121001', 'Trias Andromeda, S.T., M.T., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Elektro'),
+('0030087201', '197208302000031001', 'Dr. Ir. Badrus Zaman, S.T., M.T., IPM.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0030097402', '197409302001121002', 'Mochamad Arief Budihardjo, S.T., M.Eng.Sc, Env.Eng', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0031017402', '197401311999031003', 'Dr. Ing. Sudarno, S.T., M.Sc.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Lingkungan'),
+('0031018206', '198201312010121003', 'Wahyu Caesarendra, S.T., M.Eng., Ph.D.', 'Lektor', 'S3', 'PNS', 'Departemen Teknik Mesin'),
+('0031057204', '197205312000031001', 'Kami Hari Basuki, S.T., M.T.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Sipil'),
+('0031085707', '195708311986021002', 'Ir. Endro Sutrisno, M.S.', 'Lektor', 'S2', 'PNS', 'Departemen Teknik Lingkungan'),
+('0031125513', '195512311983031014', 'Prof.Ir. Abdullah, M.S., Ph.D.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Kimia'),
+('0031126321', '196312311990031022', 'Prof. Dr. Ir. Edi Purwanto, M.T.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Arsitektur'),
+('0031127203', '197212311998022001', 'Dr. Ir. Ratna Purwaningsih, S.T., M.T., IPM.', 'Lektor Kepala', 'S3', 'PNS', 'Departemen Teknik Industri'),
+('015018804', 'H.7.1988011520180710', 'Fauzi Janu Amarrohman, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geodesi'),
+('022118903', 'H.7.1989112220180710', 'Nurhadi Bashit, S.T., M.Eng.', 'Asisten Ahli', 'S2', 'Pegawai Undip Non AS', 'Departemen Teknik Geodesi'),
+('0617088402', '98408172015041002', 'M. Arfan, S.Kom., M.Eng.', 'Asisten Ahli', 'S2', 'PNS', 'Departemen Teknik Elektro'),
+('9990202241', '195303091981031005', 'Prof. Dr. Ir. Sri Tudjono, M.S.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('9990371185', '195409301980032001', 'Prof. Dr. Ir. Sri Sangkawati, M.S.', 'Guru Besar', 'S3', 'PNS', 'Departemen Teknik Sipil'),
+('admin', 'admin', 'Admin', '', '', '', ''),
+('pengusul', 'pengusul', 'pengusul', 'Rektor', 'S3', 'Bos Besar', 'Teknik Elektro'),
+('reviewer1', 'reviewer1', 'reviewer1', 'reviewer', 'reviewer', 'reviewer', 'Teknik Elektro'),
+('reviewer2', 'reviewer2', 'reviewer2', 'reviewer', 'reviewer', 'reviewer', 'Teknik Elektro');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dsn_penelitian`
+-- Struktur dari tabel `dsn_penelitian`
 --
 
 CREATE TABLE `dsn_penelitian` (
@@ -429,7 +471,7 @@ CREATE TABLE `dsn_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dsn_pengabdian`
+-- Struktur dari tabel `dsn_pengabdian`
 --
 
 CREATE TABLE `dsn_pengabdian` (
@@ -439,7 +481,7 @@ CREATE TABLE `dsn_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `dsn_pengabdian`
+-- Dumping data untuk tabel `dsn_pengabdian`
 --
 
 INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
@@ -448,23 +490,12 @@ INSERT INTO `dsn_pengabdian` (`id`, `nip`, `id_proposal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal`
---
-
-CREATE TABLE `jadwal` (
-  `id` int(3) NOT NULL,
-  `tgl_mulai` date NOT NULL,
-  `tgl_selesai` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `jadwal_penelitian`
+-- Struktur dari tabel `jadwal_penelitian`
 --
 
 CREATE TABLE `jadwal_penelitian` (
   `id` int(3) NOT NULL,
+  `keterangan` varchar(1000) NOT NULL,
   `tgl_mulai` date NOT NULL,
   `tgl_monev` date NOT NULL,
   `tgl_akhir` date NOT NULL,
@@ -472,20 +503,21 @@ CREATE TABLE `jadwal_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `jadwal_penelitian`
+-- Dumping data untuk tabel `jadwal_penelitian`
 --
 
-INSERT INTO `jadwal_penelitian` (`id`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
-(14, '2021-02-01', '2021-02-09', '2021-02-19', '2021-03-12');
+INSERT INTO `jadwal_penelitian` (`id`, `keterangan`, `tgl_mulai`, `tgl_monev`, `tgl_akhir`, `tgl_selesai`) VALUES
+(14, 'Periode1', '2021-02-01', '2021-02-09', '2021-02-19', '2021-03-12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jadwal_pengabdian`
+-- Struktur dari tabel `jadwal_pengabdian`
 --
 
 CREATE TABLE `jadwal_pengabdian` (
   `id` int(3) NOT NULL,
+  `keterangan` varchar(1000) NOT NULL,
   `tgl_mulai` date NOT NULL,
   `tgl_akhir` date NOT NULL,
   `tgl_selesai` date NOT NULL
@@ -494,7 +526,7 @@ CREATE TABLE `jadwal_pengabdian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jenispenelitian`
+-- Struktur dari tabel `jenispenelitian`
 --
 
 CREATE TABLE `jenispenelitian` (
@@ -504,7 +536,7 @@ CREATE TABLE `jenispenelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jenispenelitian`
+-- Dumping data untuk tabel `jenispenelitian`
 --
 
 INSERT INTO `jenispenelitian` (`id`, `jenis`, `tgl`) VALUES
@@ -513,7 +545,7 @@ INSERT INTO `jenispenelitian` (`id`, `jenis`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komponen_nilai_pengabdian`
+-- Struktur dari tabel `komponen_nilai_pengabdian`
 --
 
 CREATE TABLE `komponen_nilai_pengabdian` (
@@ -524,7 +556,7 @@ CREATE TABLE `komponen_nilai_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `komponen_nilai_pengabdian`
+-- Dumping data untuk tabel `komponen_nilai_pengabdian`
 --
 
 INSERT INTO `komponen_nilai_pengabdian` (`id`, `id_skema_pengabdian`, `komponen_penilaian`, `bobot`) VALUES
@@ -540,7 +572,7 @@ INSERT INTO `komponen_nilai_pengabdian` (`id`, `id_skema_pengabdian`, `komponen_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `komp_penilaian_penelitian`
+-- Struktur dari tabel `komp_penilaian_penelitian`
 --
 
 CREATE TABLE `komp_penilaian_penelitian` (
@@ -551,7 +583,7 @@ CREATE TABLE `komp_penilaian_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `komp_penilaian_penelitian`
+-- Dumping data untuk tabel `komp_penilaian_penelitian`
 --
 
 INSERT INTO `komp_penilaian_penelitian` (`id`, `id_jenis`, `komponen`, `bobot`) VALUES
@@ -567,7 +599,7 @@ INSERT INTO `komp_penilaian_penelitian` (`id`, `id_jenis`, `komponen`, `bobot`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `koordinator`
+-- Struktur dari tabel `koordinator`
 --
 
 CREATE TABLE `koordinator` (
@@ -578,7 +610,7 @@ CREATE TABLE `koordinator` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan_akhir_penelitian`
+-- Struktur dari tabel `laporan_akhir_penelitian`
 --
 
 CREATE TABLE `laporan_akhir_penelitian` (
@@ -597,7 +629,7 @@ CREATE TABLE `laporan_akhir_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan_akhir_pengabdian`
+-- Struktur dari tabel `laporan_akhir_pengabdian`
 --
 
 CREATE TABLE `laporan_akhir_pengabdian` (
@@ -613,7 +645,7 @@ CREATE TABLE `laporan_akhir_pengabdian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan_monev_penelitian`
+-- Struktur dari tabel `laporan_monev_penelitian`
 --
 
 CREATE TABLE `laporan_monev_penelitian` (
@@ -631,7 +663,7 @@ CREATE TABLE `laporan_monev_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `luaran`
+-- Struktur dari tabel `luaran`
 --
 
 CREATE TABLE `luaran` (
@@ -641,7 +673,7 @@ CREATE TABLE `luaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `luaran`
+-- Dumping data untuk tabel `luaran`
 --
 
 INSERT INTO `luaran` (`id`, `luaran`, `tgl`) VALUES
@@ -651,7 +683,7 @@ INSERT INTO `luaran` (`id`, `luaran`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mahasiswa`
+-- Struktur dari tabel `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
@@ -665,7 +697,7 @@ CREATE TABLE `mahasiswa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mhs_penelitian`
+-- Struktur dari tabel `mhs_penelitian`
 --
 
 CREATE TABLE `mhs_penelitian` (
@@ -678,7 +710,7 @@ CREATE TABLE `mhs_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mhs_pengabdian`
+-- Struktur dari tabel `mhs_pengabdian`
 --
 
 CREATE TABLE `mhs_pengabdian` (
@@ -689,7 +721,7 @@ CREATE TABLE `mhs_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mhs_pengabdian`
+-- Dumping data untuk tabel `mhs_pengabdian`
 --
 
 INSERT INTO `mhs_pengabdian` (`id`, `nim`, `nama`, `id_proposal`) VALUES
@@ -698,7 +730,7 @@ INSERT INTO `mhs_pengabdian` (`id`, `nim`, `nama`, `id_proposal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mitra`
+-- Struktur dari tabel `mitra`
 --
 
 CREATE TABLE `mitra` (
@@ -716,7 +748,7 @@ CREATE TABLE `mitra` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_penelitian`
+-- Struktur dari tabel `nilai_penelitian`
 --
 
 CREATE TABLE `nilai_penelitian` (
@@ -731,7 +763,7 @@ CREATE TABLE `nilai_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_proposal_penelitian`
+-- Struktur dari tabel `nilai_proposal_penelitian`
 --
 
 CREATE TABLE `nilai_proposal_penelitian` (
@@ -748,7 +780,7 @@ CREATE TABLE `nilai_proposal_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai_proposal_pengabdian`
+-- Struktur dari tabel `nilai_proposal_pengabdian`
 --
 
 CREATE TABLE `nilai_proposal_pengabdian` (
@@ -761,7 +793,7 @@ CREATE TABLE `nilai_proposal_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `nilai_proposal_pengabdian`
+-- Dumping data untuk tabel `nilai_proposal_pengabdian`
 --
 
 INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai`, `komentar2`, `nilai2`) VALUES
@@ -770,7 +802,7 @@ INSERT INTO `nilai_proposal_pengabdian` (`id`, `id_proposal`, `komentar`, `nilai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE `pengumuman` (
@@ -779,7 +811,7 @@ CREATE TABLE `pengumuman` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pengumuman`
+-- Dumping data untuk tabel `pengumuman`
 --
 
 INSERT INTO `pengumuman` (`id`, `berita`) VALUES
@@ -789,7 +821,7 @@ INSERT INTO `pengumuman` (`id`, `berita`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proposal_penelitian`
+-- Struktur dari tabel `proposal_penelitian`
 --
 
 CREATE TABLE `proposal_penelitian` (
@@ -813,7 +845,7 @@ CREATE TABLE `proposal_penelitian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `proposal_pengabdian`
+-- Struktur dari tabel `proposal_pengabdian`
 --
 
 CREATE TABLE `proposal_pengabdian` (
@@ -837,7 +869,7 @@ CREATE TABLE `proposal_pengabdian` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviewer_penelitian`
+-- Struktur dari tabel `reviewer_penelitian`
 --
 
 CREATE TABLE `reviewer_penelitian` (
@@ -846,7 +878,7 @@ CREATE TABLE `reviewer_penelitian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `reviewer_penelitian`
+-- Dumping data untuk tabel `reviewer_penelitian`
 --
 
 INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
@@ -856,7 +888,7 @@ INSERT INTO `reviewer_penelitian` (`nip`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reviewer_pengabdian`
+-- Struktur dari tabel `reviewer_pengabdian`
 --
 
 CREATE TABLE `reviewer_pengabdian` (
@@ -865,7 +897,7 @@ CREATE TABLE `reviewer_pengabdian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `reviewer_pengabdian`
+-- Dumping data untuk tabel `reviewer_pengabdian`
 --
 
 INSERT INTO `reviewer_pengabdian` (`nip`, `nama`) VALUES
@@ -875,7 +907,7 @@ INSERT INTO `reviewer_pengabdian` (`nip`, `nama`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role`
+-- Struktur dari tabel `role`
 --
 
 CREATE TABLE `role` (
@@ -884,7 +916,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `role`
+-- Dumping data untuk tabel `role`
 --
 
 INSERT INTO `role` (`id`, `role`) VALUES
@@ -896,7 +928,7 @@ INSERT INTO `role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `skema_pengabdian`
+-- Struktur dari tabel `skema_pengabdian`
 --
 
 CREATE TABLE `skema_pengabdian` (
@@ -906,7 +938,7 @@ CREATE TABLE `skema_pengabdian` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `skema_pengabdian`
+-- Dumping data untuk tabel `skema_pengabdian`
 --
 
 INSERT INTO `skema_pengabdian` (`id`, `jenis_pengabdian`, `tgl`) VALUES
@@ -915,7 +947,7 @@ INSERT INTO `skema_pengabdian` (`id`, `jenis_pengabdian`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sumberdana`
+-- Struktur dari tabel `sumberdana`
 --
 
 CREATE TABLE `sumberdana` (
@@ -925,7 +957,7 @@ CREATE TABLE `sumberdana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sumberdana`
+-- Dumping data untuk tabel `sumberdana`
 --
 
 INSERT INTO `sumberdana` (`id`, `sumberdana`, `tgl`) VALUES
@@ -935,725 +967,708 @@ INSERT INTO `sumberdana` (`id`, `sumberdana`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
-  `id` int(10) NOT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `role`) VALUES
-(1, '195511081983031002', 'c3292d1e1f58bae36b2e003a60db748d', 3),
-(2, '195203121975011004', 'ffacc75394c81d12e8f30d8fb0a7dae3', 3),
-(3, '195205051980111001', '7e857e8e9c4a1c8e38070a1448a3099b', 3),
-(4, '195404301981032001', 'dacfb384cb9e18a0b4cf7a34ff97a2f3', 3),
-(5, '196112281986031004', 'f78ecc933eb7106f60001ca5f56f66d6', 3),
-(6, '195407171982032001', '801c4e7eaa04d9ffb9f17da820071b6f', 3),
-(7, '195409301980032001', 'e1b2df831dda7d64f2eec509daa2075e', 3),
-(8, '195611091985032002', '6a90d452ad43acac4d0fdab9a1c52cc1', 3),
-(9, '195308191983031001', '7ee8e54e4c7c4a95c8869ba37bf47439', 3),
-(10, '196204231987031003', 'e5eb5511b0a23e39b62edfbfcf7f203b', 3),
-(11, '196005011986031003', 'eb4d48a31adfc06c3989b20c1b452641', 3),
-(12, '195704221986031001', 'f31fca0c538ec22636cb5c1b596abed9', 3),
-(13, '195512311983031014', 'e2b1e92326445e91c58b9a8278555ac0', 3),
-(14, '195901091987031001', '8a7733e9d583fe2f8fd141cd7a38ca5a', 3),
-(15, '196110221988031002', '66ad2412696fcd49b166f0019f67c555', 3),
-(16, '196602201991021001', '609db0feffe2c4c48285ac961d92a307', 3),
-(17, '196906121994031001', '8ad782f425f17a957909b2b3fb224059', 3),
-(18, '195901051987031002', 'c23cc7938769550357f499458525658f', 3),
-(19, '196003151987031001', 'efcf8323f5e6f6c29009c4d25749dae3', 3),
-(20, '195905221988121001', 'd5f13da63288e0cb3dac3c5f8927113a', 3),
-(21, '195811071988031001', '7c413e000526b800675871dc9cb37277', 3),
-(22, '196004271987031001', 'f0393f5b8147fec0522a5d4c6b2541e1', 3),
-(23, '196209171991021001', '296dfe6786effe7263bfd20f9067613f', 3),
-(24, '195611261987031002', '69e8819f8c8e15adb2709b74fa529a6e', 3),
-(25, '197105011997021001', '7b5e91aac14db02ab8f86bd9bcf36b56', 3),
-(26, '196004121986032001', '6205935ec01ddd7680234e50e73cae81', 3),
-(27, '196811111994121001', '84ae9366588e670bd89a6dcee061266b', 3),
-(28, '196205201989021001', '3f8a4551767f29231af267d87d3d10b1', 3),
-(29, '195807121983031032', 'ccc33a2dc0d03472141865d0b8fb7a1a', 3),
-(30, '196006021986021001', '88c2a8f717a2029f493d8f2ca781558e', 3),
-(31, '196312311990031022', 'b715168ab87a93c664e70d6cb7d19159', 3),
-(32, '195905281988031001', '80abc44ba6cb7cd8b89cef42c1cb1c6f', 3),
-(33, '195508211983031002', '29c9bd0aa42aec21656cde5953e2ea95', 3),
-(34, '196107121988031003', '35b6fa6feaa96815d1e924dbe6234f62', 3),
-(35, '195709131986031001', '158ed88538cc5fcaadb702e0dc7b679a', 3),
-(36, '196007181989031001', '7f097293e8981fbcf7f8193bf2e06392', 3),
-(37, '195906191985111001', '8afd0ae57f2d7e8a0540c3ff96259e9b', 3),
-(38, '195906201987031003', '9626bd2aa424080d5543d7604740034e', 3),
-(39, '196002171987032001', '07a4eea935fd16712120c3a04bf5ff61', 3),
-(40, '195303091981031005', '827355b48185db31b632904246043859', 3),
-(41, '195507271986031008', 'f84914fe020ae207ca6c01f1164b328a', 3),
-(42, '196210161988031003', '16f6b2aec50e500dc0ea81a3b8fdb719', 3),
-(43, '196405261989031002', '8bd14dbfebe63e85e025d1957fb2a7f9', 3),
-(44, '196910021994032003', '8434c8b2c6e034f6a026874300166cae', 3),
-(45, '195612281985031003', '4a943601c15d362d82bd3f4b7d13cd0c', 3),
-(46, '196112171987031001', 'ad177745cb1f85d8ad8c30a57f9b01b6', 3),
-(47, '196411081990011001', '5cd942598b4b919fb01e1b56d2646dbb', 3),
-(48, '196002231986021001', 'a77530cee6bc7501cd0f6078eb38ef8a', 3),
-(49, '196307111991021002', '88470cdcd80ef13daee2d1142f93fa5a', 3),
-(50, '196203271991022001', '9b29e60fd7e9f3a8d541c8d3a7ae07c9', 3),
-(51, '196207011990031003', '02d91c363d41f16855c68db292cf0181', 3),
-(52, '197204221999031004', '178425ab2d0b6a206ac1ef07aa8ac544', 3),
-(53, '197206091998031001', 'fda7b8b756b45c62414e1b4f50d8d23c', 3),
-(54, '197106161999031003', '8a6784ab920fd3f86bb062e409994842', 3),
-(55, '196310201991021001', 'd7c70589f63eb9d84942b0b743f6ff51', 3),
-(56, '196309271993032001', '36e5b98f81cf537ca4b94cd6b1691573', 3),
-(57, '197212311998022001', 'daf98a76e43e0d656e874cd44f1ea1d7', 3),
-(58, '197108181997021001', 'ee4d4ce5c522be085983d7438680b43a', 3),
-(59, '196711101994031003', '5bf5e89517cf0ace4bf3baf1caf343a4', 3),
-(60, '196312221990011003', 'f82a425c9ad08f4334f7607cd52fb7b3', 3),
-(61, '197303051997021001', '7fdf0283c6e1efbcb500165aeff76795', 3),
-(62, '196309141988031012', 'fcf80f0dc1d606714b4890fc0e2a1c77', 3),
-(63, '195907221987031003', '4dec23e36e6d854e2b56d1c84f252be1', 3),
-(64, '195702051986031003', '3dfff37c662156bbec3c3ba802303431', 3),
-(65, '196704291994032002', 'e6cbe43bc2a3802427b36b0d16e39ab0', 3),
-(66, '196112261988031001', '713a59aa41078c17c65669d35e2c33a5', 3),
-(67, '196702081994031005', 'ba3278c5edc10f6f69f35438923e4d4c', 3),
-(68, '195808071987031001', '8e5f856132635048b5afea4fc8ae08e9', 3),
-(69, '196803171997022002', '07d86e3aa069bb00357a31cc3106c846', 3),
-(70, '196912211995121001', 'ffdacfe695bb19af28795d1e163fe1c1', 3),
-(71, '197604161999032002', '7e793b49acbea68ffcc3586db32a34c0', 3),
-(72, '197011231995121001', '8bd48d070cc640fec7e33e802433e1e8', 3),
-(73, '197107191998022001', '8dbb9be3e5917582e264eeb8b2e74dd5', 3),
-(74, '196608221997022001', '2afb95906d39dbb5c433dc8f39821b8a', 3),
-(75, '197302261998021001', '95ee975deaaf78340c587d81f149c28e', 3),
-(76, '197002171994121001', '8d3da70575ce60bcebe23668c8248f6c', 3),
-(77, '197206061999031001', '9b4f89fd3747707586246c376f675603', 3),
-(78, '195706241985031001', '02419e68d7b5127cb37995d50ed7bbf1', 3),
-(79, '195801021986031002', '1c60878d5968e99de72577a48a919392', 3),
-(80, '196107221986021001', '885ec516a20540f6af38bf278477140e', 3),
-(81, '195701081986021001', '51802760b2651cb03dad9becd14a922a', 3),
-(82, '195510161985031001', 'e44b1aea756fcb32b906cfd852838bf9', 3),
-(83, '195911071987032001', 'e910f29c0ded4999e13c847ea19f27d9', 3),
-(84, '196704301992032002', 'ac2491a9e3fd3916af19305a6797a2e9', 3),
-(85, '196402141991022002', 'fe740e8bb013fc125f682b8c25f9074a', 3),
-(86, '196806281998022001', '732143ad3c28fdcaf44e6e42ba2c6583', 3),
-(87, '196711141993031001', '2a98ea3b30847242388e4ae02a9b2e2b', 3),
-(88, '196205161990011001', 'ab5a71f3e1c594d363a8731f8312a3e2', 3),
-(89, '197302041997021001', 'b8cc9e0807e040f1dfc2e810651b7ed1', 3),
-(90, '196904291998021006', '6a7eb2f24af91e8696cb9e0b848063f6', 3),
-(91, '196303161991031002', '737eb97b667d85727dd07b358a18a3d6', 3),
-(92, '197011231998021001', '8751cbd2dcc9bf61da56db9324e3c65e', 3),
-(93, '195708311986021002', 'd9e20679fb480418ed2d8034f0a35c06', 3),
-(94, '195901181987102001', '39ecccb1374f9a765153f0ed07ff6abd', 3),
-(95, '197208302000031001', '1632284f31cc6792ad61e195ebcec213', 3),
-(96, '197303171999031001', '0d914bda259380cd5a8c22d91a885ffd', 3),
-(97, '197004231995121001', 'e758af8c475e2dfe83f99f5b647b578b', 3),
-(98, '197510211999031004', 'ae76e83d59edfe717af27ae381ba1bf5', 3),
-(99, '196001251987031001', '08396ac3d49fbaf8f7514c8ce365c23b', 3),
-(100, '197012121998022001', '24d2044f1fe82170c6895763aec062a7', 3),
-(101, '196503131991021001', '77a88eb35e92ec8ec7cf29df1083a999', 3),
-(102, '196807111997021001', '9826101093c0c2596058d3025f4cdad5', 3),
-(103, '196408041991021002', '5f2cbe233456aa7b36d1e6dc2bb31eea', 3),
-(104, '196103041993032001', 'f031d951f93c6711386bd5ee3a1911c9', 3),
-(105, '197503062000121001', '4d8b8e65a905c4d52fa4204ace4a173c', 3),
-(106, '197402142000121001', '93c59c2f6b063407b62cbabc5207ae81', 3),
-(107, '197710032000121001', '4ee3fea8b9468291326d2c2a5934f9ee', 3),
-(108, '197102071995121001', '922ea59ce34d40783bcec32bbc28a716', 3),
-(109, '196605061995121001', 'c099706bcb773579cf6e60a78103919c', 3),
-(110, '197103011997021001', '3ac98e173b7e116530039915d55f856a', 3),
-(111, '197312211999031002', '438ecf8933d0482f419e110c15f04d58', 2),
-(112, '197007272000121001', '702b1754b59ab11367c3592c78ca2bf5', 3),
-(113, '197404262000121001', 'f98673dd2c27950a3bfd6168d1080a1d', 3),
-(114, '197309262000121001', '9e444d2ff6f919c062eee7ff88f793d5', 3),
-(115, '197403081999031005', '2dd319965283724487868ef910642f41', 3),
-(116, '197409302001121002', 'c192688ca39360964c534095315b454f', 3),
-(117, '196201101989021001', '58b1066518019464a3e1234e57620fef', 3),
-(118, '196907091997021001', '56be5bdfb28a2f9951c9742916b67e46', 3),
-(119, '197006252002122001', '452358600489f7d93348dd707f7cff3d', 3),
-(120, '197410202000121001', '5b8cb601ea14997e0498082805715515', 3),
-(121, '197307021999031001', '2e7e87c9520ce1a3d33eb05839f909c9', 3),
-(122, '197107241997021001', 'e5522955cbff458567730e7fbacb0960', 3),
-(123, '197505291998021001', '23745cbff1d02fd95fcf73110d359d24', 3),
-(124, '197402141999031002', '5c2ae479f0ee4658ecd77aeb3761c3e3', 3),
-(125, '197504281999031001', 'eac8d7ab8de5f03d4a7ff2689d1a6514', 3),
-(126, '197510281999031004', '32d6e287b12df9e13279fcf6a6bf2f99', 3),
-(127, '197501172000032001', 'f373ff84b7dc9525e3a03148655f1b7e', 3),
-(128, '195810101986021001', '26c3ad852162c6a6b398aed7ff691c57', 3),
-(129, '195608181986031005', 'f367ccc36f649b7840b68000ceeba766', 3),
-(130, '196005261987101001', '967b0d8522c1d0d588f286ec6022fbe1', 3),
-(131, '195907141987031001', '2403788edb1ca2cd99a5776e8d13b10f', 3),
-(132, '196111171988031001', '202b006ba3f398a9d5d1be324a32e567', 3),
-(133, '195809291986021001', 'a93d9a6574beb3afd913749dd1303536', 3),
-(134, '196208091988031001', '86b0961cec3c06a4f9c09229ef0c753d', 3),
-(135, '196001151988101001', 'bebfb57eead42b184093cda226cf9eaf', 3),
-(136, '195804291986021001', 'c91f039457cb5492d613a77edcf63a48', 3),
-(137, '196204281990012001', '91a7420152e8ea16291dc12a357fd058', 3),
-(138, '196811102005011001', '85bab712b5fb3d361bd2e0012ccdc371', 3),
-(139, '196307111990012001', '0f9708bd1f05cf8dc3a2d740b7bc1120', 3),
-(140, '196203271988031004', '52d587ce563a7971ce9982c3cca2275f', 3),
-(141, '195903231988032001', '3cc03089f651db2880ee34a0c1132427', 3),
-(142, '196610051992031003', 'e0c05a0c5942e5dd7f58b76d28d1035a', 3),
-(143, '195712221987031001', '1f4d1ad68a3352ac0c0466787a6866e2', 3),
-(144, '196605212006041010', '4d936bbd3cdc2d3e92cddb9e8459e592', 3),
-(145, '197112181995121001', '58ff94d8f25dccfe13ec3b04e388162e', 3),
-(146, '197106061995121003', 'b2743b5c206d63d2ae1c2f903ef41ef3', 3),
-(147, '197104201998021001', 'f0fdcee03e568c0680db2937f06c7ebe', 3),
-(148, '196509131998032001', '8765a7dc8883985c7613793bbf4a478c', 3),
-(149, '195812211987032001', 'da5dacac96f595ede33832b0a1f84166', 3),
-(150, '197005201999031002', '5dc84b13c7b0108611bcdbc45f10d994', 3),
-(151, '197402231997021001', '792aa36d5e61290a36fbd4486c583820', 3),
-(152, '197305072002122002', '354e9f4be8b6e770105ab113a635db5c', 3),
-(153, '196704041998022001', '7cbdfad88c4d6792ca953de732fb4ea6', 3),
-(154, '197107231998022001', '557f87228784c9f21c0d3fcb895b92fa', 3),
-(155, '197301302000032001', 'a93d47c529772d8d1eb97659939b7821', 3),
-(156, '196909291997021001', '1162596def5b89481a65122717d6daf0', 3),
-(157, '196106161993031002', '4c8adf3881d74fffb08d8217a6a6a432', 3),
-(158, '197406271999031002', 'ea24868f3f097a47e057087b600097c4', 3),
-(159, '197012031997021001', 'f15dfc97b0bf4d614c775da1f26c37b6', 3),
-(160, '196805081999031002', '06e2e5554953ac6a3bcb709e3bed670d', 3),
-(161, '197501222000121001', '6c5a212e6b50f8985659321207753cfa', 3),
-(162, '197312172000121001', 'e0b8dea6d4b81918cf65381195f89176', 3),
-(163, '196904292002121001', '301410aa29bfa579a2bff90562ad2028', 3),
-(164, '197301121998032001', 'cef7d141919712f1199d126c317d4ca7', 3),
-(165, '197407201998032001', 'db3d71160f625044c72e3c34ac5b9cc7', 3),
-(166, '197104211999031003', 'dfc1f8971735201cb1fd79684a721ec5', 3),
-(167, '197406181999031002', '07e2bad455c12ebe90d2c9aab1abf9d0', 3),
-(168, '197509152000121001', '7541897600b143093dc97cc36763e86d', 3),
-(169, '195907021987032001', '8cb144243aca0f6a3df17c40f52b3dd0', 3),
-(170, '196807261997021001', '09089aa068d57fd4a463da97ac5a6a29', 3),
-(171, '197310172000121001', '80b556e9542f9b09cf31abce36a01032', 3),
-(172, '196609011998021001', '58147868657ff2f6c3b61050a168dfff', 3),
-(173, '197403271999031002', '772bee4b65e5670b613ae4fc5cdaad92', 3),
-(174, '197006271998031005', 'a49cd2968c86011568f68cc0571a75cd', 3),
-(175, '197608121999031002', 'ee93ba3180ae74e06270fbf362ccb568', 3),
-(176, '197111241998031002', 'd78280e860fde11f39850fb8ef1d8ec0', 3),
-(177, '197412162000122001', '0c1240e6a8f83953b1aa40ae4d7ba877', 3),
-(178, '197508112000121001', '63280acc0ad2a92f58ff1b452ed769ae', 3),
-(179, '196905051995122001', 'cdc03aebda98e35f7e194f4420d53143', 3),
-(180, '196901011997021001', '5cd6428d6e6d7dd30f0194187e7d4929', 3),
-(181, '197605252000122001', 'acd89c7cbeec9e63c36685154b0e60f6', 3),
-(182, '196808141999031002', '19ecfb31228ee9b07a0d6bffa743209e', 3),
-(183, '197509222003122002', '420ab9e1eebdebb0ae85a849bb2ed6c3', 3),
-(184, '197705242003122001', '889688cbd61aea08a323af4fc1870ba0', 3),
-(185, '197506082005011001', '4af9a97492c4eaf60b103389bdec5a90', 3),
-(186, '197409122000121002', 'a35140fae48709f21a6ecaaeb68c40aa', 3),
-(187, '197403162001121001', '0d65f6a246efd8c639380dce1d3b1541', 3),
-(188, '195811111987031002', '48df26311c763c46c19fb957aa794cf7', 3),
-(189, '197310242000031001', '3c1fba9018cc7f2b1d3a8f2a60db544e', 3),
-(190, '197305262000121001', '382ef4c0a0051e491c0b028d5363cfa1', 3),
-(191, '197603052000122001', '6d9a4ee0b3fbe4824d520a287c4e17af', 3),
-(192, '197602252000121001', '9665068ab1bad7f573c07a552dc99369', 3),
-(193, '197310022000121001', 'b22c2db536391921a8697626e3336a41', 3),
-(194, '197605282000122001', 'c1d8417ee63a58927f947a7d0609bc46', 3),
-(195, '197902192003122001', 'b14f65e4bf7655aef7cce5828a56ed7b', 3),
-(196, '197103271999032002', 'c9afccd7d16049dd23dac0c8089f0a1a', 3),
-(197, '197405231998021001', '7d909440bc46fa2218fc2191ff9a3507', 3),
-(198, '197110231998022001', 'a49a3f487432832c75349df6c356d50d', 3),
-(199, '197403042000121001', '5210db841a403ba2d122fef766cd2e5f', 3),
-(200, '198109132003121002', 'c187e6b8915e92e20fff7b8b78a41f54', 3),
-(201, '196907141997021001', 'f75d005addef27f5a9361d4b6db90749', 3),
-(202, '196010251998021001', 'f2f3b08b74509614c6b2bdcf16b9fcc2', 3),
-(203, '197603212000122001', '964d45227df29fd09358414cba57be98', 3),
-(204, '198402172006042002', 'a720599884774cddd3ea81e4ae459643', 3),
-(205, '198403262006042001', 'bf37db03984338aa68bcab8ccd06845f', 3),
-(206, '197706152008011011', '07040ecd36558d3ac4aedc703f790621', 3),
-(207, '195909061988031003', 'be27351facee0d3987fd22169e6a3578', 3),
-(208, '195807151986021001', '72a99d2bd486be5c4018857866f8cd85', 3),
-(209, '196010211990032002', 'de11c2933b2f95cbcf01f45ecd2fe843', 3),
-(210, '195606011986021001', '3d2a03cbe369bc99ee42628d69ebb07e', 3),
-(211, '195909091987031001', '29380d7164dbfe696e67b8acc733ebc7', 3),
-(212, '195912101987031002', '0b8224a5a221abfcd5b362333ba840f6', 3),
-(213, '197205102001121001', 'df43b4376e3590900576130abea57d3e', 3),
-(214, '197609112002121001', 'd62db557f3e3368136b7094b249fcc0a', 3),
-(215, '197306211997021001', '208c4c45577d17a0da95b92340b1c9cc', 3),
-(216, '197805142005011001', '2f125808b0c4bb0b262ace3f320d8f7e', 3),
-(217, '197008061998021001', '2cb1d142c87237d516674dab595560de', 3),
-(218, '197708262006041001', 'b25dc985341ad53515a3ddc99bee966f', 3),
-(219, '197401311999031003', '168552c3a5002c6ad059fe6e343dc1de', 3),
-(220, '198007162008011017', 'dbf346b2079e2d2fd3017e3aa577cf92', 3),
-(221, '197404092008012010', 'dd742196d6d087d887856c8f8582b00d', 3),
-(222, '197408032008011008', 'f26981265d394d7ffd31f9e5b0a28554', 3),
-(223, '198201202008011005', '96c95cb292f96893aea194b0645123a8', 3),
-(224, '197808112008121003', 'b6906c0d136c850ba6010ef9bab1d6a3', 3),
-(225, '197703092008121001', '28f0ec85a30210f4f0597f924ccacea3', 3),
-(226, '197811252008121001', 'f228886ee89d1077112f6399bcf64aa0', 3),
-(227, '197910022009122001', 'f59fb12de2a3cd8a204c7bc77b4bdcbe', 3),
-(228, '197602162009121001', '67c1aa2fed88d9813c34c28b4a55c5c1', 3),
-(229, '198401292009121003', '6be7baaf22666c2da8f3dd79c7ad0135', 3),
-(230, '197608042000121002', '7d974bf4a0fb6da446b9107d68a546a6', 3),
-(231, '197103301998022001', 'c319a224fda091581bb259ffee29f9be', 3),
-(232, '196912061999031002', 'c0dca637095e9158aea4f9a7974c7971', 3),
-(233, '197409212000031002', '02470b019dd450fd7351148f793b8ac1', 3),
-(234, '197206172000121001', 'd4ffed5bb8521db00a8b1d26500dd8ca', 3),
-(235, '197005212000121001', 'cbcae459fedce7e3d7fd9487cdbd68d1', 3),
-(236, '198207212003122001', '6f85b85ba043d0ef4b62cdb326b8d2bd', 3),
-(237, '197503252003121002', 'eeeabd4cb1b078cbccc83095e922583e', 3),
-(238, '196204031993031003', 'da592fb115002a31d159614a6a5cf683', 3),
-(239, '197705262010121001', '0e98587e9c06219bc7413a63f3672a4b', 3),
-(240, '197706222010121001', '41a8b225ed28c23ea13985b13de7d731', 3),
-(241, '197802062010121003', '1cb56b20a70d5ef6f7ec832598b2f068', 3),
-(242, '198303192010121002', '0db95e006019d4ffe0fa018c4d4e2734', 3),
-(243, '198412062010122008', 'dbb69d4ff33887b20816902a6f2c60ac', 3),
-(244, '198412112010122005', 'a2f299b46776db31a0f4439fe9c9620a', 3),
-(245, '197608122010121002', 'c11a47a53df795d6354f5fd328084b50', 3),
-(246, '197803032010122001', 'aa4ef0af512f2578207b606306f028f6', 3),
-(247, '198012112010121001', 'cf7c3f1a9da4db77694c23e0bec4fd95', 3),
-(248, '198201312010121003', '6fe0d9fc91015b1fb2d4e3320dee57a6', 3),
-(249, '198505262010121005', 'dfa9b8252cd706dd9c6885bccb8558dd', 3),
-(250, '198601152010122004', '2b7b55c0385fa256c4f1b47411fd28f0', 3),
-(251, '198608262010121005', '2d418fd1df3dd32ddbbaa3ebfd3c606b', 3),
-(252, '198211072005012001', '5d9019dc5d994a5ed8aca9adcf9af26b', 3),
-(253, '197712112005011002', 'b96595e98316d6aaff0cbed23c5c301d', 3),
-(254, '196406021991021001', 'd19df95b0cb3b962bfcd121be9d0ab71', 3),
-(255, '198305012012121003', '2983a02a1d88e8b709d07192f00ce8c2', 3),
-(256, '198406272012121003', '6e450f06d7470abe6594332096a92da8', 3),
-(257, '198207162012121004', 'c57f2aa3b4f0c9d6b44de94992185f0f', 3),
-(258, '198501252012121005', 'e1bec56bc327a0e9a0f2062547440ea2', 3),
-(259, '198603192012121002', '5a2cf99f51168071ef9802001c074eb9', 3),
-(260, '198706212012121001', 'b8cdac409da5f6f563f3df47b5657d07', 3),
-(261, '198802252012121003', '7230317c34ff8061bd8b4fab16c82ea0', 3),
-(262, '197509081999031002', '6f78817129ad8b1c254252f25f5d88e3', 3),
-(263, '198301222006041002', '91c3cf0c9eb92c26c69047ec358b499c', 3),
-(264, '197306161999031001', 'b0d018edab9bad7e0bd5d0a27b43651c', 3),
-(265, '196701231994012001', '41b69a0215d099291f1d0b8392ccbada', 3),
-(266, '196903111997021001', '4d88935cc23b89fef5dbd248c3d102ca', 3),
-(267, '197104291998021001', '08add90212bd97fbc7b3b2aa62cb9f08', 3),
-(268, '197311061998022001', '2a82749d0fb13e7445f8889403d264c7', 3),
-(269, '197103011998031001', '027a38bfd8bf9156c653f5b223fc7103', 3),
-(270, '197501181999031001', '2c73545deb40f63b048b4a1cf4cfee7c', 3),
-(271, '196704011999032001', '4864020908853bf225cb100e42a22201', 3),
-(272, '196709191999031003', 'ab0f7146e0c3b57663612b0a34b50b4a', 3),
-(273, '196603231999031008', '903bcc076150e4cc2cbb9a5cf5280d0d', 3),
-(274, '196412021999032001', '639d4c5297e3a8c15c0a06ff2c4faae6', 3),
-(275, '197205312000031001', '51e02ac8bf3bc8620060c6ac32e56d0f', 3),
-(276, '197105152000031014', '6645291350904de326da91fddc013de2', 3),
-(277, '197611102000121003', '6ec4996d83b95d2914accb1ef0b87002', 3),
-(278, '197206302000121001', 'd444ea687772c179bfa8b7f804ae150a', 3),
-(279, '198105202003121002', '02086af3fe82ce9d4a3d22d8d5017eb1', 3),
-(280, '197706012003121004', '740a463f4bd4624a0e78386947beefb5', 3),
-(281, '197408212005011001', '640035fa54356f6bb316ef7fe087bff5', 3),
-(282, '197906172005011003', 'b20cd73cecbc0ce3f232e69658fd2056', 3),
-(283, '197710202005011001', '1dcb2affa72a32dd510366f5ee3788ee', 3),
-(284, '197904232006041001', 'f8fc4d3a440ce34d5ea656ede130fc91', 3),
-(285, '197401252006041001', '8da675f6f22fcc1b66ff58f8f5437d87', 3),
-(286, '198105302006041001', '5d7b8fcaf4754f21a12080240a572e37', 3),
-(287, '198108242006042001', '6c48e294bbaf9c3c029ff0700414fe37', 3),
-(288, '198411032008121004', 'e93dee22c880bc44a56ee9311611352e', 3),
-(289, '197909172008121004', 'cc0d0c197390b13a110547812538bea6', 3),
-(290, '198102212008121001', 'eff27875052dd8fca7439cf4dd385e24', 3),
-(291, '196003231990011001', '12b11c87417e82f6dfedcf2ad58988d9', 3),
-(292, '198704202014012001', '45ce28d8b44077e958c05dd344372660', 3),
-(293, '198705172014042001', 'c66486c7186097005631f055b80b9412', 3),
-(294, '198609272014042001', '7f3210e2fd6094346130481ed39d9ed0', 3),
-(295, '198811182014041002', '0f3b05ea4564eecb92f17cd7f9dbda74', 3),
-(296, '198010272015041001', '1e11a0756394ef982886c58f814ca5ec', 3),
-(297, '198804062015041002', '04cd66c54c3741dc428423effb31d703', 3),
-(298, '198910132015042002', '4d2506c2a210844cbf26e0f4d464127d', 3),
-(299, '198703282015041002', '9383f01ee015e6496e8f140c32d356fb', 3),
-(300, '198502282015041001', '46cc3fa664d6fe08c60209247d7329dc', 3),
-(301, '198408172015041002', '88c8aec560e24e241afe7af8733e9cef', 3),
-(302, '198807160115012044', 'e860c1f9fcf67ced566954b807c43260', 3),
-(303, '198305032010122002', '6760024d55609e45d990ea56d74612d7', 3),
-(304, '199206142018032001', '923b1f419e080a64808686ed4ea15c11', 3),
-(305, '198505042018031001', '8da35c60126fa5a014bd792bd4425b85', 3),
-(306, '199006112018031001', '6342ca69b4425257d09de2d10cd12181', 3),
-(307, 'H.7.1993121120180720', 'fb971f6c7c85c981f0ce659ecf1523cf', 3),
-(308, 'H.7.1990033020180710', '0b065a5176e29dc7cbcb0f03c6c5199e', 3),
-(309, 'H.7.1985053020180720', '85b4a36fc8fcf324ab9263e43c5fd46f', 3),
-(310, 'H.7.1985040720180710', '1e755704b9abcff151614151036ce114', 3),
-(311, 'H.7.1986110920180720', '7fbbb48e2f5a797a8068d468a066815b', 3),
-(312, 'H.7.1987101420180720', '331007a3134452af5e8372029ac77d35', 3),
-(313, 'H.7.1990111820180710', '622fd7917384ea2badb7ac980e94acda', 3),
-(314, 'H.7.1988102320180710', '761127ec9f23672fd5bc10be2194df81', 3),
-(315, 'H.7.1988051120180720', '6c1effcbeb4292b9df822d15911050d2', 3),
-(316, 'H.7.1986120820180720', 'f0ae83bfa63c26cb77298a9a728fc7bc', 3),
-(317, 'H.7.1991080820180720', 'ce7b3cf32d1969bd4bc7f8e08c053fe7', 3),
-(318, 'H.7.1988011520180710', '48065ef72b9c74a31e6d4abc9ccbc796', 3),
-(319, 'H.7.1989112220180710', '216e5b7281e885b0dfc48efbebd952ab', 3),
-(320, 'H.7.1991090420180710', 'd9c96e3c1a1811f0ab3d3403c87f7ad5', 3),
-(321, 'H.7.1989060420180710', '00b11a89d717452daa00dd71dc29d25a', 3),
-(322, 'H.7.1991041720180710', 'e03de52ad111053633613fbb4d3ea8f1', 3),
-(323, 'H.7.1991041720180710', '79b656c170965dca889a06a1dc393eb3', 3),
-(324, 'H.7.1981012720180710', 'f2b5ccd26a49f4364084b904e602d293', 3),
-(325, 'H.7.1990101320180710', '588974ba2e4f75b49afb097c87d3b3e9', 3),
-(326, 'H.7.1985090920180810', '53c9e59d8b8a910be92ed359f9a8e75e', 3),
-(327, '199012142019031014', '03a0111e55f2b18f4de5e5c38d39c787', 3),
-(328, '199205042019032023', '453349096d736e22a340ba08d3c82932', 3),
-(329, '199203242019031016', '67032b0ae5ce086b35118ede8f768cac', 3),
-(330, '198909122019032012', '06ee333ce671bebb207222ff2b33a1ba', 3),
-(331, '198902220119111108', 'a3939cb110f5f1c300aa9818d924febc', 3),
-(332, '197512210119111107', '8026431368810cefcfb3845785c45fc6', 3),
-(336, 'pengusul', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
-(338, 'admin', '827ccb0eea8a706c4c34a16891f84e7b', 1),
-(359, 'reviewer1', '5f4dcc3b5aa765d61d8327deb882cf99', 2),
-(360, 'reviewer2', '5f4dcc3b5aa765d61d8327deb882cf99', 2);
+(1, 'admin', '5f4dcc3b5aa765d61d8327deb882cf99', 1),
+(2, '0008115504', '0ea891a052b821186eced1647cdad4c2', 3),
+(3, '0012035205', '6ab8739276287267937c74d41ca812c3', 3),
+(4, '0005055205', '815abbd0db8a6dfb5f9990712d4de276', 3),
+(5, '0030045403', 'ea6a22982bf90198586bd1c574e29858', 3),
+(6, '0028126103', 'e2970e91719331fd2344ea26fcc68e9b', 3),
+(7, '0017075408', 'cb5d7aaff7a40d9560037eeacc0c512a', 3),
+(8, '9990371185', 'db1ead60020a7a27bfbb65575b9f64ce', 3),
+(9, '0009115601', 'e241fc433f5186b9a24b933ef78c2b7b', 3),
+(10, '0019085301', 'b549393653248ce88f1fb0a3276b483b', 3),
+(11, '0023046204', '9a98e33c9dc932ef897b2d57e9b7e758', 3),
+(12, '0001056008', 'ad079a8c80583da18efeaf215d7f5135', 3),
+(13, '0022045710', 'e9dab5b23c16ab2778685229022cf294', 3),
+(14, '0031125513', '5c90fc4fe7bbe591b0c337fac7dfe6f2', 3),
+(15, '0009015905', 'b371d0c3bb6aa9b7a14c9d1ed7e02d8a', 3),
+(16, '0022106109', 'a02fdc24a624fcf200aa913165e98016', 3),
+(17, '0020026602', '55437f3daf0ea00716c982b55cde58ee', 3),
+(18, '0012066904', '32a14998f83591611c058b181876f57e', 3),
+(19, '0005015907', '479e432411e442bd746bb0e1a50dca84', 3),
+(20, '0015036004', 'e2b1aabfb0f68261484526db6ad10f41', 3),
+(21, '0022055903', 'b76abcc70244cbbaf5c1a0cd9cbcd470', 3),
+(22, '0007115805', 'a3b033c59ee95b0d24f3947a6c9d1c0c', 3),
+(23, '0027046004', '0c1eb59012800abfd476f42b2a06e734', 3),
+(24, '0017096205', '3ee25fa8b5485d0eead6c0c4667545f3', 3),
+(25, '0026115604', '962eb0f999577ec02eeb024b2908ddee', 3),
+(26, '0001057104', 'da1449ff7dcecd581061572d2e5413a5', 3),
+(27, '0012046008', 'e3f1b85fa8740b6c4a29020222289bd7', 3),
+(28, '0011116801', '2bcb9691259afd4f4b2dac23abd74e92', 3),
+(29, '0020056203', 'fc3192bfcec8aa8074930a54c41c87a9', 3),
+(30, '0012075806', 'fdbddfda5851af9dd001c8498d957145', 3),
+(31, '0002066010', '0766eb3db79df8daaa79ca740003ee8f', 3),
+(32, '0031126321', 'a4becf80d6e0a1f1c33d628cb631f69f', 3),
+(33, '0028055911', '275acf50812f00511f2c92d525ed828e', 3),
+(34, '0012076106', 'c6dc2b008ac4e77b4479de326e14b134', 3),
+(35, '0013095704', '982b4819cf35acc38ea54c760dd8b4a0', 3),
+(36, '0018076004', '37c43f05d68a52513402eeb7b9a11794', 3),
+(37, '0019065904', 'c97f0d870376466742ddc1c56ebca277', 3),
+(38, '0020065904', '0a7ddfdc7f16cee177c011093c584c77', 3),
+(39, '0017026008', 'e8473e6f90545327a4e5774579ba0e9a', 3),
+(40, '9990202241', '0753848d274b6c0882f946ffe157c593', 3),
+(41, '0016106202', '10417ff5de994550155670b0abeb574f', 3),
+(42, '0026056407', 'cf3e96462cfd93430d7b71a33db39b57', 3),
+(43, '0002106902', '956f75c719d00e0734a00136f6085b0e', 3),
+(44, '0028125613', '3781cfcf4436acf3726e820ffe50f5c8', 3),
+(45, '0017126106', '282660d1b1a1b580d8e4d3e94053dd3d', 3),
+(46, '0008116405', 'f107a5c3a0a656b171e79198603807bd', 3),
+(47, '0023026003', '584af5c9e1ade659d063ef53a6c91eeb', 3),
+(48, '0011076303', '06075e8d302461bbe86c0372d3b6fcb6', 3),
+(49, '0027036203', '090302727c65741037edb618ae322daf', 3),
+(50, '0001076202', 'a3baa4cc5c04251fb9e05a8a66ea6327', 3),
+(51, '0022047201', '4e7420efdb6c94f50ce4f21bcc1fa496', 3),
+(52, '0009067204', 'c1199e6b748c4911a75d99d37a923bbe', 3),
+(53, '0016067104', '8052c0911c27e2f7448227b401dcfe63', 3),
+(54, '0020106308', 'e08395185e4edf7d640ed782f723f802', 3),
+(55, '0027096302', '47e9caa43aba185a71ee3a50a128c445', 3),
+(56, '0031127203', 'bec0a2e2e8629b33e42bb22444b19663', 3),
+(57, '0018087103', '3e67ce974b332845951ebaf2fe5b4198', 3),
+(58, '0010116707', 'b6f3029112788a975f7b47333b6a341a', 3),
+(59, '0022126303', '817aab34917a0d51063360f347e68a4d', 3),
+(60, '0005037304', 'ef4c39c1aa4b8e52227e93ba79079722', 3),
+(61, '0014095408', '03d23e4c8ffd4b48d188f19a03c6a20b', 3),
+(62, '0022075906', '19759489590be722041f6c9f0f7c63cd', 3),
+(63, '0005025702', 'cbb1885cc4a48ca13e137244d7f16871', 3),
+(64, '0029046703', 'aede2ea59f3bfcd9f627236abf8c197c', 3),
+(65, '0026126104', 'e019e749edcdebaa0e0cbdba74346154', 3),
+(66, '0008026702', 'b4c4d4d624489ffbb64f0bd64454c233', 3),
+(67, '0007085804', '3ae116823ff6e2c7bbf777a9d382856f', 3),
+(68, '0017036804', '0b2db5efab112b94713c9144faf862b0', 3),
+(69, '0021126905', '6b9c608482158be135a6f5e6ac3ffb0f', 3),
+(70, '0016047603', 'f74430ee3fd75e2fced4267d20dbb72a', 3),
+(71, '0023117006', '2dee41eead011f2bf84304ca12e5f0ee', 3),
+(72, '0019077103', 'fb428e6f84602f7a1df2d9465ee8a1e1', 3),
+(73, '0022086606', '280526c80c0703fd6b7ad214d4ad2186', 3),
+(74, '0026027301', '7a7f04fde21a7a941982ae2837e45654', 3),
+(75, '0017027002', '4bd5f8d56edcc980e07c38921a89d176', 3),
+(76, '0006067205', 'b1be4dd3eb1165fecb591d05d5c7c459', 3),
+(77, '0024065706', '55ad5db2cfd4c51aa86f11d498b13c7c', 3),
+(78, '0002015803', '7ab6128560e256374719d62fba1def15', 3),
+(79, '0022076105', '68f9887d618a695c482d4abc0ef85257', 3),
+(80, '0008015711', 'ca366e9fa183266b2d705be2a2fc221f', 3),
+(81, '0007115909', '8efbde619de7adec6c607fbf4e7f3dda', 3),
+(82, '0030046702', '2432fcb7ad314578f3ae9ecc698b04bc', 3),
+(83, '0014026405', 'f5a89dca696a58d8dd9aaed03e9321ad', 3),
+(84, '0028066802', '7f4eb88c2fc5b8ac9e381868880c8bd5', 3),
+(85, '0014116702', 'dd77277cf3e58fe784eb777dd6ce96c2', 3),
+(86, '0016056203', '946cb0a37a62ed9d612a5ca13cfbe064', 3),
+(87, '0004027303', '319e9412db0a0504be08dca204d30772', 3),
+(88, '0024046904', 'a64095e7693dbf4d804a93ed271a3eda', 3),
+(89, '0016036304', '4ca413d9c3b0b4acb60e811b6fbff41f', 3),
+(90, '0023117005', 'f4297ba0e2ff7a30bcd790db967f1e13', 3),
+(91, '0031085707', 'fff701efa7dc52af44bf81f091d01f7c', 3),
+(92, '0018015903', 'c30264a788cfa1c514883542b821a147', 3),
+(93, '0030087201', 'e3ce9b90c8c48b4ff4f1362d692fb30e', 3),
+(94, '0017037303', '98ac20cff6d4d70cf4d4a9a38c9b8e66', 3),
+(95, '0023047003', 'a03b3eec83387d873fb2bbdb548b5963', 3),
+(96, '0021107502', '9d57702b4e8b17d0cb89a54b97b94869', 3),
+(97, '0025016004', '0a1041b37f5a7151bbdce2dea34fc76b', 3),
+(98, '0012127002', '16da39147405bf590731f0edc400de04', 3),
+(99, '0013036507', '4c2a8e30fe14755331fc873a22f6a5e2', 3),
+(100, '0011076805', '73f4a7ad067d2215838fc6f8fca711f7', 3),
+(101, '0004086404', '45b4edc129b30fb1ab89997a3319278e', 3),
+(102, '0004036105', '36c37b2922bdaa6e491d4deafb36d901', 3),
+(103, '0006037502', '9ca15cddefd758d1b857a07428211759', 3),
+(104, '0014027402', '64c33c4778f9256ef240a48a71288422', 3),
+(105, '0003107703', 'd05b1df54b1d687fd386e6fc26aac1f6', 3),
+(106, '0007027104', '3f45efc13621a86606a822508015565f', 3),
+(107, '0006056605', 'e35d1774aafc25cd5472b4937fdfabb4', 3),
+(108, '0001037106', '24b4b551d5c5f7adb0d4e17cfac465d4', 3),
+(109, '0021127303', '633541040111600a347fc0c2cb50529c', 3),
+(110, '0027077008', '4978019e677dcb664fd2cb4b4bb50909', 3),
+(111, '0026047402', 'f5607d36d9dee3df159e0983bb968717', 3),
+(112, '0026097304', '48b8b3939586ec2679d3940985beacf2', 3),
+(113, '0008037405', '8d676cc327917c9217118f1351249eda', 3),
+(114, '0030097402', '59c27766da6114f3e86e35206debba26', 3),
+(115, '0010016210', '65d3d549de93518c3be40e7d06a977c7', 3),
+(116, '0009076905', 'f514f7e8bc24ad37586034ef7faf45e9', 3),
+(117, '0025067003', '95461a5cfeaabb3e8b81afc9b2dc7917', 3),
+(118, '0020107401', 'bab4e300eff8eff98fba6b050ea5921d', 3),
+(119, '0002077303', 'a143cb89850db7aeaa456f2e8980740e', 3),
+(120, '0024077103', '333b2b9f1664a58e8e28dcaa409fa33a', 3),
+(121, '0029057502', '9fc36d078ae5b027b779e6aabfec394e', 3),
+(122, '0014027401', '8bfe824129772ed679ef558737881808', 3),
+(123, '0028047501', '49cdc7afd56f2ad43b543a5ac1f43f3c', 3),
+(124, '0028107503', '926c3dc96034e0603262e5b807e9bbb5', 3),
+(125, '0017017502', 'c403b39cff15fec8d4151e48f48d78a4', 3),
+(126, '0010105814', '7f687507073b5a38b2d3583902f62c2f', 3),
+(127, '0018085604', 'a77fca76b46da9b5b73bb0105ca93e1d', 3),
+(128, '0026056003', '1c6d56ce9c169ee434fadcfb880522ad', 3),
+(129, '0014075904', 'edfc2e31790205f5cf3ad92cde427b02', 3),
+(130, '0017116105', '149828b59b9f734a9e670bea623f377f', 3),
+(131, '0029095805', '2779d4725202fb3cec3fa8d6a655062f', 3),
+(132, '0009086207', 'cee188af04d4bc563c0b9fdb6a6984dd', 3),
+(133, '0015016005', '34428e4ebe6cb773ceeaef63311f3559', 3),
+(134, '0029045805', '923adefe41860d0b8eb09edf1b822c11', 3),
+(135, '0028056209', '2c3faa658fd038b472fcacfd9fe6753b', 3),
+(136, '0010116804', 'd61ad6f973dc5e30a0731163f4340f97', 3),
+(137, '0011076304', 'd1b032dcffa380be35cd1698d808ae3a', 3),
+(138, '0027036204', 'f3bc01abba924210745d058c52f4e566', 3),
+(139, '0023035909', 'feb53a22752c1d8efc529e461718e221', 3),
+(140, '0005106606', '97c2e19b28d6b0db18808c5a397ef30e', 3),
+(141, '0022125705', '76b974b3434f91c265f23071907e2287', 3),
+(142, '0021056604', '0c72a77508b16394e2f3dc41a3aaa991', 3),
+(143, '0018127102', '45342778eae99ed1e20e4fd433faecf9', 3),
+(144, '0006057105', 'cf93d8cac828c7f918a84bda9c833a83', 3),
+(145, '0020047102', '0da504b0875248615133259072071b59', 3),
+(146, '0013116504', '6ebb0055a0d2c4876040363c9630c74f', 3),
+(147, '0021125803', 'eb10b08d1ff7d295bb5fb7fd3feefe0e', 3),
+(148, '0020057004', 'fdbf15c375b450889854a1f62461c801', 3),
+(149, '0023027404', '339b6406822e0776239b4dde0ac65d9f', 3),
+(150, '0007057301', 'bf37fae3481e6b3d300e3332bdb0bb0d', 3),
+(151, '0004046704', '0b18f95a0a68a605dde9318db4a02b12', 3),
+(152, '0023077103', '44109ebc578bc1ae2565a78bafac047f', 3),
+(153, '0030017303', '1915f5fa49c7fa83c6fcb21192fcc2b6', 3),
+(154, '0029096908', 'ef679b62a3006d554d022d141608ea69', 3),
+(155, '0016066104', 'e0104b8bf5a11600d37644cea2bec2ed', 3),
+(156, '0027067403', '2258b9bbab70aa2de74381eb2b062109', 3),
+(157, '0003127004', '81f399ddd2518486489c644068e9d43a', 3),
+(158, '0008056802', '37cce59c9e8a591b4839f71e6d436f82', 3),
+(159, '0022017502', '84793d0984d50f634d20423d0825ee61', 3),
+(160, '0017127302', '941f9e4a6b2e85b320259fe65c214146', 3),
+(161, '0029046902', '01709973466f7f86a5458faa81b021f4', 3),
+(162, '0012017301', '2084db375cea1bbe9d5d8f11944d4423', 3),
+(163, '0020077403', '5ca24997ab662d712de84eb3360c492d', 3),
+(164, '0021047108', 'ed6092eb38d63b31dbbc63546111eca6', 3),
+(165, '0018067403', 'a4151d128c75df5b5c220c6b915df391', 3),
+(166, '0015097503', '83f88309d614887d919cc2dd6bc6dfe6', 3),
+(167, '0002075907', '7299b0ea9a524357f70e96152b643f92', 3),
+(168, '0026076805', '2df0292246b0b712478e04905284daff', 3),
+(169, '0017107301', '7bbbb7c80c3888c495611d46ba1c9b10', 3),
+(170, '0001096603', 'e8ad53258c0201bfef8e3725d1de56f4', 3),
+(171, '0027037404', '6ac0c0165befaeb7ad902b1f6232969d', 3),
+(172, '0027067003', 'c94aee2a1300c020c1b8f6b726a68cde', 3),
+(173, '0012087601', '94f240cd3ca57b3175a483d967fe3a1e', 3),
+(174, '0024117101', '144d3eb723b2d03b8c15e80f51195e1e', 3),
+(175, '0016127402', '0b3a264626b51ad6a81bc56531f8c962', 3),
+(176, '0011087503', '98d0f79ee2353384962c2e1d007f70d4', 3),
+(177, '0005056908', '855cff3d347632c35fd332560cda6eaa', 3),
+(178, '0001016903', '63adeb478fbf9662f4a5e9384ddb8560', 3),
+(179, '0025057601', 'a05afad929b251226df5e505511d81b1', 3),
+(180, '0014086805', '01127356d4769b6165b3336003af3acd', 3),
+(181, '0022097503', 'a194e941b62cc31f9f006fcbf3a45afd', 3),
+(182, '0024057703', '6cb2cbe7a4966bb5fe49efbee5890e9f', 3),
+(183, '0008067505', '2dce1060a2e5f9b4e17b8a34f33bf5c3', 3),
+(184, '0012097402', 'fa4f25b2637360abccfca7c03588bce5', 3),
+(185, '0016037401', 'e1ecba33af4b0f11c24937c4e749614f', 3),
+(186, '0024107302', '5ad52c34793129b5ada0894219664c52', 3),
+(187, '0026057302', '22073a09563cefe0f947bd8dbf2f01b9', 3),
+(188, '0005037606', '77c7505828c7bd8dd1a5fb5f12827c0d', 3),
+(189, '0025027601', '4ed21434a56e7db1063c93fc4f550715', 3),
+(190, '0002107304', '96b6b5994218e02f4a8ffaa184b4e1a6', 3),
+(191, '0028057601', '8a7533d1167d548a172509489c89db41', 3),
+(192, '0019027901', '2855d7fabe236151a1da8053b284e1fb', 3),
+(193, '0027037104', '829011de736ad773da2ecc1cc79fca85', 3),
+(194, '0023057403', '5a4eb0ea615854c5c2d5edeb73ff8e3a', 3),
+(195, '0023107101', 'efb3d414e997e988a201c51e40926a15', 3),
+(196, '0004037403', 'c151c029d9058156d274ccc043379d87', 3),
+(197, '0013098101', '71459901567a4650814dc27a8ebfbc36', 3),
+(198, '0014076902', '1d7ba01f3f044e3dce22c8bfb8b425fe', 3),
+(199, '0025106012', '793205aa9d2cf22670344398eefcbbfe', 3),
+(200, '0021037603', 'fc57b3a526227f9e491aba697fdab4c7', 3),
+(201, '0017028401', '69882774bc023b2ae1edf7c191937e1d', 3),
+(202, '0026038401', '964a421c1dfac489b9394c8b65c4ba30', 3),
+(203, '0015067710', '7a69fa3146c4950a01c61d586039cfe6', 3),
+(204, '0006095910', '84796cc922a4d8d07bb8393634d9d140', 3),
+(205, '0015075803', '90246d5dcf3829ccb3eba7950746f892', 3),
+(206, '0021106008', 'b24c6e703a2a1c58303a12b6538f8360', 3),
+(207, '0001065609', 'a72a7c230b72734f4bed34f55d59f673', 3),
+(208, '0009095912', '634ffdf1d16677e25a740e8a3f38594f', 3),
+(209, '0010125907', 'f6f8beb637b8f20ca4a62b6b6d1580b3', 3),
+(210, '0010057203', '7c558634650f210dc721e18c5dfd0704', 3),
+(211, '0011097602', '2b32dc717d1d85a603eb3b17013cc3e8', 3),
+(212, '0021067301', '382049b553ed2e88a0265e1ebdfdc9ad', 3),
+(213, '0014057803', '676060f7af30cc6675531cef0a67f89b', 3),
+(214, '0006087002', '3ac53ffc9a7587804f4b45aebba01cac', 3),
+(215, '0026087703', 'c54ef8a472a7ef35512f23f3bf5bca71', 3),
+(216, '0031017402', '29a439c23696ef33acc3fb0772f86492', 3),
+(217, '0018078004', 'ef98a2ff7454b10aa24d2b72853990a2', 3),
+(218, '0009047403', '861aee21250ddbd984a9385b5616ef1c', 3),
+(219, '0003087407', '02d641bb872445b2c070dc49ade4e1a8', 3),
+(220, '0020018203', 'b37384376c94c6f926cdd6a3a35bb0a3', 3),
+(221, '0011087806', 'b3afd210e9b25d0fe184a181add795e9', 3),
+(222, '0009037705', '396b9de4f062c814bb41529a41c1c0c2', 3),
+(223, '0025117805', '60f8b76596656326c69ea636a043c341', 3),
+(224, '0002107903', '59edbfa0c89262c26553de898c5923aa', 3),
+(225, '0016027606', '8c4a3ab97929656e38b65f9052763bf1', 3),
+(226, '0029018403', '8ab98eae840cb38ba735ff0fc4b5dc23', 3),
+(227, '0004087601', '847179b0ef433f4697f22c1d6c7eca42', 3),
+(228, '0030037103', '4b0790e0139433dd39dc4d61456b90c3', 3),
+(229, '0006126902', '7ddaf6ee8a605cb68332ed528d7d13e7', 3),
+(230, '0021097404', '9c89efc0759880559c080b22b08dab98', 3),
+(231, '0017067206', 'fc4b848ca61641b50364c5ba6ef66be4', 3),
+(232, '0021057010', '834138259309d979496d8f3720f4daa6', 3),
+(233, '0021078202', 'd3fdb24a0053bc8419abe6011818f954', 3),
+(234, '0025037505', 'dc2dce42938408973813f22b967a2b90', 3),
+(235, '0003046203', '103da8ed82e951333e9da6b4c0f8c85b', 3),
+(236, '0026057713', '3227fccdc6bc0998073a2df1a7bfb5f0', 3),
+(237, '0022067709', '78c0e5349d99bd5e89cc82b6a2802909', 3),
+(238, '0006027801', '9f5d7e574b592a9b0b5c1e9ba96f9d8f', 3),
+(239, '0019038304', '1dcd7092f70dd9ee1133f663a8274c95', 3),
+(240, '0006128402', 'ed27ee8fcb4eb22de0c27e638f748995', 3),
+(241, '0011128402', '2da2f0a2e4b25ff3a65e1ffab2a698e2', 3),
+(242, '0012087611', 'a32d8ce11ac7c02e921cc1c5bef78bf8', 3),
+(243, '0003037805', 'e0d7a6e852ea36ee3c55b2668969f832', 3),
+(244, '0011128005', '30b0d018cb654c5be6df67ca79a8a951', 3),
+(245, '0031018206', 'd6b463349abe3c934640b0f5fe1aa66d', 3),
+(246, '0026058501', '03ef708c912a8ab3b66170d6e0ad8928', 3),
+(247, '0015018601', 'ad073643aa92cf7ce024a050bda8ac0b', 3),
+(248, '0026088601', 'af17d346e8be63bc11d4fc4247fba19c', 3),
+(249, '0007118202', '6559cd0a494428528332928cdc143d6d', 3),
+(250, '0011127705', '9dab7d01ea26354bcdb64e2246f6d622', 3),
+(251, '0002066403', '551c515511c8ddd2bb2a305feaea6141', 3),
+(252, '0001058302', 'ae4d4dbb2aafdfa60006ef9a7605dea5', 3),
+(253, '0027068402', '68d7e3df24f7e54b6b6c3c6a80e784d0', 3),
+(254, '0016078205', 'f8cf3c34e92812d65bc62db4d713d924', 3),
+(255, '0025018501', '906008ec7cc91a6c40a710eee6a63784', 3),
+(256, '0019038603', '9f630ae99604bce0364a1c8745726cc2', 3),
+(257, '0021068701', 'e2d0d4f63ff99d0fc6abe3b8a760954a', 3),
+(258, '0025028801', '580ea5dce402ca1abb30d4f663033730', 3),
+(259, '0008097504', '123dac1d1eca0262645ebfc832bdacd0', 3),
+(260, '0022018302', '96b7dd5420e20fd5175dd83a45cb1e94', 3),
+(261, '0016067304', '506d5431d337af72bd1f6993bcf2bf21', 3),
+(262, '0023016705', '22327d4152ae0aba999565d5faf394af', 3),
+(263, '0011036905', '73ab11897ad1132f4949c030d8d8d03b', 3),
+(264, '0029047102', 'cc9f7930c9ac0b783d78486013f15cac', 3),
+(265, '0006117302', '9a3263558eeba60ab9c369fe116f06e0', 3),
+(266, '0001037105', 'c0059ab51077fccdfa3c2e6c45d1fcbd', 3),
+(267, '0018017503', '9c3422a077bcdfe047196c2471af7078', 3),
+(268, '0001046704', '24b2dd736ca33014c172477a934f678f', 3),
+(269, '0019096704', '327bc62fb5fabed8a2b96f7c113a7071', 3),
+(270, '0023036603', '0adf445e0b66ec0721ab7a5fb0d9989f', 3),
+(271, '0002126403', '71c99dee3b7593d3cd9da3f0ce54bb03', 3),
+(272, '0031057204', '99aa4561f7be5731adc78b4071ff09bf', 3),
+(273, '0015047110', 'd55f09c7e11cecb00a189ad8b4182dd6', 3),
+(274, '0010117603', '7e7cb9096337e46d8188272f44b92e0a', 3),
+(275, '0030067203', 'cae9b2f1a4dd68ebd340271db86d8ee1', 3),
+(276, '0020058102', '5845709453367998bd9d1b6e935fc47b', 3),
+(277, '0001067702', '896aa41775d39e2377ca2579587d7cd7', 3),
+(278, '0021087404', 'bf174cd1ac48a51958eed62ee2390d1c', 3),
+(279, '0017067906', 'acf8f266a150b5c47afb21ba6d2c36a2', 3),
+(280, '0020107707', 'c166f94bee31db46264cecd16989eca2', 3),
+(281, '0023047905', '227c34fc847d9332bc32b5e7e642dc58', 3),
+(282, '0025017402', 'c5ea51f0b9fec9c450da67915e5f3b01', 3),
+(283, '0030058102', 'b55ea6df2a43b712233df3daf277d6d3', 3),
+(284, '0024088102', '3cffdc31a907935a36099bc7e7630356', 3),
+(285, '0003118402', '412160d116fe8239594c6b2c3d0d70c4', 3),
+(286, '0017097904', 'd6651304e2ad7efedb0d079bb7ece37a', 3),
+(287, '0021028107', '75de4feffdd0929753ea8c119a76d02d', 3),
+(288, '0023036005', 'd42fe2462f8a619cb794a5919fcfc3ca', 3),
+(289, '0020048703', '819cc5abf6ef0bc64cd408237bb127c3', 3),
+(290, '0017058702', 'b7da30cea2285c4951e73a7e0573082d', 3),
+(291, '0027098602', '4bf3200fa328622ea76e23c50d2b8022', 3),
+(292, '0018118802', '19ab2350dd45d81d66edf30f5ce2ccd9', 3),
+(293, '0027108012', 'a85168869e700318790533dacc1bdcc2', 3),
+(294, '0006048803', '34e0544d496374b3c1687934437f985a', 3),
+(295, '0013108903', '6086a867a53cd8229e360435f8e71474', 3),
+(296, '0028038705', 'e24c125323c753f85f7c3992f65f6827', 3),
+(297, '0028028506', '5eaac8ad884a0b0cc128981a52f224c8', 3),
+(298, '0617088402', '6fd73879f98c584bb0ed4877ff604b69', 3),
+(299, '', 'd41d8cd98f00b204e9800998ecf8427e', 3),
+(300, '0003058302', 'fe3d0c44007689dd8c7484637fca0580', 3),
+(301, '0014069202', 'a2785465dc84ddc78e913496f069c900', 3),
+(302, '0004058504', 'be544324ed1375f125feecb4e79cb7a6', 3),
+(303, '0011069003', '049f93c48acbc300e13c6eac75bd3100', 3),
+(304, '0011129301', 'c8f1dc88da9cbca897c9480e4c90ec62', 3),
+(305, '0030039004', 'af2bc35b4064920ff077f29e427333f8', 3),
+(306, '0030058503', 'aa5f075b112b9fb3d1778a4eaa20b242', 3),
+(307, '0007048506', 'ffb840bffc0889d8673550d388494b09', 3),
+(308, '0009118605', '9375dfca8ccb015a03d17d31354ca561', 3),
+(309, '0014108705', '39a6caba7581486685947548b4f08120', 3),
+(310, '0018119004', '99733c832859a66288dee2393e90ef2b', 3),
+(311, '0023108804', 'bcba8e2ccdadf60f0fa4956d3790c1dc', 3),
+(312, '0011058805', 'd9a77ee7cdc6988d59d619e34dae44a7', 3),
+(313, '0008128604', 'bea1164df321a47f8fc53ee34baeef67', 3),
+(314, '0008089101', '862164ba622210c1b6cb632004d1dbb8', 3),
+(315, '015018804', 'fcf4ab07c591ea0c2effad132158880e', 3),
+(316, '022118903', '3398adb19dac8533e73985f5d7d3e3bd', 3),
+(317, '0004099105', 'e47a1caa12df270d1e6e967cf235d79e', 3),
+(318, '0004068907', 'cbf1646f31a3780e0cf561f1a0bd18fd', 3),
+(319, '0017049108', '48bdd6c393a9acc34f2a25cfa3ef30ee', 3),
+(320, '0017049107', '7e01362f966a99f87279c9e25c2a8c98', 3),
+(321, '0027018112', '033a442214bff4220f8afdb4b90bf5d5', 3),
+(322, '0013109008', '30c0c837a458d4c3c7c5639315ebab60', 3),
+(323, '0009098506', 'cdfb4c9ff1a2b715357d5e5500674b96', 3),
+(324, '0014129003', '25c72ef1194ee8cf6d26da3052a13ca2', 3),
+(325, '0004059202', 'ba5db9795ac34daedfe39e19dd8db067', 3),
+(326, '0024039202', '4f8bee67dbfbe52f34a47cdb33a3f068', 3),
+(327, '0012098905', '1eb08870ab2e491342e2ec90e73aeca6', 3),
+(334, 'pengusul', 'password', 0),
+(335, 'pengusul', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(336, 'reviewer1', '5f4dcc3b5aa765d61d8327deb882cf99', 3),
+(337, 'reviewer2', '5f4dcc3b5aa765d61d8327deb882cf99', 3);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admin`
+-- Indeks untuk tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `assign_proposal_penelitian`
+-- Indeks untuk tabel `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `assign_proposal_pengabdian`
+-- Indeks untuk tabel `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `detail_nilai_proposal_pengabdian`
+-- Indeks untuk tabel `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dosen`
+-- Indeks untuk tabel `dosen`
 --
 ALTER TABLE `dosen`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `dsn_penelitian`
+-- Indeks untuk tabel `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `dsn_pengabdian`
+-- Indeks untuk tabel `dsn_pengabdian`
 --
 ALTER TABLE `dsn_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jadwal`
---
-ALTER TABLE `jadwal`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `jadwal_penelitian`
+-- Indeks untuk tabel `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jadwal_pengabdian`
+-- Indeks untuk tabel `jadwal_pengabdian`
 --
 ALTER TABLE `jadwal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jenispenelitian`
+-- Indeks untuk tabel `jenispenelitian`
 --
 ALTER TABLE `jenispenelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `komponen_nilai_pengabdian`
+-- Indeks untuk tabel `komponen_nilai_pengabdian`
 --
 ALTER TABLE `komponen_nilai_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `komp_penilaian_penelitian`
+-- Indeks untuk tabel `komp_penilaian_penelitian`
 --
 ALTER TABLE `komp_penilaian_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `koordinator`
+-- Indeks untuk tabel `koordinator`
 --
 ALTER TABLE `koordinator`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `laporan_akhir_penelitian`
+-- Indeks untuk tabel `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `laporan_akhir_pengabdian`
+-- Indeks untuk tabel `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `laporan_monev_penelitian`
+-- Indeks untuk tabel `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `luaran`
+-- Indeks untuk tabel `luaran`
 --
 ALTER TABLE `luaran`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mhs_penelitian`
+-- Indeks untuk tabel `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mhs_pengabdian`
+-- Indeks untuk tabel `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `mitra`
+-- Indeks untuk tabel `mitra`
 --
 ALTER TABLE `mitra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nilai_penelitian`
+-- Indeks untuk tabel `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nilai_proposal_penelitian`
+-- Indeks untuk tabel `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nilai_proposal_pengabdian`
+-- Indeks untuk tabel `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pengumuman`
+-- Indeks untuk tabel `pengumuman`
 --
 ALTER TABLE `pengumuman`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `proposal_penelitian`
+-- Indeks untuk tabel `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `proposal_pengabdian`
+-- Indeks untuk tabel `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reviewer_penelitian`
+-- Indeks untuk tabel `reviewer_penelitian`
 --
 ALTER TABLE `reviewer_penelitian`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `reviewer_pengabdian`
+-- Indeks untuk tabel `reviewer_pengabdian`
 --
 ALTER TABLE `reviewer_pengabdian`
   ADD PRIMARY KEY (`nip`);
 
 --
--- Indexes for table `role`
+-- Indeks untuk tabel `role`
 --
 ALTER TABLE `role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `skema_pengabdian`
+-- Indeks untuk tabel `skema_pengabdian`
 --
 ALTER TABLE `skema_pengabdian`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sumberdana`
+-- Indeks untuk tabel `sumberdana`
 --
 ALTER TABLE `sumberdana`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `assign_proposal_penelitian`
+-- AUTO_INCREMENT untuk tabel `assign_proposal_penelitian`
 --
 ALTER TABLE `assign_proposal_penelitian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `assign_proposal_pengabdian`
+-- AUTO_INCREMENT untuk tabel `assign_proposal_pengabdian`
 --
 ALTER TABLE `assign_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `detail_nilai_proposal_pengabdian`
+-- AUTO_INCREMENT untuk tabel `detail_nilai_proposal_pengabdian`
 --
 ALTER TABLE `detail_nilai_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `dsn_penelitian`
+-- AUTO_INCREMENT untuk tabel `dsn_penelitian`
 --
 ALTER TABLE `dsn_penelitian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `dsn_pengabdian`
+-- AUTO_INCREMENT untuk tabel `dsn_pengabdian`
 --
 ALTER TABLE `dsn_pengabdian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `jadwal`
---
-ALTER TABLE `jadwal`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `jadwal_penelitian`
+-- AUTO_INCREMENT untuk tabel `jadwal_penelitian`
 --
 ALTER TABLE `jadwal_penelitian`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `jadwal_pengabdian`
+-- AUTO_INCREMENT untuk tabel `jadwal_pengabdian`
 --
 ALTER TABLE `jadwal_pengabdian`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `jenispenelitian`
+-- AUTO_INCREMENT untuk tabel `jenispenelitian`
 --
 ALTER TABLE `jenispenelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `komponen_nilai_pengabdian`
+-- AUTO_INCREMENT untuk tabel `komponen_nilai_pengabdian`
 --
 ALTER TABLE `komponen_nilai_pengabdian`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `komp_penilaian_penelitian`
+-- AUTO_INCREMENT untuk tabel `komp_penilaian_penelitian`
 --
 ALTER TABLE `komp_penilaian_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `laporan_akhir_penelitian`
+-- AUTO_INCREMENT untuk tabel `laporan_akhir_penelitian`
 --
 ALTER TABLE `laporan_akhir_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `laporan_akhir_pengabdian`
+-- AUTO_INCREMENT untuk tabel `laporan_akhir_pengabdian`
 --
 ALTER TABLE `laporan_akhir_pengabdian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `laporan_monev_penelitian`
+-- AUTO_INCREMENT untuk tabel `laporan_monev_penelitian`
 --
 ALTER TABLE `laporan_monev_penelitian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `luaran`
+-- AUTO_INCREMENT untuk tabel `luaran`
 --
 ALTER TABLE `luaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `mhs_penelitian`
+-- AUTO_INCREMENT untuk tabel `mhs_penelitian`
 --
 ALTER TABLE `mhs_penelitian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mhs_pengabdian`
+-- AUTO_INCREMENT untuk tabel `mhs_pengabdian`
 --
 ALTER TABLE `mhs_pengabdian`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `mitra`
+-- AUTO_INCREMENT untuk tabel `mitra`
 --
 ALTER TABLE `mitra`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `nilai_penelitian`
+-- AUTO_INCREMENT untuk tabel `nilai_penelitian`
 --
 ALTER TABLE `nilai_penelitian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nilai_proposal_penelitian`
+-- AUTO_INCREMENT untuk tabel `nilai_proposal_penelitian`
 --
 ALTER TABLE `nilai_proposal_penelitian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `nilai_proposal_pengabdian`
+-- AUTO_INCREMENT untuk tabel `nilai_proposal_pengabdian`
 --
 ALTER TABLE `nilai_proposal_pengabdian`
   MODIFY `id` bigint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `proposal_penelitian`
+-- AUTO_INCREMENT untuk tabel `proposal_penelitian`
 --
 ALTER TABLE `proposal_penelitian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `proposal_pengabdian`
+-- AUTO_INCREMENT untuk tabel `proposal_pengabdian`
 --
 ALTER TABLE `proposal_pengabdian`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `role`
+-- AUTO_INCREMENT untuk tabel `role`
 --
 ALTER TABLE `role`
   MODIFY `id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `skema_pengabdian`
+-- AUTO_INCREMENT untuk tabel `skema_pengabdian`
 --
 ALTER TABLE `skema_pengabdian`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `sumberdana`
+-- AUTO_INCREMENT untuk tabel `sumberdana`
 --
 ALTER TABLE `sumberdana`
   MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=364;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=338;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
