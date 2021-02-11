@@ -29,6 +29,8 @@
     <script src=".<?= base_url('assets/pengabdian/assets/node_modules/c3-master/c3.min.js');?>"></script>
     <!-- Chart JS -->
     <script src="<?= base_url('assets/pengabdian/html/dist/js/dashboard1.js');?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    
 </body>
 
 </html>

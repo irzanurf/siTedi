@@ -33,11 +33,12 @@
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" ">
+    <div class="sidebar" data-color="purple" >
 
     <!--
 

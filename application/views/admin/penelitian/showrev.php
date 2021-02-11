@@ -77,7 +77,7 @@
                 <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Tambah Reviewer</label>
                                 <div class="col-lg-8">
-                                <select class="form-control" name="reviewer">
+                                <select class="form-control selectpicker" name="reviewer" data-live-search='true'>
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
@@ -98,15 +98,7 @@
             </div>
         </div>
         </div>
-
-
-
-            
-
         </div>
-        
-
-
         </div>
     </div>
     <!-- /.row -->
@@ -119,3 +111,8 @@
 
 </div>
 <!-- /#wrapper -->
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker();
+        });
+    </script>

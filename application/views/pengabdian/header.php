@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -23,6 +23,8 @@
     <link href="<?= base_url('assets/pengabdian/html/dist/css/style.css');?>" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
     <link href="<?= base_url('assets/pengabdian/html/dist/css/pages/dashboard1.css');?>" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -52,7 +52,7 @@
                                     <label>Biaya</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control" name="biaya">
+                                    <input type="text" class="form-control currency" name="biaya">
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
@@ -189,6 +189,23 @@
       $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
       });
+    });
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $( '.currency' ).keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+            return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            ;
+            });
+            });
     });
     </script>
 

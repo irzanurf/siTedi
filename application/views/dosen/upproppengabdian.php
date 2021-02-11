@@ -100,24 +100,26 @@
 
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
-                                <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                </div>
-                                <?php 
-                        foreach($anggota_dosen as $k=>$val){?>
-                            <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen[]">
+                                <div class="input-group control-group">
+                               <select class="form-control" id="selectpicker1" name="dosen_new[]" data-live-search="true">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
                                         ?>
-                                        <option value ="<?php echo $ds->nip; ?>" <?php echo ($ds->nip==$val->nip) ? "selected='selected'" : "" ?>><?php echo $ds->nama ?></option>
+                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
                                         <?php
                                     }
                                     ?>
-                                        <input class='form-control hidden' type="text" id="bobot" name="id_dsn_anggota[]" value=<?=$val->id?> hidden>
-                                    
                                 </select>
+                                 <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more" id="btnadd" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div></div>
+                                <?php 
+                        foreach($anggota_dosen as $k=>$val){?>
+                            <div class="control-group input-group" style="margin-top:10px">
+                                <input class="form-control id-dosen" name="dosen[]" value="<?=$val->nip?>" hidden >
+                                <input class="form-control nama-dosen" value="<?=$val->nama?>" readonly>
+                            
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
@@ -162,16 +164,9 @@
 
                             <div class="copy hide">
                                 <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen_new[]">
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    foreach ($dosen as $ds) {
-                                        ?>
-                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
+                                <input class="form-control id-dosen" name="dosen_new[]"  hidden >
+                                <input class="form-control nama-dosen"  readonly>
+                                
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
@@ -264,14 +259,30 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
-      $(".add-more").click(function(){ 
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
+        $('#selectpicker1').selectpicker();
+        $('#btnadd').prop('disabled', true);
+        // $('#selectpicker2').selectpicker();
+    });
+    </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker1').on('change', function(){
+            $('#btnadd').prop('disabled', false);
+            
       $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
       });
     });
+
+    $("#btnadd").on('click',function(){ 
+                var temp = $(".copy.hide").clone(true); 
+                $('.nama-dosen', temp).val($('#selectpicker1 option:selected').text());
+                $('.id-dosen', temp).val($('#selectpicker1').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more").after(temp); 
+      });
+        })
+      
     </script>
 
     <script type="text/javascript">

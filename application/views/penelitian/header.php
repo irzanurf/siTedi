@@ -5,6 +5,7 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE html>
+<html lang="en">
 <head>
 <title>Penelitian</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,11 +23,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="<?= base_url('assets/penelitian/css/font.css');?>" type="text/css"/>
 <link href="<?= base_url('assets/penelitian/css/font-awesome.css');?>" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <!-- //font-awesome icons -->
 <script src="<?= base_url('assets/penelitian/js/jquery2.0.3.min.js');?>"></script>
 <script src="<?= base_url('assets/penelitian/js/modernizr.js');?>"></script>
 <script src="<?= base_url('assets/penelitian/js/jquery.cookie.js');?>"></script>
 <script src="<?= base_url('assets/penelitian/js/screenfull.js');?>"></script>
+
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);

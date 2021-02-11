@@ -61,7 +61,7 @@
                                     <label>Biaya</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control" name="biaya">
+                                    <input type="text" class="form-control currency" name="biaya">
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
                                 <div class="input-group control-group after-add-more">
-                               <select class="form-control" name="dosen[]">
+                               <select class="form-control" id="selectpicker1" name="dosen[]" data-live-search="true">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
@@ -94,7 +94,7 @@
                                     ?>
                                 </select>
                                  <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn btn-success add-more" id="btnadd" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -103,16 +103,6 @@
                                 <div class="input-group control-group1 after-add-more1">
                                 <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
                                 <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
-                               <!-- <select class="form-control" name="mahasiswa[]">
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    foreach ($mahasiswa as $mhs) {
-                                        ?>
-                                        <option value ="<?php echo $mhs->nim; ?>"><?php echo $mhs->nama ?></option>
-                                        <?php
-                                    }
-                                    ?> -->
-                                <!-- </select> -->
                                  <div class="input-group-btn"> 
                                     <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
@@ -123,36 +113,21 @@
 
                             <div class="copy hide">
                                 <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen[]">
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    foreach ($dosen as $ds) {
-                                        ?>
-                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
+                                <input class="form-control id-dosen" name="dosen[]" hidden >
+                                <input class="form-control nama-dosen"  readonly>
+                                
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
                                 </div>
                             </div>
+                        
 
                             <div class="copy1 hide">
                                 <div class="control-group1 input-group" style="margin-top:10px">
                                 <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
                                 <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
-                                <!-- <select class="form-control" name="mahasiswa[]">
-                                    <option value="">Please select</option>
-                                    <?php
-                                    foreach ($mahasiswa as $mhs) {
-                                        ?>
-                                        <option value ="<?php echo $mhs->nim; ?>"><?php echo $mhs->nama ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select> -->
+                            
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove1" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
@@ -217,21 +192,58 @@
 <script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-      $(".add-more").click(function(){ 
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
+        $('#selectpicker1').selectpicker();
+        $('#btnadd').prop('disabled', true);
+        $( '.currency' ).keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+            return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            ;
+            });
+            });
+                    // $('#selectpicker2').selectpicker();
+    });
+    </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker1').on('change', function(){
+            $('#btnadd').prop('disabled', false);
+            
       $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
       });
     });
+
+    $("#btnadd").on('click',function(){ 
+                var temp = $(".copy.hide").clone(true); 
+                $('.nama-dosen', temp).val($('#selectpicker1 option:selected').text());
+                $('.id-dosen', temp).val($('#selectpicker1').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more").after(temp);
+          $('#selectpicker1').val("").selectpicker('refresh');
+
+
+      });
+
+
+        })
+      
     </script>
+
+
 
     <script type="text/javascript">
     $(document).ready(function() {
       $(".add-more1").click(function(){ 
           var html = $(".copy1").html();
           $(".after-add-more1").after(html);
+        //   $('.selectpicker2').selectpicker();
+          
       });
       $("body").on("click",".remove1",function(){ 
           $(this).parents(".control-group1").remove();
