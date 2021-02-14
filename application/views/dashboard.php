@@ -8,7 +8,7 @@
 </head>
     <body>
     <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-4">
                         <h1 class="page-header">
                             &nbsp; Welcome <small>
                             <?php 
@@ -19,48 +19,41 @@
                         </h1>
                         
                     </div>
-                </div>
-    <div class="container profile profile-view" id="profile">
     
-        <div class="col-md-0">
-        
-        <div id="content">
-        <div class="card bg-primary text-white">
-	<div class="card-header">
+        <div class="col-lg-8">
+        <?php
+    $pengumuman=$berita[0]-> berita;
+    $new = str_replace(" ","",$pengumuman);
+    if($new==""){
+
+    }
+    else{
+    ?>
+        <div class="panel panel-info">
+			<div class="panel-heading">
+           
     <center><h1>Pengumuman</h1></center>
-	</div>
- 
-	
- 
-</div>
-  
-  <div class="MasMalvenSpoiler">
-    <div class="isi">
-    <?php echo $berita[0]-> berita?>
-    </div>
-</div> 
- </div>
-            <!-- <h1>Pengumuman</h1>
-            
-            <?php echo $berita[0]-> berita?> -->
+			</div>
+			<div class="panel-body">
+            <?php echo $berita[0]-> berita;}?>
+			</div>			
+		</div>
+		<br/>
+    
             
         </div>
          
+        <div class="col-lg-16" style="float:none;margin:auto;">
         <div class="row">
-            
+        
         </div></br></br>
-        
-       
+        <div class="panel panel-success">
+			<div class="panel-heading">
+            <h1><center>Daftar Pengajuan Proposal</center></h1>
+			</div>
+			
+        <div class="panel-body">
         <form>
-        <div class="card">	
- 
-	<div class="card-footer bg-success text-white">
-    <h1><center>Daftar Pengajuan Proposal</center></h1>
-	</div>
-</div>
-        
-                       
-                       </div>
                        <table class="table" >
                        <thead>
                            <tr>
@@ -120,6 +113,7 @@
                            </tr>
                            <?php } ?>
                        </table>
+   </div>
    </div>
             <!-- <div class="form-row profile-row">
                 <div class="col-md-4 relative">
