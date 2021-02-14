@@ -35,6 +35,7 @@
         <table class="table">
             <tr>
                 <th>No</th>
+                <th>Keterangan</th>
                 <th>Tanggal Mulai</th>
                 <th>Batas Akhir Pengumpulan Laporan Akhir</th>
                 <th>Tanggal Selesai</th>
@@ -47,6 +48,7 @@
             foreach($jadwal as $v) { ?>
             <tr>
                 <td><?= $no++?></td>
+                <td><?= $v->keterangan?></td>
                 <td><?= $v->tgl_mulai?></td>
                 <td><?= $v->tgl_akhir?></td>
                 <td><?= $v->tgl_selesai?></td>

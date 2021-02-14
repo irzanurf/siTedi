@@ -88,6 +88,7 @@ class Pengabdian extends CI_Controller
     public function submitJadwalPengabdian()
     {
         $data = [
+            'keterangan' => $this->input->post('keterangan'),
             'tgl_mulai' => $this->input->post('tgl_mulai'),
             'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' => $this->input->post('tgl_selesai'),
@@ -101,6 +102,7 @@ class Pengabdian extends CI_Controller
     {
         $id = $this->input->post('id');
         $data = [
+            'keterangan' => $this->input->post('keterangan'),
             'tgl_mulai' => $this->input->post('tgl_mulai'),   
             'tgl_akhir' => $this->input->post('tgl_akhir'),
             'tgl_selesai' =>$this->input->post('tgl_selesai')

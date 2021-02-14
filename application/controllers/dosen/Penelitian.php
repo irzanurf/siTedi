@@ -10,7 +10,7 @@ class Penelitian extends CI_Controller {
         $this->load->model('Admin');
         $current_user=$this->Admin->is_role();
         //cek session dan level user
-        if(!(($current_user != "2") || ($current_user != "3"))){
+        if($this->Admin->is_role() == "1" || $this->Admin->is_role()=='4'){
             redirect("login/");
         }
         $this->load->model('M_PropPenelitian');

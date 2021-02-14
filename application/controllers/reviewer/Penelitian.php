@@ -8,6 +8,11 @@ class Penelitian extends CI_Controller {
         parent::__construct();
         //load model admin
         $this->load->model('Admin');
+        $current_user=$this->Admin->is_role();
+        //cek session dan level user
+        if($this->Admin->is_role() == "1" || $this->Admin->is_role()=='4'){
+            redirect("login/");
+        }
         //cek session dan level user
         $this->load->model('M_PropPenelitian');
         $this->load->model('M_SumberDana');

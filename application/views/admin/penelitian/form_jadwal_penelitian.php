@@ -20,13 +20,15 @@
         </div>
     </div>
 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6" style="float:none;margin:auto;">
                     
                     <section class="content">
                     
                     <form method='POST' action="<?= base_url('admin/Penelitian/submitJadwalPenelitian');?>" >
                 
                         <div class="panel-body">
+                            <label>keterangan</label>
+                            <input type="text" class="form-control"  name="keterangan" id="keterangan"><br>
                             <label>Tanggal Awal</label>
                             <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
                             <label>Batas Pengumpulan Monev</label>
@@ -34,7 +36,8 @@
                             <label>Batas Pengumpulan Laporan Akhir</label>
                             <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
                             <label>Tanggal Akhir</label>
-                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai">
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai"><br>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                         
                     
@@ -43,8 +46,6 @@
                       
                     </table>
                     
-                    
-                    <button type="submit">Submit</button>
                     </form>
                     </section>
                     
