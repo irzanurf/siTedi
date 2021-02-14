@@ -14,11 +14,22 @@ class Dashboard extends CI_Controller {
         }
         $this->load->model('M_Admin');
         $this->load->model('M_Profile');
+        $this->load->model('M_JadwalPenelitian');
+        $this->load->model('M_JadwalPengabdian');
     }
 
     public function index()
     {
         $user = $this->session->userdata('user_name');
+        $id_penelitian= $this->M_JadwalPenelitian->get_jadwalPenelitian()->row()->id;
+        $id_pengabdian= $this->M_JadwalPengabdian->get_jadwalPengabdian()->row()->id;
+        $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last_jadwal()->result();
+        $data['jadwal_pengabdian'] = $this->M_JadwalPengabdian->get_last_jadwal()->result();
+        $data['prop_penelitian'] = $this->M_Admin->get_propPenelitian(array('id_jadwal'=>$id_penelitian));
+        $data['monev_penelitian'] = $this->M_Admin->get_monevPenelitian(array('id_jadwal'=>$id_penelitian));
+        $data['akhir_penelitian'] = $this->M_Admin->get_akhirPenelitian(array('id_jadwal'=>$id_penelitian));
+        $data['prop_pengabdian'] = $this->M_Admin->get_propPengabdian(array('id_jadwal'=>$id_pengabdian));
+        $data['akhir_pengabdian'] = $this->M_Admin->get_akhirPengabdian(array('id_jadwal'=>$id_pengabdian));
         $data['user'] = $this->M_Admin->getwhere_admin(array('nip'=>$user))->row();
           
         $this->load->view('layout/sidebar_admin');

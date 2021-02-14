@@ -13,6 +13,48 @@ class M_Admin extends CI_Model
         
     }
 
+    public function get_propPenelitian($id_penelitian)
+    {
+        $this->db->select('id');
+        $this->db->from('proposal_penelitian');
+        $this->db->where($id_penelitian);
+        return $num_results = $this->db->count_all_results();
+    }
+    public function get_monevPenelitian($data)
+    {
+        $query = $this->db->select('proposal_penelitian.id, laporan_monev_penelitian.status as status_monev')
+                        ->from('proposal_penelitian')
+                        ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
+                        ->where($data)
+                        ->where('laporan_monev_penelitian.status > 0');
+                        return $num_results = $this->db->count_all_results();
+    }
+    
+    public function get_akhirPenelitian($data)
+    {
+        $query = $this->db->select('proposal_penelitian.id, laporan_akhir_penelitian.status as status_akhir')
+                        ->from('proposal_penelitian')
+                        ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
+                        ->where($data)
+                        ->where('laporan_akhir_penelitian.status > 0');
+                        return $num_results = $this->db->count_all_results();
+    }
+    public function get_propPengabdian($id_pengabdian)
+    {
+        $this->db->select('id');
+        $this->db->from('proposal_pengabdian');
+        $this->db->where($id_pengabdian);
+        return $num_results = $this->db->count_all_results();
+    }
+    public function get_akhirPengabdian($data)
+    {
+        $query = $this->db->select('proposal_pengabdian.id, laporan_akhir_pengabdian.id as id_akhir')
+                        ->from('proposal_pengabdian')
+                        ->join('laporan_akhir_pengabdian','proposal_pengabdian.id=laporan_akhir_pengabdian.id_proposal','inner')
+                        ->where($data);
+                        return $num_results = $this->db->count_all_results();
+    }
+    
     public function get_sumberdana(){
         $query = $this->db->select('*')
                         ->from('sumberdana')

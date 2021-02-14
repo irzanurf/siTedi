@@ -1,0 +1,33 @@
+#wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+#sidebar {
+  background: #dedede;
+  width: 190px;
+  float: left;
+  position: fixed;
+  padding: 5px;
+}
+
+#content {
+  float: left;
+  width: 760px;
+  margin-left: 200px;
+  padding: 10px;
+  background: #f5edf0;
+}
+
+ul {
+  background: pink;
+  padding: 5px;
+}
+
+ul li {
+  list-style-type: none;
+  border-bottom: 1px solid #f5edf0;
+}
+
+ul li a {
+  text-decoration: none;
+}

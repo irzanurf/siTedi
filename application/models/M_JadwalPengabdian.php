@@ -14,6 +14,12 @@ class M_JadwalPengabdian extends CI_Model
         
     }
 
+    public function get_jadwalPengabdian()
+    {
+        return $this->db->query("SELECT id FROM jadwal_pengabdian ORDER BY id DESC LIMIT 1");
+        
+    }
+
     public function getwhere_jadwal(array $data)
     {
         return $this->db->get_where('jadwal_pengabdian', $data);

@@ -84,7 +84,7 @@
                             </tr>
                             <input type="text" id="total" value=<?=$no?> hidden>
                         </table>
-                    <p>Keterangan: Skor : 1, 2, 4, 5 (1 = sangat kurang, 2 = kurang, 4 = baik, 5 = sangat baik); Nilai = Bobot x Skor</p>
+                    <p>&nbsp; Keterangan: Skor : 1, 2, 4, 5 (1 = sangat kurang, 2 = kurang, 4 = baik, 5 = sangat baik); Nilai = Bobot x Skor</p>
                     
                     <div class="form-group">
                         <label><br>Komentar Penilai</label>
@@ -93,7 +93,7 @@
                         </div>
                         </div>
                     
-                        <button type="submit" class="btn btn-default w3ls-button">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </form>
 </div>
                         </div>

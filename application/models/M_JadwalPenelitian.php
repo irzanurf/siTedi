@@ -14,6 +14,12 @@ class M_JadwalPenelitian extends CI_Model
         
     }
 
+    public function get_jadwalPenelitian()
+    {
+        return $this->db->query("SELECT id FROM jadwal_penelitian ORDER BY id DESC LIMIT 1");
+        
+    }
+
     public function getwhere_jadwal(array $data)
     {
         return $this->db->get_where('jadwal_penelitian', $data);

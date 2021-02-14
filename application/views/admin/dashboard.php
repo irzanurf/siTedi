@@ -1,40 +1,66 @@
 
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Dashboard</h4>
+                            <h1 class="card-category">  Wellcome Admin
+</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-info">
+                                    <div class="panel-heading"><h2><center>Jadwal Penelitian<h2><center></div>
+                                <div class="panel panel-warning">
+                                <div class="panel-heading"><h3><center>
+                                 <?php 
+                        			foreach($jadwal_penelitian as $v) { ?>
+								    <?= $v->tgl_mulai ?> sampai <?= $v->tgl_selesai ?> (<?= $v->keterangan ?>)
+								    <?php }?></center></h3></div>
+ 
+                                    <div class="panel-body">
+ 
+                                    <p style="font-size:20px">Jumlah Pengajuan masuk = <?php echo $prop_penelitian  ?> </p><br>
 
+                                    <p style="font-size:20px">Jumlah Laporan Monev masuk = <?php echo $monev_penelitian  ?> </p><br>
 
-        <div id="page-wrapper">
+                                    <p style="font-size:20px">Jumlah Laporan Akhir masuk = <?php echo $akhir_penelitian  ?> </p><br>
 
-<div class="container-fluid">
+                                   
+                                    </div>
+                                    </div>
+ 
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="panel panel-success">
+ 
+                                <div class="panel-heading"><h2><center>Jadwal Pengabdian<h2><center></div>
+                                <div class="panel panel-warning">
+                                <div class="panel-heading"><h3><center>
+                                 <?php 
+                                foreach($jadwal_pengabdian as $v) { ?>
+                                <?= $v->tgl_mulai ?> sampai <?= $v->tgl_selesai ?> (<?= $v->keterangan ?>)
+                                <?php }?></center></h3></div>
 
-    <!-- Page Heading -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">
-                Welcome <small>ADMIN</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li class="active">
-                    <i class="fa fa-dashboard"></i> Dashboard
-                </li>
-            </ol>
+                                <div class="panel-body">
+
+                                <p style="font-size:20px">Jumlah Permohonan masuk = <?php echo $prop_pengabdian  ?></p><br>
+
+                                <p style="font-size:20px">Jumlah Laporan Akhir masuk = <?php echo $akhir_pengabdian  ?> </p><br>
+
+                                </div>
+
+                                </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-    </div>
-    <!-- /.row -->
-
-    
-    <!-- /.row -->
-
-</div>
-<!-- /.container-fluid -->
-
-</div>
-<!-- /#page-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-
-<!-- Morris Charts JavaScript -->
-<script src="<?= base_url('assets/template/js/plugins/morris/raphael.min.js');?>"></script>
-<script src="<?= base_url('assets/template/js/plugins/morris/morris.min.js');?>"></script>
-<script src="<?= base_url('assets/template/js/plugins/morris/morris-data.js');?>"></script>
-

@@ -49,12 +49,6 @@ class Penelitian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
-        $tahun = $this->input->post('tahun',true); 
-        if($tahun=='0' || $tahun==''){
-            $lama= $bulan." bulan";
-        } else {
-            $lama = $tahun." tahun ".$bulan." bulan ";
-        }
         $prop_file = $_FILES['file_prop'];
         if($prop_file=''){}else{
             $config['upload_path'] = './assets/prop_penelitian';
@@ -79,7 +73,7 @@ class Penelitian extends CI_Controller {
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
             "mitra"=>$this->input->post('mitra',true),
-            "lama_pelaksanaan"=>$lama,
+            "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
             "biaya"=>$this->input->post('biaya',true),
             "file"=>$prop_file
@@ -208,15 +202,7 @@ class Penelitian extends CI_Controller {
             
             $date = date('Y-m-d');
             $bulan = $this->input->post('bulan',true);
-        $tahun = $this->input->post('tahun',true); 
-        if(($tahun=='0' || $tahun=='')&&($bulan=='0' || $bulan=='')){
-            $lama = $this->input->post('cek');
-        }
-        elseif($tahun=='0' || $tahun==''){
-            $lama= $bulan." bulan";
-        } else {
-            $lama = $tahun." tahun ".$bulan." bulan ";
-        }
+        
             $prop = array (
                 "nip"=>$nip,
                 "judul"=>$this->input->post('judul',true),
@@ -226,7 +212,7 @@ class Penelitian extends CI_Controller {
                 "mitra"=>$this->input->post('mitra',true),
                 "tgl_upload"=>$date,
                 "biaya"=>$this->input->post('biaya',true),
-                "lama_pelaksanaan"=>$lama,
+                "lama_pelaksanaan"=>$bulan,
                 "id_luaran"=>$this->input->post('luaran',true),
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
         );

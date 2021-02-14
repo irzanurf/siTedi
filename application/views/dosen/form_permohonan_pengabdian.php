@@ -7,7 +7,7 @@
 
     <!-- Page Heading -->
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-10">
             <h1 class="page-header">
                 Form Pengajuan Proposal
             </h1>
@@ -18,6 +18,7 @@
             </ol>
         </div>
     </div>
+    <div class="col-lg-10" >
     <!-- /.row -->
     <?= form_open_multipart('dosen/pengabdian/addformProposal');?>
                                 <div class="form-group">
@@ -67,7 +68,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Sumber Dana</label>
+                                    <label>Pendanaan</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
@@ -168,7 +169,8 @@
                                 <h3>File Proposal</h3>
                                 <div class="form-group">
                                     <label>Upload Proposal</label>
-                                    <input type="file" class="form-control" name="file_prop"  >
+                                    <input type="file" class="form-control" name="file_prop"  ><br>
+                                    <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                 </div>
 
                                 <div class="form-group">
@@ -178,7 +180,7 @@
 
    
     <!-- /.row -->
-
+                                </div>
 </div>
 <!-- /.container-fluid -->
 

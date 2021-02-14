@@ -11,7 +11,7 @@
     <meta name="description"
         content="Elegant Admin Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
     <meta name="robots" content="noindex,nofollow">
-    <title>Penelitian</title>
+    <title>Pengabdian</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/elegant-admin-lite/" />
     <!-- Favicon icon -->
     <!-- This page CSS -->
@@ -51,7 +51,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?=base_url('dosen/penelitian')?>">
+                    <a class="navbar-brand" href="<?=base_url('dosen/pengabdian')?>">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
@@ -61,7 +61,7 @@
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
-                            <h1 style="color:black"> &nbsp;Penelitian</h1></span>
+                            <h1 style="color:black"> &nbsp;Pengabdian</h1></span>
                     </a>
                 </div>
                 <!-- ============================================================== -->
@@ -89,7 +89,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="<?= base_url('dosen/penelitian/logout');?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/logout');?>"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
@@ -104,36 +104,34 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <div class="left-sidebar" style="background-color:#00bcd4;">
+        <aside class="left-sidebar" style="background-color:#19c956;">
             
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
+                    <ul >
                         <li> <a class="waves-effect waves-dark" href="<?= base_url('/');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-home nav_icon"></i><span class="hide-menu"><h5 style="color:white;">Home</h5></span></a></li>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/penelitian/');?>" aria-expanded="false"><i style="color:white"
+                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-file-text-o nav_icon"></i><span class="hide-menu"><h5 style="color:white;">Dashboard</h5></span></a></li>
                         <li> <a class="waves-effect waves-dark" href="javascript:;" aria-expanded="true"><i style="color:white"
                                     class="fa fa-check-square-o nav_icon"></i><span class="hide-menu"></span><h5 style="color:white;">Pengajuan Proposal</h5></a>
                                     <ul id="demo" class="collapse">
                                     <li>
-                                    <a href="<?= base_url('dosen/penelitian/pengisianform/');?>"><h5 style="color:white;">Form Pengajuan</h5></a>
+                                    <a href="<?= base_url('dosen/pengabdian/pengisianform/');?>"><h5 style="color:white;">Form Pengajuan</h5></a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url('dosen/penelitian/submit/');?>"><h5 style="color:white;">Daftar Pengajuan & Submit</h5></a>
+                                    <a href="<?= base_url('dosen/pengabdian/submitpermohonan/');?>"><h5 style="color:white;">Submit Proposal</h5></a>
                                 </li>
                         </ul></li>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/penelitian/monev');?>" aria-expanded="false"><i style="color:white"
-                                    class="fa fa-fw fa-clipboard"></i><span class="hide-menu"></span><h5 style="color:white;">Laporan Monev</h5></a></li>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/penelitian/akhir');?>" aria-expanded="false"><i style="color:white"
+                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/daftarpermohonan');?>" aria-expanded="false"><i style="color:white"
+                                    class="fa fa-fw fa-file"></i><span class="hide-menu"></span><h5 style="color:white;">Permohonan</h5></a></li>
+                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/laporanakhir');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-fw fa-clipboard"></i><span class="hide-menu"></span><h5 style="color:white;">Laporan Akhir</h5></a></li>
                                     <?php  if(!empty($cek)){ ?>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/penelitian/penilaian_penelitian/');?>" aria-expanded="false"><i style="color:white"
+                        <li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/pengabdian/nilaiProposal/');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Penilaian Proposal</h5></a></li>
-									<li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/penelitian/monev/');?>" aria-expanded="false"><i style="color:white"
-                                    class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Monitoring & Evaluasi</h5></a></li>
                                     <?php  }?>
                         <div class="text-center m-t-30">
                             <a href="<?= base_url('dosen/pengabdian/logout/');?>"
@@ -144,7 +142,7 @@
                 <!-- End Sidebar navigation -->
             </div>
             <!-- End Sidebar scroll-->
-									</div>
+        </aside>
 
         <div class="page-wrapper">
             <!-- ============================================================== -->

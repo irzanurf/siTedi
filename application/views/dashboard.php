@@ -2,7 +2,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/Profile-Edit-Form-1.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/Profile-Edit-Form.css');?>">
     <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/styles.css');?>">
-    <link rel="stylesheet" href="<?= base_url('assets/profile/assets/css/divider.css');?>">
     
 </head>
 </head>
@@ -21,6 +20,7 @@
                     </div>
     
         <div class="col-lg-8">
+            
         <?php
     $pengumuman=$berita[0]-> berita;
     $new = str_replace(" ","",$pengumuman);
@@ -29,21 +29,23 @@
     }
     else{
     ?>
-        <div class="panel panel-info">
-			<div class="panel-heading">
-           
-    <center><h1>Pengumuman</h1></center>
-			</div>
-			<div class="panel-body">
-            <?php echo $berita[0]-> berita;}?>
-			</div>			
-		</div>
+    <table class="table" >
+                       <thead>
+                           <tr>
+                               <th><center><h1>Pengumuman</h1></center></th>
+                           </tr>
+                       </thead>
+                       <tr>
+                               <td><?php echo $berita[0]-> berita;}?></td>
+                           </tr>
+    </table>
+        
 		<br/>
     
             
         </div>
          
-        <div class="col-lg-16" style="float:none;margin:auto;">
+        <div class="col-lg-11" style="float:none;margin:auto;">
         <div class="row">
         
         </div></br></br>

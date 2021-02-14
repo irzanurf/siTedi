@@ -16,13 +16,13 @@
     <!-- Favicon icon -->
     <!-- This page CSS -->
     <!-- chartist CSS -->
-    <link href="<?= base_url('assets/pengabdian/assets/node_modules/morrisjs/morris.css');?>" rel="stylesheet">
+    <link href="<?= base_url('assets/layout/assets/node_modules/morrisjs/morris.css');?>" rel="stylesheet">
     <!--c3 plugins CSS -->
-    <link href="<?= base_url('assets/pengabdian/assets/node_modules/c3-master/c3.min.css');?>" rel="stylesheet">
+    <link href="<?= base_url('assets/layout/assets/node_modules/c3-master/c3.min.css');?>" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="<?= base_url('assets/pengabdian/html/dist/css/style.css');?>" rel="stylesheet">
+    <link href="<?= base_url('assets/layout/html/dist/css/style.css');?>" rel="stylesheet">
     <!-- Dashboard 1 Page CSS -->
-    <link href="<?= base_url('assets/pengabdian/html/dist/css/pages/dashboard1.css');?>" rel="stylesheet">
+    <link href="<?= base_url('assets/layout/html/dist/css/pages/dashboard1.css');?>" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -104,7 +104,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar" style="background-color:#19c956;">
+        <aside class="left-sidebar disabled" style="background-color:#19c956;">
             
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">

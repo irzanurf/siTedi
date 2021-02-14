@@ -1,10 +1,14 @@
 <!-- input-forms -->
+<style>
+label    {color: black; font-size:15px;}
+</style>
 <div class="grids">
 					<div class="progressbar-heading grids-heading">
-						<h2>Form Pengisian</h2>
+						<h2><center>Form Pengisian</center></h2>
 					</div>
 					<div class="panel panel-widget forms-panel">
                         <div class="col-lg-6" style="float:none;margin:auto;">
+                        <div class="form">
 								<div class="form-body">
 									<form action="<?= base_url('dosen/penelitian/addformproposal');?>" method="post" enctype="multipart/form-data"> 
                                     <div class="form-group">
@@ -41,8 +45,6 @@
 											<div class="form-group input-group">
                                             <input type="text" class="form-control" name="bulan">
                                             <span class="input-group-addon">bulan</span>
-                                            <input type="text" class="form-control" name="tahun">
-                                            <span class="input-group-addon">tahun</span>
                                         </div> 
 										
                                         <div class="form-group">
@@ -55,7 +57,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Sumber Dana</label>
+                                    <label>Pendanaan</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
@@ -85,7 +87,7 @@
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
                                 <div class="input-group control-group after-add-more">
-                               <select class="form-control" name="dosen[]">
+                               <select class="form-control" id="selectpicker1" name="dosen[]" data-live-search="true">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
@@ -96,7 +98,7 @@
                                     ?>
                                 </select>
                                  <div class="input-group-btn"> 
-                                    <button class="btn-sm btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -116,7 +118,7 @@
                                     ?> -->
                                 <!-- </select> -->
                                  <div class="input-group-btn"> 
-                                    <button class="btn-sm btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -136,7 +138,7 @@
                                     ?>
                                 </select>
                                     <div class="input-group-btn"> 
-                                    <button class="btn-sm btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -163,8 +165,9 @@
 
 
                             <div class="form-group"> 
-											<label for="exampleInputFile"><br>File Proposal</label> 
-											<input type="file" name="file_prop"> 
+											<label for="exampleInputFile">File Proposal</label><br> 
+											<input type="file" name="file_prop"> <br>
+                                            <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                         </div> 
 
 										<button type="submit" class="btn btn-success w3ls-button">Submit</button> 
@@ -173,23 +176,15 @@
 							</div>
 						</div>
                     </div>
+                                </div>
 </div>
 
 
+<script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-      $(".add-more").click(function(){ 
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
-      $("body").on("click",".remove",function(){ 
-          $(this).parents(".control-group").remove();
-      });
-    });
-    </script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
+        $('#selectpicker1').selectpicker();
+        $('#btnadd').prop('disabled', true);
         $( '.currency' ).keyup(function(event) {
             // skip for arrow keys
             if(event.which >= 37 && event.which <= 40) return;
@@ -202,17 +197,83 @@
             ;
             });
             });
+                    // $('#selectpicker2').selectpicker();
     });
     </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker1').on('change', function(){
+            $('#btnadd').prop('disabled', false);
+            
+      $("body").on("click",".remove",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+
+    $("#btnadd").on('click',function(){ 
+                var temp = $(".copy.hide").clone(true); 
+                $('.nama-dosen', temp).val($('#selectpicker1 option:selected').text());
+                $('.id-dosen', temp).val($('#selectpicker1').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more").after(temp);
+          $('#selectpicker1').val("").selectpicker('refresh');
+
+
+      });
+
+
+        })
+      
+    </script>
+
+
 
     <script type="text/javascript">
     $(document).ready(function() {
       $(".add-more1").click(function(){ 
           var html = $(".copy1").html();
           $(".after-add-more1").after(html);
+        //   $('.selectpicker2').selectpicker();
+          
       });
       $("body").on("click",".remove1",function(){ 
           $(this).parents(".control-group1").remove();
       });
     });
     </script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#submit').prop('disabled',true);
+            $('#username').change(function(){
+            var username = $('#username').val();
+            if(username != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
+                    method:"post",
+                    data:{username:username},
+                    dataType: 'json',
+                    success:function(data){
+                        if(data=="Username tersedia"){
+                            $('#submit').prop('disabled',false);
+                            $('#username_result').hide();
+                        }else{
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html(data);
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
+    </script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="<?= base_url('assets/template/js/plugins/morris/raphael.min.js');?>"></script>
+<script src="<?= base_url('assets/template/js/plugins/morris/morris.min.js');?>"></script>
+<script src="<?= base_url('assets/template/js/plugins/morris/morris-data.js');?>"></script>
+

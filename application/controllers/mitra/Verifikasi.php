@@ -9,9 +9,7 @@ class Verifikasi extends CI_Controller {
         //load model admin
         $this->load->model('Admin');
         //cek session dan level user
-        if($this->Admin->is_role() != "4"){
-            redirect("login/");
-        }
+        
         $this->load->model('M_Mitra');
         $this->load->model('M_PropPengabdian');
         $this->load->model('M_Dosen');

@@ -1,35 +1,40 @@
 
 
 
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
+        <body>
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-4">
                         <h1 class="page-header">
                             Welcome <small>
 								<?= $nama->nama ?></small>
                         </h1>
                         
                     </div>
-                </div>
+                
                 <!-- /.row -->
-                <div class="form-row profile-row">
-                <div id="content">
-  <center><h1>Pengumuman</h1></center>
-  <div class="MasMalvenSpoiler">
-    <div class="isi">
-    <?php echo $berita[0]-> berita?>
+                <div class="col-lg-8">
+                <?php
+    $pengumuman=$berita[0]-> berita;
+    $new = str_replace(" ","",$pengumuman);
+    if($new==""){
+
+    }
+    else{
+    ?>
+    <table class="table" >
+                       <thead>
+                           <tr>
+                               <th><center><h1>Pengumuman</h1></center></th>
+                           </tr>
+                       </thead>
+                       <tr>
+                               <td><?php echo $berita[0]-> berita;}?></td>
+                           </tr>
+    </table>
     </div>
-</div> 
- </div>
-            <!-- <h1>Pengumuman</h1>
-            
-            <?php echo $berita[0]-> berita?> -->
-            
-        </div>
+    
+    </div>
         <div class="row">
         <div class="col-lg-12">
         

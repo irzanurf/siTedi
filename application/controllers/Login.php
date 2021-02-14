@@ -127,7 +127,7 @@ class Login extends CI_Controller {
         
         $this->load->view('header', $nama);
         $this->load->view('profile', $nama);
-        $this->load->view("penelitian/footer");
+        $this->load->view("footer");
     }
 
 

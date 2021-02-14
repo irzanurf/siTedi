@@ -33,7 +33,7 @@ class Pengabdian extends CI_Controller
         $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
         $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $this->load->view('pengabdian/header',$nama);
-        $this->load->view("reviewer/dashboardpengabdian",$data);
+        $this->load->view("dosen/dashboardpengabdian",$data);
         $this->load->view("pengabdian/footer");
     }
 
