@@ -64,7 +64,7 @@ label    {color: black; font-size:15px;}
                                     <label>Biaya</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control" name="biaya" value=<?= $proposal->biaya?>>
+                                    <input type="text" class="form-control currency" name="biaya" value=<?= $proposal->biaya?>>
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
@@ -99,13 +99,28 @@ label    {color: black; font-size:15px;}
 
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
-                                <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                </div>
+                                <div class="input-group control-group">
+                               <select class="form-control" id="selectpicker1" name="dosen_new[]" data-live-search="true">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($dosen as $ds) {
+                                        ?>
+                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                 <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more" id="btnadd" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div></div>
                                 <?php 
                         foreach($anggota_dosen as $k=>$val){?>
                             <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen[]">
+                            <input class="form-control id-dosen" name="id_dsn_anggota[]" value="<?=$val->id?>" hidden >
+                                <input class="form-control id-dosen" name="dosen[]" value="<?=$val->nip?>" hidden >
+                                <input class="form-control nama-dosen" value="<?=$val->nama?>" readonly>
+                            
+                                <!-- <select class="form-control" name="dosen[]">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
@@ -116,7 +131,7 @@ label    {color: black; font-size:15px;}
                                     ?>
                                         <input class='form-control hidden' type="text" id="bobot" name="id_dsn_anggota[]" value=<?=$val->id?> hidden>
                                     
-                                </select>
+                                </select> -->
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
@@ -161,7 +176,7 @@ label    {color: black; font-size:15px;}
 
                             <div class="copy hide">
                                 <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen_new[]">
+                                <!-- <select class="form-control" name="dosen_new[]">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($dosen as $ds) {
@@ -170,10 +185,14 @@ label    {color: black; font-size:15px;}
                                         <?php
                                     }
                                     ?>
-                                </select>
+                                </select> -->
+                                <input class="form-control id-dosen" name="dosen_new[]"  hidden >
+                                <input class="form-control nama-dosen"  readonly>
+                                
                                     <div class="input-group-btn"> 
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
+                                   
                                 </div>
                             </div>
 
@@ -208,17 +227,54 @@ label    {color: black; font-size:15px;}
 </div>
 </div>
 
+ <!-- jQuery Version 1.11.0 -->
+ <script src="<?= base_url('assets/template/js/jquery-1.11.0.js');?>"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function() {
-      $(".add-more").click(function(){ 
-          var html = $(".copy").html();
-          $(".after-add-more").after(html);
-      });
-      $("body").on("click",".remove",function(){ 
+        $('#selectpicker1').selectpicker();
+        $('#btnadd').prop('disabled', true);
+        // $('#selectpicker2').selectpicker();
+    });
+    </script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker1').on('change', function(){
+            $('#btnadd').prop('disabled', false);
+            
+     
+    });
+
+    $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
       });
-    });
+      $( '.currency' ).keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+            return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            ;
+            });
+            });
+
+    $("#btnadd").on('click',function(){ 
+                var temp = $(".copy.hide").clone(true); 
+                $('.nama-dosen', temp).val($('#selectpicker1 option:selected').text());
+                $('.id-dosen', temp).val($('#selectpicker1').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more").after(temp);
+          $('#selectpicker1').val("").selectpicker('refresh'); 
+      });
+        })
+      
     </script>
 
     <script type="text/javascript">

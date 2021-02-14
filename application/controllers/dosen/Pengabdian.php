@@ -87,6 +87,7 @@ class Pengabdian extends CI_Controller {
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
         $jadwal = $this->M_JadwalPengabdian->get_last_jadwal()->row()->id;
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
         
         $prop = [
             "id_mitra"=>$mitra,
@@ -98,7 +99,7 @@ class Pengabdian extends CI_Controller {
             "lokasi"=>$this->input->post('lokasi',true),
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
-            "biaya"=>$this->input->post('biaya',true),
+            "biaya"=>$biaya,
             "id_skema"=>$this->input->post('skema_pengabdian')
 
         ];
@@ -360,14 +361,14 @@ class Pengabdian extends CI_Controller {
         
         $date = date('Y-m-d');
         $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
-        
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
         $prop = array (
             "nip"=>$nip,
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
-            "biaya"=>$this->input->post('biaya',true),
+            "biaya"=>$biaya,
     );
         $proposal=$this->M_PropPengabdian->update_prop($id,$prop);
         /**

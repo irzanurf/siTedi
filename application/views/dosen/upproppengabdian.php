@@ -79,7 +79,7 @@
                                     <label>Biaya</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control" name="biaya" value=<?=$proposal->biaya?>  >
+                                    <input type="text" class="form-control currency" name="biaya" value=<?=$proposal->biaya?>  >
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
@@ -117,6 +117,7 @@
                                 <?php 
                         foreach($anggota_dosen as $k=>$val){?>
                             <div class="control-group input-group" style="margin-top:10px">
+                            <input class="form-control id-dosen" name="id_dsn_anggota[]" value="<?=$val->id?>" hidden >
                                 <input class="form-control id-dosen" name="dosen[]" value="<?=$val->nip?>" hidden >
                                 <input class="form-control nama-dosen" value="<?=$val->nama?>" readonly>
                             
@@ -263,16 +264,28 @@
         $('#selectpicker1').selectpicker();
         $('#btnadd').prop('disabled', true);
         // $('#selectpicker2').selectpicker();
+        $( '.currency' ).keyup(function(event) {
+            // skip for arrow keys
+            if(event.which >= 37 && event.which <= 40) return;
+
+            // format number
+            $(this).val(function(index, value) {
+            return value
+            .replace(/\D/g, "")
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+            ;
+            });
+            });
+
     });
     </script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#selectpicker1').on('change', function(){
             $('#btnadd').prop('disabled', false);
-            
+      });
       $("body").on("click",".remove",function(){ 
           $(this).parents(".control-group").remove();
-      });
     });
 
     $("#btnadd").on('click',function(){ 
@@ -281,6 +294,7 @@
                 $('.id-dosen', temp).val($('#selectpicker1').val());
                 $(temp).removeClass("hide");
           $(".after-add-more").after(temp); 
+          $('#selectpicker1').val("").selectpicker('refresh');
       });
         })
       

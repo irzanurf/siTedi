@@ -98,7 +98,7 @@ label    {color: black; font-size:15px;}
                                     ?>
                                 </select>
                                  <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn btn-success add-more" id="btnadd" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
                                 </div>
 
@@ -124,8 +124,18 @@ label    {color: black; font-size:15px;}
 
                                 
                             </div>
-
                             <div class="copy hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                                <input class="form-control id-dosen" name="dosen[]" hidden >
+                                <input class="form-control nama-dosen"  readonly>
+                                
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- <div class="copy hide">
                                 <div class="control-group input-group" style="margin-top:10px">
                                 <select class="form-control" name="dosen[]">
                                     <option value="">Please Select</option>
@@ -141,7 +151,7 @@ label    {color: black; font-size:15px;}
                                     <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="copy1 hide">
                                 <div class="control-group1 input-group" style="margin-top:10px">

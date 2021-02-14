@@ -63,6 +63,7 @@ class Penelitian extends CI_Controller {
             }
         }
         $jadwal = $this->M_JadwalPenelitian->get_last_jadwal()->row()->id;
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
         $prop = [
             "nip"=>$nip,
             "judul"=>$this->input->post('judul',true),
@@ -75,7 +76,7 @@ class Penelitian extends CI_Controller {
             "mitra"=>$this->input->post('mitra',true),
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
-            "biaya"=>$this->input->post('biaya',true),
+            "biaya"=>$biaya,
             "file"=>$prop_file
 
         ];
@@ -202,6 +203,7 @@ class Penelitian extends CI_Controller {
             
             $date = date('Y-m-d');
             $bulan = $this->input->post('bulan',true);
+            $biaya = str_replace('.','',$this->input->post('biaya',true));
         
             $prop = array (
                 "nip"=>$nip,
@@ -211,7 +213,7 @@ class Penelitian extends CI_Controller {
                 "id_jenis"=>$this->input->post('jenis',true),
                 "mitra"=>$this->input->post('mitra',true),
                 "tgl_upload"=>$date,
-                "biaya"=>$this->input->post('biaya',true),
+                "biaya"=>$biaya,
                 "lama_pelaksanaan"=>$bulan,
                 "id_luaran"=>$this->input->post('luaran',true),
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
