@@ -27,10 +27,10 @@
         
         
         <section class="content">
-        <a href="<?=base_url('admin/penelitian/proposalword');?>"><button class='btn btn-info'>Download List Pengajuan Proposal</button></a>
-        <a href="<?=base_url('admin/penelitian/testword');?>"><button class='btn btn-info'>Download List Proposal yang Disetujui</button></a>
-        <a href="<?=base_url('admin/penelitian/proposalexcel');?>"><button class='btn btn-success'>Download List Pengajuan Proposal</button></a>
-        <a href="<?=base_url('admin/penelitian/testexcel');?>"><button class='btn btn-success'>Download List Proposal yang Disetujui</button></a>
+        <a href="<?=base_url('admin/penelitian/proposalword');?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
+        <a href="<?=base_url('admin/penelitian/testword');?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
+        <a href="<?=base_url('admin/penelitian/proposalexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
+        <a href="<?=base_url('admin/penelitian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
 
         <table class="table">
             <col style='width:5%'>

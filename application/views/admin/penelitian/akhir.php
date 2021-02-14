@@ -21,8 +21,8 @@
         </div>
     </div>
     <!-- /.row -->
-    <a href="<?=base_url('admin/penelitian/laporanAkhirWord');?>"><button class='btn btn-info'>List Laporan Akhir Lengkap</button></a>
-    <a href="<?=base_url('admin/penelitian/laporanAkhirExcel');?>"><button class='btn btn-success'>List Laporan Akhir Lengkap</button></a>
+    <a href="<?=base_url('admin/penelitian/laporanAkhirWord');?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
+    <a href="<?=base_url('admin/penelitian/laporanAkhirExcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
 
 
     <div class="row">
