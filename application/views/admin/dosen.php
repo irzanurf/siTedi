@@ -37,13 +37,9 @@
             <col style='width:50%'>
             <col style='width:40%'>
             <tr>
-                <th>NIP</th>
+                <th>NIDN</th>
                 <th>Nama</th>
-                <th>Jabatan</th>
-                <th>Departemen</th>
-                <th>Program Studi</th>
-                <th>Email</th>
-                <th>No. Telephone</th>
+                <th>Unit ES III</th>
                 <th>Edit</th>
                 <th>Hapus</th>
 
@@ -54,11 +50,7 @@
             <tr>
                 <td><?= $v->nip?></td>
                 <td><?= $v->nama?></td>
-                <td><?= $v->jabatan?></td>
-                <td><?= $v->departemen?></td>
                 <td><?= $v->program_studi?></td>
-                <td><?= $v->email?></td>
-                <td><?= $v->no_telp?></td>
                 <td>
                 
                 <form method="post" action=<?= base_url('admin/dashboard/editDosen');?>>
