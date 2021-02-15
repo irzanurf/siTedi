@@ -20,7 +20,7 @@
         </div>
     </div>
 <div class="row">
-                    <div class="col-lg-12">
+<div class="col-lg-6" style="float:none;margin:auto;">
                     
                     <section class="content">
                     
@@ -44,8 +44,8 @@
                                     <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah komponen</button>
                             </div>
                             
-                        </div>
-                       
+                        </div><br>
+                        <button type="submit">Submit</button>
                         
                         <!-- <td><button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td> -->
                         <!-- </tr> -->
@@ -60,7 +60,7 @@
                                 <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Hapus komponen</button>
                             </div>
                         </div>
-       
+                        
                         <!-- <tr>
                         <div class="copy hide">
                                 <div class="control-group input-group" style="margin-top:10px">
@@ -104,7 +104,7 @@
                             <textarea class="form-control" name="komentar"  rows="3"></textarea>
                         </div>
                     </div> -->
-                    <button type="submit">Submit</button>
+                    
                     </form>
                     </section>
 

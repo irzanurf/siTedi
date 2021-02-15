@@ -241,23 +241,15 @@ class Dashboard extends CI_Controller {
     {
         $this->form_validation->set_rules('nama','nama', 'required');
         $this->form_validation->set_rules('nip','nip', 'required');
-        $password = MD5($this->input->post('password', TRUE));
+        $password = MD5($this->input->post('nip', TRUE));
         $data = [
             "nip"=>$this->input->post('nip',true),
+            "nomor_induk"=>$this->input->post('nomor_induk',true),
             "nama"=>$this->input->post('nama',true),
-            "golongan"=>$this->input->post('golongan',true),
             "jabatan"=>$this->input->post('jabatan',true),
             "pendidikan"=>$this->input->post('pendidikan',true),
-            "th_lulus"=>$this->input->post('th_lulus',true),
-            "kepakaran"=>$this->input->post('kepakaran',true),
-            "status_bekerja"=>$this->input->post('status_bekerja',true),
-            "jenis"=>$this->input->post('jenis',true),
             "status_kepegawaian"=>$this->input->post('status_kepegawaian',true),
-            "fakultas"=>$this->input->post('fakultas',true),
-            "departemen"=>$this->input->post('departemen',true),
             "program_studi"=>$this->input->post('program_studi',true),
-            "no_telp"=>$this->input->post('no_telp',true),
-            "email"=>$this->input->post('email',true),
         ];
         $user = [
             "username"=>$this->input->post('nip',true),
@@ -276,20 +268,13 @@ class Dashboard extends CI_Controller {
         $nip = $this->input->post('nip',true);
         
         $data = [
+            "nomor_induk"=>$this->input->post('nomor_induk',true),
             "nama"=>$this->input->post('nama',true),
-            "golongan"=>$this->input->post('golongan',true),
             "jabatan"=>$this->input->post('jabatan',true),
             "pendidikan"=>$this->input->post('pendidikan',true),
-            "th_lulus"=>$this->input->post('th_lulus',true),
-            "kepakaran"=>$this->input->post('kepakaran',true),
-            "status_bekerja"=>$this->input->post('status_bekerja',true),
-            "jenis"=>$this->input->post('jenis',true),
             "status_kepegawaian"=>$this->input->post('status_kepegawaian',true),
-            "fakultas"=>$this->input->post('fakultas',true),
-            "departemen"=>$this->input->post('departemen',true),
             "program_studi"=>$this->input->post('program_studi',true),
-            "no_telp"=>$this->input->post('no_telp',true),
-            "email"=>$this->input->post('email',true),
+            
         ];
         $this->M_Profile->update_dosen($nip,$data);
         redirect("admin/dashboard/viewDosen");

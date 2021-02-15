@@ -20,7 +20,7 @@
         </div>
     </div>
 <div class="row">
-                    <div class="col-lg-12">
+<div class="col-lg-6" style="float:none;margin:auto;">
                     
                     <section class="content">
                      
