@@ -20,7 +20,7 @@
         </div>
     </div>
 <div class="row">
-                    <div class="col-lg-12">
+<div class="col-lg-6" style="float:none;margin:auto;">
                     
                     <section class="content">
                     
@@ -44,8 +44,8 @@
                                     <button class="btn btn-success add-more" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah komponen</button>
                             </div>
                             
-                        </div>
-                       
+                        </div><br>
+                        <button type="submit">Submit</button>
                         
                         <!-- <td><button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button></td> -->
                         <!-- </tr> -->
@@ -69,7 +69,7 @@
                     </table>
                     
                     
-                    <button type="submit">Submit</button>
+                    
                     </form>
                     </section>
 
