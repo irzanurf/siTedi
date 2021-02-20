@@ -7,7 +7,7 @@
 </head>
     <body>
     <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-11" style="float:none;margin:auto;">
                         <h1 class="page-header">
                             &nbsp; Welcome <small>
                             <?php 
@@ -18,8 +18,11 @@
                         </h1>
                         
                     </div>
+
+    </div><br>
     
-        <div class="col-lg-8">
+                    <div class="row">
+        <div class="col-lg-11" style="float:none;margin:auto;">
             
         <?php
     $pengumuman=$berita[0]-> berita;
@@ -42,13 +45,13 @@
         
 		<br/>
     
-            
+            </div>
         </div>
          
         <div class="col-lg-11" style="float:none;margin:auto;">
         <div class="row">
         
-        </div></br></br>
+        </div></br>
         <div class="panel panel-success">
 			<div class="panel-heading">
             <h1><center>Daftar Pengajuan Proposal</center></h1>

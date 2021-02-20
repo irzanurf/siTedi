@@ -148,4 +148,35 @@ class M_AdminPenelitian extends CI_Model
         return $this->db->get_where('assign_proposal_penelitian',$data);
     }
 
+    public function get_luaran(){
+        $query = $this->db->select('*')
+                        ->from('luaran_penelitian')
+                        ->order_by("tgl", "desc")
+                        ->get();
+        return $query;
+    }
+
+    public function getwhere_luaran(array $data)
+    {
+        return $this->db->get_where('luaran_penelitian',$data);
+    }
+
+    public function deleteluaran($data)
+    {
+        $query = $this->db->delete('luaran_penelitian',$data);
+        return $query;
+    }
+    
+    public function insert_luaran($data)
+    {
+        $this->db->insert('luaran_penelitian',$data);
+        return $this->db->insert_id();
+    }
+    public function update_luaran($id,$data)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('luaran_penelitian',$data);
+    }
+
+
 }

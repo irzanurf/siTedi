@@ -10,8 +10,7 @@
                             <th>Tanggal Upload</th>
                             <th>Jenis Skema Penelitian</th>
                             <th>Judul Proposal</th>
-                            <th>File Proposal</th>
-                            <th>Edit Proposal</th>
+                            <th>Edit Isian Proposal</th>
                             <th>Action</th>
                             <th>Status</th>
                         </tr>
@@ -23,34 +22,7 @@
                             <td align="center"><?= $v->tgl_upload?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
-                            <td align="center">
-                            <?php if($v->file=='0' ||$v->file=='' || $v->file==NULL ) : ?>
-                                <form method="post" action=<?= base_url('dosen/penelitian/uploadProposal');?>>
-                                    <input type='hidden' name="id" value="<?= $v->id ?>">
-                                    <button type="submit" class="btn-sm btn-primary">
-                                        Upload Proposal
-                                    </button>
-                                    
-                                </form>
-
-                            <?php elseif($v->status=="1" || $v->status=="11" || $v->status=="12" || $v->status=="2" || $v->status=="3" || $v->status=="5") : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Proposal
-                                    </button>
-                               
-                            <?php else : ?>
-                                <form method="post" action=<?= base_url('dosen/penelitian/editProposal');?>>
-                                    <input type='hidden' name="id" value="<?= $v->id ?>">
-                                    <button type="submit" class="btn-sm btn-primary">
-                                        Edit File Proposal
-                                    </button>
-                                    
-                                </form>
-                            <?php endif;?>
                             
-                            
-                            </td>
-
                             <td align="center">
                             <?php if($v->file=='0' ||$v->file=='' || $v->file==NULL || $v->status=="1") : ?>
                                     <button type="button" class="btn-sm btn-default" dissabled>

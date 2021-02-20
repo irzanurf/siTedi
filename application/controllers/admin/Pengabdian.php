@@ -827,4 +827,34 @@ class Pengabdian extends CI_Controller
         $writer->save('php://output');
 
     }
+
+    public function luaran()
+    {
+        $id = $this->input->post('id');
+        $data['temp'] = "Pengabdian";
+        $data['view'] = $this->M_Admin->get_luaran()->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/luaran', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function deleteluaran()
+    {
+        $id = $this->input->post('id');
+        $data = [
+            'id' => $id,
+        ];
+        $this->M_Admin->deleteluaran($data);
+        redirect('admin/luaran');
+    }
+
+    public function addluaran()
+    {
+        $data = [
+            'luaran'=>$this->input->post('luaran_pengabdian'), 
+            'tgl'=>date('Y'), 
+        ];
+        $this->M_Admin->insert_luaran($data);
+        redirect('admin/luaran');
+    }
 }

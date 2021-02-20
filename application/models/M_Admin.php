@@ -82,7 +82,7 @@ class M_Admin extends CI_Model
 
     public function get_luaran(){
         $query = $this->db->select('*')
-                        ->from('luaran')
+                        ->from('luaran_pengabdian')
                         ->order_by("tgl", "desc")
                         ->get();
         return $query;
@@ -90,24 +90,24 @@ class M_Admin extends CI_Model
 
     public function getwhere_luaran(array $data)
     {
-        return $this->db->get_where('luaran',$data);
+        return $this->db->get_where('luaran_pengabdian',$data);
     }
 
     public function deleteluaran($data)
     {
-        $query = $this->db->delete('luaran',$data);
+        $query = $this->db->delete('luaran_pengabdian',$data);
         return $query;
     }
     
     public function insert_luaran($data)
     {
-        $this->db->insert('luaran',$data);
+        $this->db->insert('luaran_pengabdian',$data);
         return $this->db->insert_id();
     }
     public function update_luaran($id,$data)
     {
         $this->db->where('id',$id);
-        $this->db->update('luaran',$data);
+        $this->db->update('luaran_pengabdian',$data);
     }
 
 

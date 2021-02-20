@@ -70,6 +70,10 @@
                             <li>
                                 <a href="<?= base_url('admin/penelitian/jadwalpenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Jadwal Penelitian</a>
                                 </li></br>
+                            
+                            <li>
+                                <a href="<?= base_url('admin/penelitian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Penelitian</a>
+                                </li></br>
                             <li>
                                 <a href="<?= base_url('admin/penelitian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman Penelitian</a>
                             </li></br>
@@ -105,6 +109,10 @@
                             <li>
                                 <a href="<?= base_url('admin/pengabdian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman Pengabdian</a>
                             </li></br>
+                            <li>
+                                <a href="<?= base_url('admin/pengabdian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Pengabdian</a>
+                                </li></br>
+                            <li>
                                 
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/skemapengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Skema Pengabdian</a>

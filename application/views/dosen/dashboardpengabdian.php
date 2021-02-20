@@ -4,16 +4,18 @@
         <body>
                 <!-- Page Heading -->
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-12" style="float:none;margin:auto;">
                         <h1 class="page-header">
                             Welcome <small>
 								<?= $nama->nama ?></small>
                         </h1>
                         
                     </div>
+                    </div><br>
                 
                 <!-- /.row -->
-                <div class="col-lg-8">
+                <div class="row">
+                <div class="col-lg-12" style="float:none;margin:auto;">
                 <?php
     $pengumuman=$berita[0]-> berita;
     $new = str_replace(" ","",$pengumuman);
@@ -33,10 +35,11 @@
                            </tr>
     </table>
     </div>
-    
     </div>
+    
+    
         <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" style="float:none;margin:auto;">
         
         </br>
         <section class="content">

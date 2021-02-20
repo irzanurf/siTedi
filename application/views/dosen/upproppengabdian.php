@@ -99,6 +99,20 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label>Luaran</label>
+                                    <select class="form-control" name="luaran" id="luaran">
+                                        <option value="">Please Select</option>
+                                        <?php
+                                        foreach ($luaran as $l) {
+                                            ?>
+                                            <option value="<?php echo $l->id; ?>" <?php echo ($l->id==$proposal->id_luaran) ? "selected='selected'" : "" ?>><?php echo $l->luaran; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
                                 <label>Anggota Dosen</label>
                                 <div class="input-group control-group">
                                <select class="form-control" id="selectpicker1" name="dosen_new[]" data-live-search="true">

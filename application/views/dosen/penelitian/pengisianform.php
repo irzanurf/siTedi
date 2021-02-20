@@ -104,7 +104,10 @@ label    {color: black; font-size:15px;}
 
                                 <div class="form-group">
                                 <label><br>Anggota Mahasiswa (NIM)</label>
-                                <div class="input-group control-group1 after-add-more1">
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more1" type="button"><i class="fa fa-plus"></i> Add</button>
+                                </div>
+                                <div class="input-group control-group1 after-add-more1" style="margin-top:10px">
                                 <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
                                 <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
                                <!-- <select class="form-control" name="mahasiswa[]">
@@ -117,9 +120,7 @@ label    {color: black; font-size:15px;}
                                     }
                                     ?> -->
                                 <!-- </select> -->
-                                 <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                </div>
+                                 
                                 </div>
 
                                 

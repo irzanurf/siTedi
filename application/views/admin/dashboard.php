@@ -3,7 +3,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Dashboard</h4>
-                            <h1 class="card-category">  Wellcome Admin
+                            <h1 class="card-category">  Welcome Admin
 </h1>
                         </div>
                         <div class="card-body">

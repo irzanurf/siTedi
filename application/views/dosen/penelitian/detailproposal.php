@@ -145,7 +145,7 @@ label    {color: black; font-size:15px;}
                     <div class="form-group">
                                 <label><br>Anggota Mahasiswa</label>
                                 <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                    <button class="btn btn-success add-more1" type="button"><i class="fa fa-plus"></i> Add</button>
                                 </div>
                                 <?php 
                                 foreach($anggota_mhs as $k=>$val){?>
@@ -215,6 +215,16 @@ label    {color: black; font-size:15px;}
                                     </div>
                                 </div>
                             </div>
+                            <h3><br>File Proposal</h3>
+                                <div>
+                                    <iframe src="<?= base_url('assets/prop_penelitian');?>/<?=$proposal->file?>" width="100%" height="400px" >
+                                    </iframe>
+                                    <div class="form-group">
+                                        <label>Upload Proposal</label>
+                                        <input type="file" class="form-control" name="file_prop"><br>
+                                    <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
+                                    </div>
+                                </div>
 
 
 										<br><button type="submit" class="btn btn-success w3ls-button">Submit</button> 

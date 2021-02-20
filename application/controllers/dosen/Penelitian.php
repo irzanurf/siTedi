@@ -116,7 +116,7 @@ class Penelitian extends CI_Controller {
         $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
         $data['jenispenelitian']= $this->M_Jenisp->get_jenispenelitian()->result();
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
-        $data['luaran']= $this->M_Luaran->get_luaran()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $nip = $this->session->userdata('user_name');
@@ -170,10 +170,11 @@ class Penelitian extends CI_Controller {
 
     public function detailProposal(){
         $username = $this->session->userdata('user_name');
+        $id = $this->input->post('id');
         $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
-        $data['luaran']= $this->M_Luaran->get_luaran()->result();
-        $id = $this->input->post('id');
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
+        
         if($id==NULL){
             redirect("dosen/penelitian/submit");
         }
@@ -218,6 +219,21 @@ class Penelitian extends CI_Controller {
                 "id_luaran"=>$this->input->post('luaran',true),
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
         );
+            $file = $_FILES['file_prop'];
+            if($prop=''){}else{
+            $config['upload_path'] = './assets/prop_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file_prop')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop=$this->upload->data('file_name');
+            }
+        }
+        $prop = [
+            "file"=>$prop,];
             $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
             
                 $dsn_update = $this->input->post('dosen[]');
@@ -284,6 +300,8 @@ class Penelitian extends CI_Controller {
                     ];
                     $this->M_PropPenelitian->insert_mhs_anggota($data_mhs_new);
                 }
+        
+                
         if($this->form_validation->run()==false){
             redirect("dosen/penelitian/submit");
         } else {
@@ -293,27 +311,27 @@ class Penelitian extends CI_Controller {
 
     }
 
-    public function uploadFileProp(){
-        $id=$this->input->post('id');
-        $prop = $_FILES['file_prop'];
-        if($prop=''){}else{
-            $config['upload_path'] = './assets/prop_penelitian';
-            $config['allowed_types'] = 'pdf';
-            $config['encrypt_name'] = TRUE;
+    // public function uploadFileProp(){
+    //     $id=$this->input->post('id');
+    //     $prop = $_FILES['file_prop'];
+    //     if($prop=''){}else{
+    //         $config['upload_path'] = './assets/prop_penelitian';
+    //         $config['allowed_types'] = 'pdf';
+    //         $config['encrypt_name'] = TRUE;
 
-            $this->load->library('upload',$config);
-            if(!$this->upload->do_upload('file_prop')){
-                echo "Upload Gagal"; die();
-            } else {
-                $prop=$this->upload->data('file_name');
-            }
-        }
-        $data = [
-            "file"=>$prop,];
-        $this->M_PropPenelitian->update_prop($id,$data);
-        redirect('dosen/penelitian/submit');
+    //         $this->load->library('upload',$config);
+    //         if(!$this->upload->do_upload('file_prop')){
+    //             echo "Upload Gagal"; die();
+    //         } else {
+    //             $prop=$this->upload->data('file_name');
+    //         }
+    //     }
+    //     $data = [
+    //         "file"=>$prop,];
+    //     $this->M_PropPenelitian->update_prop($id,$data);
+    //     redirect('dosen/penelitian/submit');
 
-    }
+    // }
 
     public function editProposal(){
         $id = $this->input->post('id');

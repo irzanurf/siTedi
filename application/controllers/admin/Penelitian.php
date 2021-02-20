@@ -961,5 +961,34 @@ class Penelitian extends CI_Controller
 
     }
 
+    public function luaran()
+    {
+        $id = $this->input->post('id');
+        $data['temp'] = "Penelitian";
+        $data['view'] = $this->M_AdminPenelitian->get_luaran()->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/luaran', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function deleteluaran()
+    {
+        $id = $this->input->post('id');
+        $data = [
+            'id' => $id,
+        ];
+        $this->M_AdminPenelitian->deleteluaran($data);
+        redirect('admin/luaran');
+    }
+
+    public function addluaran()
+    {
+        $data = [
+            'luaran'=>$this->input->post('luaran'), 
+            'tgl'=>date('Y'), 
+        ];
+        $this->M_AdminPenelitian->insert_luaran($data);
+        redirect('admin/luaran');
+    }
 
 }

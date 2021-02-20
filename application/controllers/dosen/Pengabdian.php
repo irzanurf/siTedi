@@ -23,6 +23,7 @@ class Pengabdian extends CI_Controller {
         $this->load->model('M_Admin');
         $this->load->model('M_LaporanAkhirPengabdian');
         $this->load->model('M_JadwalPengabdian');
+        $this->load->model('M_Luaran');
     }
 
     public function index()
@@ -99,6 +100,7 @@ class Pengabdian extends CI_Controller {
             "lokasi"=>$this->input->post('lokasi',true),
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
+            "id_luaran"=>$this->input->post('luaran',true),
             "biaya"=>$biaya,
             "id_skema"=>$this->input->post('skema_pengabdian')
 
@@ -165,7 +167,7 @@ class Pengabdian extends CI_Controller {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
-
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
         $data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
         $now = date('Y-m-d', strtotime(date('Y-m-d')));
         $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
@@ -366,6 +368,7 @@ class Pengabdian extends CI_Controller {
             "nip"=>$nip,
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
+            "id_luaran"=>$this->input->post('luaran',true),
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
             "biaya"=>$biaya,

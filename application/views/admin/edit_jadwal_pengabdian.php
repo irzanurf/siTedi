@@ -31,10 +31,10 @@
                             <input type="text" class="form-control"  name="keterangan" id="keterangan" value = <?=$jadwal->keterangan?>><br>
                             <label>Tanggal Awal</label>
                             <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
+                            <label>Batas Pengajuan Permohonan</label>
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>             
                             <label>Batas Pengumpulan Laporan Akhir</label>
                             <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir" value = <?=$jadwal->tgl_akhir?>><br>
-                            <label>Tanggal Akhir</label>
-                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
                             <input type="text" class="form-control hidden" name="id" value = <?=$jadwal->id?> hidden><br>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>

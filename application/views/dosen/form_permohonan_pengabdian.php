@@ -80,6 +80,20 @@
                                         ?>
                                     </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Luaran</label>
+                                    <select class="form-control" name="luaran" id="luaran">
+                                        <option value="">Please Select</option>
+                                        <?php
+                                        foreach ($luaran as $l) {
+                                            ?>
+                                            <option value="<?php echo $l->id; ?>"><?php echo $l->luaran; ?> - <?php echo $l->tgl; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                                 
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
@@ -101,12 +115,13 @@
 
                                 <div class="form-group">
                                 <label><br>Anggota Mahasiswa (NIM)</label>
+                                <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div>
                                 <div class="input-group control-group1 after-add-more1">
                                 <input class="form-control" name="nim_mahasiswa[]" placeholder="NIM Mahasiswa" >
                                 <input class="form-control" name="nama_mahasiswa[]" placeholder="Nama Mahasiswa" >
-                                 <div class="input-group-btn"> 
-                                    <button class="btn btn-success add-more1" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
-                                </div>
+                                 
                                 </div>
 
                                 

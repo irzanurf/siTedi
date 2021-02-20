@@ -31,10 +31,10 @@
                             <input type="text" class="form-control"  name="keterangan" id="keterangan"><br>
                             <label>Tanggal Awal</label>
                             <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
+                            <label>Batas Pengajuan Permohonan</label>
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai"><br>
                             <label>Batas Pengumpulan Laporan Akhir</label>
                             <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
-                            <label>Tanggal Akhir</label>
-                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai"><br>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                         

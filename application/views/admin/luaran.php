@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-              Luaran
+              Luaran <?php echo $temp ?>
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Luaran
+                    <i class="fa fa-edit"></i> Luaran <?php echo $temp ?>
                 </li>
             </ol>
         </div>

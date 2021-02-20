@@ -130,10 +130,20 @@
                         <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/penelitian/akhir');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-fw fa-clipboard"></i><span class="hide-menu"></span><h5 style="color:white;">Laporan Akhir</h5></a></li>
                                     <?php  if(!empty($cek)){ ?>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/penelitian/penilaian_penelitian/');?>" aria-expanded="false"><i style="color:white"
+                        <li> <a class="waves-effect waves-dark" href="javascript:;" aria-expanded="true"><i style="color:white"
+                                class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Reviewer</h5></a>
+                                    <ul id="demo" class="collapse">
+                                    <li>
+                                    <a href="<?= base_url('reviewer/penelitian/penilaian_penelitian/');?>"><h5 style="color:white;">Penilaian Proposal</h5></a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('reviewer/penelitian/monev/');?>"><h5 style="color:white;">Monitoring & Evaluasi</h5></a>
+                                </li>
+                        </ul></li>
+                        <!-- <li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/penelitian/penilaian_penelitian/');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Penilaian Proposal</h5></a></li>
 									<li> <a class="waves-effect waves-dark" href="<?= base_url('reviewer/penelitian/monev/');?>" aria-expanded="false"><i style="color:white"
-                                    class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Monitoring & Evaluasi</h5></a></li>
+                                    class="fa fa-bar-chart"></i><span class="hide-menu"></span><h5 style="color:white;">Monitoring & Evaluasi</h5></a></li> -->
                                     <?php  }?>
                         <div class="text-center m-t-30">
                             <a href="<?= base_url('dosen/pengabdian/logout/');?>"
