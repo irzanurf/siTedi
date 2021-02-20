@@ -198,7 +198,17 @@ class Dashboard extends CI_Controller {
     public function viewDosen()
     {
         $data['view']= $this->M_Profile->get_profile()->result();
-        
+        $data['cek']="view";
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/dosen',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function searchDosen()
+    {   
+        $cari=$this->input->post('cari',true);
+        $data['view']= $this->M_Profile->get_cari($cari)->result();
+        $data['cek']="cari";
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/dosen',$data);
         $this->load->view('layout/footer'); 

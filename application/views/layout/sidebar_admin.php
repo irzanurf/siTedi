@@ -145,9 +145,6 @@
                     <li>
                         <a href="<?= base_url('admin/dashboard/sumberdana');?>"><i class="fa fa-fw fa-folder"></i> Pendanaan</a>
                     </li>
-                    <li>
-                        <a href="<?= base_url('admin/dashboard/luaran');?>"><i class="fa fa-fw fa-folder"></i> Luaran</a>
-                    </li>
             </ul>
     	</div>
     </div>

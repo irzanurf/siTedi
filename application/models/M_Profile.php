@@ -35,6 +35,11 @@ class M_Profile extends CI_Model
         return $this->db->get('dosen');
     }
 
+    public function get_cari($cari)
+    {
+        return $this->db->query("SELECT * FROM dosen WHERE nama LIKE '%$cari%'");
+    }
+
     public function get_mhs()
     {
         return $this->db->get('mahasiswa');

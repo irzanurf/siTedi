@@ -30,12 +30,28 @@
     <div class="row">
         <div class="col-lg-12">
         <section class="content">
-        <a href="<?=base_url('admin/dashboard/tambahDosen');?>"><button class='btn btn-info'>Tambah Dosen</button></a>
+        <?php 
+            if($cek == "cari"){
+                ?>
+            <a href="<?=base_url('admin/dashboard/viewDosen');?>"><button class='btn btn-success'>Back</button></a>
+            <?php }
+            else{
+                ?>
         
+        <a href="<?=base_url('admin/dashboard/tambahDosen');?>"><button class='btn btn-info'>Tambah Dosen</button></a>
+        <?php } ?>
         <table class="table">
             <col style='width:10%'>
             <col style='width:50%'>
             <col style='width:40%'>
+            <div class="control-group1 input-group" style="margin-top:10px">
+                <form action="<?=base_url('admin/dashboard/searchDosen');?>" method="post">
+	            <input class="form-control" type="text" name="cari" placeholder="Masukkan nama dosen">
+                <div class="input-group-btn"> 
+                                        <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-search"></i> Search</button>
+                                        </div>
+                </form>
+            </div>
             <tr>
                 <th>NIDN</th>
                 <th>Nama</th>
