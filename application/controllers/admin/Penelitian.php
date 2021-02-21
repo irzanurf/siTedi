@@ -153,6 +153,23 @@ class Penelitian extends CI_Controller
         redirect('admin/penelitian/jadwal');
     }
 
+    public function submitAllMonev()
+    {
+        $monevs = $this->M_PropPenelitian->get_needSubmitMonev()->result();
+        foreach($monevs as $monev){
+            $stat_monev = [
+                'status' => 1
+            ];
+            $stat_prop = [
+                'status' => 3
+            ];
+            $this->M_PropPenelitian->update_prop($monev->id_proposal, $stat_prop);
+            $this->M_PropPenelitian->update_monev($stat_monev,$monev->id_proposal);
+        }
+        redirect('admin/penelitian/monev');
+
+    }
+
     public function assignProposal()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewAssign()->result();
