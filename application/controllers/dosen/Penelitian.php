@@ -212,7 +212,7 @@ class Penelitian extends CI_Controller {
             $id = $this->input->post('id');
             $nip = $this->session->userdata('user_name');
             $data_proposal = $this->M_PropPenelitian->getwhere_proposal(array('id'=> $id))->row();
-            
+            $cek_file = $this->input->post('file_prop',true);
             $date = date('Y-m-d');
             $bulan = $this->input->post('bulan',true);
             $biaya = str_replace('.','',$this->input->post('biaya',true));
@@ -229,8 +229,9 @@ class Penelitian extends CI_Controller {
                 "lama_pelaksanaan"=>$bulan,
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
         );
+        $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
             $file = $_FILES['file_prop'];
-            if(!empty($prop_file['name'])){
+            if(!empty($file['name'])){
                 $config['upload_path'] = './assets/prop_penelitian';
             $config['allowed_types'] = 'pdf';
             $config['encrypt_name'] = TRUE;
@@ -270,6 +271,17 @@ class Penelitian extends CI_Controller {
                     } 
                     $this->M_PropPenelitian->hapus_dosen_anggota(array('id'=>$k->id));
                 }
+                if(!empty($dsn_new)){
+                    for($j=0; $j<count($dsn_new)-1;$j++)
+                        {
+                            $dosen_new=$dsn_new[$j];
+                            $data_dosen_new =[
+                                'nip' => $dosen_new,
+                                'id_proposal' => $id
+                            ];
+                            $this->M_PropPenelitian->insert_dsn_anggota($data_dosen_new);
+                        }
+                    }
             }
 
             if(!empty($luaran_update)){
@@ -287,12 +299,24 @@ class Penelitian extends CI_Controller {
                     } 
                     $this->M_PropPenelitian->hapus_nilai_luaran(array('id'=>$k->id));
                 }
+                // if(!empty($luaran_new)){
+                //     for($j=0; $j<count($luaran_new)-1;$j++)
+                //     {
+                //        $l_new=$luaran_new[$j];
+                //         $data_luaran_new =[
+                //             'id_luaran' => $l_new,
+                //             'id_proposal' => $id
+                //         ];
+                //         $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
+                //     }
+                // }
             }
 
             if(empty($dsn_update)){    
+                $this->M_PropPenelitian->hapus_dosen_anggota(array('id_proposal'=>$id));
                 for($j=0; $j<count($dsn_new)-1;$j++)
                     {
-                        $this->M_PropPenelitian->hapus_dosen_anggota(array('id_proposal'=>$id));
+                        
                         $dosen_new=$dsn_new[$j];
                         $data_dosen_new =[
                             'nip' => $dosen_new,
@@ -303,9 +327,10 @@ class Penelitian extends CI_Controller {
                 }
                 
                 if(empty($luaran_update)){
+                    $this->M_PropPenelitian->hapus_nilai_luaran(array('id_proposal'=>$id));
                 for($j=0; $j<count($luaran_new)-1;$j++)
                     {
-                        $this->M_PropPenelitian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                        
                         $l_new=$luaran_new[$j];
                         $data_luaran_new =[
                             'id_luaran' => $l_new,

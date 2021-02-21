@@ -414,63 +414,87 @@ class Pengabdian extends CI_Controller {
             $data_nilai_luaran = $this->M_PropPengabdian->luaran_update_prop($id)->result();
             // print_r($dsn_update);
             if(!empty($dsn_update)){
-            foreach($data_dsn_anggota as $k){
-                for($i=0;$i<count($dsn_update);$i++){
-                    if($k->id == $id_dsn_anggota[$i]){
-                        
-                        $dsn=$dsn_update[$i];
-                        $data_dosen =[
-                            'nip' => $dsn,
-                        ];
-                        $this->M_PropPengabdian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
-                        continue 2;
+                foreach($data_dsn_anggota as $k){
+                    for($i=0;$i<count($dsn_update);$i++){
+                        if($k->id == $id_dsn_anggota[$i]){
+                            
+                            $dsn=$dsn_update[$i];
+                            $data_dosen =[
+                                'nip' => $dsn,
+                            ];
+                            $this->M_PropPengabdian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
+                }
+                if(!empty($dsn_new)){
+                    for($j=0; $j<count($dsn_new)-1;$j++)
+                        {
+                            $dosen_new=$dsn_new[$j];
+                            $data_dosen_new =[
+                                'nip' => $dosen_new,
+                                'id_proposal' => $id
+                            ];
+                            $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                        }
                     }
-                } 
-                $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
             }
-        }
-        if(!empty($luaran_update)){
-            foreach($data_nilai_luaran as $k){
-                for($i=0;$i<count($luaran_update);$i++){
-                    if($k->id == $id_nilai_luaran[$i]){
-                        
-                        $luaran=$luaran_update[$i];
-                        $data_luaran =[
-                            'id_luaran' => $luaran,
+            if(!empty($luaran_update)){
+                foreach($data_nilai_luaran as $k){
+                    for($i=0;$i<count($luaran_update);$i++){
+                        if($k->id == $id_nilai_luaran[$i]){
+                            
+                            $luaran=$luaran_update[$i];
+                            $data_luaran =[
+                                'id_luaran' => $luaran,
+                            ];
+                            $this->M_PropPengabdian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id'=>$k->id));
+                }
+                if(!empty($luaran_new)){
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                       $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
                         ];
-                        $this->M_PropPengabdian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
-                        continue 2;
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
                     }
-                } 
-                $this->M_PropPengabdian->hapus_nilai_luaran(array('id'=>$k->id));
-            }
-        }
-        if(empty($dsn_update)){
-            for($j=0; $j<count($dsn_new)-1;$j++)
-                {
-                    $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
-                    $dosen_new=$dsn_new[$j];
-                    $data_dosen_new =[
-                        'nip' => $dosen_new,
-                        'id_proposal' => $id
-                    ];
-                    $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
                 }
             }
-            
-            
-            if(empty($luaran_update)){
-                for($j=0; $j<count($luaran_new)-1;$j++)
-                {
+            if(empty($dsn_update)){
+                $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
+                for($j=0; $j<count($dsn_new)-1;$j++)
+                    {
+                        
+                        $dosen_new=$dsn_new[$j];
+                        $data_dosen_new =[
+                            'nip' => $dosen_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                    }
+                }
+                
+                
+                if(empty($luaran_update)){
                     $this->M_PropPengabdian->hapus_nilai_luaran(array('id_proposal'=>$id));
-                    $l_new=$luaran_new[$j];
-                    $data_luaran_new =[
-                        'id_luaran' => $l_new,
-                        'id_proposal' => $id
-                    ];
-                    $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        
+                        $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
                 }
-            }
 
         /* update anggota mahasiswa */
         $mhs_update = $this->input->post('nim_mahasiswa[]');
