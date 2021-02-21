@@ -117,6 +117,16 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function get_needSubmitProp()
+    {
+        $query = $this->db->select('proposal_penelitian.*')
+                        ->from('proposal_penelitian')
+                        ->where('proposal_penelitian.status=0')
+                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->get();
+        return $query;
+    }
+
     public function get_word_monev()
     {
         // $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, laporan_monev_penelitian.file1 as logbook, laporan_monev_penelitian.file2 as kemajuan,laporan_monev_penelitian.file3 as belanja')

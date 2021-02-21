@@ -24,6 +24,7 @@
 
     <div class="row">
         <div class="col-lg-12">
+        <a href="<?=base_url('admin/penelitian/submitAllProposal');?>" ><button  class="btn btn-success">Submit all proposal penelitian</button></a>
         
         
         <section class="content">

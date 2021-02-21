@@ -907,6 +907,21 @@ class Penelitian extends CI_Controller
 
     }
 
+    public function submitAllProposal()
+    {
+        $props = $this->M_PropPenelitian->get_needSubmitProp()->result();
+        foreach($props as $prop){
+            $stat = [
+                'status' => 1
+            ];
+            $this->M_PropPenelitian->update_prop($prop->id,$stat);
+        }
+        redirect('admin/penelitian/assignProposal');
+
+
+    }
+
+
     public function proposalexcel()
     {
         $fileName = 'PengajuanProposal';  

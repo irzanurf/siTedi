@@ -181,6 +181,20 @@ class Pengabdian extends CI_Controller
 
     }
 
+    public function submitAllProposal()
+    {
+        $props = $this->M_PropPengabdian->get_needSubmitProp()->result();
+        foreach($props as $prop){
+            $stat = [
+                'status' => 'SUBMITTED'
+            ];
+            $this->M_PropPengabdian->update_prop($prop->id,$stat);
+        }
+        redirect('admin/pengabdian/assignProposal');
+
+
+    }
+
     public function showReviewer()
     {
         $data['dosen']= $this->M_Dosen->get_dosen()->result();

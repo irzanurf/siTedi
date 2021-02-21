@@ -67,6 +67,17 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
+    public function get_needSubmitProp()
+    {
+        $query = $this->db->select('proposal_pengabdian.*, mitra.status as mitra_status')
+                        ->from('proposal_pengabdian')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->where('proposal_pengabdian.status="" AND mitra.status=1')
+                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->get();
+        return $query;
+    }
+
     public function get_viewAssign()
     {
         $query = $this->db->select('proposal_pengabdian.*, dosen.*, r1.nama as nama_reviewer1, r2.nama as nama_reviewer2')
