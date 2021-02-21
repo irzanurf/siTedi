@@ -33,7 +33,7 @@
         <div class="form-group"><label>Jabatan</label><input class="form-control" type="text" name="jabatan" value="" ></div>
         <div class="form-group"><label>Pendidikan</label><input class="form-control" type="text" name="pendidikan" value=""  ></div>
         <div class="form-group"><label>Status Kepegawaian</label><input class="form-control" type="text" name="status_kepegawaian" value="" ></div>
-        <div class="form-group"><label>Unit ES III</label><input class="form-control" type="text" name="program_studi" value="" ></div>
+        <div class="form-group"><label>Departemen / Prodi</label><input class="form-control" type="text" name="program_studi" value="" ></div>
         <button type="submit">Submit</button>
                     </form>
         <hr>

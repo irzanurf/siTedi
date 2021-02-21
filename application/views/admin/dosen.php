@@ -55,7 +55,7 @@
             <tr>
                 <th>NIDN</th>
                 <th>Nama</th>
-                <th>Unit ES III</th>
+                <th>Departemen / Prodi</th>
                 <th>Edit</th>
                 <th>Hapus</th>
 

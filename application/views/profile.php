@@ -43,7 +43,7 @@
                     <div class="form-group"><label>Jabatan</label><input class="form-control" type="text" name="program_studi" value="<?= $v->jabatan ?>" readonly></div>
                     <div class="form-group"><label>Pendidikan</label><input class="form-control" type="text" name="telp" value="<?= $v->pendidikan ?>"  readonly></div>
                     <div class="form-group"><label>Status Kepegawaian</label><input class="form-control" type="text" name="email" value="<?= $v->status_kepegawaian ?>" readonly></div>
-                    <div class="form-group"><label>Unit ES III</label><input class="form-control" type="text" name="program_studi" value="<?= $v->program_studi ?>" readonly></div>
+                    <div class="form-group"><label>Departemen / Prodi</label><input class="form-control" type="text" name="program_studi" value="<?= $v->program_studi ?>" readonly></div>
                     <hr>
                     
                     <?php }?>
