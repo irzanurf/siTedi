@@ -158,6 +158,16 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
+    public function luaran_update_prop($id)
+    {
+        $query = $this->db->select('luaran_prop_pengabdian.*, luaran_pengabdian.luaran as luaran')
+                        ->from('luaran_prop_pengabdian')
+                        ->join('luaran_pengabdian','luaran_prop_pengabdian.id_luaran=luaran_pengabdian.id','inner')
+                        ->where('luaran_prop_pengabdian.id_proposal = '.$id.'')
+                        ->get();
+        return $query;
+    }
+
     public function mhs_update_prop($id)
     {
         $query = $this->db->select('mhs_pengabdian.*')
@@ -171,6 +181,11 @@ class M_PropPengabdian extends CI_Model
     public function dosen($data_dosen)
     {
         $this->db->insert_batch('dsn_pengabdian', $data_dosen);
+    }
+
+    public function luaran($data_luaran)
+    {
+        $this->db->insert_batch('luaran_prop_pengabdian', $data_luaran);
     }
     
     public function mahasiswa($data_mahasiswa)
@@ -198,6 +213,22 @@ class M_PropPengabdian extends CI_Model
 
     public function insert_dsn_anggota($data){
         $this->db->insert('dsn_pengabdian',$data);
+    }
+
+    public function update_nilai_luaran($data,$id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('luaran_prop_pengabdian',$data);
+    }
+
+    public function hapus_nilai_luaran($data)
+    {
+        $query = $this->db->delete('luaran_prop_pengabdian',$data);
+        return $query;
+    }
+
+    public function insert_nilai_luaran($data){
+        $this->db->insert('luaran_prop_pengabdian',$data);
     }
 
     public function update_mhs_anggota($data,$id)

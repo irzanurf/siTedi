@@ -112,8 +112,6 @@
                             <li>
                                 <a href="<?= base_url('admin/pengabdian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Pengabdian</a>
                                 </li></br>
-                            <li>
-                                
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/skemapengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Skema Pengabdian</a>
                                 </li></br>

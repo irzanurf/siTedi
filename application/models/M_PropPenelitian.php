@@ -64,6 +64,11 @@ class M_PropPenelitian extends CI_Model
     {
         $this->db->insert_batch('dsn_penelitian', $data_dosen);
     }
+
+    public function luaran($data_luaran)
+    {
+        $this->db->insert_batch('luaran_prop_penelitian', $data_luaran);
+    }
     
     public function mahasiswa($data_mahasiswa)
     {
@@ -233,6 +238,16 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function luaran_update_prop($id)
+    {
+        $query = $this->db->select('luaran_prop_penelitian.*, luaran_penelitian.luaran as luaran')
+                        ->from('luaran_prop_penelitian')
+                        ->join('luaran_penelitian','luaran_prop_penelitian.id_luaran=luaran_penelitian.id','inner')
+                        ->where('luaran_prop_penelitian.id_proposal = '.$id.'')
+                        ->get();
+        return $query;
+    }
+
     public function mhs_update_prop($id)
     {
         $query = $this->db->select('mhs_penelitian.*')
@@ -256,6 +271,22 @@ class M_PropPenelitian extends CI_Model
 
     public function insert_dsn_anggota($data){
         $this->db->insert('dsn_penelitian',$data);
+    }
+
+    public function update_nilai_luaran($data,$id)
+    {
+        $this->db->where('id',$id);
+        $this->db->update('luaran_prop_penelitian',$data);
+    }
+
+    public function hapus_nilai_luaran($data)
+    {
+        $query = $this->db->delete('luaran_prop_penelitian',$data);
+        return $query;
+    }
+
+    public function insert_nilai_luaran($data){
+        $this->db->insert('luaran_prop_penelitian',$data);
     }
 
     public function update_mhs_anggota($data,$id)

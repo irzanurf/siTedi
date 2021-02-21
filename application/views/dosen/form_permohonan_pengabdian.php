@@ -83,7 +83,8 @@
 
                                 <div class="form-group">
                                     <label>Luaran</label>
-                                    <select class="form-control" name="luaran" id="luaran">
+                                    <div class="input-group control-group after-add-more2">
+                                    <select class="form-control" id="selectpicker2"  data-live-search="true">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($luaran as $l) {
@@ -93,7 +94,10 @@
                                         }
                                         ?>
                                     </select>
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more2" id="btnadd2" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
                                 </div>
+                                </div></br>
                                 
                                 <div class="form-group">
                                 <label>Anggota Dosen</label>
@@ -125,6 +129,17 @@
                                 </div>
 
                                 
+                            </div>
+
+                            <div class="copy2 hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                                <input class="form-control id-luaran" name="luaran[]" hidden >
+                                <input class="form-control nama-luaran"  readonly>
+                                
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove2" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="copy hide">
@@ -211,6 +226,8 @@
     $(document).ready(function() {
         $('#selectpicker1').selectpicker();
         $('#btnadd').prop('disabled', true);
+        $('#selectpicker2').selectpicker();
+        $('#btnadd2').prop('disabled', true);
         $( '.currency' ).keyup(function(event) {
             // skip for arrow keys
             if(event.which >= 37 && event.which <= 40) return;
@@ -226,6 +243,34 @@
                     // $('#selectpicker2').selectpicker();
     });
     </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker2').on('change', function(){
+            $('#btnadd2').prop('disabled', false);
+            
+      $("body").on("click",".remove2",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    });
+
+    $("#btnadd2").on('click',function(){ 
+                var temp = $(".copy2.hide").clone(true); 
+                $('.nama-luaran', temp).val($('#selectpicker2 option:selected').text());
+                $('.id-luaran', temp).val($('#selectpicker2').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more2").after(temp);
+          $('#selectpicker2').val("").selectpicker('refresh');
+
+
+      });
+
+
+        })
+      
+    </script>
+
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#selectpicker1').on('change', function(){

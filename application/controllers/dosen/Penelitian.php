@@ -69,7 +69,6 @@ class Penelitian extends CI_Controller {
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
             "id_jenis"=>$this->input->post('jenis',true),
-            "id_luaran"=>$this->input->post('luaran',true),
             "id_jadwal" => $jadwal,
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
@@ -92,6 +91,17 @@ class Penelitian extends CI_Controller {
             );
         }
         $this->M_PropPenelitian->dosen($data_dosen);
+
+        $id_luaran= $this->input->post('luaran[]');
+        $data_luaran = array();
+        for($i=0; $i<count($id_luaran)-1; $i++)
+        {
+            $data_luaran[$i] = array(
+                'id_luaran'  =>$id_luaran[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        $this->M_PropPenelitian->luaran($data_luaran);
         
         $nim= $this->input->post('nim_mahasiswa[]');
         $nama_mhs = $this->input->post('nama_mahasiswa[]');
@@ -183,6 +193,7 @@ class Penelitian extends CI_Controller {
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPenelitian->get_skemapenelitian()->result();
         $data['anggota_dosen'] = $this->M_PropPenelitian->dosen_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPenelitian->luaran_update_prop($id)->result();
         $data['anggota_mhs'] = $this->M_PropPenelitian->mhs_update_prop($id)->result();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
@@ -216,12 +227,11 @@ class Penelitian extends CI_Controller {
                 "tgl_upload"=>$date,
                 "biaya"=>$biaya,
                 "lama_pelaksanaan"=>$bulan,
-                "id_luaran"=>$this->input->post('luaran',true),
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
         );
             $file = $_FILES['file_prop'];
-            if($prop=''){}else{
-            $config['upload_path'] = './assets/prop_penelitian';
+            if(!empty($prop_file['name'])){
+                $config['upload_path'] = './assets/prop_penelitian';
             $config['allowed_types'] = 'pdf';
             $config['encrypt_name'] = TRUE;
 
@@ -231,16 +241,21 @@ class Penelitian extends CI_Controller {
             } else {
                 $prop=$this->upload->data('file_name');
             }
-        }
-        $prop = [
-            "file"=>$prop,];
-            $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
+            $datafile = [
+                "file"=>$prop,];
+                $proposal=$this->M_PropPenelitian->update_prop($id,$datafile);
+            }
             
                 $dsn_update = $this->input->post('dosen[]');
                 $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
                 $dsn_new = $this->input->post('dosen_new[]');
                 $data_dsn_anggota = $this->M_PropPenelitian->dosen_update_prop($id)->result();
+                $luaran_update = $this->input->post('luaran[]');
+                $id_nilai_luaran = $this->input->post('id_nilai_luaran[]');
+                $luaran_new = $this->input->post('luaran_new[]');
+                $data_nilai_luaran = $this->M_PropPenelitian->luaran_update_prop($id)->result();
                 // print_r($dsn_update);
+                if(!empty($dsn_update)){
                 foreach($data_dsn_anggota as $k){
                     for($i=0;$i<count($dsn_update);$i++){
                         if($k->id == $id_dsn_anggota[$i]){
@@ -255,10 +270,29 @@ class Penelitian extends CI_Controller {
                     } 
                     $this->M_PropPenelitian->hapus_dosen_anggota(array('id'=>$k->id));
                 }
-    
+            }
+
+            if(!empty($luaran_update)){
+                foreach($data_nilai_luaran as $k){
+                    for($i=0;$i<count($luaran_update);$i++){
+                        if($k->id == $id_nilai_luaran[$i]){
+                            
+                            $luaran=$luaran_update[$i];
+                            $data_luaran =[
+                                'id_luaran' => $luaran,
+                            ];
+                            $this->M_PropPenelitian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPenelitian->hapus_nilai_luaran(array('id'=>$k->id));
+                }
+            }
+
+            if(empty($dsn_update)){    
                 for($j=0; $j<count($dsn_new)-1;$j++)
                     {
-                        
+                        $this->M_PropPenelitian->hapus_dosen_anggota(array('id_proposal'=>$id));
                         $dosen_new=$dsn_new[$j];
                         $data_dosen_new =[
                             'nip' => $dosen_new,
@@ -266,6 +300,20 @@ class Penelitian extends CI_Controller {
                         ];
                         $this->M_PropPenelitian->insert_dsn_anggota($data_dosen_new);
                     }
+                }
+                
+                if(empty($luaran_update)){
+                for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        $this->M_PropPenelitian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                        $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
+                    }
+                }
     
             /* update anggota mahasiswa */
             $mhs_update = $this->input->post('nim_mahasiswa[]');

@@ -84,20 +84,37 @@ label    {color: black; font-size:15px;}
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Luaran</label>
-                                    <select class="form-control" name="luaran" id="luaran">
-                                        <option value="">Please Select</option>
-                                        <?php
-                                        foreach ($luaran as $l) {
-                                            ?>
-                                            <option value="<?php echo $l->id; ?>" <?php echo ($l->id==$proposal->id_luaran) ? "selected='selected'" : "" ?>><?php echo $l->luaran; ?></option>
-                                            <?php
-                                        }
+                                <label>Luaran</label>
+                                <div class="input-group control-group">
+                               <select class="form-control" id="selectpicker2" name="luaran_new[]" data-live-search="true">
+                                    <option value="">Please Select</option>
+                                    <?php
+                                    foreach ($luaran as $l) {
                                         ?>
-                                    </select>
+                                        <option value ="<?php echo $l->id; ?>"><?php echo $l->luaran ?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                                 <div class="input-group-btn"> 
+                                    <button class="btn btn-success add-more2" id="btnadd2" type="button"><i class="glyphicon glyphicon-plus"></i> Add</button>
+                                </div></div>
+                                <?php 
+                        foreach($nilai_luaran as $n=>$val){?>
+                            <div class="control-group input-group" style="margin-top:10px">
+                            <input class="form-control id-luaran" name="id_nilai_luaran[]" value="<?=$val->id?>" hidden >
+                                <input class="form-control id-luaran" name="luaran[]" value="<?=$val->id_luaran?>" hidden >
+                                <input class="form-control nama-luaran" value="<?=$val->luaran?>" readonly>
+                            
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove2" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
                                 </div>
 
-                                <div class="form-group">
+                    <?php }?>
+                    <div class="after-add-more2"></div>
+
+                                <br><div class="form-group">
                                 <label>Anggota Dosen</label>
                                 <div class="input-group control-group">
                                <select class="form-control" id="selectpicker1" name="dosen_new[]" data-live-search="true">
@@ -196,6 +213,20 @@ label    {color: black; font-size:15px;}
                                 </div>
                             </div>
 
+                            <div class="copy2 hide">
+                                <div class="control-group input-group" style="margin-top:10px">
+                               
+    
+                                <input class="form-control id-luaran" name="luaran_new[]"  hidden >
+                                <input class="form-control nama-luaran"  readonly>
+                                
+                                    <div class="input-group-btn"> 
+                                    <button class="btn btn-danger remove2" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+
                             <div class="copy1 hide">
                                 <div class="control-group1 input-group" style="margin-top:10px">
                                 <input class="form-control" name="nim_mahasiswa_new[]" placeholder="NIM mahasiswa"  >
@@ -248,9 +279,17 @@ label    {color: black; font-size:15px;}
     $(document).ready(function() {
         $('#selectpicker1').selectpicker();
         $('#btnadd').prop('disabled', true);
-        // $('#selectpicker2').selectpicker();
+        
     });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker2').selectpicker();
+        $('#btnadd2').prop('disabled', true);
+        
+    });
+    </script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $('#selectpicker1').on('change', function(){
@@ -282,6 +321,29 @@ label    {color: black; font-size:15px;}
                 $(temp).removeClass("hide");
           $(".after-add-more").after(temp);
           $('#selectpicker1').val("").selectpicker('refresh'); 
+      });
+        })
+      
+    </script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#selectpicker2').on('change', function(){
+            $('#btnadd2').prop('disabled', false);
+            
+     
+    });
+
+    $("body").on("click",".remove2",function(){ 
+          $(this).parents(".control-group").remove();
+      });
+    $("#btnadd2").on('click',function(){ 
+                var temp = $(".copy2.hide").clone(true); 
+                $('.nama-luaran', temp).val($('#selectpicker2 option:selected').text());
+                $('.id-luaran', temp).val($('#selectpicker2').val());
+                $(temp).removeClass("hide");
+          $(".after-add-more2").after(temp);
+          $('#selectpicker2').val("").selectpicker('refresh'); 
       });
         })
       

@@ -982,7 +982,7 @@ class Penelitian extends CI_Controller
         $data['temp'] = "Penelitian";
         $data['view'] = $this->M_AdminPenelitian->get_luaran()->result();
         $this->load->view('layout/sidebar_admin');
-        $this->load->view('admin/luaran', $data);
+        $this->load->view('admin/penelitian/luaran', $data);
         $this->load->view('layout/footer'); 
     }
 
@@ -993,7 +993,7 @@ class Penelitian extends CI_Controller
             'id' => $id,
         ];
         $this->M_AdminPenelitian->deleteluaran($data);
-        redirect('admin/luaran');
+        redirect('admin/penelitian/luaran');
     }
 
     public function addluaran()
@@ -1003,7 +1003,7 @@ class Penelitian extends CI_Controller
             'tgl'=>date('Y'), 
         ];
         $this->M_AdminPenelitian->insert_luaran($data);
-        redirect('admin/luaran');
+        redirect('admin/penelitian/luaran');
     }
 
 }

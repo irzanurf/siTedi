@@ -859,16 +859,16 @@ class Pengabdian extends CI_Controller
             'id' => $id,
         ];
         $this->M_Admin->deleteluaran($data);
-        redirect('admin/luaran');
+        redirect('admin/pengabdian/luaran');
     }
 
     public function addluaran()
     {
         $data = [
-            'luaran'=>$this->input->post('luaran_pengabdian'), 
+            'luaran'=>$this->input->post('luaran'), 
             'tgl'=>date('Y'), 
         ];
         $this->M_Admin->insert_luaran($data);
-        redirect('admin/luaran');
+        redirect('admin/pengabdian/luaran');
     }
 }

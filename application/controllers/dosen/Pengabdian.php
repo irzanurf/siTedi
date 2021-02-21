@@ -100,7 +100,6 @@ class Pengabdian extends CI_Controller {
             "lokasi"=>$this->input->post('lokasi',true),
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
-            "id_luaran"=>$this->input->post('luaran',true),
             "biaya"=>$biaya,
             "id_skema"=>$this->input->post('skema_pengabdian')
 
@@ -127,6 +126,17 @@ class Pengabdian extends CI_Controller {
             );
         }
         $this->M_PropPengabdian->dosen($data_dosen);
+
+        $id_luaran= $this->input->post('luaran[]');
+        $data_luaran = array();
+        for($i=0; $i<count($id_luaran)-1; $i++)
+        {
+            $data_luaran[$i] = array(
+                'id_luaran'  =>$id_luaran[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        $this->M_PropPengabdian->luaran($data_luaran);
         
         $nim= $this->input->post('nim_mahasiswa[]');
         $nama_mhs = $this->input->post('nama_mahasiswa[]');
@@ -342,10 +352,12 @@ class Pengabdian extends CI_Controller {
         $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['proposal']->id_mitra;
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
         $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
         $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id)->result();
         $data['anggota_mhs'] = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPengabdian->luaran_update_prop($id)->result();
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
@@ -368,7 +380,6 @@ class Pengabdian extends CI_Controller {
             "nip"=>$nip,
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
-            "id_luaran"=>$this->input->post('luaran',true),
             "tgl_upload"=>$date,
             "lokasi"=>$this->input->post('lokasi',true),
             "biaya"=>$biaya,
@@ -397,7 +408,12 @@ class Pengabdian extends CI_Controller {
             $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
             $dsn_new = $this->input->post('dosen_new[]');
             $data_dsn_anggota = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+            $luaran_update = $this->input->post('luaran[]');
+            $id_nilai_luaran = $this->input->post('id_nilai_luaran[]');
+            $luaran_new = $this->input->post('luaran_new[]');
+            $data_nilai_luaran = $this->M_PropPengabdian->luaran_update_prop($id)->result();
             // print_r($dsn_update);
+            if(!empty($dsn_update)){
             foreach($data_dsn_anggota as $k){
                 for($i=0;$i<count($dsn_update);$i++){
                     if($k->id == $id_dsn_anggota[$i]){
@@ -412,10 +428,27 @@ class Pengabdian extends CI_Controller {
                 } 
                 $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
             }
-
+        }
+        if(!empty($luaran_update)){
+            foreach($data_nilai_luaran as $k){
+                for($i=0;$i<count($luaran_update);$i++){
+                    if($k->id == $id_nilai_luaran[$i]){
+                        
+                        $luaran=$luaran_update[$i];
+                        $data_luaran =[
+                            'id_luaran' => $luaran,
+                        ];
+                        $this->M_PropPengabdian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                        continue 2;
+                    }
+                } 
+                $this->M_PropPengabdian->hapus_nilai_luaran(array('id'=>$k->id));
+            }
+        }
+        if(empty($dsn_update)){
             for($j=0; $j<count($dsn_new)-1;$j++)
                 {
-                    
+                    $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
                     $dosen_new=$dsn_new[$j];
                     $data_dosen_new =[
                         'nip' => $dosen_new,
@@ -423,6 +456,21 @@ class Pengabdian extends CI_Controller {
                     ];
                     $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
                 }
+            }
+            
+            
+            if(empty($luaran_update)){
+                for($j=0; $j<count($luaran_new)-1;$j++)
+                {
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                    $l_new=$luaran_new[$j];
+                    $data_luaran_new =[
+                        'id_luaran' => $l_new,
+                        'id_proposal' => $id
+                    ];
+                    $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                }
+            }
 
         /* update anggota mahasiswa */
         $mhs_update = $this->input->post('nim_mahasiswa[]');

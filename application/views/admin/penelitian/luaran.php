@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-              Luaran Pengabdian
+              Luaran Penelitian
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Luaran Pengabdian
+                    <i class="fa fa-edit"></i> Luaran Penelitian
                 </li>
             </ol>
         </div>
@@ -51,7 +51,7 @@
                                 </form>
                 </td>
                 <td>
-                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Luaran?');" action=<?= base_url('admin/pengabdian/deleteluaran');?>>
+                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Luaran?');" action=<?= base_url('admin/penelitian/deleteluaran');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn btn-danger">
                                         Hapus
@@ -79,7 +79,7 @@
             <div class="modal-body">
             
             
-                <form role="form" method="post" action="<?= base_url('admin/pengabdian/addluaran');?>">  
+                <form role="form" method="post" action="<?= base_url('admin/penelitian/addluaran');?>">  
                 <div class="form-group">
                         <label>Nama Luaran</label>
                         <input type="text" class="form-control" name="luaran" >
