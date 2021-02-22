@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Detail Skema Pengabdian
+                Detail Skema Penelitian
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Skema Pengabdian
+                    <i class="fa fa-edit"></i> Skema Penelitian
                 </li>
             </ol>
         </div>
