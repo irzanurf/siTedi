@@ -36,7 +36,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Judul Pengabdian</label>
-                                    <input class="form-control" name="judul" >
+                                    <input class="form-control" name="judul" id="judul">
+                                    <span id="judul_result" style='color:red'></span>
                                 </div>
 
                                 <div class="form-group">
@@ -268,6 +269,34 @@
 
         })
       
+    </script>
+
+<script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#submit').prop('disabled',true);
+            $('#judul').change(function(){
+            var judul = $('#judul').val();
+            if(judul != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/pengabdian/checkJudul');?>",
+                    method:"post",
+                    data:{judul:judul},
+                    dataType: 'json',
+                    success:function(data){
+                        if(data=="Judul belum diajukan"){
+                            $('#submit').prop('disabled',false);
+                            $('#judul_result').hide();
+                        }else{
+                            $('#submit').prop('disabled', true);
+                            $('#judul_result').show();
+                            $('#judul_result').html(data);
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
     </script>
 
 

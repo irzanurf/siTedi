@@ -142,6 +142,10 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function checkJudulExist($judul) {
+        return $this->db->get_where('proposal_penelitian', ['judul' => $judul])->num_rows();
+    }
+
     public function get_word_monev()
     {
         // $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, laporan_monev_penelitian.file1 as logbook, laporan_monev_penelitian.file2 as kemajuan,laporan_monev_penelitian.file3 as belanja')

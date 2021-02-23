@@ -47,6 +47,15 @@ class Pengabdian extends CI_Controller {
           echo json_encode('Username tersedia');
         }
       }
+      function checkJudul(){
+        $judul = $this->input->post('judul');
+        $if_exists = $this->M_PropPengabdian->checkJudulExist($judul);
+        if ($if_exists > 0) {
+          echo json_encode('Judul sudah diajukan');
+        } else {
+          echo json_encode('Judul belum diajukan');
+        }
+      }
 
     public function addformProposal()
     {

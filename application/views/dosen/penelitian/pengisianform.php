@@ -26,7 +26,8 @@ label    {color: black; font-size:15px;}
                                 </div>
                                         <div class="form-group"> 
 											<label>Judul Penelitian</label> 
-											<input name="judul" class="form-control"> 
+											<input name="judul" class="form-control" id="judul"> 
+                                            <span id="judul_result" style='color:red'></span>
 										</div> 
 										<div class="form-group"> 
 											<label>Abstrak</label> 
@@ -197,7 +198,7 @@ label    {color: black; font-size:15px;}
                                             <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                         </div> 
 
-										<button type="submit" class="btn btn-success w3ls-button">Submit</button> 
+										<button type="submit"  id="submit" class="btn btn-success w3ls-button">Submit</button> 
 									</form> 
 								</div>
 							</div>
@@ -280,6 +281,34 @@ label    {color: black; font-size:15px;}
 
         })
       
+    </script>
+
+<script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#submit').prop('disabled',true);
+            $('#judul').change(function(){
+            var judul = $('#judul').val();
+            if(judul != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/penelitian/checkJudul');?>",
+                    method:"post",
+                    data:{judul:judul},
+                    dataType: 'json',
+                    success:function(data){
+                        if(data=="Judul belum diajukan"){
+                            $('#submit').prop('disabled',false);
+                            $('#judul_result').hide();
+                        }else{
+                            $('#submit').prop('disabled', true);
+                            $('#judul_result').show();
+                            $('#judul_result').html(data);
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
     </script>
 
 

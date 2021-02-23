@@ -158,6 +158,10 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
+    public function checkJudulExist($judul) {
+        return $this->db->get_where('proposal_pengabdian', ['judul' => $judul])->num_rows();
+    }
+
     public function luaran_update_prop($id)
     {
         $query = $this->db->select('luaran_prop_pengabdian.*, luaran_pengabdian.luaran as luaran')

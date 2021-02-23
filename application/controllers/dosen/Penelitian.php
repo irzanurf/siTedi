@@ -483,6 +483,16 @@ class Penelitian extends CI_Controller {
         $this->load->view("penelitian/footer");
     }
 
+    function checkJudul(){
+        $judul = $this->input->post('judul');
+        $if_exists = $this->M_PropPenelitian->checkJudulExist($judul);
+        if ($if_exists > 0) {
+          echo json_encode('Judul sudah diajukan');
+        } else {
+          echo json_encode('Judul belum diajukan');
+        }
+      }
+
     public function uploadMonev(){
         $id=$this->input->post('id');
         $nip = $this->session->userdata('user_name');

@@ -28,7 +28,7 @@
                 
                         <div class="panel-body">
                             <label>keterangan</label>
-                            <input type="text" class="form-control"  name="keterangan" id="keterangan" value = <?=$jadwal->keterangan?>><br>
+                            <input type="text" class="form-control"  name="keterangan" id="keterangan" <?php echo "value=\"" . $jadwal->keterangan . "\""; ?>><br>
                             <label>Tanggal Awal</label>
                             <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
                             <label>Batas Pengajuan Proposal</label>

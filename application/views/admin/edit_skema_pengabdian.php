@@ -54,7 +54,7 @@
                     foreach($skema as $s=>$sk){?>
                     <div class='form-group'>
                                     <label for="bobot">Jenis</label>
-                                    <input class='form-control' type="text" id="jenis" name="jenis" value=<?=$sk->jenis_pengabdian?>>
+                                    <input class='form-control' type="text" id="jenis" name="jenis" <?php echo "value=\"" . $sk->jenis_pengabdian . "\""; ?>>
                                 </div>
                     <?php }?>
                     <div class="input-group-btn"> 
