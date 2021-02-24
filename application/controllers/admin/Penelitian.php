@@ -170,6 +170,23 @@ class Penelitian extends CI_Controller
 
     }
 
+    public function submitAllAkhir()
+    {
+        $akhirs = $this->M_PropPenelitian->get_needSubmitAkhir()->result();
+        foreach($akhirs as $akhir){
+            $stat_akhir = [
+                'status' => 1
+            ];
+            $stat_prop = [
+                'status' => 4
+            ];
+            $this->M_PropPenelitian->update_prop($akhir->id_proposal, $stat_prop);
+            $this->M_PropPenelitian->update_akhir($stat_akhir,$akhir->id_proposal);
+        }
+        redirect('admin/penelitian/akhir');
+
+    }
+
     public function assignProposal()
     {
         $data['view'] = $this->M_AdminPenelitian->get_viewAssign()->result();
@@ -355,6 +372,17 @@ class Penelitian extends CI_Controller
     {
         $status = [
             'status' => '5'
+        ];
+
+        $this->M_AdminPenelitian->approval($id,$status);
+        redirect('admin/penelitian/approval');
+
+    }
+
+    public function cancelProposal($id)
+    {
+        $status = [
+            'status' => '13'
         ];
 
         $this->M_AdminPenelitian->approval($id,$status);

@@ -65,8 +65,8 @@ class Penelitian extends CI_Controller {
         $nip = $data['proposal']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
         $data['view']= $this->M_ReviewerPenelitian->get_komponen(array('id_jenis'=>$id_jenis))->result();
-        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
-        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$username))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$username))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/formnilai', $data);
         $this->load->view("penelitian/footer");
@@ -87,7 +87,7 @@ class Penelitian extends CI_Controller {
         $data['komponen'] = $this->M_ReviewerPenelitian->get_nilai(array('id_proposal'=>$id, 'reviewer'=>$reviewer))->result();
         $assign = $this->M_ReviewerPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$user))->result();
-        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$user))->result();
         if($assign->reviewer == $reviewer){
             $data['nilai'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
             $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
@@ -295,8 +295,8 @@ class Penelitian extends CI_Controller {
         $data['monev'] = $this->M_ReviewerPenelitian->get_monev(array('id_proposal'=>$id))->row();
         $nip = $data['proposal']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
-        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
-        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$username))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$username))->result();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('reviewer/penelitian/formmonev', $data);
         $this->load->view("penelitian/footer");
@@ -352,8 +352,8 @@ class Penelitian extends CI_Controller {
         $data['monev'] = $this->M_ReviewerPenelitian->get_monev(array('id_proposal'=>$id))->row();
         $nip = $data['proposal']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
-        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
-        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$username))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$username))->result();
         $reviewer = $this->session->userdata('user_name');
         $assign = $this->M_ReviewerPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
         if($assign->reviewer == $reviewer){

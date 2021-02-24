@@ -24,7 +24,7 @@
     <a href="<?=base_url('admin/penelitian/laporanAkhirWord');?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
     <a href="<?=base_url('admin/penelitian/laporanAkhirExcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
 
-
+    <a href="<?=base_url('admin/penelitian/submitAllAkhir');?>"><button class='btn btn-success'> Submit All Laporan Akhir</button></a>
     <div class="row">
         <div class="col-lg-12">
         
@@ -40,7 +40,7 @@
                 <th class='text-center'>Luaran</th>
                 <th class='text-center'>Laporan Belanja 100%</th>
                 <th class='text-center'>Catatan Pengusul</th>
-                
+                <th class='text-center'>Status</th>
             </tr>
             <?php 
             $no = 1;
@@ -86,6 +86,12 @@
                 <td>
                 <?php if ($v->catatan==NULL) : ?> - 
                     <?php elseif($v->file3 != NULL) : ?> <?= $v->catatan?>
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($v->stat==0||$v->stat==NULL||$v->stat=="") : ?> Belum melakukan finalisasi
+                        <?php elseif($v->stat == 1) : ?> Sudah melakukan finalisasi
+                    
                     <?php endif; ?>
                 </td>
                 

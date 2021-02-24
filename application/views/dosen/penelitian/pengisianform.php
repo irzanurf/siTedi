@@ -74,7 +74,7 @@ label    {color: black; font-size:15px;}
                                 <div class="form-group">
                                     <label>Luaran</label>
                                     <div class="input-group control-group after-add-more2">
-                                    <select class="form-control" id="selectpicker2"  data-live-search="true">
+                                    <select class="form-control" id="selectpicker2" name="luaran[]" data-live-search="true">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($luaran as $l) {
@@ -153,23 +153,6 @@ label    {color: black; font-size:15px;}
                                 </div>
                             </div>
 
-                            <!-- <div class="copy hide">
-                                <div class="control-group input-group" style="margin-top:10px">
-                                <select class="form-control" name="dosen[]">
-                                    <option value="">Please Select</option>
-                                    <?php
-                                    foreach ($dosen as $ds) {
-                                        ?>
-                                        <option value ="<?php echo $ds->nip; ?>"><?php echo $ds->nama ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
-                                    <div class="input-group-btn"> 
-                                    <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
-                                    </div>
-                                </div>
-                            </div> -->
 
                             <div class="copy1 hide">
                                 <div class="control-group1 input-group" style="margin-top:10px">

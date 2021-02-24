@@ -1,13 +1,15 @@
 
-
-
         <body>
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12" style="float:none;margin:auto;">
                         <h1 class="page-header">
                             Welcome <small>
-								<?= $nama->nama ?></small>
+                            <?php 
+                            if (!empty($nama)){
+                        			foreach($nama as $v) { ?>
+								<?= $v->nama ?>
+								<?php }}?>
                         </h1>
                         
                     </div>

@@ -137,7 +137,15 @@ class M_PropPenelitian extends CI_Model
         $query = $this->db->select('laporan_monev_penelitian.*')
                         ->from('laporan_monev_penelitian')
                         ->where('laporan_monev_penelitian.status=0')
-                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->get();
+        return $query;
+    }
+
+    public function get_needSubmitAkhir()
+    {
+        $query = $this->db->select('laporan_akhir_penelitian.*')
+                        ->from('laporan_akhir_penelitian')
+                        ->where('laporan_akhir_penelitian.status=0')
                         ->get();
         return $query;
     }

@@ -62,7 +62,7 @@
                                     </button>
                                
                             <?php else : ?>
-                                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Finalisasi?');" action=<?= base_url('dosen/penelitian/finishClick');?>>
+                                <form style="float:left;" method="post" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Finalisasi?');" action=<?= base_url('dosen/penelitian/finishClick');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn-sm btn-primary">
                                         Finalisasi

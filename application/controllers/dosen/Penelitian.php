@@ -299,17 +299,17 @@ class Penelitian extends CI_Controller {
                     } 
                     $this->M_PropPenelitian->hapus_nilai_luaran(array('id'=>$k->id));
                 }
-                // if(!empty($luaran_new)){
-                //     for($j=0; $j<count($luaran_new)-1;$j++)
-                //     {
-                //        $l_new=$luaran_new[$j];
-                //         $data_luaran_new =[
-                //             'id_luaran' => $l_new,
-                //             'id_proposal' => $id
-                //         ];
-                //         $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
-                //     }
-                // }
+                if(!empty($luaran_new)){
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                       $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
+                    }
+                }
             }
 
             if(empty($dsn_update)){    

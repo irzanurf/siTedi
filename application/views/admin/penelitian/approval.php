@@ -59,12 +59,16 @@
                 </td>
                 <td>
                 <?php if($v->status==13) :?>
-                <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Accept
                 </a>
-                <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Reject
-                </a>       
+                </a>     
+                <?php elseif($v->status==2) :?> 
+                    <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id_proposal;?>" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');">
+                    Cancel
+                </a> 
                 <?php else : ?> 
                 <?php endif ?>         
                 </td>

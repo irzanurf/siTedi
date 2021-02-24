@@ -66,10 +66,10 @@
                 </td>
                 <td>
                 <?php if($v->status=='NEED_APPROVAL') :?>
-                <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Accept
                 </a>
-                <a type="button" class="btn btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                <a type="button" class="btn btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Reject
                 </a>       
                 <?php else : ?> 

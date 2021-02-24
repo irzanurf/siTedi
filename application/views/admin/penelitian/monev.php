@@ -43,7 +43,7 @@
                 <th class='text-center'>Catatan Pengusul</th>
                 <th class='text-center'>Komentar Reviewer 1</th>
                 <th class='text-center'>Komentar Reviewer 2</th>
-                
+                <th class='text-center'>Status</th>
             </tr>
             <?php 
             $no = 1;
@@ -92,6 +92,12 @@
                 <td>
                     <?php if ($v->cr_monev2==NULL) : ?> -
                         <?php elseif($v->cr_monev2 != NULL) : ?> <?= $v->cr_monev2?>
+                    
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <?php if ($v->stat==0||$v->stat==NULL||$v->stat=="") : ?> Belum melakukan finalisasi
+                        <?php elseif($v->stat == 1) : ?> Sudah melakukan finalisasi
                     
                     <?php endif; ?>
                 </td>

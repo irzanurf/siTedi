@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <label>Luaran</label>
                                     <div class="input-group control-group after-add-more2">
-                                    <select class="form-control" id="selectpicker2"  data-live-search="true">
+                                    <select class="form-control" id="selectpicker2" name="luaran[]"  data-live-search="true">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($luaran as $l) {
