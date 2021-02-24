@@ -134,11 +134,13 @@ class M_AdminPenelitian extends CI_Model
 
     public function get_viewPenelitian()
     {
-        $query = $this->db->select('nilai_proposal_penelitian.*, proposal_penelitian.*,jenispenelitian.jenis as jenis')
+        $query = $this->db->select('nilai_proposal_penelitian.*, proposal_penelitian.*,jenispenelitian.jenis as jenis,dosen.nama as nama_dosen, jadwal_penelitian.keterangan as ket')
                         ->from('proposal_penelitian')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
+                        ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
+                        ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id', 'inner')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
-                        ->where('proposal_penelitian.status > 0')
+                        ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
     }

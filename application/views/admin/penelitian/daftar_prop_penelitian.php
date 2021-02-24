@@ -33,15 +33,12 @@
         <a href="<?=base_url('admin/penelitian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
 
         <table class="table">
-            <col style='width:5%'>
-            <col style='width:45%'>
-            <col style='width:20%'>
-            <col style='width:15%'>
-            <col style='width:15%'>
             <tr>
                 <th>No</th>
+                <th>Ket. Jadwal</th>
                 <th>Judul Proposal</th>
                 <th>Jenis Penelitian</th>
+                <th>Ketua Penelitian</th>
                 <th>Nilai</th>
                 <!-- <th>Detail</th> -->
                 <th>Status</th>
@@ -53,8 +50,10 @@
             <?php if ($v->nilai!==NULL) : ?>
             <tr>
                 <td><?= $no++?></td>
+                <td><?= $v->ket?></td>
                 <td><?= $v->judul?></td>
                 <td><?= $v->jenis ?></td>
+                <td><?= $v->nama_dosen ?></td>
                 <td><?php $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?></td>
                 <!-- <td>
                 <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
@@ -63,11 +62,26 @@
                 
                 </td> -->
                 <td>
-                <?php if($v->status>=2 && $v->status<=4) : ?>
-                ACCEPTED
+                <?php if($v->status==0) : ?>
+                SUBMITED (Belum difinalisasi)
 
                 <?php elseif($v->status==1) : ?>
-                SUBMITED
+                SUBMITED (Sudah difinalisasi)
+
+                <?php elseif($v->status==2) : ?>
+                ACCEPTED
+
+                <?php elseif($v->status==11||$v->status==12) : ?>
+                REVIEW
+
+                <?php elseif($v->status==13) : ?>
+                MONEV (Belum difinalisasi)
+
+                <?php elseif($v->status==3) : ?>
+                MONEV (sudah difinalisasi) 
+
+                <?php elseif($v->status==4) : ?>
+                LAPORAN AKHIR (sudah difinalisasi) 
 
                 <?php elseif($v->status==5) : ?>
                 REJECTED

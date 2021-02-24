@@ -301,10 +301,6 @@ class Penelitian extends CI_Controller
 
     }
 
-    
-
-
-
     public function detailProposal(){
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
