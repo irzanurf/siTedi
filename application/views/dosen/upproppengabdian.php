@@ -399,8 +399,19 @@
       });
     });
     </script>
-    <script type="text/javascript"> 
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#username').keypress(function( e ) {
+            if(e.which === 32) 
+                return false;
+        });
+       
+        
+    });
+    </script>
+   <script type="text/javascript"> 
         $(document).ready(function(){
+            $('#submit').prop('disabled',true);
             $('#username').change(function(){
             var username = $('#username').val();
             if(username != ''){
@@ -410,12 +421,22 @@
                     data:{username:username},
                     dataType: 'json',
                     success:function(data){
-                        if(data=="Username tersedia"){
+                        var userVal = $('#username').val();
+                        if(data=="Username tersedia" && userVal.length < 21){
                             $('#submit').prop('disabled',false);
-                            $('#username_result').remove();
-                        }else{
+                            $('#username_result').hide();
+                        }else if(data!="Username tersedia" && userVal.length < 21){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
                             $('#username_result').html(data);
-                            $('#submit').prop('disabled',true);
+                        } else if(data=="Username tersedia" && userVal.length > 20){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Karakter username tidak boleh lebih dari 20");
+                        } else{
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Username tidak tersedia dan karakter username melebihi 20 karakter");
                         }
                         //console.log(data);
                     }

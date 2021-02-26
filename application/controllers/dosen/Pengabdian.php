@@ -41,7 +41,8 @@ class Pengabdian extends CI_Controller {
     function checkUsername(){
         $userName = $this->input->post('username');
         $if_exists = $this->M_User->checkUserexist($userName);
-        if ($if_exists > 0) {
+        $if_exists_mitra = $this->M_Mitra->checkUserexist($userName);
+        if ($if_exists > 0 || $if_exists_mitra > 0) {
           echo json_encode('Username tidak tersedia');
         } else {
           echo json_encode('Username tersedia');
@@ -65,7 +66,7 @@ class Pengabdian extends CI_Controller {
         $this->form_validation->set_rules('pj','Penanggung Jawab', 'required');
         $this->form_validation->set_rules('no_telp','Nomor Telepon', 'required');
         $this->form_validation->set_rules('email','Email', 'required');
-        $this->form_validation->set_rules('username','Username', 'required');
+        $this->form_validation->set_rules('username','Username', 'required|max_length[12]');
         $this->form_validation->set_rules('password','Password', 'required');
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
@@ -93,7 +94,18 @@ class Pengabdian extends CI_Controller {
             "status"=>"0"
 
         ];
-        $mitra=$this->M_Mitra->insert_mitra($data);
+        $data_check = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+        ];
+        $checkMitra = $this->M_Mitra->getwhere_mitra($data_check);
+        if($checkMitra->num_rows() > 0){
+            $mitra = $checkMitra->row()->id;
+        } else{
+            $mitra=$this->M_Mitra->insert_mitra($data);
+        }
+        
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
         $jadwal = $this->M_JadwalPengabdian->get_last_jadwal()->row()->id;

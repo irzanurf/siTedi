@@ -12,6 +12,10 @@ class M_Mitra extends CI_Model
         return $this->db->get('mitra');
     }
 
+    public function checkUserexist($userName) {
+        return $this->db->get_where('mitra', ['username' => $userName])->num_rows();
+    }
+
     public function getwhere_mitra(array $data)
     {
         return $this->db->get_where('mitra',$data);
