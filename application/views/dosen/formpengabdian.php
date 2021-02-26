@@ -39,6 +39,7 @@
                             <th>Mitra Approval</th>
                             <!-- <th>Upload Surat Persetujuan</th> -->
                             <th>Aksi</th>
+                            <th>Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -46,7 +47,7 @@
                         $no = 1;
                         foreach($view as $v) { ?>
                         <?php if ($v->nip==$this->session->userdata('user_name')) : ?>
-                        <?php if($v->status == NULL) : ?>
+                        
                         <tr>
                             <td><?= $no++?></td>
                             <td><?= $v->judul?></td>
@@ -79,14 +80,29 @@
                                     <a href="<?=base_url('dosen/pengabdian/finalSubmitProp');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Submition?');" ><button  class="btn-sm btn-primary">Submit</button></a>
                                     <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-danger">Hapus</button> </a>
                                     
-                                
                             <?php else: ?>
-                                <h5><?= $v->status;?></h5>
+                                <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
+                                
+                                    <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
                                 
                                 
-                            <?php endif;?>
+                            
                             <?php endif;?>
                             
+                            
+                            </td>
+
+                            
+                            <td>
+                            <?php if($v->status=='ACCEPTED') :?>
+                            <span type='button' class="badge badge-pill badge-success">Approved</span>
+                            <?php elseif($v->status=='REJECTED'):?>
+                            <span type='button' class="badge badge-pill badge-danger">Rejected</span>
+                            <?php elseif($v->status==''):?>
+                            <span  class="badge badge-pill badge-primary">Need to submit</span>
+                            <?php else:?>
+                            <span class="badge badge-pill badge-warning">Processing</span>
+                            <?php endif;?>
                             
                             </td>
                         </tr>

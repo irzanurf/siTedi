@@ -125,8 +125,8 @@
                                     <a href="<?= base_url('dosen/pengabdian/submitpermohonan/');?>"><h5 style="color:white;">Submit Proposal</h5></a>
                                 </li>
                         </ul></li>
-                        <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/daftarpermohonan');?>" aria-expanded="false"><i style="color:white"
-                                    class="fa fa-fw fa-file"></i><span class="hide-menu"></span><h5 style="color:white;">Permohonan</h5></a></li>
+                        <!-- <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/daftarpermohonan');?>" aria-expanded="false"><i style="color:white"
+                                    class="fa fa-fw fa-file"></i><span class="hide-menu"></span><h5 style="color:white;">Permohonan</h5></a></li> -->
                         <li> <a class="waves-effect waves-dark" href="<?= base_url('dosen/pengabdian/laporanakhir');?>" aria-expanded="false"><i style="color:white"
                                     class="fa fa-fw fa-clipboard"></i><span class="hide-menu"></span><h5 style="color:white;">Laporan Akhir</h5></a></li>
                                     <?php  if(!empty($cek)){ ?>
