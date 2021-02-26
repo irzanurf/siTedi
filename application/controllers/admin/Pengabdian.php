@@ -767,10 +767,22 @@ class Pengabdian extends CI_Controller
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
-               $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
-            }
+                if(empty($this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama)){
+                    
+                }
+               else{
+                   $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
+            
+               }
+               }
+               
             foreach($mhs as $m){
-                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$this->M_Mahasiswa->getwhere_mahasiswa(array('nim'=>$m->nim))->row()->nama."\n";
+                if(empty($m->nama)){
+                    
+                }
+                else {
+                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
+                }
             }
             $sheet->setCellValue('D'.$rows, $anggota_dosen);
             $sheet->setCellValue('E'.$rows,$anggota_mhs);
@@ -819,10 +831,22 @@ class Pengabdian extends CI_Controller
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
-               $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
-            }
+                if(empty($this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama)){
+                    
+                }
+               else{
+                   $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
+            
+               }
+               }
+               
             foreach($mhs as $m){
-                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$this->M_Mahasiswa->getwhere_mahasiswa(array('nim'=>$m->nim))->row()->nama."\n";
+                if(empty($m->nama)){
+                    
+                }
+                else {
+                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
+                }
             }
             $sheet->setCellValue('D'.$rows, $anggota_dosen);
             $sheet->setCellValue('E'.$rows,$anggota_mhs);
