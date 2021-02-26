@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Final Proposal Pengabdian
+                Proposal Pengabdian
             </h1>
             <ol class="breadcrumb">
                 <li>
@@ -31,39 +31,49 @@
         <a href="<?=base_url('admin/pengabdian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
 
         <table class="table">
-            <col style='width:5%'>
-            <col style='width:45%'>
-            <col style='width:20%'>
-            <col style='width:15%'>
-            <col style='width:15%'>
             <tr>
                 <th>No</th>
+                <th>Ket. Jadwal</th>
                 <th>Judul Proposal</th>
                 <th>Instansi Mitra</th>
                 <th>Nilai</th>
-                <!-- <th>Detail</th> -->
                 <th>Status</th>
+                <th>Action</th>
 
             </tr>
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nilai!==NULL) : ?>
+            
             <tr>
                 <td><?= $no++?></td>
+                <td><?= $v->ket?></td>
                 <td><?= $v->judul?></td>
                 <td><?= $v->nama_instansi ?></td>
-                <td><?php $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?></td>
-                <!-- <td>
-                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
-                    Detail
-                </a>
+                <td><?php 
+                if(!empty($v->nilai || $v->nilai2)) :
+                    $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?>
                 
-                </td> -->
+                <?php else: echo "-"?>
+                 <?php endif;?>
+                </td>
                 <td><?=$v->status?></td>
+                <td>
+                <?php if($v->status==0 || $v->status==NULL || $v->status=="" || $v->status=="SUBMITTED") : ?>
+                    </form>
+                                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/pengabdian/deleteProp');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <button type="Submit" class="btn btn-danger">
+                                        Hapus
+                                    </button>
+                                </form>
+                <?php else: ?>
+
+                    <?php endif;?>
+                </td>
                 
             </tr>
-            <?php endif; ?>
+            
             <?php } ?>
         </table>
         </section>

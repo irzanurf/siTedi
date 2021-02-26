@@ -179,6 +179,26 @@ class M_AdminPenelitian extends CI_Model
         $this->db->where('id',$id);
         $this->db->update('luaran_penelitian',$data);
     }
+    public function delProp($data)
+    {
+        $query = $this->db->delete('proposal_penelitian',$data);
+        return $query;
+    }
+    public function delMhs($data)
+    {
+        $query = $this->db->delete('mhs_penelitian',$data);
+        return $query;
+    }
+    public function delDsn($data)
+    {
+        $query = $this->db->delete('dsn_penelitian',$data);
+        return $query;
+    }
+    public function delLuaran($data)
+    {
+        $query = $this->db->delete('luaran_prop_penelitian',$data);
+        return $query;
+    }
 
 
 }

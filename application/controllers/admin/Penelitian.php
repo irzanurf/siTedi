@@ -1071,4 +1071,14 @@ class Penelitian extends CI_Controller
         redirect('admin/penelitian/luaran');
     }
 
+    public function deleteProp()
+    {
+        $id = $this->input->post('id');
+        $this->M_AdminPenelitian->delProp(array('id'=>$id));
+        $this->M_AdminPenelitian->delLuaran(array('id_proposal'=>$id));
+        $this->M_AdminPenelitian->delDsn(array('id_proposal'=>$id));
+        $this->M_AdminPenelitian->delMhs(array('id_proposal'=>$id));
+        redirect('admin/penelitian/daftarPenelitian');
+    }
+
 }

@@ -150,4 +150,53 @@ class M_Admin extends CI_Model
         $this->db->where('id',$id);
         $this->db->update('pengumuman',$data);
     }
+
+    public function get_viewPengabdian()
+    {
+        $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id, jadwal_pengabdian.keterangan as ket')
+                        ->from('proposal_pengabdian')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('jadwal_pengabdian','proposal_pengabdian.id_jadwal=jadwal_pengabdian.id', 'inner')
+                        ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
+                        ->where('proposal_pengabdian.status= "ACCEPTED" OR proposal_pengabdian.status= "REJECTED" OR proposal_pengabdian.status= "" OR  proposal_pengabdian.status= "SUBMITTED"')
+                        ->order_by("tgl_upload", "desc")
+                        ->get();
+        return $query;
+    }
+
+    public function get_userMitra(array $data)
+    {
+        return $this->db->get_where('mitra',$data);
+    }
+
+    public function delProp($data)
+    {
+        $query = $this->db->delete('proposal_pengabdian',$data);
+        return $query;
+    }
+    public function delMhs($data)
+    {
+        $query = $this->db->delete('mhs_pengabdian',$data);
+        return $query;
+    }
+    public function delDsn($data)
+    {
+        $query = $this->db->delete('dsn_pengabdian',$data);
+        return $query;
+    }
+    public function delLuaran($data)
+    {
+        $query = $this->db->delete('luaran_prop_pengabdian',$data);
+        return $query;
+    }
+    public function delMitra($data)
+    {
+        $query = $this->db->delete('mitra',$data);
+        return $query;
+    }
+    public function delUserMitra($data)
+    {
+        $query = $this->db->delete('user',$data);
+        return $query;
+    }
 }

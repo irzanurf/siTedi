@@ -134,7 +134,7 @@ class Pengabdian extends CI_Controller
 
     public function daftarPengabdian()
     {
-        $data['view'] = $this->M_PropPengabdian->get_viewPengabdian()->result();
+        $data['view'] = $this->M_Admin->get_viewPengabdian()->result();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/daftar_prop_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -894,5 +894,19 @@ class Pengabdian extends CI_Controller
         ];
         $this->M_Admin->insert_luaran($data);
         redirect('admin/pengabdian/luaran');
+    }
+
+    public function deleteProp()
+    {
+        $id = $this->input->post('id');
+        $id_mitra = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row()->id_mitra;
+        $user_mitra = $this->M_Admin->get_userMitra(array('id'=>$id_mitra))->row()->username;
+        $this->M_Admin->delProp(array('id'=>$id));
+        $this->M_Admin->delLuaran(array('id_proposal'=>$id));
+        $this->M_Admin->delDsn(array('id_proposal'=>$id));
+        $this->M_Admin->delMhs(array('id_proposal'=>$id));
+        $this->M_Admin->delMitra(array('id'=>$id_mitra));
+        $this->M_Admin->delUserMitra(array('username'=>$user_mitra));
+        redirect('admin/pengabdian/daftarPengabdian');
     }
 }

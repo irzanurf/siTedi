@@ -40,20 +40,28 @@
                 <th>Nilai</th>
                 <!-- <th>Detail</th> -->
                 <th>Status</th>
+                <th>Action</th>
 
             </tr>
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nilai!==NULL) : ?>
+            
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->ket?></td>
                 <td><?= $v->judul?></td>
                 <td><?= $v->jenis ?></td>
                 <td><?= $v->nama_dosen ?></td>
-                <td><?php $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?></td>
-                <!-- <td>
+                <td><?php 
+                if(!empty($v->nilai || $v->nilai2)) :
+                    $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?>
+                
+                <?php else: echo "-"?>
+                 <?php endif;?>
+                </td>
+                <!-- <t
+                d>
                 <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/detailProposal') ;?>/<?= $v->id_proposal; ?>">
                     Detail
                 </a>
@@ -88,9 +96,23 @@
 
                     <?php endif;?>
                 </td>
+
+                <td>
+                <?php if($v->status==0 || $v->status==1) : ?>
+                    </form>
+                                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/penelitian/deleteProp');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <button type="Submit" class="btn btn-danger">
+                                        Hapus
+                                    </button>
+                                </form>
+                <?php else: ?>
+
+                    <?php endif;?>
+                </td>
                 
             </tr>
-            <?php endif; ?>
+            
             <?php } ?>
         </table>
         </section>
