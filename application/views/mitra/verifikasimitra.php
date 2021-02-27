@@ -67,7 +67,7 @@
                                 <?php echo form_open_multipart('mitra/verifikasi/approval') ?>
                                         <div class="form-group">
                                             <label>Upload Surat Mitra</label>
-                                            <input type="file" class="form-control" name="file"   >
+                                            <input type="file" accept="application/pdf" class="form-control" name="file"   >
                                         </div>
                                 <div class="col-3 d-inline-block">
                                 

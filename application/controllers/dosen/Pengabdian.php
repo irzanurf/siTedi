@@ -75,6 +75,7 @@ class Pengabdian extends CI_Controller {
         if($prop_file=''){}else{
             $config['upload_path'] = './assets/prop_pengabdian';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file_prop')){
@@ -181,13 +182,16 @@ class Pengabdian extends CI_Controller {
             "role"=>$role_mitra
         ];
         $this->M_User->insert_user($user_mitra);
-            $this->session->set_flashdata('success','Pengajuan proposal berhasil ditambahkan');
-            redirect("dosen/pengabdian/submitpermohonan");
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+        redirect("dosen/pengabdian/success");
         }
-        
-        
-        
+    }
 
+    public function success(){
+        $this->load->view("pengabdian/header");
+        $this->load->view("dosen/success");
+        $this->load->view("pengabdian/footer");
     }
 
 
@@ -274,6 +278,7 @@ class Pengabdian extends CI_Controller {
         if(!empty($surat['name'])){
             $config['upload_path'] = './assets/suratmitra';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file_persetujuan')){
@@ -294,6 +299,7 @@ class Pengabdian extends CI_Controller {
         if($surat=''){}else{
             $config['upload_path'] = './assets/laporan_akhir';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('laporan_akhir')){
@@ -314,6 +320,7 @@ class Pengabdian extends CI_Controller {
         if($surat=''){}else{
             $config['upload_path'] = './assets/logbook';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('logbook')){
@@ -334,6 +341,7 @@ class Pengabdian extends CI_Controller {
         if($surat=''){}else{
             $config['upload_path'] = './assets/belanja';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('belanja')){
@@ -354,6 +362,7 @@ class Pengabdian extends CI_Controller {
         if($surat=''){}else{
             $config['upload_path'] = './assets/luaran';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
 
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('luaran')){
@@ -414,6 +423,7 @@ class Pengabdian extends CI_Controller {
             if(!empty($prop_file['name'])){
                 $config['upload_path'] = './assets/prop_pengabdian';
                 $config['allowed_types'] = 'pdf';
+                $config['encrypt_name'] = TRUE;
 
                 $this->load->library('upload',$config);
                 if(!$this->upload->do_upload('file_prop')){
@@ -583,8 +593,9 @@ class Pengabdian extends CI_Controller {
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
         } else {
-            $this->session->set_flashdata('success','Pengajuan proposal berhasil ditambahkan');
-            redirect("dosen/pengabdian/submitpermohonan");
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+            redirect("dosen/pengabdian/success");
         }
 
     }

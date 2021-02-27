@@ -200,7 +200,7 @@
                                 <h3>File Proposal</h3>
                                 <div class="form-group">
                                     <label>Upload Proposal</label>
-                                    <input type="file" class="form-control" name="file_prop"  ><br>
+                                    <input type="file" accept="application/pdf" class="form-control" name="file_prop"  ><br>
                                     <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                 </div>
 

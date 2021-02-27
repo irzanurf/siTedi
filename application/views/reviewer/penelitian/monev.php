@@ -1,7 +1,7 @@
 <!-- input-forms -->
 <div class="grids">
 					<div class="progressbar-heading grids-heading">
-                        <h2>Form Pengisian</h2>
+                        <h2>Monitoring & Evaluasi</h2>
                         <?php echo $this->session->flashdata('message');?>
 					</div>
                     <table class="table" >

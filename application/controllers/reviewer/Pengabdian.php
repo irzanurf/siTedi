@@ -37,6 +37,12 @@ class Pengabdian extends CI_Controller
         $this->load->view("pengabdian/footer");
     }
 
+    public function success(){
+        $this->load->view("penelitian/header");
+        $this->load->view("dosen/success");
+        $this->load->view("penelitian/footer");
+    }
+
     public function daftarProposal()
     {
         $nip = $this->session->userdata('user_name');
@@ -202,7 +208,9 @@ class Pengabdian extends CI_Controller
 
 
         }
-        redirect('reviewer/pengabdian/nilaiProposal');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('button', 'reviewer/pengabdian/nilaiProposal');
+        redirect("reviewer/pengabdian/success"); 
     
     }
 
@@ -268,8 +276,9 @@ class Pengabdian extends CI_Controller
             $this->M_DetailNilaiProposalPengabdian->update_detailnilai($id_detail,$detail);
 
         }
-        
-        redirect('reviewer/pengabdian/nilaiProposal');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('button', 'reviewer/pengabdian/nilaiProposal');
+        redirect("reviewer/pengabdian/success"); 
     
     }
 }

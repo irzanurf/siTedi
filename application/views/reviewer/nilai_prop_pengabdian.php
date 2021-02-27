@@ -250,7 +250,7 @@
             <?php echo form_open_multipart('dosen/pengabdian/updateSurat') ?>
                 <div class="form-group">
                     <label>Upload Surat Mitra</label>
-                    <input type="file" class="form-control" name="file_persetujuan"   >
+                    <input type="file" accept="application/pdf" class="form-control" name="file_persetujuan"   >
                 </div>
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id" value=<?=$id?>  >

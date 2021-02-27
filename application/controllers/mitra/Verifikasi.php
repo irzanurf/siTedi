@@ -39,6 +39,7 @@ class Verifikasi extends CI_Controller {
         if($surat=''){}else{
             $config['upload_path'] = './assets/suratmitra';
             $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
             // echo $config['upload_path'];
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file')){

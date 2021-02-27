@@ -79,7 +79,7 @@
                             <textarea class="form-control" name="komentar"  rows="3"></textarea>
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-default w3ls-button">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                     </form>
 </div>
                         </div>

@@ -177,7 +177,7 @@ label    {color: black; font-size:15px;}
 
                             <div class="form-group"> 
 											<label for="exampleInputFile">File Proposal</label><br> 
-											<input type="file" name="file_prop"> <br>
+											<input type="file" name="file_prop" accept="application/pdf"> <br>
                                             <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                         </div> 
 

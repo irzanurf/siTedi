@@ -15,19 +15,19 @@
                             </div>
                             <div class="form-group"> 
 											<label><br>Logbook</label></br> 
-											<input type="file" name="file1"></br>
+											<input type="file" accept="application/pdf" name="file1"></br>
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 
 
                             <div class="form-group"> 
 											<label><br>Laporan Kemajuan</label> </br>
-											<input type="file" name="file2"></br> 
+											<input type="file" accept="application/pdf" name="file2"></br> 
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 
 
                             <div class="form-group"> 
 											<label><br>Laporan Belanja 70%</label> </br>
-											<input type="file" name="file3"></br>
+											<input type="file" accept="application/pdf" name="file3"></br>
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 
 

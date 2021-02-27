@@ -123,11 +123,11 @@
                             <div class="form-group">
                                 <label>Laporan Akhir</label>
                                 <?php if($v->laporan_akhir == NULL) :?>
-                                <input type="file" class="form-control" name="laporan_akhir"   >
+                                <input type="file" accept="application/pdf" class="form-control" name="laporan_akhir"   >
                                 <?php else:?>
                                 <iframe src="<?= base_url('assets/laporan_akhir');?>/<?=$v->laporan_akhir?>" width='100%' height="300px" >
                                 </iframe>
-                                <input type="file" class="form-control" name="laporan_akhir"  >
+                                <input type="file" accept="application/pdf" class="form-control" name="laporan_akhir"  >
                                 <?php endif;?>
                 
 
@@ -164,11 +164,11 @@
                             <div class="form-group">
                                 <label>Logbook</label>
                                 <?php if($v->logbook == NULL) :?>
-                                <input type="file" class="form-control" name="logbook"   >
+                                <input type="file" accept="application/pdf" class="form-control" name="logbook"   >
                                 <?php else:?>
                                 <iframe src="<?= base_url('assets/logbook');?>/<?=$v->logbook?>" width='100%' height="300px" >
                                 </iframe>
-                                <input type="file" class="form-control" name="logbook"  >
+                                <input type="file" accept="application/pdf" class="form-control" name="logbook"  >
                                 <?php endif;?>
                             </div>
                             <div class="form-group">
@@ -203,11 +203,11 @@
                             <div class="form-group">
                                 <label>Luaran</label>
                                 <?php if($v->luaran == NULL) :?>
-                                <input type="file" class="form-control" name="luaran"   >
+                                <input type="file" accept="application/pdf" class="form-control" name="luaran"   >
                                 <?php else:?>
                                 <iframe src="<?= base_url('assets/luaran');?>/<?=$v->luaran?>" width='100%' height="300px" >
                                 </iframe>
-                                <input type="file" class="form-control" name="luaran"  >
+                                <input type="file" accept="application/pdf" class="form-control" name="luaran"  >
                                 <?php endif;?>
                             </div>
                             <div class="form-group">
@@ -243,11 +243,11 @@
                             <div class="form-group">
                                 <label>Catatan Belanja</label>
                                 <?php if($v->belanja == NULL) :?>
-                                <input type="file" class="form-control" name="belanja"   >
+                                <input type="file" accept="application/pdf" class="form-control" name="belanja"   >
                                 <?php else:?>
                                 <iframe src="<?= base_url('assets/belanja');?>/<?=$v->belanja?>" width='100%' height="300px" >
                                 </iframe>
-                                <input type="file" class="form-control" name="belanja"  >
+                                <input type="file" accept="application/pdf" class="form-control" name="belanja"  >
                                 <?php endif;?>
                             </div>
                             <div class="form-group">

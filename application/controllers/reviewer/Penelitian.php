@@ -40,6 +40,12 @@ class Penelitian extends CI_Controller {
         $this->load->view("penelitian/footer");
     }
 
+    public function success(){
+        $this->load->view("penelitian/header");
+        $this->load->view("dosen/success");
+        $this->load->view("penelitian/footer");
+    }
+
     public function penilaian_penelitian()
     {
         $username = $this->session->userdata('user_name');
@@ -191,7 +197,9 @@ class Penelitian extends CI_Controller {
 
 
         }
-        redirect('reviewer/penelitian/penilaian_penelitian');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('button', 'reviewer/penelitian/penilaian_penelitian');
+        redirect("reviewer/penelitian/success"); 
     
     }
 
@@ -232,7 +240,9 @@ class Penelitian extends CI_Controller {
             $this->M_ReviewerPenelitian->update_detailnilai($id_detail,$detail);
         }
         $this->M_ReviewerPenelitian->update_nilai($id,$data);
-        redirect('reviewer/penelitian/penilaian_penelitian');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('button', 'reviewer/penelitian/penilaian_penelitian');
+        redirect("reviewer/penelitian/success"); 
     }
 
 
@@ -260,7 +270,7 @@ class Penelitian extends CI_Controller {
         }
         
         $this->M_PropPenelitian->update_prop($id,$status);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Finalisasi Berhasil</strong></div>');   
+        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-block" align="center"><strong>Finalisasi Berhasil</strong></div>');   
         redirect('reviewer/penelitian/penilaian_penelitian');
     }
     
@@ -326,9 +336,9 @@ class Penelitian extends CI_Controller {
             }
 
             $this->M_ReviewerPenelitian->update_monev($id,$data);
-            
-        redirect('reviewer/penelitian/monev');
-    
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian</p>');
+        $this->session->set_flashdata('button', 'reviewer/penelitian/monev');
+        redirect("reviewer/penelitian/success"); 
     }
 
     public function finishClickMonev(){

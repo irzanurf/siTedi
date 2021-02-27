@@ -91,6 +91,28 @@
                                 <button type="button" class="btn-sm btn-success" dissabled>
                                         Accepted
                                     </button>
+                                    <?php elseif($v->status=="0") : ?>
+                               
+                            
+                            <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Reviewing
+                                    </button>
+                            
+                            <?php elseif($v->status=="3") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Monev
+                                    </button>
+                            
+                            <?php elseif($v->status=="4") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Laporan Akhir
+                                    </button>
+                            
+                            <?php elseif($v->status=="4") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Finished
+                                    </button>
                                
                             <?php else : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
@@ -106,3 +128,4 @@
                         <?php } ?>
                     </table>
 </div>
+

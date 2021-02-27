@@ -115,8 +115,15 @@ class Penelitian extends CI_Controller {
             );
         }
         $this->M_PropPenelitian->mahasiswa($data_mahasiswa);
-            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Anda Berhasil Menginput Data</strong></div>');
-            redirect("dosen/penelitian/submit");
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('button', 'dosen/penelitian/submit');
+            redirect("dosen/penelitian/success");
+    }
+
+    public function success(){
+        $this->load->view("penelitian/header");
+        $this->load->view("dosen/success");
+        $this->load->view("penelitian/footer");
     }
         
 
@@ -376,9 +383,12 @@ class Penelitian extends CI_Controller {
         
                 
         if($this->form_validation->run()==false){
+            
             redirect("dosen/penelitian/submit");
         } else {
-            redirect("dosen/penelitian/submit");
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('button', 'dosen/penelitian/submit');
+            redirect("dosen/penelitian/success");
         }
         
 
@@ -507,7 +517,7 @@ class Penelitian extends CI_Controller {
         if($prop1=''){}else{
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file1')){
-                echo "Upload Gagal"; die();
+                echo "Upload Gagal, Terdapat Field Kosong"; die();
             } else {
                 $prop1=$this->upload->data('file_name');
             }
@@ -540,8 +550,9 @@ class Penelitian extends CI_Controller {
             "catatan"=>$this->input->post('catatan',true),
             "tgl_upload"=>$date];
         $this->M_PropPenelitian->update_monev($data,$id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Anda Berhasil Menginput Data</strong></div>');
-        redirect('dosen/penelitian/monev');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Monev <br> Laporan Monev dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Monev Anda sebelum melakukan finalisasi <br> Laporan Monev akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('button', 'dosen/penelitian/monev');
+        redirect("dosen/penelitian/success"); 
 
     }
 
@@ -657,9 +668,9 @@ class Penelitian extends CI_Controller {
             "catatan"=>$this->input->post('catatan',true),
             "tgl_upload"=>$date];
         $this->M_PropPenelitian->update_akhir($data,$id);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Anda Berhasil Menginput Data</strong></div>');
-        redirect('dosen/penelitian/akhir');
-
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Akhir <br> Laporan Akhir dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Akhir Anda sebelum melakukan finalisasi <br> Laporan Akhir akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
+        redirect("dosen/penelitian/success"); 
     }
 
     public function finishClickAkhir(){
