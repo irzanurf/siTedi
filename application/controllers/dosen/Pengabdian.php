@@ -139,10 +139,15 @@ class Pengabdian extends CI_Controller {
         $data_dosen = array();
         for($i=0; $i<count($nip)-1; $i++)
         {
+            if($nip[$i]==""||$nip[$i]==null||$nip[$i]==0){
+
+            }
+            else{
             $data_dosen[$i] = array(
                 'nip'  =>      $nip[$i],
                 "id_proposal"=>$proposal,
             );
+        }
         }
         $this->M_PropPengabdian->dosen($data_dosen);
 
@@ -150,10 +155,15 @@ class Pengabdian extends CI_Controller {
         $data_luaran = array();
         for($i=0; $i<count($id_luaran)-1; $i++)
         {
+            if($id_luaran[$i]==""||$id_luaran[$i]==null||$id_luaran[$i]==0){
+
+            }
+            else{
             $data_luaran[$i] = array(
                 'id_luaran'  =>$id_luaran[$i],
                 "id_proposal"=>$proposal,
             );
+        }
         }
         $this->M_PropPengabdian->luaran($data_luaran);
         
