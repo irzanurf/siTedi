@@ -469,12 +469,17 @@ class Pengabdian extends CI_Controller {
                 if(!empty($dsn_new)){
                     for($j=0; $j<count($dsn_new)-1;$j++)
                         {
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                            }
+                            else{
                             $dosen_new=$dsn_new[$j];
                             $data_dosen_new =[
                                 'nip' => $dosen_new,
                                 'id_proposal' => $id
                             ];
                             $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                        }
                         }
                     }
             }
@@ -496,6 +501,10 @@ class Pengabdian extends CI_Controller {
                 if(!empty($luaran_new)){
                     for($j=0; $j<count($luaran_new)-1;$j++)
                     {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
                        $l_new=$luaran_new[$j];
                         $data_luaran_new =[
                             'id_luaran' => $l_new,
@@ -503,12 +512,17 @@ class Pengabdian extends CI_Controller {
                         ];
                         $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
                     }
+                    }
                 }
             }
             if(empty($dsn_update)){
                 $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
                 for($j=0; $j<count($dsn_new)-1;$j++)
                     {
+                        if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                        }
+                        else{
                         
                         $dosen_new=$dsn_new[$j];
                         $data_dosen_new =[
@@ -517,6 +531,7 @@ class Pengabdian extends CI_Controller {
                         ];
                         $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
                     }
+                    }
                 }
                 
                 
@@ -524,13 +539,17 @@ class Pengabdian extends CI_Controller {
                     $this->M_PropPengabdian->hapus_nilai_luaran(array('id_proposal'=>$id));
                     for($j=0; $j<count($luaran_new)-1;$j++)
                     {
-                        
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
                         $l_new=$luaran_new[$j];
                         $data_luaran_new =[
                             'id_luaran' => $l_new,
                             'id_proposal' => $id
                         ];
                         $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
                     }
                 }
 
