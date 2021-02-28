@@ -411,7 +411,7 @@
     </script>
    <script type="text/javascript"> 
         $(document).ready(function(){
-            $('#submit').prop('disabled',true);
+            //$('#submit').prop('disabled',true);
             $('#username').change(function(){
             var username = $('#username').val();
             if(username != ''){
@@ -442,6 +442,11 @@
                     }
                 });
             }
+			else
+			{
+				            $('#submit').prop('disabled',true);
+
+			}
             });
             });
     </script>

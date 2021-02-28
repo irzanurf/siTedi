@@ -63,10 +63,7 @@ class Pengabdian extends CI_Controller {
         $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
         $this->form_validation->set_rules('abstrak','Abstrak', 'required');
         $this->form_validation->set_rules('instansi','Nama Instansi', 'required');
-        $this->form_validation->set_rules('pj','Penanggung Jawab', 'required');
-        $this->form_validation->set_rules('no_telp','Nomor Telepon', 'required');
-        $this->form_validation->set_rules('email','Email', 'required');
-        $this->form_validation->set_rules('username','Username', 'required|max_length[12]');
+        $this->form_validation->set_rules('username','Username', 'required');
         $this->form_validation->set_rules('password','Password', 'required');
         if($this->form_validation->run()==false){
             redirect("dosen/pengabdian/pengisianform");
