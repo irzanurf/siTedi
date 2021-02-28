@@ -639,9 +639,10 @@ class Pengabdian extends CI_Controller
         $sheet->setCellValue('A1', 'List Pengabdian yang Telah Mengumpulkan Laporan Akhir');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Kelengkapan');
+        $sheet->setCellValue('B3', 'Skema Pengabdian');
+        $sheet->setCellValue('C3', 'Judul Pengabdian');
+        $sheet->setCellValue('D3', 'Ketua Pengabdian');
+        $sheet->setCellValue('E3', 'Kelengkapan');
         
         $no = 1;
         $rows = 4;
@@ -650,9 +651,10 @@ class Pengabdian extends CI_Controller
             $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
             $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result();
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
-            $sheet->setCellValue('D'.$rows, 'Lengkap');
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
+            $sheet->setCellValue('E'.$rows, 'Lengkap');
             $rows++;
             
         }
@@ -746,12 +748,13 @@ class Pengabdian extends CI_Controller
         $sheet->setCellValue('A1', 'Proposal Pengabdian yang Akan Diberi Pendanaan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Dosen Anggota');
-	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F3', 'Program Studi');
-        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('B3', 'Skema Pengabdian');
+        $sheet->setCellValue('C3', 'Judul Pengabdian');
+        $sheet->setCellValue('D3', 'Ketua Pengabdian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
         $rows = 4;
@@ -762,8 +765,9 @@ class Pengabdian extends CI_Controller
             $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
             $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result();
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
@@ -784,10 +788,10 @@ class Pengabdian extends CI_Controller
                 $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
                 }
             }
-            $sheet->setCellValue('D'.$rows, $anggota_dosen);
-            $sheet->setCellValue('E'.$rows,$anggota_mhs);
-            $sheet->setCellValue('F'.$rows, $p->program_studi);
-            $sheet->setCellValue('G'.$rows, $p->biaya);
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows, $p->biaya);
             $rows++;
             
         }
@@ -810,12 +814,13 @@ class Pengabdian extends CI_Controller
         $sheet->setCellValue('A1', 'List Semua Proposal Pengabdian');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Dosen Anggota');
-	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F3', 'Program Studi');
-        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('B3', 'Skema Pengabdian');
+        $sheet->setCellValue('C3', 'Judul Pengabdian');
+        $sheet->setCellValue('D3', 'Ketua Pengabdian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
         $rows = 4;
@@ -826,8 +831,9 @@ class Pengabdian extends CI_Controller
             $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
             $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result();
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
@@ -848,10 +854,10 @@ class Pengabdian extends CI_Controller
                 $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
                 }
             }
-            $sheet->setCellValue('D'.$rows, $anggota_dosen);
-            $sheet->setCellValue('E'.$rows,$anggota_mhs);
-            $sheet->setCellValue('F'.$rows, $p->program_studi);
-            $sheet->setCellValue('G'.$rows,$p->biaya);
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows,$p->biaya);
             $rows++;
             
         }

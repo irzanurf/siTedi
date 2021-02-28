@@ -236,7 +236,7 @@ class Penelitian extends CI_Controller
         ];
         
         $this->M_AdminPenelitian->update_reviewer($data,$idProp);
-        $this->M_PropPengabdian->update_prop($idProp,$status);
+        $this->M_PropPenelitian->update_prop($idProp,$status);
         redirect('admin/penelitian/assignProposal');
     }
 
@@ -540,18 +540,20 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Kemajuan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Kelengkapan dokumen');
+        $sheet->setCellValue('B3', 'Skema Penelitian');
+        $sheet->setCellValue('C3', 'Judul Penelitian');
+        $sheet->setCellValue('D3', 'Ketua Penelitian');
+        $sheet->setCellValue('E3', 'Kelengkapan dokumen');
         
         $no = 1;
         $rows = 4;
 
         foreach($prop as $p){
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
-            $sheet->setCellValue('D'.$rows, 'Lengkap');
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
+            $sheet->setCellValue('E'.$rows, 'Lengkap');
             $rows++;
             
         }
@@ -638,18 +640,20 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Akhir');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Kelengkapan dokumen');
+        $sheet->setCellValue('B3', 'Skema Penelitian');
+        $sheet->setCellValue('C3', 'Judul Peneltiain');
+        $sheet->setCellValue('D3', 'Ketua Penelitian');
+        $sheet->setCellValue('E3', 'Kelengkapan dokumen');
         
         $no = 1;
         $rows = 2;
 
         foreach($prop as $p){
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
-            $sheet->setCellValue('D'.$rows, 'Lengkap');
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
+            $sheet->setCellValue('E'.$rows, 'Lengkap');
             $rows++;
             
         }
@@ -903,12 +907,13 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('A1', 'Proposal Penelitian yang Akan Diberi Pendanaan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Dosen Anggota');
-	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F3', 'Program Studi');
-        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('B3', 'Skema Penelitian');
+        $sheet->setCellValue('C3', 'Judul Penelitian');
+        $sheet->setCellValue('D3', 'Ketua Penelitian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
         $rows = 4;
@@ -919,8 +924,9 @@ class Penelitian extends CI_Controller
             $dosen = $this->M_Dosen->getwhere_dosenpenelitian(array('id_proposal'=>$p->id))->result();
             $mhs = $this->M_Mahasiswa->getwhere_mahasiswapenelitian(array('id_proposal'=>$p->id))->result();
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
@@ -941,10 +947,10 @@ class Penelitian extends CI_Controller
                 $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
                 }
             }
-            $sheet->setCellValue('D'.$rows, $anggota_dosen);
-            $sheet->setCellValue('E'.$rows,$anggota_mhs);
-            $sheet->setCellValue('F'.$rows, $p->program_studi);
-            $sheet->setCellValue('G'.$rows, $p->biaya);
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows, $p->biaya);
             $rows++;
             
         }
@@ -984,12 +990,13 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('A1', 'List Semua Proposal Penelitian');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
-        $sheet->setCellValue('B3', 'Judul Pengabdian');
-        $sheet->setCellValue('C3', 'Ketua Pengabdian');
-        $sheet->setCellValue('D3', 'Dosen Anggota');
-	    $sheet->setCellValue('E3', 'Mahasiswa Anggota');
-        $sheet->setCellValue('F3', 'Program Studi');
-        $sheet->setCellValue('G3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('B3', 'Skema Penelitian');
+        $sheet->setCellValue('C3', 'Judul Penelitian');
+        $sheet->setCellValue('D3', 'Ketua Penelitian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
         
         $no = 1;
         $rows = 4;
@@ -1000,8 +1007,9 @@ class Penelitian extends CI_Controller
             $dosen = $this->M_Dosen->getwhere_dosenpenelitian(array('id_proposal'=>$p->id))->result();
             $mhs = $this->M_Mahasiswa->getwhere_mahasiswapenelitian(array('id_proposal'=>$p->id))->result();
             $sheet->setCellValue('A'.$rows, $no++);
-            $sheet->setCellValue('B'.$rows, $p->judul);
-            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
             $anggota_dosen = "";
             $anggota_mhs ="";
             foreach($dosen as $d){
@@ -1022,10 +1030,10 @@ class Penelitian extends CI_Controller
                 $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
                 }
             }
-            $sheet->setCellValue('D'.$rows, $anggota_dosen);
-            $sheet->setCellValue('E'.$rows,$anggota_mhs);
-            $sheet->setCellValue('F'.$rows, $p->program_studi);
-            $sheet->setCellValue('G'.$rows,$p->biaya);
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows,$p->biaya);
             $rows++;
             
         }

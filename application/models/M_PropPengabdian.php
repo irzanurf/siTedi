@@ -105,18 +105,20 @@ class M_PropPengabdian extends CI_Model
 
     public function get_viewAnnouncement()
     {
-        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi')
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi, skema_pengabdian.jenis_pengabdian as skema')
                         ->from('proposal_pengabdian')
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->join('skema_pengabdian','proposal_pengabdian.id_skema=skema_pengabdian.id','inner')
                         ->where('proposal_pengabdian.status= "ACCEPTED"')
                         ->get();
         return $query;
     }
     public function get_viewListProp()
     {
-        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi')
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi, skema_pengabdian.jenis_pengabdian as skema')
                         ->from('proposal_pengabdian')
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->join('skema_pengabdian','proposal_pengabdian.id_skema = skema_pengabdian.id','inner')
                         ->get();
         return $query;
     }
@@ -132,10 +134,11 @@ class M_PropPengabdian extends CI_Model
 
     public function get_word_laporanakhir()
     {
-        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran ')
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran, skema_pengabdian.jenis_pengabdian as skema ')
                         ->from('proposal_pengabdian')
                         ->join('laporan_akhir_pengabdian','proposal_pengabdian.id=laporan_akhir_pengabdian.id_proposal','inner')
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->join('skema_pengabdian','proposal_pengabdian.id_skema=skema_pengabdian.id','inner')
                         ->where('laporan_akhir is NOT NULL')
                         ->where('belanja is NOT NULL')
                         ->where('logbook is NOT NULL')
