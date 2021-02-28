@@ -45,7 +45,7 @@ class Penelitian extends CI_Controller {
         $this->form_validation->set_rules('judul','Judul Penelitian', 'required');
         $this->form_validation->set_rules('abstrak','Abstrak', 'required');
         $this->form_validation->set_rules('luaran','Luaran','required');
-        $this->form_validation->set_rules('lokasi','Lokasi','required');
+        // $this->form_validation->set_rules('lokasi','Lokasi','required');
         $nip = $this->session->userdata('user_name');
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);

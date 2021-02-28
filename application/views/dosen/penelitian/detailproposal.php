@@ -15,8 +15,8 @@ label    {color: black; font-size:15px;}
 								<div class="form-body">
 									<form action="<?= base_url('dosen/penelitian/editformProposal');?>" method="post" enctype="multipart/form-data"> 
                                     <div class="form-group">
-                                    <label>Jenis Penelitian</label>
-                                    <select class="form-control" name="jenis" id="jenis">
+                                    <label>Jenis Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <select class="form-control" name="jenis" id="jenis" required="">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($skema as $sd) {
@@ -29,16 +29,16 @@ label    {color: black; font-size:15px;}
                                 </div>
                                    
                                     <div class="form-group">
-                                    <label>Judul Penelitian</label>
-                                    <textarea class="form-control" rows="1" name="judul"  ><?= $proposal->judul?></textarea>
+                                    <label>Judul Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <textarea class="form-control" rows="1" name="judul" required="" ><?= $proposal->judul?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Abstrak</label>
-                                    <textarea class="form-control" rows="3" name="abstrak"  ><?= $proposal->abstrak?></textarea>
+                                    <label>Abstrak</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <textarea class="form-control" rows="3" name="abstrak" required="" ><?= $proposal->abstrak?></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -50,27 +50,27 @@ label    {color: black; font-size:15px;}
                                     <label>Mitra</label>
                                     <textarea class="form-control" rows="1" name="mitra"  ><?= $proposal->mitra?></textarea>
                                 </div>
-                                <label>Lama Penelitian</label></br>
+                                <label>Lama Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label></br>
                                
                                 <div class="form-group"> 
 											
 											<div class="form-group input-group">
-                                            <input type="text" class="form-control" name="bulan"  value=<?= $proposal->lama_pelaksanaan?>>
+                                            <input type="text" class="form-control" name="bulan" required=""  value=<?= $proposal->lama_pelaksanaan?>>
                                             <span class="input-group-addon">bulan</span>
                                         </div>
     
 
                                 <div class="form-group">
-                                    <label>Biaya</label>
+                                    <label>Biaya</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control currency" name="biaya" value=<?= $proposal->biaya?>>
+                                    <input type="text" class="form-control currency" name="biaya" required="" value=<?= $proposal->biaya?>>
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Sumber Dana</label>
+                                    <label>Pendanaan</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
@@ -84,7 +84,7 @@ label    {color: black; font-size:15px;}
                                 </div>
 
                                 <div class="form-group">
-                                <label>Luaran</label>
+                                <label>Luaran</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                 <div class="input-group control-group">
                                <select class="form-control" id="selectpicker2" name="luaran_new[]" data-live-search="true">
                                     <option value="">Please Select</option>

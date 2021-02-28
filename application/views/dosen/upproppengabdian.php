@@ -53,13 +53,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Judul Pengabdian</label>
-                                    <input class="form-control" name="judul" <?php echo "value=\"" . $proposal->judul . "\""; ?> >
+                                    <label>Judul Pengabdian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="judul" required="" <?php echo "value=\"" . $proposal->judul . "\""; ?> >
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Abstrak</label>
-                                    <textarea class="form-control" rows="3" name="abstrak"  ><?= $proposal->abstrak?></textarea>
+                                    <label>Abstrak</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <textarea class="form-control" rows="3" name="abstrak" required=""  ><?= $proposal->abstrak?></textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -68,24 +68,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Lama Pelaksanaan</label>
+                                    <label>Lama Pelaksanaan</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="form-group input-group">
-                                    <input type="text" class="form-control" name="bulan" value=<?= $proposal->lama_pelaksanaan?>>
+                                    <input type="text" class="form-control" name="bulan" required="" value=<?= $proposal->lama_pelaksanaan?>>
                                     <span class="input-group-addon">bulan</span>
                                 </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Biaya</label>
+                                    <label>Biaya</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control currency" name="biaya" value=<?=$proposal->biaya?>  >
+                                    <input type="text" class="form-control currency" name="biaya" required="" value=<?=$proposal->biaya?>  >
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Pendanaan</label>
+                                    <label>Pendanaan</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
@@ -99,7 +99,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                <label>Luaran</label>
+                                <label>Luaran</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                 <div class="input-group control-group">
                                <select class="form-control" id="selectpicker2" name="luaran_new[]" data-live-search="true">
                                     <option value="">Please Select</option>
@@ -252,8 +252,8 @@
 
                                 <h3>Keterangan Mitra</h3>
                                 <div class="form-group">
-                                    <label>Nama Instansi</label>
-                                    <input class="form-control" name="instansi" <?php echo "value=\"" . $mitra->nama_instansi . "\""; ?> >
+                                    <label>Nama Instansi</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="instansi" required="" <?php echo "value=\"" . $mitra->nama_instansi . "\""; ?> >
                                     <input class='form-control hidden' type="text" name="id_mitra" value=<?=$mitra->id?> hidden>
                                 </div>
                                 <div class="form-group">
@@ -273,13 +273,13 @@
                                     <input class="form-control" name="alamat" <?php echo "value=\"" . $mitra->alamat . "\""; ?> >
                                 </div>
                                 <div class="form-group">
-                                    <label>Username</label>
+                                    <label>Username</label><label style="color:red; font-size:12px;"> (*Maks 20 Karakter)</label>
                                     <input class="form-control" id="username" name="username" value=<?=$mitra->username?> placeholder="Masukkan username untuk mitra">
                                     <span id="username_result" style='color:red'></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password untuk mitra" >
+                                    <label>Password</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input type="password" class="form-control" name="password" required="" placeholder="Masukkan password untuk mitra" >
                                 </div>
 
                                 <h3>File Proposal</h3>

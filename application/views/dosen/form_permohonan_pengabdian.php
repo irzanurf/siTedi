@@ -22,8 +22,8 @@
     <!-- /.row -->
     <?= form_open_multipart('dosen/pengabdian/addformProposal');?>
                                 <div class="form-group">
-                                    <label>Jenis Pengabdian</label>
-                                    <select class="form-control" name="skema_pengabdian" id="skema_pengabdian">
+                                    <label>Jenis Pengabdian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <select class="form-control" name="skema_pengabdian" id="skema_pengabdian" required="">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($skema as $sd) {
@@ -35,14 +35,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>Judul Pengabdian</label>
-                                    <input class="form-control" name="judul" id="judul">
+                                    <label>Judul Pengabdian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="judul" id="judul" required="">
                                     <span id="judul_result" style='color:red'></span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Abstrak</label>
-                                    <textarea class="form-control" rows="3" name="abstrak"></textarea>
+                                    <label>Abstrak</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <textarea class="form-control" rows="3" name="abstrak" required=""></textarea>
                                 </div>
                                 
 
@@ -52,24 +52,24 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Lama Pelaksanaan</label>
+                                    <label>Lama Pelaksanaan</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="form-group input-group">
-                                    <input type="text" class="form-control" name="bulan">
+                                    <input type="text" class="form-control" name="bulan" required="">
                                     <span class="input-group-addon">bulan</span>
                                 </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Biaya</label>
+                                    <label>Biaya</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="form-group input-group">
                                     <span class="input-group-addon">Rp.</span>
-                                    <input type="text" class="form-control currency" name="biaya">
+                                    <input type="text" class="form-control currency" name="biaya" required="">
                                     <span class="input-group-addon">,00</span>
                                 </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Pendanaan</label>
+                                    <label>Pendanaan</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <select class="form-control" name="sumberdana" id="sumberdana">
                                         <option value="">Please Select</option>
                                         <?php
@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Luaran</label>
+                                    <label>Luaran</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <div class="input-group control-group after-add-more2">
                                     <select class="form-control" id="selectpicker2" name="luaran[]"  data-live-search="true">
                                         <option value="">Please Select</option>
@@ -168,8 +168,8 @@
 
                                 <h3>Keterangan Mitra</h3>
                                 <div class="form-group">
-                                    <label>Nama Instansi</label>
-                                    <input class="form-control" name="instansi" >
+                                    <label>Nama Instansi</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="instansi" required="">
                                 </div>
                                 <div class="form-group">
                                     <label>Penanggung Jawab</label>
@@ -188,18 +188,18 @@
                                     <input class="form-control" name="alamat" >
                                 </div>
                                 <div class="form-group">
-                                    <label>Username</label>
-                                    <input class="form-control" id="username" name="username" placeholder="Masukkan username untuk mitra">
+                                    <label>Username</label><label style="color:red; font-size:12px;"> (*Maks 20 karakter)</label>
+                                    <input class="form-control" id="username" name="username" placeholder="Masukkan username untuk mitra" required="">
                                     <span id="username_result" style='color:red'></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password untuk mitra" >
+                                    <label>Password</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password untuk mitra" required="">
                                 </div>
 
                                 <h3>File Proposal</h3>
                                 <div class="form-group">
-                                    <label>Upload Proposal</label>
+                                    <label>Upload Proposal</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <input type="file" accept="application/pdf" class="form-control" name="file_prop"  ><br>
                                     <label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                                 </div>
