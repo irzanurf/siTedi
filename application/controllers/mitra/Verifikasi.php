@@ -36,14 +36,18 @@ class Verifikasi extends CI_Controller {
         // $data = array('status' => "1");
         // $this->M_Mitra->update_mitra($id_mitra,$data);
         $surat = $_FILES['file'];
-        if($surat=''){}else{
+        if($surat==0||$surat==null||$surat==""){
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Maaf Surat Mitra Masih Kosong</strong></div>');
+            redirect('mitra/verifikasi');
+        }else{
             $config['upload_path'] = './assets/suratmitra';
             $config['allowed_types'] = 'pdf';
             $config['encrypt_name'] = TRUE;
             // echo $config['upload_path'];
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file')){
-                echo $surat; die();
+                $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Maaf Surat Mitra Masih Kosong</strong></div>');
+            redirect('mitra/verifikasi');
             } else {
                 $surat=$this->upload->data('file_name');
             }
@@ -53,6 +57,7 @@ class Verifikasi extends CI_Controller {
             'status' => 1,
             'file_persetujuan'=>$surat);
         $this->M_Mitra->update_mitra($id_mitra,$data_surat);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Kerjasama pengabdian telah disetujui</strong></div>');
         redirect('mitra/verifikasi');
     }
     public function logout()

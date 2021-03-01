@@ -274,12 +274,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Username</label><label style="color:red; font-size:12px;"> (*Maks 20 Karakter)</label>
-                                    <input class="form-control" id="username" name="username" value=<?=$mitra->username?> placeholder="Masukkan username untuk mitra">
+                                    <input class="form-control" id="username" name="username" required="" value=<?=$mitra->username?> placeholder="Masukkan username untuk mitra">
                                     <span id="username_result" style='color:red'></span>
                                 </div>
                                 <div class="form-group">
-                                    <label>Password</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
-                                    <input type="password" class="form-control" name="password" required="" placeholder="Masukkan password untuk mitra" >
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Apabila tidak ingin mengganti password, cukup kosongi field ini" >
                                 </div>
 
                                 <h3>File Proposal</h3>

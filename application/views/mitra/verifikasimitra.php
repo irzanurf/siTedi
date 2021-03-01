@@ -28,6 +28,7 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
+                             <?php echo $this->session->flashdata('message');?>
                                 <h3 class="panel-title">Detail Proposal</h3>
                             </div>
                             <div class="panel-body">
