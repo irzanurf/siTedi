@@ -18,11 +18,23 @@ class M_PropPengabdian extends CI_Model
         return $this->db->get_where('proposal_pengabdian',$data);
     }
     
-    public function get_viewpengajuan()
+    public function get_viewpengajuan($username)
     {
         $query = $this->db->select('proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
                         ->from('proposal_pengabdian')
-                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
+                        ->where('proposal_pengabdian.nip = "'.$username.'"')
+                        ->get();
+        return $query;
+    }
+
+    public function get_viewanggota($username)
+    {
+        $query = $this->db->select('proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
+                        ->from('proposal_pengabdian')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
+                        ->join('dsn_pengabdian', 'proposal_pengabdian.id=dsn_pengabdian.id_proposal')
+                        ->where('dsn_pengabdian.nip = "'.$username.'"')
                         ->get();
         return $query;
     }

@@ -6,7 +6,7 @@
                         <a href="<?= base_url('dosen/pengabdian/');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li class="active">
-                        <a href="dosen/pengabdian/pengisianformtanpamitra"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                        <a href="dosen/pengabdian/pengisianform"><i class="fa fa-fw fa-edit"></i> Forms</a>
                     </li>
                 </ul>
             </div>
@@ -35,7 +35,7 @@
 
                 <div class="row">
                     <div class="col-lg-10">
-                    <?= form_open_multipart('dosen/pengabdian/updateProposalTanpaMitra');?>
+                    <?= form_open_multipart('dosen/pengabdian/updateProposal');?>
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                                 </div>
@@ -250,7 +250,37 @@
                                 </div>
                             </div>
 
-                               
+                                <h3>Keterangan Mitra</h3>
+                                <div class="form-group">
+                                    <label>Nama Instansi</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="instansi" required="" <?php echo "value=\"" . $mitra->nama_instansi . "\""; ?> >
+                                    <input class='form-control hidden' type="text" name="id_mitra" value=<?=$mitra->id?> hidden>
+                                </div>
+                                <div class="form-group">
+                                    <label>Penanggung Jawab</label>
+                                    <input class="form-control" name="pj"<?php echo "value=\"" . $mitra->penanggung_jwb . "\""; ?> >
+                                </div>
+                                <div class="form-group">
+                                    <label>Nomor Telepon</label>
+                                    <input class="form-control" name="no_telp" value=<?= $mitra->no_telp?> >
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" name="email" value=<?= $mitra->email?> >
+                                </div>
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <input class="form-control" name="alamat" <?php echo "value=\"" . $mitra->alamat . "\""; ?> >
+                                </div>
+                                <div class="form-group">
+                                    <label>Username</label><label style="color:red; font-size:12px;"> (*Maks 20 Karakter)</label>
+                                    <input class="form-control" id="username" name="username" required="" value=<?=$mitra->username?> placeholder="Masukkan username untuk mitra">
+                                    <span id="username_result" style='color:red'></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Apabila tidak ingin mengganti password, cukup kosongi field ini" >
+                                </div>
 
                                 <h3>File Proposal</h3>
                                 <div>
@@ -369,8 +399,57 @@
       });
     });
     </script>
-    
-   
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#username').keypress(function( e ) {
+            if(e.which === 32) 
+                return false;
+        });
+       
+        
+    });
+    </script>
+   <script type="text/javascript"> 
+        $(document).ready(function(){
+            //$('#submit').prop('disabled',true);
+            $('#username').change(function(){
+            var username = $('#username').val();
+            if(username != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
+                    method:"post",
+                    data:{username:username},
+                    dataType: 'json',
+                    success:function(data){
+                        var userVal = $('#username').val();
+                        if(data=="Username tersedia" && userVal.length < 21){
+                            $('#submit').prop('disabled',false);
+                            $('#username_result').hide();
+                        }else if(data!="Username tersedia" && userVal.length < 21){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html(data);
+                        } else if(data=="Username tersedia" && userVal.length > 20){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Karakter username tidak boleh lebih dari 20");
+                        } else{
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Username tidak tersedia dan karakter username melebihi 20 karakter");
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+			else
+			{
+				            $('#submit').prop('disabled',true);
+
+			}
+            });
+            });
+    </script>
 
 </body>
 

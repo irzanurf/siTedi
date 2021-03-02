@@ -31,5 +31,15 @@ class M_Luaran extends CI_Model
         return $query;
         
     }
+
+    public function delete_luaranpengabdian($id){
+        $this->db->where($id);
+        $this->db->delete('luaran_prop_pengabdian');
+    }
+
+    public function delete_luaranpenelitian($id){
+        $this->db->where($id);
+        $this->db->delete('luaran_prop_penelitian');
+    }
     
 }

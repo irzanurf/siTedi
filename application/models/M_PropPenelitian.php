@@ -49,6 +49,18 @@ class M_PropPenelitian extends CI_Model
                         ->get();
         return $query;
     }
+
+    public function getwhere_viewanggota($data)
+    {
+        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis')
+                        ->from('proposal_penelitian')
+                        ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
+                        ->join('dsn_penelitian','dsn_penelitian.id_proposal=proposal_penelitian.id')
+                        ->where('dsn_penelitian.nip = "'.$data.'" ')
+                        ->order_by("tgl_upload", "desc")
+                        ->get();
+        return $query;
+    }
     
     public function update_prop($id,array $data)
     {

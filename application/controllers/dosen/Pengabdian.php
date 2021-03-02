@@ -32,7 +32,8 @@ class Pengabdian extends CI_Controller {
         $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->result();
         $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$user))->result();
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($user)->result();
+        $data['anggota']= $this->M_PropPengabdian->get_viewanggota($user)->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view("dosen/dashboardpengabdian",$data);
         $this->load->view("pengabdian/footer");
@@ -56,6 +57,111 @@ class Pengabdian extends CI_Controller {
         } else {
           echo json_encode('Judul belum diajukan');
         }
+      }
+
+      public function addformProposalTanpaMitra()
+      {
+          $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+          $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        
+          if($this->form_validation->run()==false){
+              redirect("dosen/pengabdian/pengisianformtanpamitra");
+          } else {
+              $prop_file = $_FILES['file_prop'];
+          if($prop_file=''){}else{
+              $config['upload_path'] = './assets/prop_pengabdian';
+              $config['allowed_types'] = 'pdf';
+              $config['encrypt_name'] = TRUE;
+  
+              $this->load->library('upload',$config);
+              if(!$this->upload->do_upload('file_prop')){
+                  echo "Upload Gagal"; die();
+              } else {
+                  $prop_file=$this->upload->data('file_name');
+              }
+          }
+              $nip = $this->session->userdata('user_name');
+          
+          
+          
+          $date = date('Y-m-d');
+          $bulan = $this->input->post('bulan',true);
+          $jadwal = $this->M_JadwalPengabdian->get_last_jadwal()->row()->id;
+          $biaya = str_replace('.','',$this->input->post('biaya',true));
+          
+          $prop = [
+              "nip"=>$nip,
+              "judul"=>$this->input->post('judul',true),
+              "abstrak"=>$this->input->post('abstrak',true),
+              "tgl_upload"=>$date,
+              "id_jadwal" => $jadwal,
+              "lokasi"=>$this->input->post('lokasi',true),
+              "lama_pelaksanaan"=>$bulan,
+              "id_sumberdana"=>$this->input->post('sumberdana',true),
+              "biaya"=>$biaya,
+              "id_skema"=>$this->input->post('skema_pengabdian'),
+              "file" => $prop_file
+  
+          ];
+          $proposal=$this->M_PropPengabdian->insert_proposal($prop);
+  
+  
+          /**
+           * upload file proposal
+           */
+  
+  
+  
+          $nip= $this->input->post('dosen[]');
+          $data_dosen = array();
+          for($i=0; $i<count($nip)-1; $i++)
+          {
+              if($nip[$i]==""||$nip[$i]==null||$nip[$i]==0){
+  
+              }
+              else{
+              $data_dosen[$i] = array(
+                  'nip'  =>      $nip[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          }
+          $this->M_PropPengabdian->dosen($data_dosen);
+  
+          $id_luaran= $this->input->post('luaran[]');
+          $data_luaran = array();
+          for($i=0; $i<count($id_luaran)-1; $i++)
+          {
+              if($id_luaran[$i]==""||$id_luaran[$i]==null||$id_luaran[$i]==0){
+  
+              }
+              else{
+              $data_luaran[$i] = array(
+                  'id_luaran'  =>$id_luaran[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          }
+          $this->M_PropPengabdian->luaran($data_luaran);
+          
+          $nim= $this->input->post('nim_mahasiswa[]');
+          $nama_mhs = $this->input->post('nama_mahasiswa[]');
+          $data_mahasiswa = array();
+          for($i=0; $i<count($nim)-1; $i++)
+          {
+              $data_mahasiswa[$i] = array(
+                  'nim'  => $nim[$i],
+                  'nama' => $nama_mhs[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          $this->M_PropPengabdian->mahasiswa($data_mahasiswa);
+  
+  
+          $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+          $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+          redirect("dosen/pengabdian/success");
+          }
       }
 
     public function addformProposal()
@@ -219,6 +325,30 @@ class Pengabdian extends CI_Controller {
         
         $this->load->view('pengabdian/header',$nama);
         if(($now >= $awal) && ($now<=$akhir)){
+            $this->load->view('dosen/form_permohonan_pengabdian_mitra',$data);
+        } else {
+            $this->load->view('dosen/closed_form', $data);
+        }
+        $this->load->view('pengabdian/footer');
+    }
+
+    public function PengisianFormTanpaMitra()
+    {
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $nip = $this->session->userdata('user_name');
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+
+        
+        $this->load->view('pengabdian/header',$nama);
+        if(($now >= $awal) && ($now<=$akhir)){
             $this->load->view('dosen/form_permohonan_pengabdian',$data);
         } else {
             $this->load->view('dosen/closed_form', $data);
@@ -229,7 +359,7 @@ class Pengabdian extends CI_Controller {
     public function UploadSuratMitra()
     {
         $nip = $this->session->userdata('user_name');
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($nip)->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/upload_surat_mitra',$data);
@@ -259,12 +389,24 @@ class Pengabdian extends CI_Controller {
 
 
     }
+    public function hapusProposalTanpaMitra($id)
+    {
+        $data = array('id' => $id);
+        $data_foreign = array('id_proposal'=>$id);
+        $this->M_PropPengabdian->delete_proposal($data);
+        $this->M_Dosen->delete_dosenpengabdian($data_foreign);
+        $this->M_Mahasiswa->delete_mahasiswapengabdian($data_foreign);
+        $this->M_Luaran->delete_luaranpengabdian($data);
+        redirect('dosen/pengabdian/submitpermohonan');
+
+    }
 
     public function SubmitPermohonan()
     {
         $nip = $this->session->userdata('user_name');
         $username = $this->session->userdata('user_name');
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($username)->result();
+        $data['anggota']= $this->M_PropPengabdian->get_viewanggota($username)->result();
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
         $data['dosen']= $this->M_Dosen->get_dosen()->result();
         $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
@@ -399,13 +541,34 @@ class Pengabdian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('pengabdian/header',$nama);
+        $this->load->view('dosen/upproppengabdian_mitra',$data);
+        $this->load->view('pengabdian/footer');
+    }
+
+    public function editProposalTanpaMitra($id){
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+        $data['anggota_mhs'] = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPengabdian->luaran_update_prop($id)->result();
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/upproppengabdian',$data);
         $this->load->view('pengabdian/footer');
     }
 
-    public function updateProposal(){
+    public function updateProposalTanpaMitra(){
         $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
         $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        if($this->form_validation->run()==false){
+            redirect("dosen/pengabdian/editproposaltanpamitra/".$this->input->post('id'));
+        } else {
         $id = $this->input->post('id');
         $nip = $this->session->userdata('user_name');
         $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
@@ -414,7 +577,198 @@ class Pengabdian extends CI_Controller {
         $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
         $biaya = str_replace('.','',$this->input->post('biaya',true));
         $prop = array (
-            "nip"=>$nip,
+            "judul"=>$this->input->post('judul',true),
+            "abstrak"=>$this->input->post('abstrak',true),
+            "tgl_upload"=>$date,
+            "lokasi"=>$this->input->post('lokasi',true),
+            "biaya"=>$biaya,
+    );
+        $proposal=$this->M_PropPengabdian->update_prop($id,$prop);
+        /**
+         * upload file proposal
+         */
+        
+            $prop_file = $_FILES['file_prop'];
+            if(!empty($prop_file['name'])){
+                $config['upload_path'] = './assets/prop_pengabdian';
+                $config['allowed_types'] = 'pdf';
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('file_prop')){
+                    echo "Upload Gagal"; die();
+                } else {
+                    $prop_file=$this->upload->data('file_name');
+                }
+                $data_file = array('file'=>$prop_file);
+            $this->M_PropPengabdian->update_prop($id,$data_file);
+            }
+            /* update anggota dosen */
+            $dsn_update = $this->input->post('dosen[]');
+            $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
+            $dsn_new = $this->input->post('dosen_new[]');
+            $data_dsn_anggota = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+            $luaran_update = $this->input->post('luaran[]');
+            $id_nilai_luaran = $this->input->post('id_nilai_luaran[]');
+            $luaran_new = $this->input->post('luaran_new[]');
+            $data_nilai_luaran = $this->M_PropPengabdian->luaran_update_prop($id)->result();
+            // print_r($dsn_update);
+            if(!empty($dsn_update)){
+                foreach($data_dsn_anggota as $k){
+                    for($i=0;$i<count($dsn_update);$i++){
+                        if($k->id == $id_dsn_anggota[$i]){
+                            
+                            $dsn=$dsn_update[$i];
+                            $data_dosen =[
+                                'nip' => $dsn,
+                            ];
+                            $this->M_PropPengabdian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
+                }
+                if(!empty($dsn_new)){
+                    for($j=0; $j<count($dsn_new)-1;$j++)
+                        {
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                            }
+                            else{
+                            $dosen_new=$dsn_new[$j];
+                            $data_dosen_new =[
+                                'nip' => $dosen_new,
+                                'id_proposal' => $id
+                            ];
+                            $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                        }
+                        }
+                    }
+            }
+            if(!empty($luaran_update)){
+                foreach($data_nilai_luaran as $k){
+                    for($i=0;$i<count($luaran_update);$i++){
+                        if($k->id == $id_nilai_luaran[$i]){
+                            
+                            $luaran=$luaran_update[$i];
+                            $data_luaran =[
+                                'id_luaran' => $luaran,
+                            ];
+                            $this->M_PropPengabdian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id'=>$k->id));
+                }
+                if(!empty($luaran_new)){
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                       $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+            }
+            if(empty($dsn_update)){
+                $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
+                for($j=0; $j<count($dsn_new)-1;$j++)
+                    {
+                        if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                        }
+                        else{
+                        
+                        $dosen_new=$dsn_new[$j];
+                        $data_dosen_new =[
+                            'nip' => $dosen_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                    }
+                    }
+                }
+                
+                
+                if(empty($luaran_update)){
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                        $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+
+        /* update anggota mahasiswa */
+        $mhs_update = $this->input->post('nim_mahasiswa[]');
+        $mhs_nama_update = $this->input->post('nama_mahasiswa[]');
+        $id_mhs_anggota = $this->input->post('id_mhs_anggota[]');
+        $mhs_new = $this->input->post('nim_mahasiswa_new[]');
+        $mhs_nama_new = $this->input->post('nama_mahasiswa_new[]');
+        $data_mhs_anggota = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+
+        foreach($data_mhs_anggota as $k){
+            for($i=0;$i<count($mhs_update);$i++){
+                if($k->id == $id_mhs_anggota[$i]){
+                    $mhs=$mhs_update[$i];
+                    $data_mhs =[
+                        'nim' => $mhs,
+                        'nama'=> $mhs_nama_update[$i],
+                    ];
+                    $this->M_PropPengabdian->update_mhs_anggota($data_mhs, $id_mhs_anggota[$i]);
+                    continue 2;
+                }
+            } 
+            $this->M_PropPengabdian->hapus_mhs_anggota(array('id'=>$k->id));
+        }
+        for($j=0; $j<count($mhs_new)-1;$j++)
+            {
+                $mahasiswa_new=$mhs_new[$j];
+                $data_mhs_new =[
+                    'nim' => $mahasiswa_new,
+                    'nama' => $mhs_nama_new[$j],
+                    'id_proposal' => $id
+                ];
+                $this->M_PropPengabdian->insert_mhs_anggota($data_mhs_new);
+            }
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+            redirect("dosen/pengabdian/success");
+        }
+
+    }
+
+    public function updateProposal(){
+        $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+        $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        if($this->form_validation->run()==false){
+            redirect("dosen/pengabdian/editproposal/".$this->input->post('id'));
+        } else {
+        
+        $id = $this->input->post('id');
+        $nip = $this->session->userdata('user_name');
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        
+        $date = date('Y-m-d');
+        $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
+        $prop = array (
             "judul"=>$this->input->post('judul',true),
             "abstrak"=>$this->input->post('abstrak',true),
             "tgl_upload"=>$date,
@@ -616,9 +970,7 @@ class Pengabdian extends CI_Controller {
 
         $this->M_User->update_user($old_username_mitra, $data_user_mitra);
 
-        if($this->form_validation->run()==false){
-            redirect("dosen/pengabdian/pengisianform");
-        } else {
+        
             $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
             $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
             redirect("dosen/pengabdian/success");
@@ -635,8 +987,8 @@ class Pengabdian extends CI_Controller {
 
     public function DaftarPermohonan()
     {
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
         $nip = $this->session->userdata('user_name');
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($nip)->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/daftar_permohonan_pengabdian', $data);

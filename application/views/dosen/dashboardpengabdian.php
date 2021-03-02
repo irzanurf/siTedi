@@ -61,8 +61,6 @@
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nip==$this->session->userdata('user_name')) : ?>
-            <?php if($v->status != NULL) : ?>
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
@@ -78,8 +76,26 @@
                 </td>
                
             </tr>
-            <?php endif; ?>
-            <?php endif; ?>
+                <!-- Modal -->
+        
+            <?php } ?>
+            <?php 
+            foreach($anggota as $v) { ?>
+            <tr>
+                <td><?= $no++?></td>
+                <td><?= $v->judul?></td>
+                <td><?= $v->nama_instansi ?></td>
+                <td>
+                <?php if($v->status=='ACCEPTED') :?>
+                <span class></span><span type='button' class="btn-sm btn-success">Approved</span>
+                <?php elseif($v->status=='REJECTED'):?>
+                <span type='button' class="btn-sm btn-danger">Rejected</span>
+                <?php else:?>
+                <span type='button' class="btn-sm btn-warning">Processing</span>
+                <?php endif;?>
+                </td>
+               
+            </tr>
                 <!-- Modal -->
         
             <?php } ?>

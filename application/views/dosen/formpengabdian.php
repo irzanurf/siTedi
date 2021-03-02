@@ -46,13 +46,26 @@
                         <?php 
                         $no = 1;
                         foreach($view as $v) { ?>
-                        <?php if ($v->nip==$this->session->userdata('user_name')) : ?>
+                        
                         
                         <tr>
                             <td><?= $no++?></td>
                             <td><?= $v->judul?></td>
-                            <td><?= $v->nama_instansi ?></td>
-                            <td><?= ($v->status_mitra==1) ? "Approved" :  "Unapproved" ?></td>
+                            <td>
+                            <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
+                            -
+                            <?php else: ?>
+                                <?= $v->nama_instansi ?>
+                            <?php endif;?>
+
+                            </td>
+                            <td>
+                            <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
+                            -
+                            <?php else: ?>
+                                <?= ($v->status_mitra==1) ? "Approved" :  "Unapproved" ?>
+                            <?php endif;?>
+                            </td>
                             <!-- <td><?php if ($v->file_persetujuan==NULL && $v->status_mitra!=1) : ?>
                                 <button type="button" class="btn-sm btn-default" data-toggle="modal" disabled>
                                     <span class="glyphicon glyphicon-upload"></span><?php if ($v->file_persetujuan==NULL) : ?> Upload <?php endif; ?>
@@ -69,30 +82,38 @@
                             <?php endif; ?>
                             </td> -->
                             <td>
-                            <?php if(($v->status_mitra==0 || $v->file_persetujuan==NULL)&& $v->status==NULL ) : ?>
+                            <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
+                                <?php if($v->status==NULL ) : ?>
+                                    <a href="<?=base_url('dosen/pengabdian/editproposaltanpamitra');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>
+                                    <a href="<?=base_url('dosen/pengabdian/hapusproposaltanpamitra');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');"><button class="btn-sm btn-danger">Hapus</button></a>
+                            
+                                <?php else: ?>
+                                    <a href="#" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
+                                    
+                                        <a href="#"  ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
+                            
+                                <?php endif;?>
+                                
+                            <?php else: ?>
+                                <?php if(($v->status_mitra==0 || $v->file_persetujuan==NULL)&& $v->status==NULL ) : ?>
                                     <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>
-                                    <a href="#" type="button"><button  class="btn-sm btn-default" disabled>Submit</button> </a>
                                     <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');"><button class="btn-sm btn-danger">Hapus</button>  </a>
                             <?php elseif($v->status_mitra == 1 && $v->file_persetujuan!=NULL && $v->status==NULL) : ?>
                                 <!--  <form method='get' action=" -->
                                 <!-- <?php echo site_url('dosen/pengabdian/submitproposal');?> -->
                                     <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>" ><button  class="btn-sm btn-success"> Edit</button> </a>
-                                    <a href="<?=base_url('dosen/pengabdian/finalSubmitProp');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Submition?');" ><button  class="btn-sm btn-primary">Submit</button></a>
                                     <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-danger">Hapus</button> </a>
                                     
                             <?php else: ?>
                                 <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
                                 
                                     <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
-                                
-                                
-                            
+                         
                             <?php endif;?>
-                            
+                            <?php endif;?>
                             
                             </td>
 
-                            
                             <td>
                             <?php if($v->status=='ACCEPTED') :?>
                             <span type='button' class="badge badge-pill badge-success">Approved</span>
@@ -106,39 +127,64 @@
                             
                             </td>
                         </tr>
-                        <?php endif;?>
-                    
-                            <!-- Modal -->
-                    <div class="modal fade" id="updateSurat<?= $v->mitra_id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                        <?php echo form_open_multipart('dosen/pengabdian/updateSurat') ?>
-                            <div class="form-group">
-                                <label>Upload Surat Mitra</label>
-                                <input type="file" accept="application/pdf" class="form-control" name="file_persetujuan"   >
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" class="form-control" name="id" value=<?=$v->mitra_id?>  >
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-                        <?= form_close() ?>
-
                             
-                        </div>
+                        <?php } ?>
+                        <?php 
+
+                        foreach($anggota as $v) { ?>
                         
-                        </div>
-                    </div>
-                    </div>
+                        
+                        <tr>
+                            <td><?= $no++?></td>
+                            <td><?= $v->judul?></td>
+                            <td>
+                            <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
+                            -
+                            <?php else: ?>
+                                <?= $v->nama_instansi ?>
+                            <?php endif;?>
+
+                            </td>
+                            <td>
+                            <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
+                            -
+                            <?php else: ?>
+                                <?= ($v->status_mitra==1) ? "Approved" :  "Unapproved" ?>
+                            <?php endif;?>
+                            </td>
+                            <!-- <td><?php if ($v->file_persetujuan==NULL && $v->status_mitra!=1) : ?>
+                                <button type="button" class="btn-sm btn-default" data-toggle="modal" disabled>
+                                    <span class="glyphicon glyphicon-upload"></span><?php if ($v->file_persetujuan==NULL) : ?> Upload <?php endif; ?>
+                                        <?php if($v->file_persetujuan != NULL) : ?> Edit <?php endif; ?>
+                                </button>
+                                <?php elseif($v->file_persetujuan==NULL && $v->status_mitra==1) : ?>
+                                <button type="button" class="btn-sm btn-info" data-toggle="modal" data-target="#updateSurat<?= $v->mitra_id?>">
+                                    <span class="glyphicon glyphicon-upload"></span><?php if ($v->file_persetujuan==NULL) : ?> Upload <?php endif; ?>
+                                        <?php if($v->file_persetujuan != NULL) : ?> Edit <?php endif; ?>
+                                </button>
+                            <?php endif; ?>
+                            <?php if($v->file_persetujuan != NULL) : ?>
+                                <i>UPLOADED</i>
+                            <?php endif; ?>
+                            </td> -->
+                            <td>
+                            -
+                            </td>
+
+                            <td>
+                            <?php if($v->status=='ACCEPTED') :?>
+                            <span type='button' class="badge badge-pill badge-success">Approved</span>
+                            <?php elseif($v->status=='REJECTED'):?>
+                            <span type='button' class="badge badge-pill badge-danger">Rejected</span>
+                            <?php elseif($v->status==''):?>
+                            <span  class="badge badge-pill badge-primary">Need to submit</span>
+                            <?php else:?>
+                            <span class="badge badge-pill badge-warning">Processing</span>
+                            <?php endif;?>
+                            
+                            </td>
+                        </tr>
+                            
                         <?php } ?>
                         </tbody>
                     </table>

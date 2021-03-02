@@ -126,6 +126,69 @@
 
                         </tr>
                         <?php } ?>
+
+                        <?php 
+                        foreach($anggota as $v) { ?>
+                        <tr>
+                            <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $v->jenis?></td>
+                            <td align="center"><?= $v->judul?></td>
+                            
+                            <td align="center">
+                            -
+                            
+                            
+                            </td>
+                            <td align="center">
+                           -
+                            
+                            </td>
+
+                            <td align="center">
+                            <?php if($v->status=="5" ) : ?>
+                                <button type="button" class="btn-sm btn-danger" dissabled>
+                                        Rejected
+                                    </button>
+
+                            <?php elseif($v->status=="2") : ?>
+                                <button type="button" class="btn-sm btn-success" dissabled>
+                                        Accepted
+                                    </button>
+                                    <?php elseif($v->status=="0") : ?>
+                               
+                            
+                            <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Reviewing
+                                    </button>
+                            
+                            <?php elseif($v->status=="3") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Monev
+                                    </button>
+                            
+                            <?php elseif($v->status=="4") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Laporan Akhir
+                                    </button>
+                            
+                            <?php elseif($v->status=="4") : ?>
+                                <button type="button" class="btn-sm btn-info" dissabled>
+                                        Finished
+                                    </button>
+                               
+                            <?php else : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Waiting
+                                    </button>
+                            <?php endif;?>
+                            
+                            
+                            </td>
+
+
+                        </tr>
+                        <?php } ?>
                     </table>
 </div>
 

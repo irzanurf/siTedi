@@ -20,7 +20,7 @@
     </div>
     <div class="col-lg-10" >
     <!-- /.row -->
-    <?= form_open_multipart('dosen/pengabdian/addformProposalTanpaMitra');?>
+    <?= form_open_multipart('dosen/pengabdian/addformProposal');?>
                                 <div class="form-group">
                                     <label>Jenis Pengabdian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <select class="form-control" name="skema_pengabdian" id="skema_pengabdian" required="">
@@ -166,6 +166,36 @@
                                 </div>
                             </div>
 
+                                <h3>Keterangan Mitra</h3>
+                                <div class="form-group">
+                                    <label>Nama Instansi</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input class="form-control" name="instansi" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label>Penanggung Jawab</label>
+                                    <input class="form-control" name="pj" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Nomor Telepon</label>
+                                    <input class="form-control" name="no_telp" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control" name="email" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Alamat</label>
+                                    <input class="form-control" name="alamat" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Username</label><label style="color:red; font-size:12px;"> (*Maks 20 karakter)</label>
+                                    <input class="form-control" id="username" name="username" placeholder="Masukkan username untuk mitra" required="">
+                                    <span id="username_result" style='color:red'></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <input type="password" class="form-control" name="password" placeholder="Masukkan password untuk mitra" required="">
+                                </div>
 
                                 <h3>File Proposal</h3>
                                 <div class="form-group">
@@ -312,8 +342,52 @@
     });
     </script>
 
-
-    
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#username').keypress(function( e ) {
+            if(e.which === 32) 
+                return false;
+        });
+       
+        
+    });
+    </script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            $('#submit').prop('disabled',true);
+            $('#username').change(function(){
+            var username = $('#username').val();
+            if(username != ''){
+                $.ajax({
+                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
+                    method:"post",
+                    data:{username:username},
+                    dataType: 'json',
+                    success:function(data){
+                        var userVal = $('#username').val();
+                        if(data=="Username tersedia" && userVal.length < 21){
+                            $('#submit').prop('disabled',false);
+                            $('#username_result').hide();
+                        }else if(data!="Username tersedia" && userVal.length < 21){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html(data);
+                        } else if(data=="Username tersedia" && userVal.length > 20){
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Karakter username tidak boleh lebih dari 20");
+                        } else{
+                            $('#submit').prop('disabled', true);
+                            $('#username_result').show();
+                            $('#username_result').html("Username tidak tersedia dan karakter username melebihi 20 karakter");
+                        }
+                        //console.log(data);
+                    }
+                });
+            }
+            });
+            });
+    </script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
