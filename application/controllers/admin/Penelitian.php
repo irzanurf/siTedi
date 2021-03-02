@@ -872,7 +872,7 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('E3', 'Kelengkapan dokumen');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $sheet->setCellValue('A'.$rows, $no++);

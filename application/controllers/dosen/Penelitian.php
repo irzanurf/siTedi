@@ -77,6 +77,7 @@ class Penelitian extends CI_Controller {
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
             "biaya"=>$biaya,
+            "status"=>1,
             "file"=>$prop_file
 
         ];

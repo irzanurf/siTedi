@@ -192,18 +192,18 @@ class M_PropPenelitian extends CI_Model
     }
 
 
-    public function get_word_akhir()
+    public function get_word_akhir($data)
     {  
         $query = $this->db->select('proposal_penelitian.*,dosen.nama as nama, laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, jenispenelitian.jenis as skema')
                         ->from('proposal_penelitian')
                         ->join('dosen','dosen.nip = proposal_penelitian.nip')
-                        ->join('jenispenelitian','jenispenelitian.jenis = proposal_penelitian.id_jenis','inner')
+                        ->join('jenispenelitian','jenispenelitian.id = proposal_penelitian.id_jenis','inner')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
-                        // ->where('file1 != ""')
-                        // ->where('file2 != ""')
-                        // ->where('file3 != ""')
-                        // ->where('file4 != ""')
-                        // ->where($data)
+                        ->where('file1 != ""')
+                        ->where('file2 != ""')
+                        ->where('file3 != ""')
+                        ->where('file4 != ""')
+                        ->where($data)
                         ->get();
         return $query;
     }
