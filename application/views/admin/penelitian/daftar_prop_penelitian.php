@@ -27,8 +27,10 @@
         
         
         <section class="content">
-        <a href="<?=base_url('admin/penelitian/proposalexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
-        <a href="<?=base_url('admin/penelitian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
+        <?php echo $this->session->flashdata('message');?>
+       
+        <a href="<?=base_url('admin/penelitian/proposalexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Pengajuan Proposal</button></a>
+        <a href="<?=base_url('admin/penelitian/testexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Proposal yang Disetujui</button></a>
 
         <table class="table">
             <tr>
@@ -69,25 +71,25 @@
                 </td> -->
                 <td>
                 <?php if($v->status==0) : ?>
-                SUBMITED (Belum difinalisasi)
+                SUBMITED 
 
                 <?php elseif($v->status==1) : ?>
-                SUBMITED (Sudah difinalisasi)
+                SUBMITED
 
                 <?php elseif($v->status==2) : ?>
                 ACCEPTED
 
-                <?php elseif($v->status==11||$v->status==12) : ?>
+                <?php elseif($v->status==11||$v->status==12||$v->status==13) : ?>
                 REVIEW
 
                 <?php elseif($v->status==13) : ?>
-                MONEV (Belum difinalisasi)
+                MONEV
 
                 <?php elseif($v->status==3) : ?>
-                MONEV (sudah difinalisasi) 
+                MONEV SUBMITED
 
                 <?php elseif($v->status==4) : ?>
-                LAPORAN AKHIR (sudah difinalisasi) 
+                LAPORAN AKHIR
 
                 <?php elseif($v->status==5) : ?>
                 REJECTED
@@ -98,17 +100,20 @@
                 </td>
 
                 <td>
-                <?php if($v->status==0 || $v->status==1) : ?>
-                    </form>
-                                <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/penelitian/deleteProp');?>>
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/editProposal') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-info">
+                                        Edit
+                                    </button>
+                                </form>
+
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/penelitian/deleteProp');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-danger">
                                         Hapus
                                     </button>
                                 </form>
-                <?php else: ?>
-
-                    <?php endif;?>
                 </td>
                 
             </tr>

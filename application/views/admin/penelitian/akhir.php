@@ -21,10 +21,9 @@
         </div>
     </div>
     <!-- /.row -->
-    <a href="<?=base_url('admin/penelitian/laporanAkhirWord');?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
-    <a href="<?=base_url('admin/penelitian/laporanAkhirExcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
+    <a href="<?=base_url('admin/penelitian/laporanAkhirWord');?>/<?= $id ?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
+    <a href="<?=base_url('admin/penelitian/laporanAkhirExcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Laporan Akhir Lengkap</button></a>
 
-    <a href="<?=base_url('admin/penelitian/submitAllAkhir');?>"><button class='btn btn-success'> Submit All Laporan Akhir</button></a>
     <div class="row">
         <div class="col-lg-12">
         
@@ -40,7 +39,7 @@
                 <th class='text-center'>Luaran</th>
                 <th class='text-center'>Laporan Belanja 100%</th>
                 <th class='text-center'>Catatan Pengusul</th>
-                <th class='text-center'>Status</th>
+                <th class='text-center'>Action</th>
             </tr>
             <?php 
             $no = 1;
@@ -53,7 +52,7 @@
                 <td><?= $v->nama ?></td>
                 <td class='text-center'>
                     <?php if ($v->file1==NULL) : ?> -
-                        <?php elseif($v->file1 != NULL) : ?><i>UPLOADED</i>  
+                        <?php elseif($v->file1 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadFinal<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -61,7 +60,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file2==NULL) : ?> -
-                        <?php elseif($v->file1 != NULL) : ?><i>UPLOADED</i>  
+                        <?php elseif($v->file1 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -69,7 +68,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file3==NULL) : ?> -
-                        <?php elseif($v->file2 != NULL) : ?> <i>UPLOADED</i>
+                        <?php elseif($v->file2 != NULL) : ?> 
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -77,7 +76,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file4==NULL) : ?> - 
-                        <?php elseif($v->file3 != NULL) : ?> <i>UPLOADED</i> 
+                        <?php elseif($v->file3 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -89,10 +88,12 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                    <?php if ($v->stat==0||$v->stat==NULL||$v->stat=="") : ?> Belum melakukan finalisasi
-                        <?php elseif($v->stat == 1) : ?> Sudah melakukan finalisasi
-                    
-                    <?php endif; ?>
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/editAkhir') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-info">
+                                        Edit
+                                    </button>
+                                </form>
                 </td>
                 
                

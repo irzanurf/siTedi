@@ -144,6 +144,16 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function get_needUnsubmitProp()
+    {
+        $query = $this->db->select('proposal_penelitian.*')
+                        ->from('proposal_penelitian')
+                        ->where('proposal_penelitian.status=1')
+                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->get();
+        return $query;
+    }
+
     public function get_needSubmitMonev()
     {
         $query = $this->db->select('laporan_monev_penelitian.*')
@@ -166,15 +176,8 @@ class M_PropPenelitian extends CI_Model
         return $this->db->get_where('proposal_penelitian', ['judul' => $judul])->num_rows();
     }
 
-    public function get_word_monev()
+    public function get_word_monev($data)
     {
-        // $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, laporan_monev_penelitian.file1 as logbook, laporan_monev_penelitian.file2 as kemajuan,laporan_monev_penelitian.file3 as belanja')
-        //                 ->from('proposal_penelitian')
-        //                 ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
-        //                 ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
-        //                 ->where('laporan_monev_penelitian.file1 is NOT NULL')
-        //                 ->get();
-
         $query = $this->db->select('proposal_penelitian.*,dosen.nama as nama, laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan, jenispenelitian.jenis as skema')
                         ->from('proposal_penelitian')
                         ->join('dosen','dosen.nip = proposal_penelitian.nip')
@@ -183,29 +186,24 @@ class M_PropPenelitian extends CI_Model
                         ->where('file1 is NOT NULL')
                         ->where('file2 != ""')
                         ->where('file3 != ""')
+                        ->where($data)
                         ->get();
         return $query;
     }
 
 
     public function get_word_akhir()
-    {
-        // $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, laporan_monev_penelitian.file1 as logbook, laporan_monev_penelitian.file2 as kemajuan,laporan_monev_penelitian.file3 as belanja')
-        //                 ->from('proposal_penelitian')
-        //                 ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
-        //                 ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
-        //                 ->where('laporan_monev_penelitian.file1 is NOT NULL')
-        //                 ->get();
-
+    {  
         $query = $this->db->select('proposal_penelitian.*,dosen.nama as nama, laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, jenispenelitian.jenis as skema')
                         ->from('proposal_penelitian')
                         ->join('dosen','dosen.nip = proposal_penelitian.nip')
                         ->join('jenispenelitian','jenispenelitian.jenis = proposal_penelitian.id_jenis','inner')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
-                        ->where('file1 != ""')
-                        ->where('file2 != ""')
-                        ->where('file3 != ""')
-                        ->where('file4 != ""')
+                        // ->where('file1 != ""')
+                        // ->where('file2 != ""')
+                        // ->where('file3 != ""')
+                        // ->where('file4 != ""')
+                        // ->where($data)
                         ->get();
         return $query;
     }
@@ -244,24 +242,26 @@ class M_PropPenelitian extends CI_Model
         }          
     }
 
-    public function get_viewAnnouncement()
+    public function get_viewAnnouncement($data)
     {
         $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, dosen.program_studi as program_studi, jenispenelitian.jenis as skema')
                         ->from('proposal_penelitian')
                         ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id')
+                        ->where($data)
                         ->where('proposal_penelitian.status > 1')
                         ->where('proposal_penelitian.status < 5')
                         ->get();
         return $query;
     }
 
-    public function get_viewListProp()
+    public function get_viewListProp($data)
     {
         $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, dosen.program_studi as program_studi, jenispenelitian.jenis as skema')
                         ->from('proposal_penelitian')
                         ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
                         ->join('jenispenelitian','jenispenelitian.id=proposal_penelitian.id_jenis','inner')
+                        ->where($data)
                         ->get();
         return $query;
     }

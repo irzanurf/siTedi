@@ -36,6 +36,7 @@ class Pengabdian extends CI_Controller
         $this->load->model('M_SkemaPengabdian');
         $this->load->model('M_AdminPenelitian');
         $this->load->model('M_JadwalPengabdian');
+        $this->load->model('M_Luaran');
         
     }
 
@@ -128,13 +129,14 @@ class Pengabdian extends CI_Controller
         ];
         $this->M_Admin->simpan_berita($id,$data);
         $this->session->set_flashdata('error','Pengumuman berhasil ter-update' );
-        redirect('admin/penelitian/berita');
+        redirect('admin/pengabdian/berita');
     }
 
 
-    public function daftarPengabdian()
+    public function daftarPengabdian($id)
     {
-        $data['view'] = $this->M_Admin->get_viewPengabdian()->result();
+        $data['view'] = $this->M_Admin->get_wherePengabdian(array('id_jadwal'=>$id))->result();
+        $data['id'] = $id;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/daftar_prop_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -468,11 +470,12 @@ class Pengabdian extends CI_Controller
 
     }
 
-    public function laporanAkhir()
+    public function akhir($jadwal)
     {
-        $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
+        $data['view']= $this->M_PropPengabdian->get_whereAkhir(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
+        $data['id'] = $jadwal;
         $this->load->view('layout/sidebar_admin');
-        $this->load->view('admin/laporan_akhir_pengabdian', $data);
+        $this->load->view('admin/akhir', $data);
         $this->load->view('layout/footer'); 
     }
 
@@ -739,12 +742,12 @@ class Pengabdian extends CI_Controller
         
         $objWriter->save( "php://output" );
     }
-    public function testexcel()
+    public function testexcel($jadwal)
     {
         $fileName = 'AcceptedProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPengabdian->get_viewAnnouncement()->result();
+        $prop = $this->M_PropPengabdian->get_viewAnnouncement(array('id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'Proposal Pengabdian yang Akan Diberi Pendanaan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -805,12 +808,12 @@ class Pengabdian extends CI_Controller
 
     }
 
-    public function proposalexcel()
+    public function proposalexcel($jadwal)
     {
         $fileName = 'PengajuanProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPengabdian->get_viewListProp()->result();
+        $prop = $this->M_PropPengabdian->get_viewListProp(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'List Semua Proposal Pengabdian');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -905,6 +908,7 @@ class Pengabdian extends CI_Controller
     public function deleteProp()
     {
         $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
         $id_mitra = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row()->id_mitra;
         $user_mitra = $this->M_Admin->get_userMitra(array('id'=>$id_mitra))->row()->username;
         $this->M_Admin->delProp(array('id'=>$id));
@@ -912,7 +916,339 @@ class Pengabdian extends CI_Controller
         $this->M_Admin->delDsn(array('id_proposal'=>$id));
         $this->M_Admin->delMhs(array('id_proposal'=>$id));
         $this->M_Admin->delMitra(array('id'=>$id_mitra));
+        $this->M_Admin->delAkhir(array('id_proposal'=>$id));
         $this->M_Admin->delUserMitra(array('username'=>$user_mitra));
-        redirect('admin/pengabdian/daftarPengabdian');
+        redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
     }
+
+    public function editProposal($id){
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['proposal']->id_mitra;
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $data['anggota_dosen'] = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+        $data['anggota_mhs'] = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPengabdian->luaran_update_prop($id)->result();
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/editProposal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function updateProposal(){
+        $this->form_validation->set_rules('nip','nip', 'required');
+        $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+        $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
+        $nip = $this->session->userdata('user_name');
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        
+        $date = date('Y-m-d');
+        $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
+        $prop = array (
+            "nip"=>$this->input->post('nip',true),
+            "judul"=>$this->input->post('judul',true),
+            "abstrak"=>$this->input->post('abstrak',true),
+            "tgl_upload"=>$date,
+            "lokasi"=>$this->input->post('lokasi',true),
+            "biaya"=>$biaya,
+    );
+        $proposal=$this->M_PropPengabdian->update_prop($id,$prop);
+        /**
+         * upload file proposal
+         */
+        
+            $prop_file = $_FILES['file_prop'];
+            if(!empty($prop_file['name'])){
+                $config['upload_path'] = './assets/prop_pengabdian';
+                $config['allowed_types'] = 'pdf';
+                $config['encrypt_name'] = TRUE;
+
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload('file_prop')){
+                    echo "Upload Gagal"; die();
+                } else {
+                    $prop_file=$this->upload->data('file_name');
+                }
+                $data_file = array('file'=>$prop_file);
+            $this->M_PropPengabdian->update_prop($id,$data_file);
+            }
+            /* update anggota dosen */
+            $dsn_update = $this->input->post('dosen[]');
+            $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
+            $dsn_new = $this->input->post('dosen_new[]');
+            $data_dsn_anggota = $this->M_PropPengabdian->dosen_update_prop($id)->result();
+            $luaran_update = $this->input->post('luaran[]');
+            $id_nilai_luaran = $this->input->post('id_nilai_luaran[]');
+            $luaran_new = $this->input->post('luaran_new[]');
+            $data_nilai_luaran = $this->M_PropPengabdian->luaran_update_prop($id)->result();
+            // print_r($dsn_update);
+            if(!empty($dsn_update)){
+                foreach($data_dsn_anggota as $k){
+                    for($i=0;$i<count($dsn_update);$i++){
+                        if($k->id == $id_dsn_anggota[$i]){
+                            
+                            $dsn=$dsn_update[$i];
+                            $data_dosen =[
+                                'nip' => $dsn,
+                            ];
+                            $this->M_PropPengabdian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_dosen_anggota(array('id'=>$k->id));
+                }
+                if(!empty($dsn_new)){
+                    for($j=0; $j<count($dsn_new)-1;$j++)
+                        {
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                            }
+                            else{
+                            $dosen_new=$dsn_new[$j];
+                            $data_dosen_new =[
+                                'nip' => $dosen_new,
+                                'id_proposal' => $id
+                            ];
+                            $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                        }
+                        }
+                    }
+            }
+            if(!empty($luaran_update)){
+                foreach($data_nilai_luaran as $k){
+                    for($i=0;$i<count($luaran_update);$i++){
+                        if($k->id == $id_nilai_luaran[$i]){
+                            
+                            $luaran=$luaran_update[$i];
+                            $data_luaran =[
+                                'id_luaran' => $luaran,
+                            ];
+                            $this->M_PropPengabdian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id'=>$k->id));
+                }
+                if(!empty($luaran_new)){
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                       $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+            }
+            if(empty($dsn_update)){
+                $this->M_PropPengabdian->hapus_dosen_anggota(array('id_proposal'=>$id));
+                for($j=0; $j<count($dsn_new)-1;$j++)
+                    {
+                        if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                        }
+                        else{
+                        
+                        $dosen_new=$dsn_new[$j];
+                        $data_dosen_new =[
+                            'nip' => $dosen_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_dsn_anggota($data_dosen_new);
+                    }
+                    }
+                }
+                
+                
+                if(empty($luaran_update)){
+                    $this->M_PropPengabdian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                        $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPengabdian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+
+        /* update anggota mahasiswa */
+        $mhs_update = $this->input->post('nim_mahasiswa[]');
+        $mhs_nama_update = $this->input->post('nama_mahasiswa[]');
+        $id_mhs_anggota = $this->input->post('id_mhs_anggota[]');
+        $mhs_new = $this->input->post('nim_mahasiswa_new[]');
+        $mhs_nama_new = $this->input->post('nama_mahasiswa_new[]');
+        $data_mhs_anggota = $this->M_PropPengabdian->mhs_update_prop($id)->result();
+
+        foreach($data_mhs_anggota as $k){
+            for($i=0;$i<count($mhs_update);$i++){
+                if($k->id == $id_mhs_anggota[$i]){
+                    $mhs=$mhs_update[$i];
+                    $data_mhs =[
+                        'nim' => $mhs,
+                        'nama'=> $mhs_nama_update[$i],
+                    ];
+                    $this->M_PropPengabdian->update_mhs_anggota($data_mhs, $id_mhs_anggota[$i]);
+                    continue 2;
+                }
+            } 
+            $this->M_PropPengabdian->hapus_mhs_anggota(array('id'=>$k->id));
+        }
+
+        for($j=0; $j<count($mhs_new)-1;$j++)
+            {
+                $mahasiswa_new=$mhs_new[$j];
+                $data_mhs_new =[
+                    'nim' => $mahasiswa_new,
+                    'nama' => $mhs_nama_new[$j],
+                    'id_proposal' => $id
+                ];
+                $this->M_PropPengabdian->insert_mhs_anggota($data_mhs_new);
+            }
+
+        /* edit mitra  */
+
+        $id_mitra = $this->input->post('id_mitra');
+        $data_mitra = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+        ];
+
+        $this->M_Mitra->update_mitra($id_mitra, $data_mitra);
+
+        $pass = $this->input->post('password');
+        if($pass != null){
+            $data_user_mitra = [
+                'username' =>$this->input->post('username'),
+                'password' =>md5($pass)
+            ];
+
+        } else{
+            $data_user_mitra = [
+                'username' => $this->input->post('username')
+            ];
+        }
+
+        $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+
+        if($this->form_validation->run()==false){
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Perubhan gagal disimpan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Perubhan berhasil disimpan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+        }
+
+    }
+
+    public function listSubmit()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/daftarPengabdian';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function listAkhir()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/akhir';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function editAkhir($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/editakhir', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function uploadAkhir(){
+        $jadwal = $this->input->post('jadwal');
+        $id=$this->input->post('id');
+        $config['allowed_types'] = 'pdf';
+        $config['encrypt_name'] = TRUE;
+        $akhir = $_FILES['laporan_akhir'];
+        $logbook = $_FILES['logbook'];
+        $belanja = $_FILES['belanja'];
+        $luaran = $_FILES['luaran'];
+
+        if($akhir=''){}else{
+            $config['upload_path'] = './assets/laporan_akhir';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('laporan_akhir')){
+                echo "Upload Gagal"; die();
+            } else {
+                $akhir=$this->upload->data('file_name');
+            }
+        }
+        $data = array('laporan_akhir'=>$akhir);
+
+        
+        if($logbook=''){}else{
+            $config['upload_path'] = './assets/logbook';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('logbook')){
+                echo "Upload Gagal"; die();
+            } else {
+                $logbook=$this->upload->data('file_name');
+            }
+        }
+        $data = array('logbook'=>$logbook);
+
+        
+        if($belanja=''){}else{
+            $config['upload_path'] = './assets/belanja';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('belanja')){
+                echo "Upload Gagal"; die();
+            } else {
+                $belanja=$this->upload->data('file_name');
+            }
+        }
+        $data = array('belanja'=>$belanja);
+
+        
+        if($luaran=''){}else{
+            $config['upload_path'] = './assets/luaran';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('luaran')){
+                echo "Upload Gagal"; die();
+            } else {
+                $luaran=$this->upload->data('file_name');
+            }
+        }
+        $data = array('luaran'=>$luaran);
+        $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
+
+        redirect("admin/pengabdian/akhir"."/".$jadwal);
+    }
+
 }

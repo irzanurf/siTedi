@@ -29,6 +29,8 @@ class Penelitian extends CI_Controller
         $this->load->model('M_SkemaPenelitian');
         $this->load->model('M_KomponenNilaiPenelitian');
         $this->load->model('M_JadwalPenelitian');
+        $this->load->model('M_Luaran');
+        $this->load->model('M_Jenisp');
     }
 
     public function index()
@@ -61,10 +63,10 @@ class Penelitian extends CI_Controller
         redirect('admin/penelitian/berita');
     }
 
-    public function daftarPenelitian()
+    public function daftarPenelitian($id)
     {
-        $data['view'] = $this->M_AdminPenelitian->get_viewPenelitian()->result();
-        
+        $data['view'] = $this->M_AdminPenelitian->get_wherePenelitian(array('id_jadwal'=>$id))->result();
+        $data['id'] = $id;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/daftar_prop_penelitian',$data);
         $this->load->view('layout/footer'); 
@@ -301,6 +303,228 @@ class Penelitian extends CI_Controller
 
     }
 
+    public function editProposal($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPenelitian->get_skemapenelitian()->result();
+        $data['anggota_dosen'] = $this->M_PropPenelitian->dosen_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPenelitian->luaran_update_prop($id)->result();
+        $data['anggota_mhs'] = $this->M_PropPenelitian->mhs_update_prop($id)->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/editProposal',$data);
+        $this->load->view('layout/footer'); 
+        
+    }
+
+    public function editformProposal()
+    {
+            $id = $this->input->post('id');
+            $jadwal = $this->input->post('jadwal');
+            $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+            $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+            $this->form_validation->set_rules('nip','nip', 'required');
+            $this->form_validation->set_rules('bulan','bulan', 'required');
+            $nip = $this->M_PropPenelitian->getwhere_proposal(array('id'=> $id))->row()->nip;
+            $data_proposal = $this->M_PropPenelitian->getwhere_proposal(array('id'=> $id))->row();
+            $cek_file = $this->input->post('file_prop',true);
+            $date = date('Y-m-d');
+            $bulan = $this->input->post('bulan',true);
+            $biaya = str_replace('.','',$this->input->post('biaya',true));
+        
+            $prop = array (
+                "nip"=>$this->input->post('nip',true),
+                "judul"=>$this->input->post('judul',true),
+                "abstrak"=>$this->input->post('abstrak',true),
+                "lokasi"=>$this->input->post('lokasi',true),
+                "id_jenis"=>$this->input->post('jenis',true),
+                "mitra"=>$this->input->post('mitra',true),
+                "tgl_upload"=>$date,
+                "biaya"=>$biaya,
+                "lama_pelaksanaan"=>$bulan,
+                "id_sumberdana"=>$this->input->post('sumberdana',true),
+        );
+        $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
+            $file = $_FILES['file_prop'];
+            if(!empty($file['name'])){
+                $config['upload_path'] = './assets/prop_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file_prop')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file"=>$prop,];
+                $proposal=$this->M_PropPenelitian->update_prop($id,$datafile);
+            }
+            
+                $dsn_update = $this->input->post('dosen[]');
+                $id_dsn_anggota = $this->input->post('id_dsn_anggota[]');
+                $dsn_new = $this->input->post('dosen_new[]');
+                $data_dsn_anggota = $this->M_PropPenelitian->dosen_update_prop($id)->result();
+                $luaran_update = $this->input->post('luaran[]');
+                $id_nilai_luaran = $this->input->post('id_nilai_luaran[]');
+                $luaran_new = $this->input->post('luaran_new[]');
+                $data_nilai_luaran = $this->M_PropPenelitian->luaran_update_prop($id)->result();
+                // print_r($dsn_update);
+                if(!empty($dsn_update)){
+                foreach($data_dsn_anggota as $k){
+                    for($i=0;$i<count($dsn_update);$i++){
+                        if($k->id == $id_dsn_anggota[$i]){
+                            
+                            $dsn=$dsn_update[$i];
+                            $data_dosen =[
+                                'nip' => $dsn,
+                            ];
+                            $this->M_PropPenelitian->update_dosen_anggota($data_dosen, $id_dsn_anggota[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPenelitian->hapus_dosen_anggota(array('id'=>$k->id));
+                }
+                if(!empty($dsn_new)){
+                    for($j=0; $j<count($dsn_new)-1;$j++)
+                        {
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                            }
+                            else{
+                            $dosen_new=$dsn_new[$j];
+                            $data_dosen_new =[
+                                'nip' => $dosen_new,
+                                'id_proposal' => $id
+                            ];
+                            $this->M_PropPenelitian->insert_dsn_anggota($data_dosen_new);
+                        }
+                        }
+                    }
+            }
+
+            if(!empty($luaran_update)){
+                foreach($data_nilai_luaran as $k){
+                    for($i=0;$i<count($luaran_update);$i++){
+                        if($k->id == $id_nilai_luaran[$i]){
+                            
+                            $luaran=$luaran_update[$i];
+                            $data_luaran =[
+                                'id_luaran' => $luaran,
+                            ];
+                            $this->M_PropPenelitian->update_nilai_luaran($data_luaran, $id_nilai_luaran[$i]);
+                            continue 2;
+                        }
+                    } 
+                    $this->M_PropPenelitian->hapus_nilai_luaran(array('id'=>$k->id));
+                }
+                if(!empty($luaran_new)){
+                    for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                       $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+            }
+
+            if(empty($dsn_update)){    
+                $this->M_PropPenelitian->hapus_dosen_anggota(array('id_proposal'=>$id));
+                for($j=0; $j<count($dsn_new)-1;$j++)
+                    {
+                        if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+
+                        }
+                        else{
+                        
+                        $dosen_new=$dsn_new[$j];
+                        $data_dosen_new =[
+                            'nip' => $dosen_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPenelitian->insert_dsn_anggota($data_dosen_new);
+                    }
+                    }
+                }
+                
+                if(empty($luaran_update)){
+                    $this->M_PropPenelitian->hapus_nilai_luaran(array('id_proposal'=>$id));
+                for($j=0; $j<count($luaran_new)-1;$j++)
+                    {
+                        if($luaran_new[$j]==""||$luaran_new[$j]==null||$luaran_new[$j]==0){
+
+                        }
+                        else{
+                        
+                        $l_new=$luaran_new[$j];
+                        $data_luaran_new =[
+                            'id_luaran' => $l_new,
+                            'id_proposal' => $id
+                        ];
+                        $this->M_PropPenelitian->insert_nilai_luaran($data_luaran_new);
+                    }
+                    }
+                }
+    
+            /* update anggota mahasiswa */
+            $mhs_update = $this->input->post('nim_mahasiswa[]');
+            $mhs_nama_update = $this->input->post('nama_mahasiswa[]');
+            $id_mhs_anggota = $this->input->post('id_mhs_anggota[]');
+            $mhs_new = $this->input->post('nim_mahasiswa_new[]');
+            $mhs_nama_new = $this->input->post('nama_mahasiswa_new[]');
+            $data_mhs_anggota = $this->M_PropPenelitian->mhs_update_prop($id)->result();
+    
+            foreach($data_mhs_anggota as $k){
+                for($i=0;$i<count($mhs_update);$i++){
+                    if($k->id == $id_mhs_anggota[$i]){
+                        $mhs=$mhs_update[$i];
+                        $data_mhs =[
+                            'nim' => $mhs,
+                            'nama'=> $mhs_nama_update[$i],
+                        ];
+                        $this->M_PropPenelitian->update_mhs_anggota($data_mhs, $id_mhs_anggota[$i]);
+                        continue 2;
+                    }
+                } 
+                $this->M_PropPenelitian->hapus_mhs_anggota(array('id'=>$k->id));
+            }
+    
+            for($j=0; $j<count($mhs_new)-1;$j++)
+                {
+                 
+                    $mahasiswa_new=$mhs_new[$j];
+                    $data_mhs_new =[
+                        'nim' => $mahasiswa_new,
+                        'id_proposal' => $id
+                    ];
+                    $this->M_PropPenelitian->insert_mhs_anggota($data_mhs_new);
+                }
+        
+                
+        if($this->form_validation->run()==false){
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Perubhan gagal disimpan</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Perubhan berhasil disimpan</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        }
+    }
+        
+
     public function detailProposal(){
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
@@ -386,17 +610,19 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function monev()
+    public function monev($jadwal)
     {
-        $data['view']= $this->M_AdminPenelitian->getwhere_viewmonev()->result();
+        $data['view']= $this->M_AdminPenelitian->getwhere_viewmonev(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
+        $data['id'] = $jadwal;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/monev', $data);
         $this->load->view('layout/footer'); 
     }
 
-    public function akhir()
+    public function akhir($jadwal)
     {
-        $data['view']= $this->M_AdminPenelitian->getwhere_viewakhir()->result();
+        $data['view']= $this->M_AdminPenelitian->getwhere_viewakhir(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
+        $data['id'] = $jadwal;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/akhir', $data);
         $this->load->view('layout/footer'); 
@@ -531,12 +757,12 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function laporanKemajuanExcel()
+    public function laporanKemajuanExcel($jadwal)
     {
         $fileName = 'ListLaporanKemajuanSubmitted';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPenelitian->get_word_monev()->result();
+        $prop = $this->M_PropPenelitian->get_word_monev(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Kemajuan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -569,7 +795,7 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function laporanKemajuanWord()
+    public function laporanKemajuanWord($jadwal)
     {
         // $phpWord = new PhpWord();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
@@ -595,7 +821,7 @@ class Penelitian extends CI_Controller
     
 
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
-        $prop = $this->M_PropPenelitian->get_word_monev()->result();
+        $prop = $this->M_PropPenelitian->get_word_monev(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
         $table->addRow();
         $table->addCell(2000, $cellRowSpan)->addText("No");
         $table->addCell(2000, $cellRowSpan)->addText("Judul Penelitian");
@@ -631,12 +857,12 @@ class Penelitian extends CI_Controller
 
 
 
-    public function laporanAkhirExcel()
+    public function laporanAkhirExcel($jadwal)
     {
         $fileName = 'ListLaporanAkhirSubmitted';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPenelitian->get_word_akhir()->result();
+        $prop = $this->M_PropPenelitian->get_word_akhir(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'List Penelitian yang Telah Mengumpulkan Laporan Akhir');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -669,7 +895,7 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function laporanAkhirWord()
+    public function laporanAkhirWord($jadwal)
     {
         // $phpWord = new PhpWord();
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
@@ -696,7 +922,7 @@ class Penelitian extends CI_Controller
         $table = $section->addTable('myOwnTableStyle',array('borderSize' => 1, 'borderColor' => '999999', 'afterSpacing' => 0, 'Spacing'=> 0, 'cellMargin'=>0  ));
 
 
-        $prop = $this->M_PropPenelitian->get_word_akhir()->result();
+        $prop = $this->M_PropPenelitian->get_word_akhir(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
 
 
         $table->addRow();
@@ -717,7 +943,6 @@ class Penelitian extends CI_Controller
             $table->addCell(2000,$styleCell)->addText($p->judul);
             $table->addCell(2000,$styleCell)->addText($p->nama);
             $table->addCell(2000,$styleCell)->addText('Lengkap');
-
         }
         
 		$objWriter = \PhpOffice\PhpWord\IOFactory::createWriter( $phpWord, "Word2007" );
@@ -898,12 +1123,12 @@ class Penelitian extends CI_Controller
         // $writer->save('php://output');
         // $phpword->save('Perfomance_Appraisal.docx', 'Word2007', true);
     }
-    public function testexcel()
+    public function testexcel($jadwal)
     {
         $fileName = 'AcceptedProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPenelitian->get_viewAnnouncement()->result();
+        $prop = $this->M_PropPenelitian->get_viewAnnouncement(array('id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'Proposal Penelitian yang Akan Diberi Pendanaan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -968,6 +1193,7 @@ class Penelitian extends CI_Controller
 
     public function submitAllProposal()
     {
+        $jadwal = $this->input->post('jadwal');
         $props = $this->M_PropPenelitian->get_needSubmitProp()->result();
         foreach($props as $prop){
             $stat = [
@@ -975,18 +1201,30 @@ class Penelitian extends CI_Controller
             ];
             $this->M_PropPenelitian->update_prop($prop->id,$stat);
         }
-        redirect('admin/penelitian/assignProposal');
+        redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+    }
+    public function unsubmitAllProposal()
+    {
+        $jadwal = $this->input->post('jadwal');
+        $props = $this->M_PropPenelitian->get_needUnsubmitProp()->result();
+        foreach($props as $prop){
+            $stat = [
+                'status' => 0
+            ];
+            $this->M_PropPenelitian->update_prop($prop->id,$stat);
+        }
+        redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
 
 
     }
 
 
-    public function proposalexcel()
+    public function proposalexcel($jadwal)
     {
         $fileName = 'PengajuanProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPenelitian->get_viewListProp()->result();
+        $prop = $this->M_PropPenelitian->get_viewListProp(array('id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'List Semua Proposal Penelitian');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -1082,11 +1320,181 @@ class Penelitian extends CI_Controller
     public function deleteProp()
     {
         $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
         $this->M_AdminPenelitian->delProp(array('id'=>$id));
+        $this->M_AdminPenelitian->delMonev(array('id_proposal'=>$id));
+        $this->M_AdminPenelitian->delAkhir(array('id_proposal'=>$id));
         $this->M_AdminPenelitian->delLuaran(array('id_proposal'=>$id));
         $this->M_AdminPenelitian->delDsn(array('id_proposal'=>$id));
         $this->M_AdminPenelitian->delMhs(array('id_proposal'=>$id));
-        redirect('admin/penelitian/daftarPenelitian');
+        redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        
+    }
+
+    public function listSubmit()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'admin/penelitian/daftarPenelitian';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function statusProp(){
+        $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
+        $status = $this->input->post('status');
+        $data = [
+            "status"=>$status,];
+        $this->M_PropPenelitian->update_prop($id,$data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action berhasil dilakukan</strong></div>');
+        redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+    }
+
+    public function listMonev()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'admin/penelitian/monev';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function listAkhir()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'admin/penelitian/akhir';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function editMonev($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/editmonev',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function uploadMonev(){
+        $jadwal = $this->input->post('jadwal');
+        $id=$this->input->post('id');
+        $date = date('Y-m-d');
+        $config['upload_path'] = './assets/monev_penelitian';
+        $config['allowed_types'] = 'pdf';
+        $config['encrypt_name'] = TRUE;
+        $prop1 = $_FILES['file1'];
+        $prop2 = $_FILES['file2'];
+        $prop3 = $_FILES['file3'];
+        
+        if($prop1=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file1')){
+                echo "Upload Gagal, Terdapat Field Kosong"; die();
+            } else {
+                $prop1=$this->upload->data('file_name');
+            }
+        }
+
+        if($prop2=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file2')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop2=$this->upload->data('file_name');
+            }
+        }
+
+        if($prop3=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file3')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop3=$this->upload->data('file_name');
+            }
+        }
+
+        $data = [
+            "id_proposal"=>$id,
+            "file1"=>$prop1,
+            "file2"=>$prop2,
+            "file3"=>$prop3,
+            "catatan"=>$this->input->post('catatan',true),
+            "tgl_upload"=>$date];
+        $this->M_PropPenelitian->update_monev($data,$id);
+        redirect("admin/penelitian/monev"."/".$jadwal);
+
+    }
+
+    public function editAkhir($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/editakhir', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function uploadAkhir(){
+        $jadwal = $this->input->post('jadwal');
+        $id=$this->input->post('id');
+        $date = date('Y-m-d');
+        $config['upload_path'] = './assets/lap_akhir_penelitian';
+        $config['allowed_types'] = 'pdf';
+        $config['encrypt_name'] = TRUE;
+        $prop1 = $_FILES['file1'];
+        $prop2 = $_FILES['file2'];
+        $prop3 = $_FILES['file3'];
+        $prop4 = $_FILES['file4'];
+        
+        if($prop1=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file1')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop1=$this->upload->data('file_name');
+            }
+        }
+
+        if($prop2=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file2')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop2=$this->upload->data('file_name');
+            }
+        }
+
+        if($prop3=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file3')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop3=$this->upload->data('file_name');
+            }
+        }
+
+        if($prop4=''){}else{
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file4')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop4=$this->upload->data('file_name');
+            }
+        }
+
+        $data = [
+            "id_proposal"=>$id,
+            "file1"=>$prop1,
+            "file2"=>$prop2,
+            "file3"=>$prop3,
+            "file4"=>$prop4,
+            "catatan"=>$this->input->post('catatan',true),
+            "tgl_upload"=>$date];
+        $this->M_PropPenelitian->update_akhir($data,$id);
+        redirect("admin/penelitian/akhir"."/".$jadwal);
     }
 
 }
