@@ -27,6 +27,7 @@
         
         
         <section class="content">
+        <?php echo $this->session->flashdata('message');?>
         <a href="<?=base_url('admin/penelitian/proposalexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
         <a href="<?=base_url('admin/penelitian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
 
@@ -98,7 +99,11 @@
                 </td>
 
                 <td>
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/editProposal') ;?>/<?= $v->id; ?>">
+                    Edit
+                </a>
                 <?php if($v->status==0 || $v->status==1) : ?>
+                    
                     </form>
                                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/penelitian/deleteProp');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
@@ -106,6 +111,8 @@
                                         Hapus
                                     </button>
                                 </form>
+                                </form>
+                                
                 <?php else: ?>
 
                     <?php endif;?>

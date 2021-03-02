@@ -27,6 +27,7 @@
         
         
         <section class="content">
+        <?php echo $this->session->flashdata('message');?>
         <a href="<?=base_url('admin/pengabdian/proposalexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
         <a href="<?=base_url('admin/pengabdian/testexcel');?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
 
@@ -59,6 +60,9 @@
                 </td>
                 <td><?=$v->status?></td>
                 <td>
+                <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/editProposal') ;?>/<?= $v->id; ?>">
+                    Edit
+                </a>
                 <?php if($v->status==0 || $v->status==NULL || $v->status=="" || $v->status=="SUBMITTED") : ?>
                     </form>
                                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/pengabdian/deleteProp');?>>
