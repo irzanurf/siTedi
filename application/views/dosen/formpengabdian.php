@@ -119,8 +119,6 @@
                             <span type='button' class="badge badge-pill badge-success">Approved</span>
                             <?php elseif($v->status=='REJECTED'):?>
                             <span type='button' class="badge badge-pill badge-danger">Rejected</span>
-                            <?php elseif($v->status==''):?>
-                            <span  class="badge badge-pill badge-primary">Need to submit</span>
                             <?php else:?>
                             <span class="badge badge-pill badge-warning">Processing</span>
                             <?php endif;?>

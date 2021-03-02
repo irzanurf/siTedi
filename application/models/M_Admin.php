@@ -168,7 +168,7 @@ class M_Admin extends CI_Model
     {
         $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id, jadwal_pengabdian.keterangan as ket')
                         ->from('proposal_pengabdian')
-                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
                         ->join('jadwal_pengabdian','proposal_pengabdian.id_jadwal=jadwal_pengabdian.id', 'inner')
                         ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
                         ->where($data)

@@ -50,7 +50,14 @@
                 <td><?= $no++?></td>
                 <td><?= $v->ket?></td>
                 <td><?= $v->judul?></td>
-                <td><?= $v->nama_instansi ?></td>
+                <td>
+                <?php 
+                if($v->id_mitra==0) :?>
+                -
+                <?php else:?>
+                    <?= $v->nama_instansi ?>
+                 <?php endif;?>
+                 </td>
                 <td><?php 
                 if(!empty($v->nilai || $v->nilai2)) :
                     $rata = ($v->nilai+$v->nilai2)/2?><?= $rata ?>
@@ -60,12 +67,20 @@
                 </td>
                 <td><?=$v->status?></td>
                 <td>
-                <form style="display:inline-block;" method="post" action="<?= base_url('admin/pengabdian/editProposal') ;?>/<?= $v->id; ?>">
-                                    <input type='hidden' name="jadwal" value=<?=$id?>>
-                                    <button type="Submit" class="btn btn-info">
-                                        Edit
-                                    </button>
-                                </form>
+                <?php
+                if($v->id_mitra==0) :?>
+            
+                                <a href="<?=base_url('admin/pengabdian/editProposalTanpaMitra');?>/<?=$v->id?>">
+                                    <button   class="btn btn-info"> Edit </button>
+                                    </a>
+                <?php else:?>
+                    
+                                    <a href="<?=base_url('admin/pengabdian/editproposal');?>/<?=$v->id?>">
+                                    <button   class="btn btn-info"> Edit </button>
+                                    </a>
+                                    
+                 <?php endif;?>
+                
 
                     <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Proposal?');" action=<?= base_url('admin/pengabdian/deleteProp');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">

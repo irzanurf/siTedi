@@ -52,7 +52,13 @@
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
-                <td><?= $v->nama_instansi ?></td>
+                <td>
+                <?php if($v->id_mitra==0) :?>
+                    -
+                <?php else : ?> 
+                    <?= $v->nama_instansi ?>
+                <?php endif ?>
+                </td>
                 <td><?php if($v->status=='GRADED2' || ($v->status=='ASSIGNED')) : ?><?php else :?><?=$v->nilai?><?php endif?></td>
                 <td><?php if($v->status=='GRADED1' || ($v->status=='ASSIGNED')) : ?> <?php else :?><?=$v->nilai2 ?><?php endif?></td>
                 <td>

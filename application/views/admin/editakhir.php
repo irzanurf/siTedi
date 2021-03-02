@@ -14,7 +14,7 @@
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Edit Proposal
+                    <i class="fa fa-edit"></i> Edit Laporan Akhir
                 </li>
             </ol>
         </div>

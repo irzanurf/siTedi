@@ -61,7 +61,7 @@ class M_PropPengabdian extends CI_Model
     {
         $query = $this->db->select('assign_proposal_pengabdian.*,nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
                         ->from('proposal_pengabdian')
-                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
                         ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
                         ->join('assign_proposal_pengabdian','proposal_pengabdian.id=assign_proposal_pengabdian.id_proposal','left')
                         ->get();
@@ -72,7 +72,7 @@ class M_PropPengabdian extends CI_Model
     {
         $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
                         ->from('proposal_pengabdian')
-                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
                         ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
                         // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
                         ->get();
@@ -85,6 +85,16 @@ class M_PropPengabdian extends CI_Model
                         ->from('proposal_pengabdian')
                         ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
                         ->where('proposal_pengabdian.status="" AND mitra.status=1')
+                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->get();
+        return $query;
+    }
+
+    public function get_needSubmitPropNoMitra()
+    {
+        $query = $this->db->select('proposal_pengabdian.*')
+                        ->from('proposal_pengabdian')
+                        ->where('proposal_pengabdian.status="" AND proposal_pengabdian.id_mitra=0')
                         // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
                         ->get();
         return $query;
@@ -159,7 +169,7 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
-    public function get_word_laporanakhir()
+    public function get_word_laporanakhir($id_jadwal)
     {
         $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran, skema_pengabdian.jenis_pengabdian as skema ')
                         ->from('proposal_pengabdian')
@@ -167,6 +177,7 @@ class M_PropPengabdian extends CI_Model
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
                         ->join('skema_pengabdian','proposal_pengabdian.id_skema=skema_pengabdian.id','inner')
                         ->where('laporan_akhir is NOT NULL')
+                        ->where('proposal_pengabdian.id_jadwal = '.$id_jadwal.'')
                         ->where('belanja is NOT NULL')
                         ->where('logbook is NOT NULL')
                         ->where('luaran is NOT NULL')

@@ -101,7 +101,8 @@
                         </div>
                     
                     </div>
-
+                    <?php 
+                    if($mitra!=null) : ?>
                     <label >File surat persetujuan mitra </label>
                         <div class="form-group row" >
                         
@@ -113,6 +114,7 @@
                     
                     <!-- </div> -->
                     </div>
+                    <?php endif; ?>
 
                     
                     <div>
