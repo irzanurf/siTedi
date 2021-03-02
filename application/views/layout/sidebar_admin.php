@@ -70,7 +70,9 @@
                             <li>
                                 <a href="<?= base_url('admin/penelitian/jadwalpenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Jadwal Penelitian</a>
                                 </li></br>
-                            
+                                <li>
+                            <a href="<?= base_url('admin/penelitian/listSubmit/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal & Finalisasi</a>
+                                </li></br>
                             <li>
                                 <a href="<?= base_url('admin/penelitian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Penelitian</a>
                                 </li></br>
@@ -93,10 +95,10 @@
                                 <a href="<?= base_url('admin/penelitian/daftarPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Status Proposal</a>
                             </li></br>
                             <li>
-                                <a href="<?= base_url('admin/penelitian/monev/');?>"><i class="fa fa-fw fa-clipboard"></i> Monitoring & Evaluasi</a>
+                                <a href="<?= base_url('admin/penelitian/listMonev/');?>"><i class="fa fa-fw fa-clipboard"></i> Monitoring & Evaluasi</a>
                             </li></br>
                             <li>
-                                <a href="<?= base_url('admin/penelitian/akhir/');?>"><i class="fa fa-fw fa-clipboard"></i> Laporan Akhir</a>
+                                <a href="<?= base_url('admin/penelitian/listAkhir/');?>"><i class="fa fa-fw fa-clipboard"></i> Laporan Akhir</a>
                             </li></br>
                         </ul>
                     </li>
@@ -105,6 +107,9 @@
                             <ul id="demo" class="collapse">
                             <li>
                                     <a href="<?= base_url('admin/pengabdian/jadwalpengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Jadwal Pengabdian</a>
+                                </li></br>
+                                <li>
+                            <a href="<?= base_url('admin/pengabdian/listSubmit/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal & Finalisasi</a>
                                 </li></br>
                             <li>
                                 <a href="<?= base_url('admin/pengabdian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman Pengabdian</a>
@@ -128,7 +133,7 @@
                                     <a href="<?= base_url('admin/pengabdian/daftarPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Status Proposal</a>
                                 </li></br>
                                 <li>
-                                    <a href="<?= base_url('admin/pengabdian/laporanakhir/');?>"><i class="fa fa-fw fa-clipboard"></i> List Laporan Akhir</a>
+                                    <a href="<?= base_url('admin/pengabdian/listAkhir/');?>"><i class="fa fa-fw fa-clipboard"></i> List Laporan Akhir</a>
                                 </li></br>
                                 
                         </ul>

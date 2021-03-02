@@ -187,6 +187,16 @@ class Penelitian extends CI_Controller {
     {
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPenelitian->getwhere_viewpenelitian(array('nip'=>$username))->result();
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
+        $now = date('Y-m-d', strtotime(date('Y-m-d')));
+        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
+        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
+        if(($now>= $awal) && ($now<=$akhir)){
+           $data['cek']=1;
+        } 
+        else {
+            $data['cek']=0;
+        }
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();

@@ -103,22 +103,24 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
-    public function get_viewAnnouncement()
+    public function get_viewAnnouncement($data)
     {
         $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi, skema_pengabdian.jenis_pengabdian as skema')
                         ->from('proposal_pengabdian')
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
                         ->join('skema_pengabdian','proposal_pengabdian.id_skema=skema_pengabdian.id','inner')
+                        ->where($data)
                         ->where('proposal_pengabdian.status= "ACCEPTED"')
                         ->get();
         return $query;
     }
-    public function get_viewListProp()
+    public function get_viewListProp($data)
     {
         $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi, skema_pengabdian.jenis_pengabdian as skema')
                         ->from('proposal_pengabdian')
                         ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
                         ->join('skema_pengabdian','proposal_pengabdian.id_skema = skema_pengabdian.id','inner')
+                        ->where($data)
                         ->get();
         return $query;
     }
@@ -128,6 +130,19 @@ class M_PropPengabdian extends CI_Model
         $query = $this->db->select('proposal_pengabdian.*, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran ')
                         ->from('proposal_pengabdian')
                         ->join('laporan_akhir_pengabdian','proposal_pengabdian.id=laporan_akhir_pengabdian.id_proposal','inner')
+                        
+                        ->order_by("tgl_upload", "desc")
+                        ->get();
+        return $query;
+    }
+
+    public function get_whereAkhir($data)
+    {
+        $query = $this->db->select('proposal_pengabdian.*, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran ')
+                        ->from('proposal_pengabdian')
+                        ->join('laporan_akhir_pengabdian','proposal_pengabdian.id=laporan_akhir_pengabdian.id_proposal','inner')
+                        ->where($data)
+                        ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
     }

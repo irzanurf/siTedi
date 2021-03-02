@@ -64,6 +64,9 @@
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                                 </div>
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="jadwal" value=<?= $jadwal?>  >
+                                </div>
 
                                 <div class="form-group">
                                     <label>Abstrak</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>

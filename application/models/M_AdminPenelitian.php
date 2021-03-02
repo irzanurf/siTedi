@@ -103,24 +103,26 @@ class M_AdminPenelitian extends CI_Model
         $this->db->update('proposal_penelitian', $data);
     }
     
-    public function getwhere_viewmonev()
+    public function getwhere_viewmonev($data)
     {
         $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan,laporan_monev_penelitian.status as stat,nilai_proposal_penelitian.*')
                         ->from('proposal_penelitian')
                         ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
+                        ->where($data)
                         ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
     }
 
-    public function getwhere_viewakhir()
+    public function getwhere_viewakhir($data)
     {
         $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, laporan_akhir_penelitian.status as stat, laporan_akhir_penelitian.catatan as catatan')
                         ->from('proposal_penelitian')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
+                        ->where($data)
                         ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
@@ -144,6 +146,21 @@ class M_AdminPenelitian extends CI_Model
                         ->get();
         return $query;
     }
+
+    public function get_wherePenelitian($data)
+    {
+        $query = $this->db->select('nilai_proposal_penelitian.*, proposal_penelitian.*,jenispenelitian.jenis as jenis,dosen.nama as nama_dosen, jadwal_penelitian.keterangan as ket')
+                        ->from('proposal_penelitian')
+                        ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
+                        ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
+                        ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id', 'inner')
+                        ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
+                        ->where($data)
+                        ->order_by("tgl_upload", "desc")
+                        ->get();
+        return $query;
+    }
+
 
     public function getwhere_assignment(array $data)
     {
@@ -182,6 +199,16 @@ class M_AdminPenelitian extends CI_Model
     public function delProp($data)
     {
         $query = $this->db->delete('proposal_penelitian',$data);
+        return $query;
+    }
+    public function delMonev($data)
+    {
+        $query = $this->db->delete('laporan_monev_penelitian',$data);
+        return $query;
+    }
+    public function delAkhir($data)
+    {
+        $query = $this->db->delete('laporan_akhir_penelitian',$data);
         return $query;
     }
     public function delMhs($data)

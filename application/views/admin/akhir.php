@@ -30,12 +30,6 @@
         
         <section class="content">
         <table class="table">
-        <col style='width:5%'>
-        <col style='width:55%'>
-        <col style='width:10%'>
-        <col style='width:10%'>
-        <col style='width:10%'>
-        <col style='width:10%'>
             <tr>
                 <th>No</th>
                 <th>Judul Proposal</th>
@@ -43,7 +37,7 @@
                 <th class='text-center'>Logbook</th>
                 <th class='text-center'>Luaran</th>
                 <th class='text-center'>Catatan Belanja</th>
-                
+                <th class='text-center'>Action</th>
             </tr>
             <?php 
             $no = 1;
@@ -55,7 +49,7 @@
                 <td><?= $v->judul?></td>
                 <td class='text-center'>
                     <?php if ($v->laporan_akhir==NULL) : ?> -
-                        <?php elseif($v->laporan_akhir != NULL) : ?>  
+                        <?php elseif($v->laporan_akhir != NULL) : ?>  <br>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLaporanAkhir<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -84,6 +78,14 @@
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
+                </td>
+                <td>
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/pengabdian/editAkhir') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-info">
+                                        Edit
+                                    </button>
+                                </form>
                 </td>
                
             </tr>

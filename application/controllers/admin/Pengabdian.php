@@ -133,9 +133,10 @@ class Pengabdian extends CI_Controller
     }
 
 
-    public function daftarPengabdian()
+    public function daftarPengabdian($id)
     {
-        $data['view'] = $this->M_Admin->get_viewPengabdian()->result();
+        $data['view'] = $this->M_Admin->get_wherePengabdian(array('id_jadwal'=>$id))->result();
+        $data['id'] = $id;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/daftar_prop_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -469,11 +470,12 @@ class Pengabdian extends CI_Controller
 
     }
 
-    public function laporanAkhir()
+    public function akhir($jadwal)
     {
-        $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
+        $data['view']= $this->M_PropPengabdian->get_whereAkhir(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
+        $data['id'] = $jadwal;
         $this->load->view('layout/sidebar_admin');
-        $this->load->view('admin/laporan_akhir_pengabdian', $data);
+        $this->load->view('admin/akhir', $data);
         $this->load->view('layout/footer'); 
     }
 
@@ -740,12 +742,12 @@ class Pengabdian extends CI_Controller
         
         $objWriter->save( "php://output" );
     }
-    public function testexcel()
+    public function testexcel($jadwal)
     {
         $fileName = 'AcceptedProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPengabdian->get_viewAnnouncement()->result();
+        $prop = $this->M_PropPengabdian->get_viewAnnouncement(array('id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'Proposal Pengabdian yang Akan Diberi Pendanaan');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -806,12 +808,12 @@ class Pengabdian extends CI_Controller
 
     }
 
-    public function proposalexcel()
+    public function proposalexcel($jadwal)
     {
         $fileName = 'PengajuanProposal';  
 		$spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $prop = $this->M_PropPengabdian->get_viewListProp()->result();
+        $prop = $this->M_PropPengabdian->get_viewListProp(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
         $sheet->setCellValue('A1', 'List Semua Proposal Pengabdian');
         $sheet->setCellValue('A2', date('Y-m-d'));
         $sheet->setCellValue('A3', 'No');
@@ -906,6 +908,7 @@ class Pengabdian extends CI_Controller
     public function deleteProp()
     {
         $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
         $id_mitra = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row()->id_mitra;
         $user_mitra = $this->M_Admin->get_userMitra(array('id'=>$id_mitra))->row()->username;
         $this->M_Admin->delProp(array('id'=>$id));
@@ -913,8 +916,9 @@ class Pengabdian extends CI_Controller
         $this->M_Admin->delDsn(array('id_proposal'=>$id));
         $this->M_Admin->delMhs(array('id_proposal'=>$id));
         $this->M_Admin->delMitra(array('id'=>$id_mitra));
+        $this->M_Admin->delAkhir(array('id_proposal'=>$id));
         $this->M_Admin->delUserMitra(array('username'=>$user_mitra));
-        redirect('admin/pengabdian/daftarPengabdian');
+        redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
     }
 
     public function editProposal($id){
@@ -939,6 +943,7 @@ class Pengabdian extends CI_Controller
         $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
         $this->form_validation->set_rules('abstrak','Abstrak', 'required');
         $id = $this->input->post('id');
+        $jadwal = $this->input->post('jadwal');
         $nip = $this->session->userdata('user_name');
         $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
         
@@ -1150,11 +1155,100 @@ class Pengabdian extends CI_Controller
 
         if($this->form_validation->run()==false){
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Perubhan gagal disimpan</strong></div>');
-            redirect("admin/pengabdian/daftarPengabdian");
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Perubhan berhasil disimpan</strong></div>');
-            redirect("admin/pengabdian/daftarPengabdian");
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
         }
 
     }
+
+    public function listSubmit()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/daftarPengabdian';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function listAkhir()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/akhir';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function editAkhir($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/editakhir', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function uploadAkhir(){
+        $jadwal = $this->input->post('jadwal');
+        $id=$this->input->post('id');
+        $config['allowed_types'] = 'pdf';
+        $config['encrypt_name'] = TRUE;
+        $akhir = $_FILES['laporan_akhir'];
+        $logbook = $_FILES['logbook'];
+        $belanja = $_FILES['belanja'];
+        $luaran = $_FILES['luaran'];
+
+        if($akhir=''){}else{
+            $config['upload_path'] = './assets/laporan_akhir';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('laporan_akhir')){
+                echo "Upload Gagal"; die();
+            } else {
+                $akhir=$this->upload->data('file_name');
+            }
+        }
+        $data = array('laporan_akhir'=>$akhir);
+
+        
+        if($logbook=''){}else{
+            $config['upload_path'] = './assets/logbook';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('logbook')){
+                echo "Upload Gagal"; die();
+            } else {
+                $logbook=$this->upload->data('file_name');
+            }
+        }
+        $data = array('logbook'=>$logbook);
+
+        
+        if($belanja=''){}else{
+            $config['upload_path'] = './assets/belanja';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('belanja')){
+                echo "Upload Gagal"; die();
+            } else {
+                $belanja=$this->upload->data('file_name');
+            }
+        }
+        $data = array('belanja'=>$belanja);
+
+        
+        if($luaran=''){}else{
+            $config['upload_path'] = './assets/luaran';
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('luaran')){
+                echo "Upload Gagal"; die();
+            } else {
+                $luaran=$this->upload->data('file_name');
+            }
+        }
+        $data = array('luaran'=>$luaran);
+        $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
+
+        redirect("admin/pengabdian/akhir"."/".$jadwal);
+    }
+
 }

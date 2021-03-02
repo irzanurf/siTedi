@@ -164,6 +164,19 @@ class M_Admin extends CI_Model
         return $query;
     }
 
+    public function get_wherePengabdian($data)
+    {
+        $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id, jadwal_pengabdian.keterangan as ket')
+                        ->from('proposal_pengabdian')
+                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
+                        ->join('jadwal_pengabdian','proposal_pengabdian.id_jadwal=jadwal_pengabdian.id', 'inner')
+                        ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
+                        ->where($data)
+                        ->order_by("tgl_upload", "desc")
+                        ->get();
+        return $query;
+    }
+
     public function get_userMitra(array $data)
     {
         return $this->db->get_where('mitra',$data);
@@ -197,6 +210,11 @@ class M_Admin extends CI_Model
     public function delUserMitra($data)
     {
         $query = $this->db->delete('user',$data);
+        return $query;
+    }
+    public function delAkhir($data)
+    {
+        $query = $this->db->delete('laporan_akhir_pengabdian',$data);
         return $query;
     }
 }
