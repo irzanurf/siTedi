@@ -70,6 +70,11 @@ class M_ReviewerPenelitian extends CI_Model
         return $this->db->get_where('laporan_monev_penelitian',$data);
     }
 
+    public function get_akhir(array $data)
+    {
+        return $this->db->get_where('laporan_akhir_penelitian',$data);
+    }
+
     public function get_komponen(array $data)
     {
         return $this->db->get_where('komp_penilaian_penelitian',$data);
