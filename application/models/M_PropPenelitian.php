@@ -41,9 +41,10 @@ class M_PropPenelitian extends CI_Model
 
     public function getwhere_viewpenelitian(array $data)
     {
-        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis')
+        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,jadwal_penelitian.tgl_selesai')
                         ->from('proposal_penelitian')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
+                        ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id','inner')
                         ->where($data)
                         ->order_by("tgl_upload", "desc")
                         ->get();
@@ -217,10 +218,11 @@ class M_PropPenelitian extends CI_Model
 
     public function getwhere_viewakhir(array $data)
     {
-        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,laporan_akhir_penelitian.file1,laporan_akhir_penelitian.status as status_monev')
+        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,laporan_akhir_penelitian.file1,laporan_akhir_penelitian.status as status_monev,jadwal_penelitian.tgl_akhir')
                         ->from('proposal_penelitian')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
+                        ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id','inner')
                         ->where($data)
                         ->order_by("tgl_upload", "desc")
                         ->get();

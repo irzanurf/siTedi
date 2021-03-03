@@ -14,8 +14,12 @@
                             
                         </tr>
                     </thead>
+                    <?php 
+                        $now =  date('Y-m-d', strtotime(date('Y-m-d')));
+                        ?>
                         <?php 
                         foreach($view as $v) { ?>
+                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_akhir)); ?>
                         <?php if ($v->reviewer==$this->session->userdata('user_name')) : ?>
                         <tr>
                             <td align="center"><?= $v->tgl_upload?></td>
@@ -32,7 +36,12 @@
                                     
                                 </form>
 
-                               
+                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit
+                                    </button>
+
+                            
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('reviewer/penelitian/editCr');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
@@ -67,6 +76,11 @@
                                     </button>
                                     
                                 </form>
+
+                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit
+                                    </button>
 
                                
                             <?php else : ?>

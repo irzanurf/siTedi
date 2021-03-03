@@ -54,10 +54,11 @@ class M_ReviewerPenelitian extends CI_Model
     }
     public function getwhere_monev(array $data)
     {
-        $query = $this->db->select('assign_proposal_penelitian.*,nilai_proposal_penelitian.cr_monev,nilai_proposal_penelitian.cr_monev2,proposal_penelitian.id,proposal_penelitian.id_jenis,proposal_penelitian.status,proposal_penelitian.tgl_upload,proposal_penelitian.judul,nilai_proposal_penelitian.nilai,nilai_proposal_penelitian.nilai2,jenispenelitian.jenis as jenis,jenispenelitian.id as id_jenis')
+        $query = $this->db->select('assign_proposal_penelitian.*,nilai_proposal_penelitian.cr_monev,nilai_proposal_penelitian.cr_monev2,proposal_penelitian.id,proposal_penelitian.id_jenis,proposal_penelitian.status,proposal_penelitian.tgl_upload,proposal_penelitian.judul,nilai_proposal_penelitian.nilai,nilai_proposal_penelitian.nilai2,jenispenelitian.jenis as jenis,jenispenelitian.id as id_jenis,jadwal_penelitian.tgl_akhir')
                         ->from('proposal_penelitian')
                         ->join('nilai_proposal_penelitian','nilai_proposal_penelitian.id_proposal=proposal_penelitian.id','left')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
+                        ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id','inner')
                         ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','left')
                         ->order_by("tgl_upload", "desc")
                         ->where('status >','2')

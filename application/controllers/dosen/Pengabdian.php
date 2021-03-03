@@ -158,7 +158,7 @@ class Pengabdian extends CI_Controller {
           $this->M_PropPengabdian->mahasiswa($data_mahasiswa);
   
   
-          $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+          $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan permohonan proposal <br> Proposal dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali proposal Anda sebelum jadwal pengumpulan berakhir </p>');
           $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
           redirect("dosen/pengabdian/success");
           }
@@ -295,7 +295,7 @@ class Pengabdian extends CI_Controller {
             "role"=>$role_mitra
         ];
         $this->M_User->insert_user($user_mitra);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan permohonan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
         $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
         redirect("dosen/pengabdian/success");
         }
@@ -747,7 +747,7 @@ class Pengabdian extends CI_Controller {
                 ];
                 $this->M_PropPengabdian->insert_mhs_anggota($data_mhs_new);
             }
-            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali proposal Anda sebelum jadwal pengumpulan berakhir </p>');
             $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
             redirect("dosen/pengabdian/success");
         }
@@ -982,7 +982,7 @@ class Pengabdian extends CI_Controller {
 
         
         
-            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali proposal Anda sebelum jadwal pengumpulan berakhir </p>');
             $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
             redirect("dosen/pengabdian/success");
         }

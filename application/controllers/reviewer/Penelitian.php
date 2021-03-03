@@ -203,7 +203,7 @@ class Penelitian extends CI_Controller {
             ];
         
         $this->M_PropPenelitian->update_prop($id,$status);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian</p>');
         $this->session->set_flashdata('button', 'reviewer/penelitian/penilaian_penelitian');
         redirect("reviewer/penelitian/success"); 
     
@@ -251,7 +251,7 @@ class Penelitian extends CI_Controller {
         ];
     
         $this->M_PropPenelitian->update_prop($id,$status);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian <br> Penilaian dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya</p>');
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penilaian</p>');
         $this->session->set_flashdata('button', 'reviewer/penelitian/penilaian_penelitian');
         redirect("reviewer/penelitian/success"); 
     }
@@ -281,7 +281,7 @@ class Penelitian extends CI_Controller {
         }
         
         $this->M_PropPenelitian->update_prop($id,$status);
-        $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-block" align="center"><strong>Finalisasi Berhasil</strong></div>');   
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Finalisasi Berhasil</strong></div>');   
         redirect('reviewer/penelitian/penilaian_penelitian');
     }
     

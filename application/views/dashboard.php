@@ -85,12 +85,12 @@
                                 
                                 <?php elseif($v->status=="0") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                           Submited (Belum difinalisasi)
+                                           Submited
                                        </button>
                                 
                                 <?php elseif($v->status=="1") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                           Submited (Sudah difinalisasi)
+                                           Submited
                                        </button>
 
                                <?php elseif($v->status=="2") : ?>
@@ -104,17 +104,17 @@
 
                                        <?php elseif($v->status=="13") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                           Monev (Belum difinalisasi)
+                                           Monev
                                        </button>
    
                                        <?php elseif($v->status=="3") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                   Monev (Sudah difinalisasi)
+                                   Monev Submited
                                        </button>
 
                                        <?php elseif($v->status=="4") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                   Laporan Akhir (Sudah difinalisasi)
+                                   Laporan Akhir
                                        </button>
 
                                <?php else : ?>

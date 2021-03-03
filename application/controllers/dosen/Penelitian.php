@@ -128,7 +128,7 @@ class Penelitian extends CI_Controller {
             );
         }
         $this->M_PropPenelitian->mahasiswa($data_mahasiswa);
-            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengajuan proposal <br> Proposal dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali proposal Anda sebelum jadwal pengumpulan berakhir </p>');
             $this->session->set_flashdata('button', 'dosen/penelitian/submit');
             redirect("dosen/penelitian/success");
     }
@@ -191,16 +191,6 @@ class Penelitian extends CI_Controller {
         $username = $this->session->userdata('user_name');
         $data['view']= $this->M_PropPenelitian->getwhere_viewpenelitian(array('nip'=>$username))->result();
         $data['anggota']= $this->M_PropPenelitian->getwhere_viewanggota($username)->result();
-        $data['jadwal'] = $this->M_JadwalPenelitian->get_last_jadwal()->row();
-        $now = date('Y-m-d', strtotime(date('Y-m-d')));
-        $awal = date('Y-m-d', strtotime($data['jadwal']->tgl_mulai));
-        $akhir = date('Y-m-d', strtotime($data['jadwal']->tgl_selesai));
-        if(($now>= $awal) && ($now<=$akhir)){
-           $data['cek']=1;
-        } 
-        else {
-            $data['cek']=0;
-        }
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
@@ -430,7 +420,7 @@ class Penelitian extends CI_Controller {
             
             redirect("dosen/penelitian/submit");
         } else {
-            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali proposal Anda sebelum jadwal pengumpulan berakhir </p>');
             $this->session->set_flashdata('button', 'dosen/penelitian/submit');
             redirect("dosen/penelitian/success");
         }
@@ -601,8 +591,8 @@ class Penelitian extends CI_Controller {
         $stat = [
             "status"=>"3",];
             $this->M_PropPenelitian->update_prop($id,$stat);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Monev <br> Laporan Monev dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Monev Anda sebelum melakukan finalisasi <br> Laporan Monev akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
-        $this->session->set_flashdata('button', 'dosen/penelitian/monev');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan laporan monev <br> Laporan monev dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali laporan monev Anda sebelum jadwal pengumpulan berakhir </p>'); 
+            $this->session->set_flashdata('button', 'dosen/penelitian/monev');
         redirect("dosen/penelitian/success"); 
 
     }
@@ -678,7 +668,7 @@ class Penelitian extends CI_Controller {
         $stat = [
             "status"=>"3",];
             $this->M_PropPenelitian->update_prop($id,$stat);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Monev <br> Laporan Monev dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Monev Anda sebelum melakukan finalisasi <br> Laporan Monev akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan laporan monev <br> Laporan monev dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali laporan monev Anda sebelum jadwal pengumpulan berakhir </p>'); 
         $this->session->set_flashdata('button', 'dosen/penelitian/monev');
         redirect("dosen/penelitian/success"); 
 
@@ -771,10 +761,10 @@ class Penelitian extends CI_Controller {
         ];
         $this->M_PropPenelitian->update_akhir($data,$id);
         $stat = [
-            "status"=>"5",];
+            "status"=>"4",];
             $this->M_PropPenelitian->update_prop($id,$stat);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Akhir <br> Laporan Akhir dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Akhir Anda sebelum melakukan finalisasi <br> Laporan Akhir akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
-        $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan laporan akhir <br> Laporan akhir dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali laporan akhir Anda sebelum jadwal pengumpulan berakhir </p>'); 
+            $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
         redirect("dosen/penelitian/success"); 
     }
 
@@ -895,9 +885,9 @@ class Penelitian extends CI_Controller {
         ];
         $this->M_PropPenelitian->update_akhir($data,$id);
         $stat = [
-            "status"=>"5",];
+            "status"=>"4",];
             $this->M_PropPenelitian->update_prop($id,$stat);
-        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Akhir <br> Laporan Akhir dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Akhir Anda sebelum melakukan finalisasi <br> Laporan Akhir akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+            $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan laporan akhir <br> Laporan akhir dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali laporan akhir Anda sebelum jadwal pengumpulan berakhir </p>');
         $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
         redirect("dosen/penelitian/success"); 
     }

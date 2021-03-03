@@ -30,6 +30,11 @@
                                     </button>
                                     
                                 </form>
+                            
+                            <?php elseif($v->status==4 || $v->status==5) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit File
+                                    </button>
                                
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/editMonev');?>>
@@ -39,6 +44,8 @@
                                     </button>
                                     
                                 </form>
+
+                            
                             <?php endif;?>
                             
                             

@@ -71,28 +71,28 @@
                 </td> -->
                 <td>
                 <?php if($v->status==0) : ?>
-                SUBMITED 
+                Submited 
 
                 <?php elseif($v->status==1) : ?>
-                SUBMITED
+                Submited
 
                 <?php elseif($v->status==2) : ?>
-                ACCEPTED
+                Acceptef
 
-                <?php elseif($v->status==11||$v->status==12||$v->status==13) : ?>
-                REVIEW
+                <?php elseif($v->status==11||$v->status==12) : ?>
+                Review
 
                 <?php elseif($v->status==13) : ?>
-                MONEV
+                Monev
 
                 <?php elseif($v->status==3) : ?>
-                MONEV SUBMITED
+                Monev Submited
 
                 <?php elseif($v->status==4) : ?>
-                LAPORAN AKHIR
+                Laporan Akhir
 
                 <?php elseif($v->status==5) : ?>
-                REJECTED
+                Rejected
 
                 <?php else: ?>
 

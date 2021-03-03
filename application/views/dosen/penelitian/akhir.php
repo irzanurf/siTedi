@@ -13,9 +13,13 @@
                             <th>Upload Laporan Akhir</th>
                         </tr>
                     </thead>
+                    <?php 
+                        $now =  date('Y-m-d', strtotime(date('Y-m-d')));
+                        ?>
                         <?php 
                         $no = 1;
                         foreach($view as $v) { ?>
+                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_akhir)); ?>
                         <tr>
                             <td align="center"><?= $v->tgl_upload?></td>
                             <td align="center"><?= $v->jenis?></td>
@@ -30,6 +34,11 @@
                                     </button>
                                     
                                 </form>
+                            
+                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit File
+                                    </button>
                                
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/editAkhir');?>>
