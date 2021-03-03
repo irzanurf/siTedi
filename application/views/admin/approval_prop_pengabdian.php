@@ -48,7 +48,7 @@
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nilai!==NULL) : ?>
+            <?php if ($v->nilai!==NULL || $v->nilai2!==NULL) : ?>
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>

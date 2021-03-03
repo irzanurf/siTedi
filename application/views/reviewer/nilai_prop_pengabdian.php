@@ -58,13 +58,10 @@
                 </td>
                 <td><?= $v->nilai ?></td>
                 <td>
-                <?php if($v->status=='GRADED1' || $v->status == 'NEED_APPROVAL' ||$v->status == 'ACCEPTED' ||$v->status == 'REJECTED' ) : ?>
+                <?php if($v->status == 'ACCEPTED' ||$v->status == 'REJECTED' ) : ?>
                 <?php elseif($v->nilai!=NULL) : ?>
                 <a type="button" class="btn-sm btn-success" href="<?= base_url('reviewer/pengabdian/editProposal') ;?>/<?= $v->id_proposal; ?>">
                     Edit
-                </a>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('reviewer/pengabdian/finalSubmitNilai') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda yakin akan melakukan submission?');">
-                    Submit
                 </a>
                 <?php elseif($v->status=='ASSIGNED'||$v->status='GRADED2') :?>
                 <a type="button" class="btn-sm btn-primary" href="<?= base_url('reviewer/pengabdian/penilaianproposal') ;?>/<?= $v->id; ?>">
@@ -81,8 +78,6 @@
                 <span type='button' class="btn-sm btn-danger">Rejected</span>
                 <?php elseif($v->status=='GRADED1' || $v->status == 'NEED_APPROVAL') : ?>
                 <span type='button' class="btn-sm btn-warning">Processing</span>
-                <?php elseif($v->nilai!=NULL) : ?>
-                <span type='button' class="btn-sm btn-default">Need to submit</span>
                 <?php elseif($v->status=='ASSIGNED') : ?>
                 <span type='button' class="btn-sm btn-default">Need grading</span>
                 <?php else : ?>
@@ -96,16 +91,20 @@
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
-                <td><?= $v->nama_instansi ?></td>
+                <td>
+                <?php if($v->id_mitra==0) : ?>
+                    -
+                <?php else : ?>
+                    <?= $v->nama_instansi ?>
+
+                <?php endif;?>
+                </td>
                 <td><?= $v->nilai2 ?></td>
                 <td>
-                <?php if($v->status=='GRADED2' || $v->status == 'NEED_APPROVAL' ||$v->status == 'ACCEPTED' ||$v->status == 'REJECTED' ) : ?>
+                <?php if($v->status == 'ACCEPTED' ||$v->status == 'REJECTED' ) : ?>
                 <?php elseif($v->nilai2!=NULL) : ?>
                 <a type="button" class="btn-sm btn-success" href="<?= base_url('reviewer/pengabdian/editProposal') ;?>/<?= $v->id_proposal; ?>">
                     Edit
-                </a>
-                <a type="button" class="btn-sm btn-info" href="<?= base_url('reviewer/pengabdian/finalSubmitNilai') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda yakin akan melakukan submission?');" >
-                    Submit
                 </a>
                 <?php elseif($v->status=='ASSIGNED' || $v->status=='GRADED1') :?>
                 <a type="button" class="btn-sm btn-primary" href="<?= base_url('reviewer/pengabdian/penilaianproposal') ;?>/<?= $v->id; ?>">
@@ -122,8 +121,6 @@
                 <span type='button' class="btn-sm btn-danger">Rejected</span>
                 <?php elseif($v->status=='GRADED2' || $v->status == 'NEED_APPROVAL') : ?>
                 <span type='button' class="btn-sm btn-warning">Processing</span>
-                <?php elseif($v->nilai2!=NULL) : ?>
-                <span type='button' class="btn-sm btn-default">Need to submit</span>
                 <?php elseif($v->status=='ASSIGNED') : ?>
                 <span type='button' class="btn-sm btn-default">Need grading</span>
                 <?php else : ?>

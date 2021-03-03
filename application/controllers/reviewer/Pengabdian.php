@@ -143,6 +143,10 @@ class Pengabdian extends CI_Controller
                     'komentar'=> $komentar,
                     'nilai'=>$total_nilai
                 ];
+
+                $this->M_PropPengabdian->update_prop($id,array('status' => 'GRADED1'));
+
+
     
             } else if ($reviewer->reviewer2 == $this->session->userdata('user_name')){
                 $data = [
@@ -150,6 +154,7 @@ class Pengabdian extends CI_Controller
                     'komentar2'=> $komentar,
                     'nilai2'=>$total_nilai
                 ];
+                $this->M_PropPengabdian->update_prop($id,array('status' => 'GRADED2'));
     
             }
 
@@ -187,6 +192,7 @@ class Pengabdian extends CI_Controller
                 ];
     
             }
+            $this->M_PropPengabdian->update_prop($id,array('status' => 'NEED_APPROVAL'));
            
             $this->M_NilaiPropPengabdian->update_nilai($id,$data);
             $prop = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
