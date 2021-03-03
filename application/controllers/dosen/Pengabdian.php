@@ -631,7 +631,7 @@ class Pengabdian extends CI_Controller {
                 if(!empty($dsn_new)){
                     for($j=0; $j<count($dsn_new)-1;$j++)
                         {
-                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null){
 
                             }
                             else{
@@ -956,20 +956,31 @@ class Pengabdian extends CI_Controller {
         $this->M_Mitra->update_mitra($id_mitra, $data_mitra);
 
         $pass = $this->input->post('password');
+        $username_mitra = $this->input->post('username');
         if($pass != null){
-            $data_user_mitra = [
-                'username' =>$this->input->post('username'),
-                'password' =>md5($pass)
-            ];
-
+            $if_exists = $this->M_User->checkUserexist($username_mitra);
+            if($if_exist>0){
+                $data_user_mitra = [
+                    'username' =>$username_mitra,
+                    'password' =>md5($pass)
+                ];
+                $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+            } else {
+                $data_user_mitra = [
+                    "username"=>$username_mitra,
+                    "password"=>md5($pass),
+                    "role"=>4
+                ];
+                $this->M_User->insert_user($data_user_mitra);
+            }
         } else{
             $data_user_mitra = [
                 'username' => $this->input->post('username')
             ];
+            $this->M_User->update_user($old_username_mitra, $data_user_mitra);
         }
 
-        $this->M_User->update_user($old_username_mitra, $data_user_mitra);
-
+        
         
             $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan perubahan proposal <br> Proposal dapat diedit selama Anda belum melakukan "Submit" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali proposal Anda sebelum melakukan finalisasi <br> Proposal akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
             $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');

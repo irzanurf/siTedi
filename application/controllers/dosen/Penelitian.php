@@ -305,7 +305,7 @@ class Penelitian extends CI_Controller {
                 if(!empty($dsn_new)){
                     for($j=0; $j<count($dsn_new)-1;$j++)
                         {
-                            if($dsn_new[$j]==""||$dsn_new[$j]==null||$dsn_new[$j]==0){
+                            if($dsn_new[$j]==""||$dsn_new[$j]==null){
 
                             }
                             else{
