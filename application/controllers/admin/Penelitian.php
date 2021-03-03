@@ -872,7 +872,7 @@ class Penelitian extends CI_Controller
         $sheet->setCellValue('E3', 'Kelengkapan dokumen');
         
         $no = 1;
-        $rows = 2;
+        $rows = 4;
 
         foreach($prop as $p){
             $sheet->setCellValue('A'.$rows, $no++);
@@ -1422,8 +1422,13 @@ class Penelitian extends CI_Controller
             "file2"=>$prop2,
             "file3"=>$prop3,
             "catatan"=>$this->input->post('catatan',true),
-            "tgl_upload"=>$date];
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
         $this->M_PropPenelitian->update_monev($data,$id);
+        $stat = [
+            "status"=>"3",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
         redirect("admin/penelitian/monev"."/".$jadwal);
 
     }
@@ -1492,8 +1497,13 @@ class Penelitian extends CI_Controller
             "file3"=>$prop3,
             "file4"=>$prop4,
             "catatan"=>$this->input->post('catatan',true),
-            "tgl_upload"=>$date];
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
         $this->M_PropPenelitian->update_akhir($data,$id);
+        $stat = [
+            "status"=>"4",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
         redirect("admin/penelitian/akhir"."/".$jadwal);
     }
 

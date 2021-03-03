@@ -23,6 +23,7 @@ class Penelitian extends CI_Controller {
         $this->load->model('M_JadwalPenelitian');
         $this->load->model('M_Admin');
         $this->load->model('M_SkemaPenelitian');
+        $this->load->model('M_ReviewerPenelitian');
         
     }
 
@@ -77,6 +78,7 @@ class Penelitian extends CI_Controller {
             "lama_pelaksanaan"=>$bulan,
             "id_sumberdana"=>$this->input->post('sumberdana',true),
             "biaya"=>$biaya,
+            "status"=>1,
             "file"=>$prop_file
 
         ];
@@ -527,11 +529,12 @@ class Penelitian extends CI_Controller {
             redirect("dosen/penelitian/monev");
         }
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $data['monev'] = $this->M_ReviewerPenelitian->get_monev(array('id_proposal'=>$id))->row();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
-        $this->load->view('dosen/penelitian/uploadmonev',$data);
+        $this->load->view('dosen/penelitian/editmonev',$data);
         $this->load->view("penelitian/footer");
     }
 
@@ -590,13 +593,191 @@ class Penelitian extends CI_Controller {
             "file2"=>$prop2,
             "file3"=>$prop3,
             "catatan"=>$this->input->post('catatan',true),
-            "tgl_upload"=>$date];
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
         $this->M_PropPenelitian->update_monev($data,$id);
+
+        $stat = [
+            "status"=>"3",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
         $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Monev <br> Laporan Monev dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Monev Anda sebelum melakukan finalisasi <br> Laporan Monev akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
         $this->session->set_flashdata('button', 'dosen/penelitian/monev');
         redirect("dosen/penelitian/success"); 
 
     }
+
+    public function updateMonev(){
+        $id=$this->input->post('id');
+        $nip = $this->session->userdata('user_name');
+        $date = date('Y-m-d');
+        $prop1 = $_FILES['file1'];
+        $prop2 = $_FILES['file2'];
+        $prop3 = $_FILES['file3'];
+            if(empty($prop1['name'])){}
+            else{
+                $config['upload_path'] = './assets/monev_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file1')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop1=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file1"=>$prop1,];
+                $proposal=$this->M_PropPenelitian->update_monev($datafile,$id);
+            }
+        
+
+            if(empty($prop2['name'])){}
+            else{
+                $config['upload_path'] = './assets/monev_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file2')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop2=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file2"=>$prop2,];
+                $proposal=$this->M_PropPenelitian->update_monev($datafile,$id);
+            }
+
+            if(empty($prop3['name'])){}
+            else{
+                $config['upload_path'] = './assets/monev_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file3')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop3=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file3"=>$prop3,];
+                $proposal=$this->M_PropPenelitian->update_monev($datafile,$id);
+            }
+
+        $data = [
+            "id_proposal"=>$id,
+            "nip"=>$nip,
+            "catatan"=>$this->input->post('catatan',true),
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
+        $this->M_PropPenelitian->update_monev($data,$id);
+
+        $stat = [
+            "status"=>"3",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Monev <br> Laporan Monev dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Monev Anda sebelum melakukan finalisasi <br> Laporan Monev akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('button', 'dosen/penelitian/monev');
+        redirect("dosen/penelitian/success"); 
+
+    }
+
+    public function updateAkhir(){
+        $id=$this->input->post('id');
+        $nip = $this->session->userdata('user_name');
+        $date = date('Y-m-d');
+        $prop1 = $_FILES['file1'];
+        $prop2 = $_FILES['file2'];
+        $prop3 = $_FILES['file3'];
+        $prop4 = $_FILES['file4'];
+        
+        if(empty($prop1['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file1')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop1=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file1"=>$prop1,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
+        
+
+            if(empty($prop2['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file2')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop2=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file2"=>$prop2,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
+
+            if(empty($prop3['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file3')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop3=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file3"=>$prop3,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
+
+            if(empty($prop4['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file4')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop4=$this->upload->data('file_name');
+            }
+            $datafile = [
+                "file4"=>$prop4,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
+
+        $data = [
+            "id_proposal"=>$id,
+            "nip"=>$nip,
+            "catatan"=>$this->input->post('catatan',true),
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
+        $this->M_PropPenelitian->update_akhir($data,$id);
+        $stat = [
+            "status"=>"5",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Akhir <br> Laporan Akhir dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Akhir Anda sebelum melakukan finalisasi <br> Laporan Akhir akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
+        $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
+        redirect("dosen/penelitian/success"); 
+    }
+
 
     public function finishClickMonev(){
         $id = $this->input->post('id');
@@ -644,11 +825,12 @@ class Penelitian extends CI_Controller {
             redirect("dosen/penelitian/akhir");
         }
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $data['akhir'] = $this->M_ReviewerPenelitian->get_akhir(array('id_proposal'=>$id))->row();
         $nip = $this->session->userdata('user_name');
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
         $this->load->view('penelitian/header', $nama);
-        $this->load->view('dosen/penelitian/uploadakhir',$data);
+        $this->load->view('dosen/penelitian/editakhir',$data);
         $this->load->view("penelitian/footer");
     }
 
@@ -708,8 +890,13 @@ class Penelitian extends CI_Controller {
             "file3"=>$prop3,
             "file4"=>$prop4,
             "catatan"=>$this->input->post('catatan',true),
-            "tgl_upload"=>$date];
+            "tgl_upload"=>$date,
+            "status"=>1,
+        ];
         $this->M_PropPenelitian->update_akhir($data,$id);
+        $stat = [
+            "status"=>"5",];
+            $this->M_PropPenelitian->update_prop($id,$stat);
         $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan Laporan Akhir <br> Laporan Akhir dapat diedit selama Anda belum melakukan "Finalisasi" di menu selanjutnya<br> Pastikan Anda telah mengecek kembali Laporan Akhir Anda sebelum melakukan finalisasi <br> Laporan Akhir akan otomatis terfinalisasi apabila batas pengumpulan telah berakhir</p>');
         $this->session->set_flashdata('button', 'dosen/penelitian/akhir');
         redirect("dosen/penelitian/success"); 

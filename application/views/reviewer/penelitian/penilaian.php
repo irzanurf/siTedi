@@ -34,12 +34,6 @@
                                         Edit
                                     </button>
                                     
-                                </form>
-                                <form style="display:inline-block;"method="post" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Finalisasi?');" action=<?= base_url('reviewer/penelitian/finishNilai');?>>
-                                    <input type='hidden' name="id" value="<?= $v->id ?>">
-                                    <button type="submit" class="btn-sm btn-primary">
-                                        Submit
-                                    </button> 
                                     
                                 </form>
                 <?php elseif($v->status==1 || $v->nilai==NULL ||$v->nilai=="" ||$v->nilai=="0") :?>
@@ -74,15 +68,7 @@
                                     <button type="submit" class="btn-sm btn-primary">
                                         Edit
                                     </button>
-                                    
-                                </form>
-                                <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin Ingin Melakukan Finalisasi?');" action=<?= base_url('reviewer/penelitian/finishNilai');?>>
-                                    <input type='hidden' name="id" value="<?= $v->id ?>">
-                                    <button type="submit" class="btn-sm btn-primary">
-                                        Submit
-                                    </button>
-                                    
-                                </form>
+                                 
                 <?php elseif($v->status==1 || $v->nilai2==NULL ||$v->nilai2=="" ||$v->nilai2=="0") :?>
                     <form method="post" action=<?= base_url('reviewer/penelitian/formPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">

@@ -32,10 +32,6 @@
                                     
                                 </form>
 
-                            <?php elseif($v->status=="4") : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                Catatan
-                                    </button>
                                
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('reviewer/penelitian/editCr');?>>
@@ -72,10 +68,6 @@
                                     
                                 </form>
 
-                            <?php elseif($v->status=="4") : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                Catatan
-                                    </button>
                                
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('reviewer/penelitian/editCr');?>>

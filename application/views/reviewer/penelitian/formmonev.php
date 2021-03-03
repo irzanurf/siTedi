@@ -51,7 +51,7 @@
 											<label><br>Logbook</label> 
 
                             </div> 
-                            <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file3?>" width="93%" height="400px" >
+                            <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file1?>" width="93%" height="400px" >
                             </iframe>
                             <div class="form-group"> 
 											<label><br>Laporan Kemajuan</label> 
@@ -63,7 +63,7 @@
 											<label><br>Laporan Belanja 70%</label> 
 											
                             </div> 
-                            <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file1?>" width="93%" height="400px" >
+                            <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file3?>" width="93%" height="400px" >
                             </iframe>
                         </div>
                         <div class="col-lg-1"></div>
