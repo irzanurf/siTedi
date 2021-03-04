@@ -25,7 +25,7 @@
                 <td align="center"><?= $v->jenis ?></td>
                 <td align="center"><?= $v->nilai ?></td>
                 <td align="center">
-                <?php if($v->status==11 || $v->status == 13 ||$v->status == 2 || $v->nilai!=NULL) : ?>
+                <?php if($v->nilai!=NULL ||$v->nilai!="" ||$v->nilai!="0") : ?>
                     <form style="display:inline-block;" method="post" action=<?= base_url('reviewer/penelitian/editPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <input type='hidden' name="jenis" value="<?= $v->id_jenis ?>">
@@ -35,7 +35,7 @@
                                     
                                     
                                 </form>
-                <?php elseif($v->status==0 || $v->status==1 || $v->nilai==NULL ||$v->nilai=="" ||$v->nilai=="0") :?>
+                <?php elseif($v->nilai==NULL ||$v->nilai=="" ||$v->nilai=="0") :?>
                     <form method="post" action=<?= base_url('reviewer/penelitian/formPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <input type='hidden' name="jenis" value="<?= $v->id_jenis ?>">
@@ -45,7 +45,7 @@
                                     
                                 </form>
 
-                <?php elseif($v->status==4 || $v->status==5) : ?>
+                <?php elseif($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>
@@ -64,7 +64,7 @@
                 <td align="center"><?= $v->jenis?></td>
                 <td align="center"><?= $v->nilai2 ?></td>
                 <td align="center">
-                <?php if($v->status==12 || $v->status == 13 ||$v->status == 2 || $v->nilai2!=NULL) : ?>
+                <?php if($v->nilai2!=NULL ||$v->nilai2!="" ||$v->nilai2!="0") : ?>
                     <form style="display:inline-block;" method="post" action=<?= base_url('reviewer/penelitian/editPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <input type='hidden' name="jenis" value="<?= $v->id_jenis ?>">
@@ -73,7 +73,7 @@
                                     </button>
                 
                                  
-                <?php elseif($v->status==0 || $v->status==1 || $v->nilai2==NULL ||$v->nilai2=="" ||$v->nilai2=="0") :?>
+                <?php elseif($v->nilai2==NULL ||$v->nilai2=="" ||$v->nilai2=="0") :?>
                     <form method="post" action=<?= base_url('reviewer/penelitian/formPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <input type='hidden' name="jenis" value="<?= $v->id_jenis ?>">
@@ -83,7 +83,7 @@
                                     
                                 </form>
                 
-                <?php elseif($v->status==4 || $v->status==5) : ?>
+                <?php elseif($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>
