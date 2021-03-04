@@ -116,7 +116,7 @@
                     <div class="row" >
                         <div class="col-lg-1"></div>
                         <div class="col-lg-11">
-                            <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$prop->file?>" width="93%" height="400px" >
+                            <iframe src="<?= base_url('assets/prop_penelitian');?>/<?=$prop->file?>" width="93%" height="400px" >
                             </iframe>
                         </div>
                         <div class="col-lg-1"></div>
@@ -124,7 +124,7 @@
                     </div>
                     
                     
-                    <a href="<?=base_url('admin/pengabdian/approval');?>"><button class='btn btn-info'>Back</button></a>
+                    <a href="<?=base_url('/');?>"><button class='btn btn-info'>Back</button></a>
                     
                     </section>
 

@@ -143,7 +143,7 @@
                     </div>
                     
                     
-                    <a href="<?=base_url('admin/pengabdian/approval');?>"><button class='btn btn-info'>Back</button></a>
+                    <a href="<?=base_url('/');?>"><button class='btn btn-info'>Back</button></a>
                     
                     </section>
 
