@@ -31,6 +31,7 @@ class Penelitian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $username = $this->session->userdata('user_name');
         $nama['view']= $this->M_PropPenelitian->getwhere_viewpenelitian(array('nip'=>$username))->result();
+        $nama['anggota']= $this->M_PropPenelitian->getwhere_viewanggota($nip)->result();
         $nip = $this->session->userdata('user_name');
         $nama['berita'] = $this->M_Admin->get_berita(array('id'=>1))->result();
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
