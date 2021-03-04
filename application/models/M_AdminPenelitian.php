@@ -22,7 +22,6 @@ class M_AdminPenelitian extends CI_Model
                         ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','left')
                         ->join('reviewer_penelitian r1', 'assign_proposal_penelitian.reviewer=r1.nip','left')
                         ->join('reviewer_penelitian r2', 'assign_proposal_penelitian.reviewer2=r2.nip','left')
-                        ->where('proposal_penelitian.status>0')
                         ->get();
 
         return $query;

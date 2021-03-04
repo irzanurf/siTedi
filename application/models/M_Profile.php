@@ -7,6 +7,11 @@ class M_Profile extends CI_Model
         return $this->db->get_where('dosen',$data);
     }
 
+    public function getwhere_kadep(array $data)
+    {
+        return $this->db->get_where('kadep',$data);
+    }
+
     public function cekRevPenelitian($nip)
     {
         $query = $this->db->select('nip')
@@ -35,6 +40,16 @@ class M_Profile extends CI_Model
         return $this->db->get('dosen');
     }
 
+    public function get_kadep()
+    {
+        $query = $this->db->select('kadep.*,departemen.departemen as dep, departemen.id')
+                        ->from('kadep')
+                        ->join('departemen','kadep.id_departemen=departemen.id','inner')
+                        ->order_by("id")
+                        ->get();
+        return $query;
+    }
+
     public function get_cari($cari)
     {
         return $this->db->query("SELECT * FROM dosen WHERE nama LIKE '%$cari%'");
@@ -50,6 +65,11 @@ class M_Profile extends CI_Model
         $this->db->insert('dosen', $data);
     }
 
+    public function insert_kadep($data)
+    {
+        $this->db->insert('kadep', $data);
+    }
+
     public function insert_mhs($data)
     {
         $this->db->insert('mahasiswa', $data);
@@ -59,6 +79,12 @@ class M_Profile extends CI_Model
     {
         $this->db->where('nip',$nip);
         $this->db->update('dosen',$data);
+    }
+
+    public function update_kadep($nip,$data)
+    {
+        $this->db->where('nip',$nip);
+        $this->db->update('kadep',$data);
     }
 
     public function update_mhs($nim,$data)
@@ -76,6 +102,11 @@ class M_Profile extends CI_Model
     public function hapus_dosen($data){
         $this->db->where($data);
         $this->db->delete('dosen');
+    }
+
+    public function hapus_kadep($data){
+        $this->db->where($data);
+        $this->db->delete('kadep');
     }
 
     public function hapus_mhs($data){

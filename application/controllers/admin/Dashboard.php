@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller {
         }
         $this->load->model('M_Admin');
         $this->load->model('M_Profile');
+        $this->load->model('M_Kadep');
         $this->load->model('M_JadwalPenelitian');
         $this->load->model('M_JadwalPengabdian');
     }
@@ -288,6 +289,85 @@ class Dashboard extends CI_Controller {
         ];
         $this->M_Profile->update_dosen($nip,$data);
         redirect("admin/dashboard/viewDosen");
+    }
+
+    public function viewKadep()
+    {
+        $data['view']= $this->M_Profile->get_kadep()->result();
+        $data['cek']="view";
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/kadep',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function tambahKadep()
+    {
+        $data['view']= $this->M_Profile->get_kadep()->result();
+        $data['departemen']= $this->M_Kadep->get_departemen()->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/tambahKadep',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function addKadepToDb()
+    {
+        $this->form_validation->set_rules('nama','nama', 'required');
+        $this->form_validation->set_rules('nip','nip', 'required');
+        $password = MD5($this->input->post('nip', TRUE));
+        $data = [
+            "nip"=>$this->input->post('nip',true),
+            "nomor_induk"=>$this->input->post('nomor_induk',true),
+            "nama"=>$this->input->post('nama',true),
+            "id_departemen"=>$this->input->post('dep',true),
+        ];
+        $user = [
+            "username"=>$this->input->post('nip',true),
+            "password"=>$password,
+            "role"=>"5",
+        ];
+        $this->M_Profile->insert_kadep($data);
+        $this->M_Profile->insert_user($user);
+        redirect("admin/dashboard/viewkadep");
+    }
+
+    public function editKadepInDb()
+    {
+        $this->form_validation->set_rules('nama','nama', 'required');
+        $password = MD5($this->input->post('password', TRUE));
+        $nip = $this->input->post('nip',true);
+        
+        $data = [
+            "nomor_induk"=>$this->input->post('nomor_induk',true),
+            "nama"=>$this->input->post('nama',true),
+            "id_departemen"=>$this->input->post('dep',true),
+            
+        ];
+        $this->M_Profile->update_kadep($nip,$data);
+        redirect("admin/dashboard/viewKadep");
+    }
+
+    public function hapusKadep()
+    {
+        $nip = $this->input->post('nip');
+        $data = [
+            'nip' => $nip,
+        ];
+        $user = [
+            'username' => $nip,
+        ];
+        $this->M_Profile->hapus_kadep($data);
+        $this->M_Profile->hapus_user($user);
+        redirect('admin/dashboard/viewkadep');
+    }
+
+    public function editKadep()
+    {
+        $nip = $this->input->post('nip');
+        $data['departemen']= $this->M_Kadep->get_departemen()->result();
+        $data['view']= $this->M_Profile->getwhere_kadep(array('nip'=> $nip))->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/editKadep',$data);
+        $this->load->view('layout/footer'); 
     }
 
     

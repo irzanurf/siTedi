@@ -232,13 +232,8 @@ class Penelitian extends CI_Controller
             'reviewer' => $reviewer,
             'reviewer2' => $reviewer2
         ];
-
-        $status = [
-            'status' => 10,
-        ];
         
         $this->M_AdminPenelitian->update_reviewer($data,$idProp);
-        $this->M_PropPenelitian->update_prop($idProp,$status);
         redirect('admin/penelitian/assignProposal');
     }
 

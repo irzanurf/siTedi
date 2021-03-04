@@ -67,9 +67,6 @@
                 <td>
                 
             
-                                <a href="<?=base_url('kadep/detailProposalPengabdian');?>/<?=$v->id?>">
-                                    <button   class="btn btn-info"> Detail </button>
-                                    </a>
                 
                 </td>
                 

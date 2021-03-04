@@ -8,11 +8,11 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Assign Reviewer
+                Assign Reviewer Proposal Pengabdian
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Assign reviewer
@@ -24,9 +24,6 @@
 
     <div class="row">
         <div class="col-lg-12">
-        <a href="<?=base_url('admin/penelitian/submitAllProposal');?>" ><button  class="btn btn-success">Submit all proposal penelitian</button></a>
-        
-        
         <section class="content">
         <table class="table">
             <col style='width:5%'>
@@ -38,7 +35,7 @@
             <tr>
                 <th>No</th>
                 <th>Judul Proposal</th>
-                <th>Ketua Penelitian</th>
+                <th>Ketua Pengabdian</th>
                 <th>Reviewer 1</th>
                 <th>Reviewer 2</th>
                 <th>Aksi</th>
@@ -53,30 +50,30 @@
                 <td><?= $v->judul?></td>
                 <td><?= $v->nama ?></td>
                 <td>
-                    <?php if($v->nama_reviewer1==""||$v->nama_reviewer1=="0"||$v->nama_reviewer1==NULL) : ?>
+                    <?php if($v->status =="SUBMITTED") : ?>
                     -
                     <?php else :?>
                         <?= $v->nama_reviewer1?>
                     <?php endif;?>
                 </td>
                 <td>
-                    <?php if($v->nama_reviewer2==""||$v->nama_reviewer2=="0"||$v->nama_reviewer2==NULL) : ?>
+                    <?php if($v->status =="SUBMITTED") : ?>
                     -
                     <?php else :?>
                         <?= $v->nama_reviewer2?>
                     <?php endif;?>
                 </td>
                 <td>
-                <?php if(($v->status == 1 || $v->status == 0) && ($v->nama_reviewer1 ==""||$v->nama_reviewer1 =="0"||$v->nama_reviewer1 ==NULL)) : ?>
-                <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
+                <?php if($v->status =="SUBMITTED") : ?>
+                <a type="button" class="btn btn-info" href="<?= base_url('kadep/kadep/setReviewerPengabdian') ;?>/<?= $v->id; ?>">
                     Assign
                 </a>
-                <?php elseif($v->status == 11 || $v->status == 12 || $v->status == 13 || $v->status == 2|| $v->status == 3|| $v->status == 4|| $v->status == 5|| $v->status == 0 ) :?>
-                
-                <?php else :?>
-                    <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">
+                <?php elseif($v->status == "ASSIGNED" ) :?>
+                <a type="button" class="btn btn-info" href="<?= base_url('kadep/kadep/EditReviewerPengabdian') ;?>/<?= $v->id; ?>">
                     Edit reviewer
                 </a>
+                <?php else :?>
+                    
                 <?php endif;?>
 
                 </td>
@@ -110,3 +107,4 @@
 
 </div>
 <!-- /#wrapper -->
+

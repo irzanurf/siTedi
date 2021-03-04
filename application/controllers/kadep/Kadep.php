@@ -15,13 +15,22 @@ class Kadep extends CI_Controller {
         $this->load->model('M_Admin');
         $this->load->model('M_Kadep');
         $this->load->model('M_Profile');
+        $this->load->model('M_Dosen');
         $this->load->model('M_JadwalPenelitian');
         $this->load->model('M_JadwalPengabdian');
+        $this->load->model('M_PropPenelitian');
+        $this->load->model('M_PropPengabdian');
+        $this->load->model('M_ReviewerPenelitian');
+        $this->load->model('M_ReviewerPengabdian');
+        $this->load->model('M_AdminPenelitian');
+        $this->load->model('M_AssignProposalPengabdian');
+        $this->load->model('M_Mitra');
     }
 
     public function index()
     {
         $user = $this->session->userdata('user_name');
+        $data['nama']= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
         $id_penelitian= $this->M_JadwalPenelitian->get_jadwalPenelitian()->row()->id;
         $id_pengabdian= $this->M_JadwalPengabdian->get_jadwalPengabdian()->row()->id;
         $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last_jadwal()->result();
@@ -34,7 +43,7 @@ class Kadep extends CI_Controller {
         $data['user'] = $this->M_Admin->getwhere_admin(array('nip'=>$user))->row();
         
         $this->load->view('layout/sidebar_kadep');
-        $this->load->view('admin/dashboard',$data);  
+        $this->load->view('kadep/dashboard',$data);  
         $this->load->view('layout/footer');        
 
     }
@@ -58,8 +67,48 @@ class Kadep extends CI_Controller {
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/daftar_prop_penelitian',$data);
         $this->load->view('layout/footer'); 
-
     }
+
+    public function listMonevPenelitian()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'kadep/kadep/monevPenelitian';
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function monevPenelitian($jadwal)
+    {
+        $user = $this->session->userdata('user_name');
+        $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
+        $data['view']= $this->M_Kadep->getwhere_viewmonev(array('proposal_penelitian.id_jadwal'=>$jadwal, 'dosen.program_studi'=>$dep,))->result();
+        $data['id'] = $jadwal;
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/monev_penelitian', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function listAkhirPenelitian()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'kadep/kadep/akhirPenelitian';
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function akhirPenelitian($jadwal)
+    {
+        $user = $this->session->userdata('user_name');
+        $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
+        $data['view']= $this->M_Kadep->getwhere_viewakhir(array('proposal_penelitian.id_jadwal'=>$jadwal, 'dosen.program_studi'=>$dep,))->result();
+        $data['id'] = $jadwal;
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/akhir_penelitian', $data);
+        $this->load->view('layout/footer'); 
+    }
+    
 
     public function listSubmitPengabdian()
     {
@@ -83,15 +132,26 @@ class Kadep extends CI_Controller {
 
     }
 
-
-    public function assignProposal()
+    public function listAkhirPengabdian()
     {
-        $data['view'] = $this->M_AdminPenelitian->get_viewAssign()->result();
-        $this->load->view('layout/sidebar_admin');
-        $this->load->view('admin/penelitian/assign',$data);
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'kadep/kadep/akhirPengabdian';
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('admin/chooseJadwal', $data);
         $this->load->view('layout/footer'); 
-
     }
+
+    public function akhirPengabdian($jadwal)
+    {
+        $user = $this->session->userdata('user_name');
+        $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
+        $data['view']= $this->M_Kadep->get_whereAkhir(array('proposal_pengabdian.id_jadwal'=>$jadwal, 'dosen.program_studi'=>$dep,))->result();
+        $data['id'] = $jadwal;
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/akhir_pengabdian', $data);
+        $this->load->view('layout/footer'); 
+    }
+    
 
     public function profile()
     {
@@ -101,6 +161,149 @@ class Kadep extends CI_Controller {
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/profile', $nama);
         $this->load->view('layout/footer'); 
+    }
+
+    public function assignProposalPenelitian()
+    {
+        $user = $this->session->userdata('user_name');
+        $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
+        $data['view'] = $this->M_Kadep->get_viewAssignPenelitian(array('dosen.program_studi'=>$dep))->result();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/assign_penelitian',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function setReviewerPenelitian($id)
+    {
+        $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['reviewer'] = $this->M_ReviewerPenelitian->get_reviewer()->result();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/setreviewerPenelitian',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function EditReviewerPenelitian($id)
+    {
+        $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['reviewer'] = $this->M_ReviewerPenelitian->get_reviewer()->result();
+        $data['assigned'] = $this->M_AdminPenelitian->getwhere_assignment(array('id_proposal'=>$id))->row();
+
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/editreviewerPenelitian',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function submitAssignEditPenelitian()
+    {
+        $idProp = $this->input->post('id');
+        $reviewer = $this->input->post('reviewer');
+        $reviewer2 = $this->input->post('reviewer2');
+        $data = [
+            'id_proposal' => $idProp,
+            'reviewer' => $reviewer,
+            'reviewer2' => $reviewer2
+        ];
+
+        $this->M_AdminPenelitian->update_reviewer($data,$idProp);
+        redirect('kadep/kadep/assignProposalPenelitian');
+    }
+
+    public function submitAssignReviewerPenelitian()
+    {
+        $idProp = $this->input->post('id');
+        $reviewer = $this->input->post('reviewer');
+        $reviewer2 = $this->input->post('reviewer2');
+        $data = [
+            'id_proposal' => $idProp,
+            'reviewer' => $reviewer,
+            'reviewer2' => $reviewer2
+        ];
+        $this->M_AdminPenelitian->insert_reviewer($data);
+        redirect('kadep/kadep/assignProposalPenelitian');
+    }
+
+    public function assignProposalPengabdian()
+    {
+        $user = $this->session->userdata('user_name');
+        $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
+        $data['view'] = $this->M_Kadep->get_viewAssignPengabdian(array('dosen.program_studi'=>$dep))->result();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/assign_pengabdian',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function setReviewerPengabdian($id)
+    {
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['reviewer'] = $this->M_ReviewerPengabdian->get_reviewer()->result();
+
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/setreviewerPengabdian',$data);
+        $this->load->view('layout/footer'); 
+
+    }
+
+   
+
+    public function EditReviewerPengabdian($id)
+    {
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['reviewer'] = $this->M_ReviewerPengabdian->get_reviewer()->result();
+        $data['assigned'] = $this->M_AssignProposalPengabdian->getwhere_assignment(array('id_proposal'=>$id))->row();
+
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/editreviewerPengabdian',$data);
+        $this->load->view('layout/footer'); 
+
+    }
+
+    public function submitAssignReviewerPengabdian()
+    {
+        $idProp = $this->input->post('id');
+        $reviewer = $this->input->post('reviewer');
+        $reviewer2 = $this->input->post('reviewer2');
+        $data = [
+            'id_proposal' => $idProp,
+            'reviewer' => $reviewer,
+            'reviewer2' => $reviewer2
+        ];
+        $status = [
+            'status' => 'ASSIGNED'
+        ];
+
+        $this->M_AssignProposalPengabdian->insert_assignment($data);
+        // $this->M_AssignProposalPengabdian->insert_assignment($data2);
+        $this->M_PropPengabdian->update_prop($idProp,$status);
+        
+        redirect('kadep/kadep/assignProposalPengabdian');
+
+    }
+
+    public function submitAssignEditPengabdian()
+    {
+        $idProp = $this->input->post('id');
+        $reviewer = $this->input->post('reviewer');
+        $reviewer2 = $this->input->post('reviewer2');
+        $data = [
+            'reviewer' => $reviewer,
+            'reviewer2' => $reviewer2
+        ];
+
+        $this->M_AssignProposalPengabdian->update_reviewerAssign($idProp,$data);
+        redirect('kadep/kadep/assignProposalPengabdian');
+
     }
 
     public function logout()

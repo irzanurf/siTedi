@@ -11,7 +11,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Reviewer Penelitian
@@ -56,7 +56,7 @@
                             <p>Rp <?=  number_format($prop->biaya,2,',','.');?></p>
                         </div>
                     </div>
-                    <form action="<?=base_url('admin/penelitian/submitassignreviewer')?>" method="post">
+                    <form action="<?=base_url('kadep/kadep/submitassignreviewerPenelitian')?>" method="post">
                     
                     <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Assign reviewer 1</label>

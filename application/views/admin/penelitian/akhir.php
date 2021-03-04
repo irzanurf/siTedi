@@ -60,7 +60,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file2==NULL) : ?> -
-                        <?php elseif($v->file1 != NULL) : ?>
+                        <?php elseif($v->file2 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -68,7 +68,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file3==NULL) : ?> -
-                        <?php elseif($v->file2 != NULL) : ?> 
+                        <?php elseif($v->file3 != NULL) : ?> 
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -76,7 +76,7 @@
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file4==NULL) : ?> - 
-                        <?php elseif($v->file3 != NULL) : ?>
+                        <?php elseif($v->file4 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -84,7 +84,7 @@
                 </td>
                 <td>
                 <?php if ($v->catatan==NULL) : ?> - 
-                    <?php elseif($v->file3 != NULL) : ?> <?= $v->catatan?>
+                    <?php elseif($v->catatan != NULL) : ?> <?= $v->catatan?>
                     <?php endif; ?>
                 </td>
                 <td>

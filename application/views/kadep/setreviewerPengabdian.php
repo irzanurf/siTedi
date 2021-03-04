@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Reviewer Penelitian
+                Form Pengisian Pengabdian
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Reviewer Penelitian
+                    <i class="fa fa-edit"></i> Pengisian Pengabdian
                 </li>
             </ol>
         </div>
@@ -24,12 +24,12 @@
                     
                     <section class="content">
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Judul Penelitian</label>
+                        <label class="col-lg-4 col-form-label">Judul Pengabdian</label>
                         <div class="col-lg-8">
                             <p><?=$prop->judul;?></p>
                         </div>
                     </div>
-                    <label>Ketua Penelitian</label>
+                    <label>Ketua Pengabdian</label>
                     <div class='form-group row'>
                         <p class="col-lg-4">Nama Lengkap</p>
                         <div class="col-lg-8">
@@ -45,23 +45,23 @@
                         </div>
                     </div>
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Lama Penelitian</label>
+                        <label class="col-lg-4 col-form-label">Lama Pengabdian</label>
                         <div class="col-lg-8">
                             <p><?=$prop->lama_pelaksanaan;?></p>
                         </div>
                     </div> 
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Biaya Penelitian</label>
+                        <label class="col-lg-4 col-form-label">Biaya Pengabdian</label>
                         <div class="col-lg-8">
                             <p>Rp <?=  number_format($prop->biaya,2,',','.');?></p>
                         </div>
                     </div>
-                    <form action="<?=base_url('admin/penelitian/submitassignreviewer')?>" method="post">
+                    <form action="<?=base_url('kadep/kadep/submitassignreviewerPengabdian')?>" method="post">
                     
                     <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Assign reviewer 1</label>
                                 <div class="col-lg-8">
-                                <select class="form-control" id="selectpicker1" name="reviewer" data-live-search='true'>
+                                <select class="form-control" id="selectpicker1" name="reviewer" data-live-search="true">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($reviewer as $ds) {
@@ -71,12 +71,14 @@
                                     }
                                     ?>
                                 </select>
-                    </div>
 
-                    <div class="form-group ">
-                                <label class="col-lg-4 col-form-label">Assign reviewer 2</label>
+                                
+                    </div>
+                    
+                    <div class='form-group '>
+                    <label class="col-lg-4 col-form-label">Assign reviewer 2</label>
                                 <div class="col-lg-8">
-                                <select class="form-control" id="selectpicker2" name="reviewer2" data-live-search='true'>
+                                <select class="form-control" id="selectpicker2" name="reviewer2" data-live-search="true">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($reviewer as $ds) {
@@ -87,34 +89,41 @@
                                     ?>
                                 </select>
                     </div>
+                    
                     <input type="hidden" name="id" value="<?= $prop->id;?>">
-                    
-                    
-                    <div class='form-group'>
-                        <div class="row" >
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-11">
-                            <iframe src="<?= base_url('assets/prop_penelitian');?>/<?=$prop->file?>" width="93%" height="400px" >
+                
+                    <label>File proposal pengabdian</label>
+                        <div class="form-group row" >
+                        
+                        <div class="col-lg-12">
+                            <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$prop->file?>" width="93%" height="400px" >
                             </iframe>
                         </div>
-                        <div class="col-lg-1"></div>
                     
                     </div>
+                    <?php 
+                    if($mitra!=null) : ?>
+                    <?php if($mitra->file_persetujuan!="") : ?>
+                    <label >File surat persetujuan mitra </label>
+                        <div class="form-group row" >
+                        
+                        <div class="col-lg-12">
+                            <iframe src="<?= base_url('assets/suratmitra');?>/<?=$mitra->file_persetujuan?>" width="93%" height="400px" >
+                            </iframe>
+                        </div>
+                        <!-- <div class="col-lg-1"></div> -->
+                    
+                    <!-- </div> -->
                     </div>
+                    <?php endif; ?>
+                    <?php endif; ?>
 
                     
                     <div>
                         <button class='btn btn-primary' type="submit">Assign</button>
                     </div>
                     </form> 
-                    
-                    
-                   
-                    
                     </section>
-                    
-
-                    
                     </div>
                 </div>
                 <!-- /.row -->
@@ -129,8 +138,10 @@
     <!-- /#wrapper -->
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#selectpicker1').selectpicker();
-            $('#selectpicker2').selectpicker();
-        });
+    $(document).ready(function() {
+     $("#selectpicker1").selectpicker();
+     $("#selectpicker2").selectpicker();
+    });
     </script>
+
+    

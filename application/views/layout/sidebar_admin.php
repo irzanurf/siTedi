@@ -134,6 +134,9 @@
                         
                     </li>
                     <li>
+                        <a href="<?= base_url('admin/dashboard/viewKadep');?>"><i class="fa fa-fw fa-folder"></i> Ketua Departemen</a>
+                    </li>
+                    <li>
                         <a href="<?= base_url('admin/dashboard/viewDosen');?>"><i class="fa fa-fw fa-folder"></i> Dosen</a>
                     </li>
                     <!-- <li>

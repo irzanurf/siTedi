@@ -89,12 +89,7 @@
                 </td>
 
                 <td>
-                <form style="display:inline-block;" method="post" action="<?= base_url('kadep/detailProposalPenelitian') ;?>/<?= $v->id; ?>">
-                                    <input type='hidden' name="jadwal" value=<?=$id?>>
-                                    <button type="Submit" class="btn btn-info">
-                                        Detail
-                                    </button>
-                                </form>
+                
                 </td>
                 
             </tr>

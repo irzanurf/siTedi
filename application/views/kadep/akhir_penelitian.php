@@ -8,21 +8,19 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-            Monitoring & Evaluasai
+            Laporan Akhir
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Monitoring & Evaluasai
+                    <i class="fa fa-edit"></i> Laporan Akhir
                 </li>
             </ol>
         </div>
     </div>
     <!-- /.row -->
-    <a href="<?=base_url('admin/penelitian/laporanKemajuanWord');?>/<?= $id ?>"><button class='btn btn-info'><img src="<?= base_url('assets/word.png');?>" alt="word" width="30" height="30"/> List Laporan Kemajuan Lengkap</button></a>
-    <a href="<?=base_url('admin/penelitian/laporanKemajuanExcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Laporan Kemajuan Lengkap</button></a>
     <div class="row">
         <div class="col-lg-12">
         
@@ -33,13 +31,11 @@
                 <th>No</th>
                 <th>Judul Proposal</th>
                 <th>Ketua Penelitian</th>
+                <th class='text-center'>Laporan Final</th>
                 <th class='text-center'>Logbook</th>
-                <th class='text-center'>Laporan Kemajuan</th>
-                <th class='text-center'>Laporan Belanja 70%</th>
+                <th class='text-center'>Luaran</th>
+                <th class='text-center'>Laporan Belanja 100%</th>
                 <th class='text-center'>Catatan Pengusul</th>
-                <th class='text-center'>Komentar Reviewer 1</th>
-                <th class='text-center'>Komentar Reviewer 2</th>
-                <th class='text-center'>Action</th>
             </tr>
             <?php 
             $no = 1;
@@ -52,23 +48,31 @@
                 <td><?= $v->nama ?></td>
                 <td class='text-center'>
                     <?php if ($v->file1==NULL) : ?> -
-                        <?php elseif($v->file1 != NULL) : ?>  
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
+                        <?php elseif($v->file1 != NULL) : ?>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadFinal<?= $v->id?>">
                     <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file2==NULL) : ?> -
-                        <?php elseif($v->file2 != NULL) : ?> 
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadCatatan<?= $v->id?>">
+                        <?php elseif($v->file2 != NULL) : ?>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                    <?php endif; ?>
+                </td>
+                <td class='text-center'>
+                    <?php if ($v->file3==NULL) : ?> -
+                        <?php elseif($v->file3 != NULL) : ?> 
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
                     <?php endif; ?>
                 </td>
                 <td class='text-center'>
-                    <?php if ($v->file3==NULL) : ?> - 
-                        <?php elseif($v->file3 != NULL) : ?>  
+                    <?php if ($v->file4==NULL) : ?> - 
+                        <?php elseif($v->file4 != NULL) : ?>
                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
                         <span class="glyphicon glyphicon-edit"></span>
                     </button>
@@ -76,31 +80,9 @@
                 </td>
                 <td>
                 <?php if ($v->catatan==NULL) : ?> - 
-                    <?php elseif($v->file3 != NULL) : ?> <?= $v->catatan?>
+                    <?php elseif($v->catatan != NULL) : ?> <?= $v->catatan?>
                     <?php endif; ?>
                 </td>
-                <td>
-                    <?php if ($v->cr_monev==NULL) : ?> -
-                        <?php elseif($v->cr_monev != NULL) : ?> <?= $v->cr_monev?>
-                    
-                    <?php endif; ?>
-                </td>
-                <td>
-                    <?php if ($v->cr_monev2==NULL) : ?> -
-                        <?php elseif($v->cr_monev2 != NULL) : ?> <?= $v->cr_monev2?>
-                    
-                    <?php endif; ?>
-                </td>
-                
-                <td>
-                <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/editMonev') ;?>/<?= $v->id_proposal; ?>">
-                                    <input type='hidden' name="jadwal" value=<?=$id?>>
-                                    <button type="Submit" class="btn btn-info">
-                                        Edit
-                                    </button>
-                                </form>
-                </td>
-                
                 
                
             </tr>
@@ -137,6 +119,40 @@
                         
                      ?>
 
+                     <!-- Modal Final -->
+                    <div class="modal fade" id="uploadFinal<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">File Laporan Final</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Laporan Akhir</label>
+                                
+                                <iframe src="<?= base_url('assets/lap_akhir_penelitian');?>/<?=$v->file1?>" width='100%' height="300px" >
+                                </iframe>
+                
+
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" name="id" value=<?=$id?>  >
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        
+
+                            
+                        </div>
+                        
+                        </div>
+                    </div>
+                    </div>
+
                     <!-- Modal Logbook -->
                     <div class="modal fade" id="uploadLogbook<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -151,7 +167,7 @@
                             <div class="form-group">
                                 <label>Laporan Akhir</label>
                                 
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file1?>" width='100%' height="300px" >
+                                <iframe src="<?= base_url('assets/lap_akhir_penelitian');?>/<?=$v->file2?>" width='100%' height="300px" >
                                 </iframe>
                 
 
@@ -172,12 +188,12 @@
                     </div>
 
 
-                    <!-- Modal Catatan -->
-                    <div class="modal fade" id="uploadCatatan<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- Modal Luaran -->
+                    <div class="modal fade" id="uploadLuaran<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">File Laporan Kemajuan</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">File Luaran</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -186,7 +202,7 @@
                             <div class="form-group">
                                 <label>Logbook</label>
                                 
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file2?>" width='100%' height="300px" >
+                                <iframe src="<?= base_url('assets/lap_akhir_penelitian');?>/<?=$v->file3?>" width='100%' height="300px" >
                                 </iframe>
                             </div>
                             <div class="modal-footer">
@@ -216,7 +232,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>Catatan Belanja</label>
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file3?>" width='100%' height="300px" >
+                                <iframe src="<?= base_url('assets/lap_akhir_penelitian');?>/<?=$v->file4?>" width='100%' height="300px" >
                                 </iframe>
                             </div>
                             <div class="modal-footer">
@@ -264,3 +280,4 @@ $(this).parents(".control-group1").remove();
 });
 });
 </script>
+
