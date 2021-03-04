@@ -65,6 +65,9 @@
                 </td>
                 <td><?=$v->status?></td>
                 <td>
+                <a type="button" class="btn btn-info" href="<?= base_url('kadep/kadep/detailProposalPengabdian') ;?>/<?= $v->id; ?>" >
+                    Detail
+                </a>
                 
             
                 

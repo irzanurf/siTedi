@@ -25,6 +25,10 @@ class Kadep extends CI_Controller {
         $this->load->model('M_AdminPenelitian');
         $this->load->model('M_AssignProposalPengabdian');
         $this->load->model('M_Mitra');
+        $this->load->model('M_Luaran');
+        $this->load->model('M_Mahasiswa');
+        $this->load->model('M_SkemaPengabdian');
+        $this->load->model('M_SumberDana');
     }
 
     public function index()
@@ -107,6 +111,49 @@ class Kadep extends CI_Controller {
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/akhir_penelitian', $data);
         $this->load->view('layout/footer'); 
+    }
+
+    public function detailProposalPengabdian($id)
+    {
+
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['sumberdana']= $this->M_SumberDana->getwhere_sumberdana(array('id'=>$data['prop']->id_sumberdana))->row()->sumberdana;
+        $data['anggota_dsn'] = $this->M_Dosen->getwhere_dosenpengabdiannama(array('id_proposal'=>$data['prop']->id))->result();
+        $data['luaran'] = $this->M_Luaran->getwhere_luaranpengabdian(array('id_proposal'=>$data['prop']->id))->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$data['prop']->id))->result();
+        if($data['prop']->id_mitra==0){
+            $data['mitra']='0';
+        }else{
+            $data['mitra']= $this->M_Mitra->getwhere_mitra(array('id'=>$data['prop']->id_mitra))->row();
+        }
+    
+
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/detail_proposal_pengabdian_mitra',$data);
+        $this->load->view('layout/footer');
+
+    }
+    
+
+    public function detailProposalPenelitian($id)
+    {
+
+        $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+        $data['sumberdana']= $this->M_SumberDana->getwhere_sumberdana(array('id'=>$data['prop']->id_sumberdana))->row()->sumberdana;
+        $data['anggota_dsn'] = $this->M_Dosen->getwhere_dosenpenelitiannama(array('id_proposal'=>$data['prop']->id))->result();
+        $data['luaran'] = $this->M_Luaran->getwhere_luaranpenelitian(array('id_proposal'=>$data['prop']->id))->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->getwhere_mahasiswapenelitian(array('id_proposal'=>$data['prop']->id))->result();
+        
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/detail_proposal_penelitian',$data);
+        $this->load->view('layout/footer');
+
     }
     
 

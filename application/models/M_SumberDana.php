@@ -11,5 +11,12 @@ class M_SumberDana extends CI_Model
         return $query;
         
     }
+
+    public function getwhere_sumberdana(array $data)
+    {
+        return $this->db->get_where('sumberdana',$data);
+    }
     
+
+
 }

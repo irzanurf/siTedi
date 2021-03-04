@@ -41,5 +41,25 @@ class M_Luaran extends CI_Model
         $this->db->where($id);
         $this->db->delete('luaran_prop_penelitian');
     }
+
+    public function getwhere_luaranpengabdian(array $data)
+    {
+        $query = $this->db->select('luaran_pengabdian.*, luaran_prop_pengabdian.*')
+                        ->from('luaran_prop_pengabdian')
+                        ->join('luaran_pengabdian','luaran_prop_pengabdian.id_luaran=luaran_pengabdian.id','inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
+
+    public function getwhere_luaranpenelitian(array $data)
+    {
+        $query = $this->db->select('luaran_penelitian.*, luaran_prop_penelitian.*')
+                        ->from('luaran_prop_penelitian')
+                        ->join('luaran_penelitian','luaran_prop_penelitian.id_luaran=luaran_penelitian.id','inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
     
 }

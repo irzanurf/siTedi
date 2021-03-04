@@ -89,7 +89,10 @@
                 </td>
 
                 <td>
-                
+                <a type="button" class="btn btn-info" href="<?= base_url('kadep/kadep/detailProposalPenelitian') ;?>/<?= $v->id; ?>" >
+                    Detail
+                </a>
+
                 </td>
                 
             </tr>
