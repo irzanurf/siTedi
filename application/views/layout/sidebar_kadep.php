@@ -114,12 +114,12 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="<?= base_url('Kadep/kadep/profile/');?>">
+                           <a href="<?= base_url('kadep/kadep/profile/');?>">
                                <p>Profile</p>
                             </a>
                         </li>
                         <li>
-                            <a href="<?= base_url('Kadep/kadep/logout');?>">
+                            <a href="<?= base_url('kadep/kadep/logout');?>">
                                 <p>Log out</p>
                             </a>
                         </li>

@@ -29,7 +29,7 @@ class Login extends CI_Controller {
                 }else if($this->session->userdata("role")== "4"){
                     redirect('mitra/verifikasi');
                 }else if($this->session->userdata("role")== "5"){
-                    redirect('kadep/Kadep/');
+                    redirect('kadep/kadep/');
                 }
 
             }else{
@@ -77,7 +77,7 @@ class Login extends CI_Controller {
                         }else if($this->session->userdata("role")== "4"){
                             redirect('mitra/verifikasi');
                         }else if($this->session->userdata("role")== "5"){
-                            redirect('kadep/Kadep/');
+                            redirect('kadep/kadep/');
                         }
 
                     }
