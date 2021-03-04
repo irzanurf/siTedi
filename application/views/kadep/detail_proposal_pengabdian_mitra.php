@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Penilaian Proposal Pengabdian
+                Proposal Pengabdian
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Penilaian pengabdian
+                    <i class="fa fa-edit"></i> Proposal Pengabdian
                 </li>
             </ol>
         </div>

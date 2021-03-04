@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Penilaian Proposal Pengabdian
+            Proposal Penelitian
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Penilaian pengabdian
+                    <i class="fa fa-edit"></i> Proposal Penelitian
                 </li>
             </ol>
         </div>
@@ -24,12 +24,12 @@
                     
                     <section class="content">
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Judul Pengabdian</label>
+                        <label class="col-lg-4 col-form-label">Judul Penelitian</label>
                         <div class="col-lg-8">
                             <p><?=$prop->judul;?></p>
                         </div>
                     </div>
-                    <label>Ketua Pengabdian</label>
+                    <label>Ketua Penelitian</label>
                     <div class='form-group row'>
                         <p class="col-lg-4">Nama Lengkap</p>
                         <div class="col-lg-8">
@@ -44,7 +44,7 @@
                             <p><?=$dosen->program_studi;?></p>
                         </div>
                     </div>
-                    <label>Anggota Pengabdian</label>
+                    <label>Anggota Penelitian</label>
                     <div class='form-group row'>
                     <?php 
                     $no = 1;
@@ -87,7 +87,7 @@
                     </div>
 
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Lama Pengabdian</label>
+                        <label class="col-lg-4 col-form-label">Lama Penelitian</label>
                         <div class="col-lg-8">
                             <p><?=$prop->lama_pelaksanaan;?></p>
                         </div>
@@ -99,7 +99,7 @@
                         </div>
                     </div> 
                     <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Biaya Pengabdian</label>
+                        <label class="col-lg-4 col-form-label">Biaya Penelitian</label>
                         <div class="col-lg-8">
                             <p>Rp <?=  number_format($prop->biaya,2,',','.');?></p>
                         </div>
