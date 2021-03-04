@@ -218,7 +218,7 @@ class Dashboard extends CI_Controller {
     public function tambahDosen()
     {
         $data['view']= $this->M_Profile->get_profile()->result();
-        
+        $data['departemen']= $this->M_Kadep->get_departemen()->result();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/tambahDosen',$data);
         $this->load->view('layout/footer'); 
@@ -228,7 +228,7 @@ class Dashboard extends CI_Controller {
     {
         $nip = $this->input->post('nip');
         $data['view']= $this->M_Profile->getwhere_profile(array('nip'=> $nip))->result();
-        
+        $data['departemen']= $this->M_Kadep->get_departemen()->result();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/editDosen',$data);
         $this->load->view('layout/footer'); 
