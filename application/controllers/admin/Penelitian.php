@@ -561,25 +561,9 @@ class Penelitian extends CI_Controller
             "nip"=>$nip,
             "id_proposal"=>$id,
         ];
-            $this->M_PropPenelitian->insert_monev($insert);
-            $this->M_PropPenelitian->insert_akhir($insert);
+            $this->M_PropPenelitian->insert_monev($insert,$id);
+            $this->M_PropPenelitian->insert_akhir($insert,$id);
 
-        // $from = $this->config->item('smtp_user');
-        // $to = $this->M_Dosen->getwhere_dosen(array('nip'=>$prop->nip))->row()->email;
-        // $subject = 'APPROVAL PROPOSAL PENELITIAN';
-        // $message = 'Proposal penelitian anda yang berjudul '.$prop->judul.' berstatus approved';
-
-        // $this->email->set_newline("\r\n");
-        // $this->email->from($from);
-        // $this->email->to($to);
-        // $this->email->subject($subject);
-        // $this->email->message($message);
-
-        // if ($this->email->send()) {
-        //     echo 'Your Email has successfully been sent.';
-        // } else {
-        //     show_error($this->email->print_debugger());
-        // }
         redirect('admin/penelitian/approval');
     }
 
@@ -600,7 +584,13 @@ class Penelitian extends CI_Controller
             'status' => '13'
         ];
 
+        $del = [
+            "id_proposal"=>$id,
+        ];
+
         $this->M_AdminPenelitian->approval($id,$status);
+        $this->M_PropPenelitian->cancel_monev($id,$del);
+        $this->M_PropPenelitian->cancel_akhir($id,$del);
         redirect('admin/penelitian/approval');
 
     }

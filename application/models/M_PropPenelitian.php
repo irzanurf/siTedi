@@ -8,16 +8,60 @@ class M_PropPenelitian extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insert_monev($prop)
+    public function insert_monev($prop,$id)
     {
-        $this->db->insert('laporan_monev_penelitian',$prop);
-        return $this->db->insert_id();
+        $query = $this->db->query("SELECT * FROM laporan_monev_penelitian WHERE id_proposal='$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (empty($count)){
+            $this->db->insert('laporan_monev_penelitian', $prop);
+        }
+        else{
+            
+        }       
     }
 
-    public function insert_akhir($prop)
+    public function insert_akhir($prop,$id)
     {
-        $this->db->insert('laporan_akhir_penelitian',$prop);
-        return $this->db->insert_id();
+        $query = $this->db->query("SELECT * FROM laporan_akhir_penelitian WHERE id_proposal='$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (empty($count)){
+            $this->db->insert('laporan_akhir_penelitian', $prop);
+        }
+        else{
+            
+        }   
+    }
+
+    public function cancel_monev($id,$prop)
+    {
+        $query = $this->db->query("SELECT * FROM laporan_monev_penelitian WHERE id_proposal='$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (!empty($count)){
+            $this->db->delete('laporan_monev_penelitian', $prop);
+        }
+        else{
+            
+        }       
+    }
+
+    public function cancel_akhir($id,$prop)
+    {
+        $query = $this->db->query("SELECT * FROM laporan_akhir_penelitian WHERE id_proposal='$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (!empty($count)){
+            $this->db->delete('laporan_akhir_penelitian', $prop);
+        }
+        else{
+            
+        }   
     }
 
 

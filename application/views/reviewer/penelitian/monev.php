@@ -36,7 +36,7 @@
                                     
                                 </form>
 
-                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
+                            <?php elseif((($v->cr_monev!='0' ||$v->cr_monev!='' || $v->cr_monev!=NULL ))&&($v->status==4 || $now >= $akhir)) : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>
@@ -77,7 +77,7 @@
                                     
                                 </form>
 
-                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
+                                <?php elseif((($v->cr_monev2!='0' ||$v->cr_monev2!='' || $v->cr_monev2!=NULL ))&&($v->status==4 || $now >= $akhir)) : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>

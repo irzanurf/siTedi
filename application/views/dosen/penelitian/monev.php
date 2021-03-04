@@ -23,7 +23,7 @@
                             <td align="center">
                             
                             <?php if($v->file1=='' || $v->file1==NULL) : ?>
-                                <form method="post" action=<?= base_url('dosen/penelitian/editMonev');?>>
+                                <form method="post" action=<?= base_url('dosen/penelitian/upmonev');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn-sm btn-primary">
                                         Upload File
