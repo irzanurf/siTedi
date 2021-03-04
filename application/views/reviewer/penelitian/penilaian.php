@@ -35,6 +35,12 @@
                                     </button>
                                     
                                 </form>
+
+                <?php elseif(($v->nilai!=NULL ||$v->nilai!="" ||$v->nilai!="0") && ($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5)) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit
+                                    </button>
+
                 <?php elseif($v->nilai!=NULL ||$v->nilai!="" ||$v->nilai!="0") : ?>
                     <form style="display:inline-block;" method="post" action=<?= base_url('reviewer/penelitian/editPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
@@ -47,10 +53,7 @@
                                 </form>
                 
 
-                <?php elseif($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Edit
-                                    </button>
+                
 
                 <?php endif;?>
                 
@@ -76,6 +79,12 @@
                                     </button>
                                     
                                 </form> 
+
+                <?php elseif(($v->nilai2!=NULL ||$v->nilai2!="" ||$v->nilai2!="0")&&($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5)) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit
+                                    </button>
+
                 <?php elseif($v->nilai2!=NULL ||$v->nilai2!="" ||$v->nilai2!="0") : ?>
                     <form style="display:inline-block;" method="post" action=<?= base_url('reviewer/penelitian/editPenilaian');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
@@ -88,10 +97,7 @@
                                 </form>
                 
                 
-                <?php elseif($v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Edit
-                                    </button>
+                
 
                 <?php endif;?>
                 
