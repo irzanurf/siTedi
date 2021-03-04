@@ -31,7 +31,8 @@ class Pengabdian extends CI_Controller
         $data['nama'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$user))->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$user))->result();
         $data['berita'] = $this->M_Admin->get_berita(array('id'=>2))->result();
-        $data['view']= $this->M_PropPengabdian->get_viewpengajuan()->result();
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($user)->result();
+        $data['anggota']= $this->M_PropPengabdian->get_viewanggota($user)->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view("dosen/dashboardpengabdian",$data);
         $this->load->view("pengabdian/footer");
