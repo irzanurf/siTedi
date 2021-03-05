@@ -12,6 +12,15 @@ class M_Profile extends CI_Model
         return $this->db->get_where('kadep',$data);
     }
 
+    public function cekKadep($nip)
+    {
+        $query = $this->db->select('nip')
+                        ->from('kadep')
+                        ->where($nip)
+                        ->get();
+        return $query;
+    }
+
     public function cekRevPenelitian($nip)
     {
         $query = $this->db->select('nip')

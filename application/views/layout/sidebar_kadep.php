@@ -62,6 +62,9 @@
 
             <ul class="nav">
             <li>
+                        <a href="<?= base_url('/');?>"><i class="fa fa-fw fa-home"></i> Home</a>
+                    </li>
+            <li>
                         <a href="<?= base_url('kadep/kadep');?>"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
@@ -114,7 +117,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="<?= base_url('kadep/kadep/profile/');?>">
+                           <a href="<?= base_url('login/profile/');?>">
                                <p>Profile</p>
                             </a>
                         </li>

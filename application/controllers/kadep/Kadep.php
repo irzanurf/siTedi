@@ -9,9 +9,7 @@ class Kadep extends CI_Controller {
         //load model admin
         $this->load->model('Admin');
         //cek session dan level user
-        if($this->Admin->is_role() != "5"){
-            redirect("login/");
-        }
+        
         $this->load->model('M_Admin');
         $this->load->model('M_Kadep');
         $this->load->model('M_Profile');

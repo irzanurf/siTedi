@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller {
             redirect("login/");
         }
         $this->load->model('M_Admin');
+        $this->load->model('M_Dosen');
         $this->load->model('M_Profile');
         $this->load->model('M_Kadep');
         $this->load->model('M_JadwalPenelitian');
@@ -293,7 +294,9 @@ class Dashboard extends CI_Controller {
 
     public function viewKadep()
     {
-        $data['view']= $this->M_Profile->get_kadep()->result();
+        $data['view']= $this->M_Kadep->get_kadep()->result();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['departemen']= $this->M_Kadep->get_departemen()->result();
         $data['cek']="view";
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/kadep',$data);
@@ -311,22 +314,13 @@ class Dashboard extends CI_Controller {
 
     public function addKadepToDb()
     {
-        $this->form_validation->set_rules('nama','nama', 'required');
         $this->form_validation->set_rules('nip','nip', 'required');
-        $password = MD5($this->input->post('nip', TRUE));
+        $this->form_validation->set_rules('dep','dep', 'required');
         $data = [
             "nip"=>$this->input->post('nip',true),
-            "nomor_induk"=>$this->input->post('nomor_induk',true),
-            "nama"=>$this->input->post('nama',true),
             "id_departemen"=>$this->input->post('dep',true),
         ];
-        $user = [
-            "username"=>$this->input->post('nip',true),
-            "password"=>$password,
-            "role"=>"5",
-        ];
         $this->M_Profile->insert_kadep($data);
-        $this->M_Profile->insert_user($user);
         redirect("admin/dashboard/viewkadep");
     }
 
@@ -352,11 +346,7 @@ class Dashboard extends CI_Controller {
         $data = [
             'nip' => $nip,
         ];
-        $user = [
-            'username' => $nip,
-        ];
         $this->M_Profile->hapus_kadep($data);
-        $this->M_Profile->hapus_user($user);
         redirect('admin/dashboard/viewkadep');
     }
 

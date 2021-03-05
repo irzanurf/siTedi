@@ -11,6 +11,17 @@ class M_Kadep extends CI_Model
         return $query;
         
     }
+
+    public function get_kadep()
+    {
+        $query = $this->db->select('kadep.*,departemen.departemen as dep, departemen.id, dosen.nama as namakadep')
+                        ->from('kadep')
+                        ->join('departemen','kadep.id_departemen=departemen.id','inner')
+                        ->join('dosen','kadep.nip=dosen.nip','inner')
+                        ->order_by("id")
+                        ->get();
+        return $query;
+    }
     public function getwhere_profile(array $data)
     {
         $query = $this->db->select('kadep.*,departemen.departemen as dep')

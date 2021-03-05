@@ -8,6 +8,7 @@ class dashboard extends CI_Controller {
         parent::__construct();
         //load model admin
         $this->load->model('Admin');
+        $this->load->model('M_Profile');
         //cek session dan level user
         if($this->Admin->is_role() != "2"){
             redirect("login/");
@@ -16,8 +17,9 @@ class dashboard extends CI_Controller {
 
     public function index()
     {
-
-        $this->load->view("reviewer/dashboard");            
+        $nip = $this->session->userdata('user_name');
+        $data['cek']= $this->M_Profile->cekKadep(array('nip'=>$nip))->result();
+        $this->load->view("reviewer/dashboard", $data);            
 
     }
 
