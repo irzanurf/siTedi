@@ -127,6 +127,12 @@ class M_Profile extends CI_Model
         $this->db->where($user);
         $this->db->delete('user');
     }
+
+    public function update_pass($data,$nip)
+    {
+        $this->db->where('username',$nip);
+        $this->db->update('user',$data);
+    }
     
     
 }

@@ -360,6 +360,30 @@ class Dashboard extends CI_Controller {
         $this->load->view('layout/footer'); 
     }
 
+    public function editAkun()
+    {
+        $nip = $this->input->post('nip');
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['view']= $this->M_Profile->getwhere_profile(array('nip'=> $nip))->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/akun',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function gantiPass()
+    {
+        $this->form_validation->set_rules('pass','pass', 'required');
+        $password = MD5($this->input->post('pass', TRUE));
+        $nip = $this->input->post('nip',true);
+        $data = [
+            "password"=>$password,
+        ];
+        $this->M_Profile->update_pass($data,$nip);
+        redirect("admin/dashboard/viewDosen");
+    }
+
+    
+
     
 
 }

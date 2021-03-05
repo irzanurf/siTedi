@@ -41,9 +41,6 @@
         <a href="<?=base_url('admin/dashboard/tambahDosen');?>"><button class='btn btn-info'>Tambah Dosen</button></a>
         <?php } ?>
         <table class="table">
-            <col style='width:10%'>
-            <col style='width:50%'>
-            <col style='width:40%'>
             <div class="control-group1 input-group" style="margin-top:10px">
                 <form action="<?=base_url('admin/dashboard/searchDosen');?>" method="post">
 	            <input class="form-control" type="text" name="cari" placeholder="Masukkan nama dosen">
@@ -56,8 +53,9 @@
                 <th>NIDN</th>
                 <th>Nama</th>
                 <th>Departemen / Prodi</th>
-                <th>Edit</th>
-                <th>Hapus</th>
+                <th></th>
+                <th></th>
+                <th></th>
 
             </tr>
             <?php 
@@ -77,6 +75,16 @@
                                     
                                 </form>
             </td>
+
+            <td>
+                <form method="post" action=<?= base_url('admin/dashboard/editAkun');?>>
+                                    <input type='hidden' name="nip" value="<?= $v->nip ?>">
+                                    <button type="submit" class="btn btn-info">
+                                        Akun
+                                    </button>
+                                    
+                                </form>
+                </td>
             <td>
                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data?');" action=<?= base_url('admin/dashboard/hapusDosen');?>>
                                     <input type='hidden' name="nip" value="<?= $v->nip ?>">
