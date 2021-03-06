@@ -108,12 +108,12 @@
                                 <li>
                             <a href="<?= base_url('admin/pengabdian/listSubmit/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal</a>
                                 </li></br>
+                                <li>
+                                <a href="<?= base_url('admin/pengabdian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Pengabdian</a>
+                                </li></br>
                             <li>
                                 <a href="<?= base_url('admin/pengabdian/berita/');?>"><i class="fa fa-fw fa-edit"></i> Pengumuman</a>
                             </li></br>
-                            <li>
-                                <a href="<?= base_url('admin/pengabdian/luaran/');?>"><i class="fa fa-fw fa-edit"></i> Luaran Pengabdian</a>
-                                </li></br>
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/skemapengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Skema Pengabdian</a>
                                 </li></br>
