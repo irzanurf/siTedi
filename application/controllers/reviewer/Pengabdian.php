@@ -23,6 +23,12 @@ class Pengabdian extends CI_Controller
         $this->load->model('M_Profile');
         $this->load->model('M_Admin');
 
+        $nip = $this->session->userdata('user_name');
+        $cek= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        if (empty($cek)){
+            redirect("login/");
+        }
+
     }
 
     public function index()

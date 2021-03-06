@@ -27,6 +27,12 @@ class Kadep extends CI_Controller {
         $this->load->model('M_Mahasiswa');
         $this->load->model('M_SkemaPengabdian');
         $this->load->model('M_SumberDana');
+
+        $nip = $this->session->userdata('user_name');
+        $cek= $this->M_Profile->cekKadep(array('nip'=>$nip))->result();
+        if (empty($cek)){
+            redirect("login/");
+        }
     }
 
     public function index()
