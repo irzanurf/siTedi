@@ -133,6 +133,37 @@ class M_AdminPenelitian extends CI_Model
         $this->db->update('proposal_penelitian', $data);
     }
 
+    public function update_monev($id,array $data)
+    {
+        $query = $this->db->query("SELECT * FROM laporan_monev_penelitian WHERE id_proposal = '$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (!empty($count)){
+            $this->db->where('id_proposal',$id);
+            $this->db->update('laporan_monev_penelitian', $data);
+        }
+        else{
+           //nothing to do it
+        }   
+        
+    }
+
+    public function update_akhir($id,array $data)
+    {
+        $query = $this->db->query("SELECT * FROM laporan_akhir_penelitian WHERE id_proposal = '$id' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (!empty($count)){
+            $this->db->where('id_proposal',$id);
+            $this->db->update('laporan_akhir_penelitian', $data);
+        }
+        else{
+           //nothing to do it
+        }   
+    }
+
     public function get_viewPenelitian()
     {
         $query = $this->db->select('nilai_proposal_penelitian.*, proposal_penelitian.*,jenispenelitian.jenis as jenis,dosen.nama as nama_dosen, jadwal_penelitian.keterangan as ket')

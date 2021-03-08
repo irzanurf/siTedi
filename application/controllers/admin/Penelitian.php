@@ -345,6 +345,9 @@ class Penelitian extends CI_Controller
                 "id_sumberdana"=>$this->input->post('sumberdana',true),
         );
         $proposal=$this->M_PropPenelitian->update_prop($id,$prop);
+        $this->M_AdminPenelitian->update_monev($id,array("nip"=>$this->input->post('nip',true)));
+        $this->M_AdminPenelitian->update_akhir($id,array("nip"=>$this->input->post('nip',true)));
+        
             $file = $_FILES['file_prop'];
             if(!empty($file['name'])){
                 $config['upload_path'] = './assets/prop_penelitian';
