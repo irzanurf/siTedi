@@ -10,6 +10,11 @@ class M_Jenisp extends CI_Model
                         ->get();
         return $query;
     }
+
+    public function getwhere_jenis(array $data)
+    {
+        return $this->db->get_where('jenispenelitian',$data);
+    }
     
     
 }

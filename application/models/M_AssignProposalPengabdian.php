@@ -28,4 +28,15 @@ class M_AssignProposalPengabdian extends CI_Model
         $this->db->where('id_proposal',$id);
         $this->db->update('assign_proposal_pengabdian', $data);
     }
+
+    public function get_excel_reviewer($data)
+    {
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama')
+                        ->from('proposal_pengabdian')
+                        ->join('assign_proposal_pengabdian','proposal_pengabdian.id=assign_proposal_pengabdian.id_proposal','inner')
+                        ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
 }

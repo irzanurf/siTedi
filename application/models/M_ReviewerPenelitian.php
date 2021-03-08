@@ -66,6 +66,17 @@ class M_ReviewerPenelitian extends CI_Model
         return $query;
     }
 
+    public function get_excel_reviewer($data)
+    {
+        $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama')
+                        ->from('proposal_penelitian')
+                        ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','inner')
+                        ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
+
     public function get_monev(array $data)
     {
         return $this->db->get_where('laporan_monev_penelitian',$data);

@@ -263,6 +263,56 @@ class Penelitian extends CI_Controller
         $this->load->view('layout/footer'); 
     }
 
+    public function excelReviewer($nip)
+    {
+		$spreadsheet = new Spreadsheet();
+        $namaReviewer = $this->M_ReviewerPenelitian->getwhere_reviewer(array('nip'=>$nip))->row()->nama;
+        $fileName = 'ListProposalReviewer'.$nip; 
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_ReviewerPenelitian->get_excel_reviewer(array('reviewer'=>$nip))->result();
+        $prop2 = $this->M_ReviewerPenelitian->get_excel_reviewer(array('reviewer2'=>$nip))->result();
+        $sheet->setCellValue('A1', 'List Proposal Penelitian yang direview oleh '.$namaReviewer);
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Proposal Penelitian');
+        $sheet->setCellValue('C3', 'Ketua Penelitian');
+        $sheet->setCellValue('D3', 'Skema Penelitian');
+        
+        $no = 1;
+        $rows = 4;
+
+        foreach($prop as $p){
+            $skema = $this->M_Jenisp->getwhere_jenis(array('id'=>$p->id_jenis))->row()->jenis;
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, $skema);
+            $rows++;
+            
+        }
+
+        foreach($prop2 as $p){
+            $skema = $this->M_Jenisp->getwhere_jenis(array('id'=>$p->id_jenis))->row()->jenis;
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, $skema);
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        ob_end_clean();
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
+
+
     public function tambahReviewer()
     {
         $nip = $this->input->post('reviewer');

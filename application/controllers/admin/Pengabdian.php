@@ -679,6 +679,55 @@ class Pengabdian extends CI_Controller
     }
 
 
+    public function excelReviewer($nip)
+    {
+        $fileName = 'ListProposalReviewer'.$nip;  
+		$spreadsheet = new Spreadsheet();
+        $namaReviewer = $this->M_ReviewerPengabdian->getwhere_reviewer(array('nip'=>$nip))->row()->nama;
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_AssignProposalPengabdian->get_excel_reviewer(array('reviewer'=>$nip))->result();
+        $prop2 = $this->M_AssignProposalPengabdian->get_excel_reviewer(array('reviewer2'=>$nip))->result();
+        $sheet->setCellValue('A1', 'List Proposal yang direview oleh '.$namaReviewer);
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Judul Proposal Pengabdian');
+        $sheet->setCellValue('C3', 'Ketua Pengabdian');
+        $sheet->setCellValue('D3', 'Skema Pengabdian');
+        
+        $no = 1;
+        $rows = 4;
+
+        foreach($prop as $p){
+            $skema = $this->M_SkemaPengabdian->getwhere_skemapengabdian(array('id'=>$p->id_skema))->row()->jenis_pengabdian;
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, $skema);
+            $rows++;
+            
+        }
+
+        foreach($prop2 as $p){
+            $skema = $this->M_SkemaPengabdian->getwhere_skemapengabdian(array('id'=>$p->id_skema))->row()->jenis_pengabdian;
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->judul);
+            $sheet->setCellValue('C'.$rows, $p->nama);
+            $sheet->setCellValue('D'.$rows, $skema);
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        ob_end_clean();
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
+
     public function proposalword()
     {
         $phpWord = new \PhpOffice\PhpWord\PhpWord();

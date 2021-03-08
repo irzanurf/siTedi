@@ -32,6 +32,7 @@
                 <th>No</th>
                 <th>NIP/NIDN</th>
                 <th>Nama</th>
+                <th>List Proposal</th>
                 <th>Action</th>
                
             </tr>
@@ -42,6 +43,12 @@
                 <td><?= $no++?></td>
                 <td><?= $v->nip?></td>
                 <td><?= $v->nama ?></td>
+                <td>
+                <a href="<?=base_url('admin/pengabdian/excelReviewer');?>/<?=$v->nip?>">
+                                    <button   class="btn btn-info"> <img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Proposal yang direview </button>
+                                    </a>
+                
+                </td>
                 <td >
                             
                                 <form method="post" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Reviewer?');" action=<?= base_url('admin/pengabdian/hapusReviewer');?>>

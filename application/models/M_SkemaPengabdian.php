@@ -12,6 +12,12 @@ class M_SkemaPengabdian extends CI_Model
         
     }
 
+    public function getwhere_skemapengabdian(array $data)
+    {
+        return $this->db->get_where('skema_pengabdian',$data);
+    }
+
+
     public function insert_skema($data)
     {
         $this->db->insert('skema_pengabdian',$data);
