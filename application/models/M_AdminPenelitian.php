@@ -18,7 +18,7 @@ class M_AdminPenelitian extends CI_Model
         $query = $this->db->select('proposal_penelitian.*, dosen.*, r1.nama as nama_reviewer1, r2.nama as nama_reviewer2')
                         ->from('proposal_penelitian')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
-                        ->join('nilai_proposal_penelitian ','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
+                        // ->join('nilai_proposal_penelitian ','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
                         ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','left')
                         ->join('reviewer_penelitian r1', 'assign_proposal_penelitian.reviewer=r1.nip','left')
                         ->join('reviewer_penelitian r2', 'assign_proposal_penelitian.reviewer2=r2.nip','left')
@@ -46,10 +46,18 @@ class M_AdminPenelitian extends CI_Model
         return $query;
     }
 
-    public function insert_reviewer($data)
+    public function insert_reviewer($data,$proposalid)
     {
+        $query = $this->db->get_where('assign_proposal_penelitian',$proposalid);
+        $result = $query->result_array();
+        $count = count($result);
+        if (empty($count)){
         $this->db->insert('assign_proposal_penelitian',$data);
         return $this->db->insert_id();
+        }
+        else{
+            //nothing to do it
+         } 
     }
 
     public function update_reviewer($data,$idProp)

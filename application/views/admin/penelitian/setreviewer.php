@@ -61,7 +61,7 @@
                     <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Assign reviewer 1</label>
                                 <div class="col-lg-8">
-                                <select class="form-control" id="selectpicker1" name="reviewer" data-live-search='true'>
+                                <select class="form-control" id="selectpicker1" name="reviewer" data-live-search='true' required="">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($reviewer as $ds) {
@@ -76,7 +76,7 @@
                     <div class="form-group ">
                                 <label class="col-lg-4 col-form-label">Assign reviewer 2</label>
                                 <div class="col-lg-8">
-                                <select class="form-control" id="selectpicker2" name="reviewer2" data-live-search='true'>
+                                <select class="form-control" id="selectpicker2" name="reviewer2" data-live-search='true' required="">
                                     <option value="">Please Select</option>
                                     <?php
                                     foreach ($reviewer as $ds) {

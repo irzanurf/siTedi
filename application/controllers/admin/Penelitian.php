@@ -242,12 +242,15 @@ class Penelitian extends CI_Controller
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
+        $proposalid = [
+            'id_proposal'=>$idProp,
+        ];
         $data = [
             'id_proposal' => $idProp,
             'reviewer' => $reviewer,
             'reviewer2' => $reviewer2
         ];
-        $this->M_AdminPenelitian->insert_reviewer($data);
+        $this->M_AdminPenelitian->insert_reviewer($data,$proposalid);
         redirect('admin/penelitian/assignProposal');
     }
 
