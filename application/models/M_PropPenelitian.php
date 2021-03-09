@@ -8,6 +8,11 @@ class M_PropPenelitian extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function getwhere_rev(array $data)
+    {
+        return $this->db->get_where('assign_proposal_penelitian',$data);
+    }
+
     public function insert_monev($prop,$id)
     {
         $query = $this->db->query("SELECT * FROM laporan_monev_penelitian WHERE id_proposal='$id' ");

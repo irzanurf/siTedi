@@ -13,6 +13,11 @@ class M_PropPengabdian extends CI_Model
         return $this->db->get('proposal_pengabdian');
     }
 
+    public function getwhere_rev(array $data)
+    {
+        return $this->db->get_where('assign_proposal_pengabdian',$data);
+    }
+
     public function getwhere_proposal(array $data)
     {
         return $this->db->get_where('proposal_pengabdian',$data);

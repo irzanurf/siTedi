@@ -24,6 +24,8 @@ class Pengabdian extends CI_Controller {
         $this->load->model('M_LaporanAkhirPengabdian');
         $this->load->model('M_JadwalPengabdian');
         $this->load->model('M_Luaran');
+        $this->load->model('M_KomponenNilaiPengabdian');
+        $this->load->model('M_NilaiPropPengabdian');
     }
 
     public function index()
@@ -36,6 +38,32 @@ class Pengabdian extends CI_Controller {
         $data['anggota']= $this->M_PropPengabdian->get_viewanggota($user)->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view("dosen/dashboardpengabdian",$data);
+        $this->load->view("pengabdian/footer");
+    }
+    public function detail()
+    {
+        $id = $this->input->post('id',true);
+        if($id==NULL){
+            redirect("dosen/pengabdian/submitpermohonan");
+        }
+        // $id_jenis = $this->input->post('id_skema');
+        $nip = $this->session->userdata('user_name');
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $reviewer = $this->M_PropPengabdian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer;
+        $reviewer2 = $this->M_PropPengabdian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer2;
+        $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id, 'reviewer'=>$reviewer))->result();
+        $data['komponen2'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id, 'reviewer'=>$reviewer2))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+
+            $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
+            $data['komentar'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
+
+            $data['nilai2'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai2;
+            $data['komentar2'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
+        
+        $this->load->view('pengabdian/header', $nama);
+        $this->load->view('dosen/detail', $data);
         $this->load->view("pengabdian/footer");
     }
 

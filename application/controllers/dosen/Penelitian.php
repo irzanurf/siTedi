@@ -42,6 +42,33 @@ class Penelitian extends CI_Controller {
         $this->load->view("penelitian/footer");
     }
 
+    public function detail()
+    {
+        $id = $this->input->post('id',true);
+        if($id==NULL){
+            redirect("dosen/penelitian/submit");
+        }
+        // $id_jenis = $this->input->post('id_skema');
+        $nip = $this->session->userdata('user_name');
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $reviewer = $this->M_PropPenelitian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer;
+        $reviewer2 = $this->M_PropPenelitian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer2;
+        $data['komponen'] = $this->M_ReviewerPenelitian->get_nilai(array('id_proposal'=>$id, 'reviewer'=>$reviewer))->result();
+        $data['komponen2'] = $this->M_ReviewerPenelitian->get_nilai(array('id_proposal'=>$id, 'reviewer'=>$reviewer2))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+
+            $data['nilai'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
+            $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
+
+            $data['nilai2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai2;
+            $data['komentar2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
+        
+        $this->load->view('penelitian/header', $nama);
+        $this->load->view('dosen/penelitian/detail', $data);
+        $this->load->view("penelitian/footer");
+    }
+
     public function addformProposal()
     {
         $this->form_validation->set_rules('judul','Judul Penelitian', 'required');

@@ -1,7 +1,7 @@
 <!-- input-forms -->
 <div class="grids">
 					<div class="progressbar-heading grids-heading">
-                        <h2>Penilaian</h2>
+                        <h2>Detail Nilai</h2>
                     </div>
                     <div class="panel panel-widget forms-panel">
 						<div class="forms">
@@ -14,86 +14,64 @@
                         <div class="col-lg-11">
                         <div class='form-group row'>
                         <?php {?>
-                        <label class="col-lg-4 col-form-label">Judul Penelitian</label>
+                        <label class="col-lg-4 col-form-label">Judul Pengabdian</label>
                         <div class="col-lg-8">
                             <p><?=$proposal->judul;?></p>
                         </div>
                     </div>
-                    <label>Ketua Penelitian</label>
-                    <div class='form-group row'>
-                        <p class="col-lg-4">Nama Lengkap</p>
-                        <div class="col-lg-8">
-                            <p><?=$dosen->nama;?></p>
-                        </div><br>
-                        <p class="col-lg-4">NIP/NIDN</p>
-                        <div class="col-lg-8">
-                            <p><?=$dosen->nip;?></p>
-                        </div><br>
-                        <p class="col-lg-4 ">Program Studi</p>
-                        <div class="col-lg-8">
-                            <p><?=$dosen->program_studi;?></p>
-                        </div>
-                    </div>
-                    <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Lama Penelitian</label>
-                        <div class="col-lg-8">
-                            <p><?=$proposal->lama_pelaksanaan;?></p>
-                        </div>
-                    </div> 
-                    <div class='form-group row'>
-                        <label class="col-lg-4 col-form-label">Biaya Penelitian</label>
-                        <div class="col-lg-8">
-                            <p>Rp <?=  number_format($proposal->biaya,2,',','.');?></p>
-                        </div>
-                    </div>
+                   
                         <?php }?>
-                            <iframe src="<?= base_url('assets/prop_penelitian');?>/<?=$proposal->file?>" width="93%" height="400px" >
+                            <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$proposal->file?>" width="93%" height="400px" >
                             </iframe>
                         </div>
                         <div class="col-lg-1"></div>
                     
                     </div>
                     <table class="table">
-                    <form method='POST' action="<?= base_url('reviewer/penelitian/submitNilai');?>" >
                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                         <tr>
                             <th>No.</th>
-                            <th>Komponen Penilaian</th>
-                            <th>Bobot</th>
-                            <th>Skor</th>
-                            <th>Nilai</th>
+                            <th>Komponen Pengabdian</th>
+                            <th>Nilai Reviewer 1</th>
+                            <th>Nilai Reviewer 2</th>
                         </tr>
-                    </thead>
                         <?php 
                         $no = 1;
-                        foreach($view as $k) {?>
+                        for($i=0, $count = count($komponen);$i<$count;$i++) {?>
                             <tr>
-                            <td><?= $no?></td>
-                            <td><?= $k->komponen?></td>
-                            <td><input id="bobot<?=$no?>" name="bobot" value="<?= $k->bobot ?>" disabled></td>
-                            <td>
-                                <input class="form-control" name="<?=$k->id?>" id="skor<?=$no?>" value="" require=""></td>
-                            <td><input type="text" id="nilai<?=$no++?>" name="nilai<?=$k->id?>" value="0" readonly></td>
-                                
+                            <td><?= $no+$i?></td>
+                        <td> <?php if($komponen[$i]->komponen_penilaian!=""||$komponen[$i]->komponen_penilaian!=NULL) : ?>
+                        <?= $komponen[$i]->komponen_penilaian?>
+                        <?php else : ?>
+                            <?= $komponen2[$i]->komponen_penilaian?>
+                            <?php endif;?>
+                               </td>
+                        <td><?=$komponen[$i]->nilai?></td>         
+                        <td><?=$komponen2[$i]->nilai?></td> 
+                        <?php }?>
+                        
                             </tr>
                             
-                            <?php }?>
+                            
                             <tr>
-                            <td colspan='4'>Total</td>
-                            <td><input type="text" name="total_nilai" id="totalnilai" value="0" readonly></td>
+                            <td colspan='2'>Total</td>
+                            <td><?= $nilai ?></td>
+                            <td><?= $nilai2 ?></td>
                             </tr>
                             <input type="text" id="total" value=<?=$no?> hidden>
                         </table>
-                    <p>&nbsp; Keterangan: Skor : 1, 2, 4, 5 (1 = sangat kurang, 2 = kurang, 4 = baik, 5 = sangat baik); Nilai = Bobot x Skor</p>
-                    
                     <div class="form-group">
-                        <label><br>Komentar Penilai</label>
+                        <h4><br>Komentar Reviewer 1</h4>
                         <div >
-                            <textarea class="form-control" name="komentar"  rows="3"></textarea>
+                            <?= $komentar ?>
                         </div>
                         </div>
-                    
-                        <button type="submit" class="btn btn-success">Submit</button>
+                        <div class="form-group">
+                        <h4><br>Komentar Reviewer 2</h4>
+                        <div >
+                            <?= $komentar2 ?>
+                        </div>
+                        </div>
                     </form>
 </div>
                         </div>
