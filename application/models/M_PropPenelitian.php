@@ -2,10 +2,20 @@
 
 class M_PropPenelitian extends CI_Model
 {
-    public function insert_proposal($prop)
+    public function insert_proposal($prop,$nip,$jadwal)
     {
-        $this->db->insert('proposal_penelitian',$prop);
+        $query = $this->db->query("SELECT * FROM proposal_penelitian WHERE nip = '$nip' AND id_jadwal='$jadwal' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (empty($count)){
+            $this->db->insert('proposal_penelitian',$prop);
         return $this->db->insert_id();
+        }
+        else{
+            redirect("dosen/penelitian/submit");
+        }   
+        
     }
 
     public function getwhere_rev(array $data)

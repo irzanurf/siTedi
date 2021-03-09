@@ -28,10 +28,12 @@
         
         <section class="content">
         <?php echo $this->session->flashdata('message');?>
-       
+        
+        <a href="<?=base_url('admin/penelitian/tambahProp');?>/<?= $id ?>"><button class='btn btn-info'><i class="fa fa-plus"></i> Tambah</button></a>
+        &nbsp;
         <a href="<?=base_url('admin/penelitian/proposalexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Pengajuan Proposal</button></a>
         <a href="<?=base_url('admin/penelitian/testexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Proposal yang Disetujui</button></a>
-
+        
         <table class="table">
             <tr>
                 <th>No</th>
@@ -83,10 +85,10 @@
                 Review
 
                 <?php elseif($v->status==13) : ?>
-                Monev
+                    Review
 
                 <?php elseif($v->status==3) : ?>
-                Monev Submited
+                Monev
 
                 <?php elseif($v->status==4) : ?>
                 Laporan Akhir

@@ -92,7 +92,7 @@
                                     
                                 </form>
                             
-                            <?php elseif($v->status=="11"||$v->status=="12") : ?>
+                            <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Reviewing
                                     </button>
@@ -102,7 +102,7 @@
                                         Submitted
                                     </button>
                             
-                            <?php elseif($v->status=="3"||$v->status=="13") : ?>
+                            <?php elseif($v->status=="3") : ?>
                                 <button type="button" class="btn-sm btn-info" dissabled>
                                         Monev
                                     </button>
@@ -175,12 +175,12 @@
                                     </button>
                                
                             
-                            <?php elseif($v->status=="11"||$v->status=="12") : ?>
+                            <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Reviewing
                                     </button>
                             
-                            <?php elseif($v->status=="3"||$v->status=="13") : ?>
+                            <?php elseif($v->status=="3") : ?>
                                 <button type="button" class="btn-sm btn-info" dissabled>
                                         Monev
                                     </button>

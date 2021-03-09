@@ -109,7 +109,7 @@ class Penelitian extends CI_Controller {
             "file"=>$prop_file
 
         ];
-        $proposal=$this->M_PropPenelitian->insert_proposal($prop);
+        $proposal=$this->M_PropPenelitian->insert_proposal($prop,$nip,$jadwal);
         $nip= $this->input->post('dosen[]');
         
         $data_dosen = array();

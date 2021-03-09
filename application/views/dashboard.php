@@ -104,7 +104,7 @@
 
                                        <?php elseif($v->status=="13") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                           Monev
+                                   Reviewing
                                        </button>
    
                                        <?php elseif($v->status=="3") : ?>
@@ -161,7 +161,7 @@
 
                                        <?php elseif($v->status=="13") : ?>
                                    <button type="button" class="btn-sm btn-success" dissabled>
-                                           Monev 
+                                   Reviewing 
                                        </button>
    
                                        <?php elseif($v->status=="3") : ?>
