@@ -147,6 +147,18 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
+    public function get_viewListPropReviewer($data)
+    {
+        $query = $this->db->select('proposal_pengabdian.*, dosen.nama as nama, dosen.program_studi as program_studi, skema_pengabdian.jenis_pengabdian as skema, assign_proposal_pengabdian.*')
+                        ->from('proposal_pengabdian')
+                        ->join('dosen','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->join('skema_pengabdian','proposal_pengabdian.id_skema = skema_pengabdian.id','inner')
+                        ->join('assign_proposal_pengabdian','proposal_pengabdian.id=assign_proposal_pengabdian.id_proposal', 'inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
+
     public function get_viewlaporanakhir()
     {
         $query = $this->db->select('proposal_pengabdian.*, laporan_akhir_pengabdian.id as id_lap, laporan_akhir_pengabdian.laporan_akhir as laporan_akhir, laporan_akhir_pengabdian.belanja as belanja, laporan_akhir_pengabdian.logbook as logbook, laporan_akhir_pengabdian.luaran as luaran ')

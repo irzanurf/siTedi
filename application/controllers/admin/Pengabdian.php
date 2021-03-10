@@ -931,6 +931,145 @@ class Pengabdian extends CI_Controller
 
     }
 
+    // public function testexcel($jadwal)
+    // {
+    //     $fileName = 'AcceptedProposal';  
+	// 	$spreadsheet = new Spreadsheet();
+    //     $sheet = $spreadsheet->getActiveSheet();
+    //     $prop = $this->M_PropPengabdian->get_viewAnnouncement(array('id_jadwal'=>$jadwal))->result();
+    //     $sheet->setCellValue('A1', 'Proposal Pengabdian yang Akan Diberi Pendanaan');
+    //     $sheet->setCellValue('A2', date('Y-m-d'));
+    //     $sheet->setCellValue('A3', 'No');
+    //     $sheet->setCellValue('B3', 'Skema Pengabdian');
+    //     $sheet->setCellValue('C3', 'Judul Pengabdian');
+    //     $sheet->setCellValue('D3', 'Ketua Pengabdian');
+    //     $sheet->setCellValue('E3', 'Dosen Anggota');
+	//     $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+    //     $sheet->setCellValue('G3', 'Program Studi');
+    //     $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
+        
+    //     $no = 1;
+    //     $rows = 4;
+
+    //     foreach($prop as $p){
+    //         $noDsn= 1;
+    //         $noMhs = 1;
+    //         $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id))->result();
+    //         $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id))->result();
+    //         $sheet->setCellValue('A'.$rows, $no++);
+    //         $sheet->setCellValue('B'.$rows, $p->skema);
+    //         $sheet->setCellValue('C'.$rows, $p->judul);
+    //         $sheet->setCellValue('D'.$rows, $p->nama);
+    //         $anggota_dosen = "";
+    //         $anggota_mhs ="";
+    //         foreach($dosen as $d){
+    //             if(empty($this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama)){
+                    
+    //             }
+    //            else{
+    //                $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
+            
+    //            }
+    //            }
+               
+    //         foreach($mhs as $m){
+    //             if(empty($m->nama)){
+                    
+    //             }
+    //             else {
+    //             $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
+    //             }
+    //         }
+    //         $sheet->setCellValue('E'.$rows, $anggota_dosen);
+    //         $sheet->setCellValue('F'.$rows,$anggota_mhs);
+    //         $sheet->setCellValue('G'.$rows, $p->program_studi);
+    //         $sheet->setCellValue('H'.$rows, $p->biaya);
+    //         $rows++;
+            
+    //     }
+
+    //     $writer = new Xlsx($spreadsheet);
+    //     header('Content-Type: application/vnd.ms-excel');
+    //     header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+    //     header('Cache-Control: max-age=0');
+
+    //     $writer->save('php://output');
+
+    // }
+
+    public function proposalreviewerexcel($jadwal)
+    {
+        $fileName = 'PengajuanProposal';  
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_PropPengabdian->get_viewListPropReviewer(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
+        $sheet->setCellValue('A1', 'List Semua Proposal Pengabdian');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Skema Pengabdian');
+        $sheet->setCellValue('C3', 'Judul Pengabdian');
+        $sheet->setCellValue('D3', 'Ketua Pengabdian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('I3', 'Reviewer 1');
+        $sheet->setCellValue('J3', 'Reviewer 2');
+        
+        $no = 1;
+        $rows = 4;
+
+        foreach($prop as $p){
+            $noDsn= 1;
+            $noMhs = 1;
+            $dosen = $this->M_Dosen->getwhere_dosenpengabdian(array('id_proposal'=>$p->id_proposal))->result();
+            $mhs = $this->M_Mahasiswa->getwhere_mahasiswapengabdian(array('id_proposal'=>$p->id_proposal))->result();
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
+            $anggota_dosen = "";
+            $anggota_mhs ="";
+            foreach($dosen as $d){
+                if(empty($this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama)){
+                    
+                }
+               else{
+                   $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
+            
+               }
+               }
+               
+            foreach($mhs as $m){
+                if(empty($m->nama)){
+                    
+                }
+                else {
+                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
+                }
+            }
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows,$p->biaya);
+            $reviewer1 = $this->M_ReviewerPengabdian->getwhere_reviewer(array('nip'=>$p->reviewer))->row()->nama;
+            $reviewer2 = $this->M_ReviewerPengabdian->getwhere_reviewer(array('nip'=>$p->reviewer2))->row()->nama;
+            $sheet->setCellValue('I'.$rows,$reviewer1);
+            $sheet->setCellValue('J'.$rows,$reviewer2);
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
     public function luaran()
     {
         $id = $this->input->post('id');

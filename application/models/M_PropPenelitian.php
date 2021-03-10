@@ -312,6 +312,18 @@ class M_PropPenelitian extends CI_Model
         return $query;
     }
 
+    public function get_viewListPropReviewer($data)
+    {
+        $query = $this->db->select('proposal_penelitian.*, dosen.nama as nama, dosen.program_studi as program_studi, jenispenelitian.jenis as skema, assign_proposal_penelitian.*')
+                        ->from('proposal_penelitian')
+                        ->join('dosen','proposal_penelitian.nip=dosen.nip','inner')
+                        ->join('jenispenelitian','jenispenelitian.id=proposal_penelitian.id_jenis','inner')
+                        ->join('assign_proposal_penelitian','proposal_penelitian.id=assign_proposal_penelitian.id_proposal','inner')
+                        ->where($data)
+                        ->get();
+        return $query;
+    }
+
     public function dosen_update_prop($id)
     {
         $query = $this->db->select('dsn_penelitian.*, dosen.nama as nama, dosen.program_studi as program_studi')

@@ -1318,6 +1318,83 @@ class Penelitian extends CI_Controller
         }
 
         $writer = new Xlsx($spreadsheet);
+        ob_end_clean();
+        // $filename = 'laporan-siswa';
+        
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $fileName .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+
+        $writer->save('php://output');
+
+    }
+
+
+    public function proposalreviewerexcel($jadwal)
+    {
+        $fileName = 'PengajuanProposal';  
+		$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $prop = $this->M_PropPenelitian->get_viewListPropReviewer(array('id_jadwal'=>$jadwal))->result();
+        $sheet->setCellValue('A1', 'List Semua Proposal Penelitian');
+        $sheet->setCellValue('A2', date('Y-m-d'));
+        $sheet->setCellValue('A3', 'No');
+        $sheet->setCellValue('B3', 'Skema Penelitian');
+        $sheet->setCellValue('C3', 'Judul Penelitian');
+        $sheet->setCellValue('D3', 'Ketua Penelitian');
+        $sheet->setCellValue('E3', 'Dosen Anggota');
+	    $sheet->setCellValue('F3', 'Mahasiswa Anggota');
+        $sheet->setCellValue('G3', 'Program Studi');
+        $sheet->setCellValue('H3', 'Jumlah Dana per Judul(Rp)');
+        $sheet->setCellValue('I3', 'Reviewer 1');
+        $sheet->setCellValue('J3', 'Reviewer 2');
+        
+        $no = 1;
+        $rows = 4;
+
+        foreach($prop as $p){
+            $noDsn= 1;
+            $noMhs = 1;
+            $dosen = $this->M_Dosen->getwhere_dosenpenelitian(array('id_proposal'=>$p->id_proposal))->result();
+            $mhs = $this->M_Mahasiswa->getwhere_mahasiswapenelitian(array('id_proposal'=>$p->id_proposal))->result();
+            $sheet->setCellValue('A'.$rows, $no++);
+            $sheet->setCellValue('B'.$rows, $p->skema);
+            $sheet->setCellValue('C'.$rows, $p->judul);
+            $sheet->setCellValue('D'.$rows, $p->nama);
+            $anggota_dosen = "";
+            $anggota_mhs ="";
+            foreach($dosen as $d){
+                if(empty($this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama)){
+                    
+                }
+               else{
+                   $anggota_dosen = $anggota_dosen."".$noDsn++.". ".$this->M_Dosen->getwhere_dosen(array('nip'=> $d->nip))->row()->nama."\n";
+            
+               }
+               }
+               
+            foreach($mhs as $m){
+                if(empty($m->nama)){
+                    
+                }
+                else {
+                $anggota_mhs = $anggota_mhs."".$noMhs++.". ".$m->nama."\n";
+                }
+            }
+            $sheet->setCellValue('E'.$rows, $anggota_dosen);
+            $sheet->setCellValue('F'.$rows,$anggota_mhs);
+            $sheet->setCellValue('G'.$rows, $p->program_studi);
+            $sheet->setCellValue('H'.$rows,$p->biaya);
+            $reviewer1 = $this->M_ReviewerPenelitian->getwhere_reviewer(array('nip'=>$p->reviewer))->row()->nama;
+            $reviewer2 = $this->M_ReviewerPenelitian->getwhere_reviewer(array('nip'=>$p->reviewer2))->row()->nama;
+            $sheet->setCellValue('I'.$rows, $reviewer1);
+            $sheet->setCellValue('J'.$rows,$reviewer2);
+            $rows++;
+            
+        }
+
+        $writer = new Xlsx($spreadsheet);
+        ob_end_clean();
         // $filename = 'laporan-siswa';
         
         header('Content-Type: application/vnd.ms-excel');

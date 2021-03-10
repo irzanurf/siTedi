@@ -30,6 +30,7 @@
         <?php echo $this->session->flashdata('message');?>
         <a href="<?=base_url('admin/pengabdian/proposalexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Pengajuan Proposal</button></a>
         <a href="<?=base_url('admin/pengabdian/testexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal yang Disetujui</button></a>
+        <a href="<?=base_url('admin/pengabdian/proposalreviewerexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> Download List Proposal dan Reviewer</button></a>
 
         <table class="table">
             <tr>
