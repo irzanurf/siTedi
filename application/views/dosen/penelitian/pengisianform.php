@@ -13,7 +13,7 @@ label    {color: black; font-size:15px;}
 									<form action="<?= base_url('dosen/penelitian/addformproposal');?>" method="post" enctype="multipart/form-data"> 
                                     <div class="form-group">
                                     <label>Jenis Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
-                                    <select class="form-control" name="jenis" id="jenis" require>
+                                    <select class="form-control" name="jenis" id="jenis" required="">
                                         <option value="">Please Select</option>
                                         <?php
                                         foreach ($jenispenelitian as $jp) {
@@ -268,7 +268,6 @@ label    {color: black; font-size:15px;}
 
 <script type="text/javascript"> 
         $(document).ready(function(){
-            $('#submit').prop('disabled',true);
             $('#judul').change(function(){
             var judul = $('#judul').val();
             if(judul != ''){
@@ -309,33 +308,7 @@ label    {color: black; font-size:15px;}
       });
     });
     </script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            $('#submit').prop('disabled',true);
-            $('#username').change(function(){
-            var username = $('#username').val();
-            if(username != ''){
-                $.ajax({
-                    url:"<?php echo base_url('dosen/Pengabdian/checkUsername');?>",
-                    method:"post",
-                    data:{username:username},
-                    dataType: 'json',
-                    success:function(data){
-                        if(data=="Username tersedia"){
-                            $('#submit').prop('disabled',false);
-                            $('#username_result').hide();
-                        }else{
-                            $('#submit').prop('disabled', true);
-                            $('#username_result').show();
-                            $('#username_result').html(data);
-                        }
-                        //console.log(data);
-                    }
-                });
-            }
-            });
-            });
-    </script>
+    
 
 <!-- Bootstrap Core JavaScript -->
 <script src="<?= base_url('assets/template/js/bootstrap.min.js');?>"></script>
