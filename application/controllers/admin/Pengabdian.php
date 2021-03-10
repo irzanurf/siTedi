@@ -142,6 +142,250 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/footer'); 
     }
 
+    public function addformProposal()
+    {
+        $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+        $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        $this->form_validation->set_rules('instansi','Nama Instansi', 'required');
+        $this->form_validation->set_rules('nip','Ketua Pengabdian', 'required');
+        $this->form_validation->set_rules('username','Username', 'required');
+        $this->form_validation->set_rules('password','Password', 'required');
+        if($this->form_validation->run()==false){
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action gagal dilakukan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/". $this->input->post('id_jadwal',true));
+        } else {
+            $prop_file = $_FILES['file_prop'];
+        if($prop_file=''){}else{
+            $config['upload_path'] = './assets/prop_pengabdian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file_prop')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop_file=$this->upload->data('file_name');
+            }
+        }
+        $data = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+
+        ];
+        $data_check = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+        ];
+        $checkMitra = $this->M_Mitra->getwhere_mitra($data_check);
+        if($checkMitra->num_rows() > 0){
+            $mitra = $checkMitra->row()->id;
+        } else{
+            $mitra=$this->M_Mitra->insert_mitra($data);
+        }
+        
+        $date = date('Y-m-d');
+        $bulan = $this->input->post('bulan',true);
+        $jadwal = $this->input->post('id_jadwal',true);
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
+        
+        $prop = [
+            "id_mitra"=>$mitra,
+            "nip"=>$this->input->post('nip',true),
+            "judul"=>$this->input->post('judul',true),
+            "abstrak"=>$this->input->post('abstrak',true),
+            "tgl_upload"=>$date,
+            "id_jadwal" => $jadwal,
+            "lokasi"=>$this->input->post('lokasi',true),
+            "lama_pelaksanaan"=>$bulan,
+            "id_sumberdana"=>$this->input->post('sumberdana',true),
+            "biaya"=>$biaya,
+            "id_skema"=>$this->input->post('skema_pengabdian')
+
+        ];
+        $proposal=$this->M_PropPengabdian->insert_proposal($prop);
+
+
+        /**
+         * upload file proposal
+         */
+        
+        $data_file = array('file'=>$prop_file);
+        $this->M_PropPengabdian->update_prop($proposal,$data_file);
+
+
+
+        $nip= $this->input->post('dosen[]');
+        $data_dosen = array();
+        for($i=0; $i<count($nip)-1; $i++)
+        {
+            if($nip[$i]==""||$nip[$i]==null||$nip[$i]==0){
+
+            }
+            else{
+            $data_dosen[$i] = array(
+                'nip'  =>      $nip[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        }
+        $this->M_PropPengabdian->dosen($data_dosen);
+
+        $id_luaran= $this->input->post('luaran[]');
+        $data_luaran = array();
+        for($i=0; $i<count($id_luaran)-1; $i++)
+        {
+            if($id_luaran[$i]==""||$id_luaran[$i]==null||$id_luaran[$i]==0){
+
+            }
+            else{
+            $data_luaran[$i] = array(
+                'id_luaran'  =>$id_luaran[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        }
+        $this->M_PropPengabdian->luaran($data_luaran);
+        
+        $nim= $this->input->post('nim_mahasiswa[]');
+        $nama_mhs = $this->input->post('nama_mahasiswa[]');
+        $data_mahasiswa = array();
+        for($i=0; $i<count($nim)-1; $i++)
+        {
+            $data_mahasiswa[$i] = array(
+                'nim'  => $nim[$i],
+                'nama' => $nama_mhs[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        $this->M_PropPengabdian->mahasiswa($data_mahasiswa);
+
+
+        $role_mitra='4';
+        $password= md5($this->input->post('password',true));
+        $user_mitra = [
+            "username"=>$this->input->post('username',true),
+            "password"=>$password,
+            "role"=>$role_mitra
+        ];
+        $this->M_User->insert_user($user_mitra);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action berhasil dilakukan</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        }
+    }
+
+
+    public function addformProposalTanpaMitra()
+      {
+          $this->form_validation->set_rules('judul','Judul Pengabdian', 'required');
+          $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        
+          if($this->form_validation->run()==false){
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action gagal dilakukan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/". $this->input->post('id_jadwal',true));
+          } else {
+              $prop_file = $_FILES['file_prop'];
+          if($prop_file=''){}else{
+              $config['upload_path'] = './assets/prop_pengabdian';
+              $config['allowed_types'] = 'pdf';
+              $config['encrypt_name'] = TRUE;
+  
+              $this->load->library('upload',$config);
+              if(!$this->upload->do_upload('file_prop')){
+                  echo "Upload Gagal"; die();
+              } else {
+                  $prop_file=$this->upload->data('file_name');
+              }
+          }
+          
+          
+          
+          $date = date('Y-m-d');
+          $bulan = $this->input->post('bulan',true);
+          $jadwal = $this->input->post('id_jadwal',true);
+          $biaya = str_replace('.','',$this->input->post('biaya',true));
+          
+          $prop = [
+              "nip"=>$this->input->post('nip',true),
+              "judul"=>$this->input->post('judul',true),
+              "abstrak"=>$this->input->post('abstrak',true),
+              "tgl_upload"=>$date,
+              "id_jadwal" => $jadwal,
+              "lokasi"=>$this->input->post('lokasi',true),
+              "lama_pelaksanaan"=>$bulan,
+              "id_sumberdana"=>$this->input->post('sumberdana',true),
+              "biaya"=>$biaya,
+              "id_skema"=>$this->input->post('skema_pengabdian'),
+              "file" => $prop_file
+  
+          ];
+          $proposal=$this->M_PropPengabdian->insert_proposal($prop);
+  
+  
+          /**
+           * upload file proposal
+           */
+  
+  
+  
+          $nip= $this->input->post('dosen[]');
+          $data_dosen = array();
+          for($i=0; $i<count($nip)-1; $i++)
+          {
+              if($nip[$i]==""||$nip[$i]==null||$nip[$i]==0){
+  
+              }
+              else{
+              $data_dosen[$i] = array(
+                  'nip'  =>      $nip[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          }
+          $this->M_PropPengabdian->dosen($data_dosen);
+  
+          $id_luaran= $this->input->post('luaran[]');
+          $data_luaran = array();
+          for($i=0; $i<count($id_luaran)-1; $i++)
+          {
+              if($id_luaran[$i]==""||$id_luaran[$i]==null||$id_luaran[$i]==0){
+  
+              }
+              else{
+              $data_luaran[$i] = array(
+                  'id_luaran'  =>$id_luaran[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          }
+          $this->M_PropPengabdian->luaran($data_luaran);
+          
+          $nim= $this->input->post('nim_mahasiswa[]');
+          $nama_mhs = $this->input->post('nama_mahasiswa[]');
+          $data_mahasiswa = array();
+          for($i=0; $i<count($nim)-1; $i++)
+          {
+              $data_mahasiswa[$i] = array(
+                  'nim'  => $nim[$i],
+                  'nama' => $nama_mhs[$i],
+                  "id_proposal"=>$proposal,
+              );
+          }
+          $this->M_PropPengabdian->mahasiswa($data_mahasiswa);
+  
+  
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action berhasil dilakukan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+          }
+      }
+
+    
+
     public function assignProposal()
     {
         $data['view'] = $this->M_PropPengabdian->get_viewAssign()->result();
@@ -164,6 +408,27 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/footer'); 
 
     }
+
+
+    function checkUsername(){
+        $userName = $this->input->post('username');
+        $if_exists = $this->M_User->checkUserexist($userName);
+        $if_exists_mitra = $this->M_Mitra->checkUserexist($userName);
+        if ($if_exists > 0 || $if_exists_mitra > 0) {
+          echo json_encode('Username tidak tersedia');
+        } else {
+          echo json_encode('Username tersedia');
+        }
+      }
+      function checkJudul(){
+        $judul = $this->input->post('judul');
+        $if_exists = $this->M_PropPengabdian->checkJudulExist($judul);
+        if ($if_exists > 0) {
+          echo json_encode('Judul sudah diajukan');
+        } else {
+          echo json_encode('Judul belum diajukan');
+        }
+      }
 
    
 
@@ -1068,6 +1333,30 @@ class Pengabdian extends CI_Controller
 
         $writer->save('php://output');
 
+    }
+
+    public function tambahProp($id){
+        $data['jadwal']=$id;
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/tambahProposal',$data);
+        $this->load->view('layout/footer');
+    }
+
+    public function tambahPropTanpaMitra($id){
+        $data['jadwal']=$id;
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPengabdian->get_skemapengabdian()->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/tambahProposalTanpaMitra',$data);
+        $this->load->view('layout/footer');
     }
 
     public function luaran()
