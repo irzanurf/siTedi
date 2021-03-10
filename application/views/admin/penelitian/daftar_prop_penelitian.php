@@ -33,12 +33,9 @@
         &nbsp;
         <a href="<?=base_url('admin/penelitian/proposalexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Pengajuan Proposal</button></a>
         <a href="<?=base_url('admin/penelitian/testexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Proposal yang Disetujui</button></a>
-<<<<<<< HEAD
         <a href="<?=base_url('admin/penelitian/proposalreviewerexcel');?>/<?= $id ?>"><button class='btn btn-success'><img src="<?= base_url('assets/excel.png');?>" alt="excel" width="30" height="30"/> List Proposal dan Reviewer</button></a>
 
-=======
         
->>>>>>> origin/master
         <table class="table">
             <tr>
                 <th>No</th>
