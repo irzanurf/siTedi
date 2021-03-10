@@ -30,7 +30,7 @@
 									<form action="<?= base_url('admin/penelitian/editformProposal');?>" method="post" enctype="multipart/form-data"> 
                                     
                                     <div class="form-group">
-                                <label>Ketua</label>
+                                <label>Ketua</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                 <select class="form-control" name="nip" id="selectpicker0" data-live-search="true" required="">
                                         <option value="">Please Select</option>
                                         <?php
