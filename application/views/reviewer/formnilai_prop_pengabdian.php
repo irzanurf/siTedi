@@ -80,7 +80,7 @@
                         <td><?= $no?></td>
                         <td><?= $k->komponen_penilaian?></td>
                         <td><input type="text" id="bobot<?=$no?>" name="bobot" value="<?= $k->bobot ?>" disabled></td>
-                        <td><input class="form-control" name="<?=$k->id?>" id="skor<?=$no?>" value=""></td>
+                        <td><input class="form-control" name="<?=$k->id?>" id="skor<?=$no?>" value="" require=""></td>
                         <td><input type="text" id="nilai<?=$no++?>" name="nilai<?=$k->id?>" value="0" readonly></td>
                             
                         </tr>

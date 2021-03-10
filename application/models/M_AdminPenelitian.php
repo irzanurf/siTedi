@@ -13,6 +13,23 @@ class M_AdminPenelitian extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function insert_proposal($prop,$ketua,$jadwal)
+    {
+        $query = $this->db->query("SELECT * FROM proposal_penelitian WHERE nip = '$ketua' AND id_jadwal='$jadwal' ");
+        $result = $query->result_array();
+        $count = count($result);
+    
+        if (empty($count)){
+            $this->db->insert('proposal_penelitian',$prop);
+        return $this->db->insert_id();
+        }
+        else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Judul telah ada dan dimasukkan oleh ketua yang sama</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        }   
+        
+    }
+
     public function get_viewAssign()
     {
         $query = $this->db->select('proposal_penelitian.*, dosen.*, r1.nama as nama_reviewer1, r2.nama as nama_reviewer2')

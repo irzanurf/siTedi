@@ -66,7 +66,7 @@
                 Submited
 
                 <?php elseif($v->status==2) : ?>
-                Acceptef
+                Accepted
 
                 <?php elseif($v->status==11||$v->status==12) : ?>
                 Review

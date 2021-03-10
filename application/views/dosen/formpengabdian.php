@@ -117,8 +117,24 @@
                             <td>
                             <?php if($v->status=='ACCEPTED') :?>
                             <span type='button' class="badge badge-pill badge-success">Approved</span>
+                            <form style="display:inline-block;" method="post" action=<?= base_url('dosen/pengabdian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="badge badge-pill badge-info">
+                                        Detail Nilai
+                                    </button>
+                                    
+                                </form>
                             <?php elseif($v->status=='REJECTED'):?>
                             <span type='button' class="badge badge-pill badge-danger">Rejected</span>
+                            <form style="display:inline-block;" method="post" action=<?= base_url('dosen/pengabdian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="badge badge-pill badge-info">
+                                        Detail Nilai
+                                    </button>
+                                    
+                                </form>
                             <?php else:?>
                             <span class="badge badge-pill badge-warning">Processing</span>
                             <?php endif;?>

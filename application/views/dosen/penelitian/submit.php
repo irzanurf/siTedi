@@ -70,13 +70,29 @@
                                 <button type="button" class="btn-sm btn-danger" dissabled>
                                         Rejected
                                     </button>
+                                    <form style="display:inline-block;" method="post" action=<?= base_url('dosen/penelitian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="btn-sm btn-danger">
+                                    Detail Nilai
+                                    </button>
+                                    
+                                </form>
 
                             <?php elseif($v->status=="2") : ?>
                                 <button type="button" class="btn-sm btn-success" dissabled>
                                         Accepted
                                     </button>
+                                    <form style="display:inline-block;" method="post" action=<?= base_url('dosen/penelitian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="btn-sm btn-info">
+                                        Detail Nilai
+                                    </button>
+                                    
+                                </form>
                             
-                            <?php elseif($v->status=="11"||$v->status=="12") : ?>
+                            <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Reviewing
                                     </button>
@@ -86,15 +102,31 @@
                                         Submitted
                                     </button>
                             
-                            <?php elseif($v->status=="3"||$v->status=="13") : ?>
+                            <?php elseif($v->status=="3") : ?>
                                 <button type="button" class="btn-sm btn-info" dissabled>
                                         Monev
                                     </button>
+                                    <form style="display:inline-block;" method="post" action=<?= base_url('dosen/penelitian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="btn-sm btn-info">
+                                        Detail Nilai
+                                    </button>
+                                    
+                                </form>
                             
                             <?php elseif($v->status=="4") : ?>
                                 <button type="button" class="btn-sm btn-info" dissabled>
                                         Laporan Akhir
                                     </button>
+                                    <form style="display:inline-block;" method="post" action=<?= base_url('dosen/penelitian/detail');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <!-- <input type='hidden' name="id_skema" value="<?= $v->jenis ?>"> -->
+                                    <button type="Submit" class="btn-sm btn-info">
+                                        Detail Nilai
+                                    </button>
+                                    
+                                </form>
                                
                             <?php else : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
@@ -136,7 +168,11 @@
                                 <button type="button" class="btn-sm btn-success" dissabled>
                                         Accepted
                                     </button>
-                                    <?php elseif($v->status=="0") : ?>
+                                    
+                                    <?php elseif($v->status=="0"||$v->status=="1") : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Submitted
+                                    </button>
                                
                             
                             <?php elseif($v->status=="11"||$v->status=="12"||$v->status=="13") : ?>

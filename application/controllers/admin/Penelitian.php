@@ -1625,4 +1625,111 @@ class Penelitian extends CI_Controller
         redirect("admin/penelitian/akhir"."/".$jadwal);
     }
 
+    public function tambahProp($id){
+        $data['jadwal']=$id;
+        $data['view']= $this->M_PropPenelitian->get_viewpenelitian()->result();
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['luaran']= $this->M_Luaran->get_luaran_penelitian()->result();
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        $data['skema'] = $this->M_SkemaPenelitian->get_skemapenelitian()->result();
+        $data['anggota_dosen'] = $this->M_PropPenelitian->dosen_update_prop($id)->result();
+        $data['nilai_luaran'] = $this->M_PropPenelitian->luaran_update_prop($id)->result();
+        $data['anggota_mhs'] = $this->M_PropPenelitian->mhs_update_prop($id)->result();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/penelitian/tambahProposal',$data);
+        $this->load->view('layout/footer');
+    }
+
+    public function addformProposal()
+    {
+        $this->form_validation->set_rules('judul','Judul Penelitian', 'required');
+        $this->form_validation->set_rules('abstrak','Abstrak', 'required');
+        $this->form_validation->set_rules('luaran','Luaran','required');
+        // $this->form_validation->set_rules('lokasi','Lokasi','required');
+        $date = date('Y-m-d');
+        $bulan = $this->input->post('bulan',true);
+        $prop_file = $_FILES['file_prop'];
+        if($prop_file=''){}else{
+            $config['upload_path'] = './assets/prop_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
+            $this->load->library('upload',$config);
+            if(!$this->upload->do_upload('file_prop')){
+                echo "Upload Gagal"; die();
+            } else {
+                $prop_file=$this->upload->data('file_name');
+            }
+        }
+        $jadwal = $this->input->post('id_jadwal',true);
+        $ketua = $this->input->post('nip',true);
+        $biaya = str_replace('.','',$this->input->post('biaya',true));
+        $prop = [
+            "nip"=>$this->input->post('nip',true),
+            "judul"=>$this->input->post('judul',true),
+            "abstrak"=>$this->input->post('abstrak',true),
+            "id_jenis"=>$this->input->post('jenis',true),
+            "id_jadwal" => $jadwal,
+            "tgl_upload"=>$date,
+            "lokasi"=>$this->input->post('lokasi',true),
+            "mitra"=>$this->input->post('mitra',true),
+            "lama_pelaksanaan"=>$bulan,
+            "id_sumberdana"=>$this->input->post('sumberdana',true),
+            "biaya"=>$biaya,
+            "status"=>1,
+            "file"=>$prop_file
+
+        ];
+        $proposal=$this->M_AdminPenelitian->insert_proposal($prop,$ketua,$jadwal);
+        $nip= $this->input->post('dosen[]');
+        
+        $data_dosen = array();
+        for($i=0; $i<count($nip)-1; $i++)
+        {
+            if($nip[$i]==""||$nip[$i]==null||$nip[$i]==0){
+
+            }
+            else{
+            $data_dosen[$i] = array(
+                'nip'  =>      $nip[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        }
+        $this->M_PropPenelitian->dosen($data_dosen);
+
+        $id_luaran= $this->input->post('luaran[]');
+        $data_luaran = array();
+        for($i=0; $i<count($id_luaran)-1; $i++)
+        {
+            if($id_luaran[$i]==""||$id_luaran[$i]==null||$id_luaran[$i]==0){
+
+            }
+            else{
+            $data_luaran[$i] = array(
+                'id_luaran'  =>$id_luaran[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        }
+        $this->M_PropPenelitian->luaran($data_luaran);
+        
+        $nim= $this->input->post('nim_mahasiswa[]');
+        $nama_mhs = $this->input->post('nama_mahasiswa[]');
+        $data_mahasiswa = array();
+        for($i=0; $i<count($nim)-1; $i++)
+        {
+            $data_mahasiswa[$i] = array(
+                'nim'  =>      $nim[$i],
+                'nama' => $nama_mhs[$i],
+                "id_proposal"=>$proposal,
+            );
+        }
+        $this->M_PropPenelitian->mahasiswa($data_mahasiswa);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Action berhasil dilakukan</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+    }
+
 }
