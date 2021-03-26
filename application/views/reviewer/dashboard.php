@@ -166,7 +166,7 @@
     <div class="content-area"> 
         <div class="btn-area">
 </br></br></br></br></br></br></br>
-        <a href="<?= base_url('reviewer/penelitian/');?>">PENELITIAN</a> </div>
+        <a href="<?= base_url('dosen/penelitian/');?>">PENELITIAN</a> </div>
     </div>
   </div>
 </div>
@@ -175,7 +175,7 @@
     <div class="content-area">
       <div class="btn-area">
       </br></br></br></br></br></br></br>
-        <a href="<?= base_url('reviewer/pengabdian/');?>">PENGABDIAN</a> </div>
+        <a href="<?= base_url('dosen/pengabdian/');?>">PENGABDIAN</a> </div>
     </div>
   </div>
 </div>

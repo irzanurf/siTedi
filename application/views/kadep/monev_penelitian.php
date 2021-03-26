@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-            Monitoring & Evaluasai
+            Monitoring & Evaluasi
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('kadep/kadep');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Monitoring & Evaluasai
+                    <i class="fa fa-edit"></i> Monitoring & Evaluasi
                 </li>
             </ol>
         </div>
