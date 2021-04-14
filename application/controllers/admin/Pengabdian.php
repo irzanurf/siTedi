@@ -49,9 +49,10 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/footer'); 
     }
 
-    public function approval()
+    public function approval($id)
     {
-        $data['view'] = $this->M_PropPengabdian->get_viewApproval()->result();
+        $data['view'] = $this->M_PropPengabdian->get_viewApproval(array('id_jadwal'=>$id))->result();
+        $data['id'] = $id;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/approval_prop_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -694,6 +695,7 @@ class Pengabdian extends CI_Controller
 
     public function acceptProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
         $status = [
             'status' => 'ACCEPTED'
         ];
@@ -728,17 +730,18 @@ class Pengabdian extends CI_Controller
         //     show_error($this->email->print_debugger());
         // }
         
-        redirect('admin/pengabdian/approval');
+        redirect("admin/pengabdian/approval"."/".$jadwal);
     }
 
     public function rejectProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
         $status = [
             'status' => 'REJECTED'
         ];
 
         $this->M_PropPengabdian->update_prop($id,$status);
-        redirect('admin/pengabdian/approval');
+        redirect("admin/pengabdian/approval"."/".$jadwal);
 
     }
 
@@ -1867,6 +1870,15 @@ class Pengabdian extends CI_Controller
         $this->load->view('layout/footer'); 
     }
 
+    public function listApproval()
+    {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/approval';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
     public function listAkhir()
     {
         $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
@@ -1879,6 +1891,8 @@ class Pengabdian extends CI_Controller
     public function editAkhir($id){
         $jadwal = $this->input->post('jadwal');
         $data['jadwal'] = $jadwal;
+        $data['akhir'] = $this->M_Admin->get_akhir(array('id_proposal'=>$id))->row();
+        $data['luaran'] = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
         $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/editakhir', $data);
@@ -1889,12 +1903,10 @@ class Pengabdian extends CI_Controller
         
         $id=$this->input->post('id');
         $jadwal = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row()->id_jadwal;
-        // $config['allowed_types'] = 'pdf';
-        // $config['encrypt_name'] = TRUE;
+        $cekLuaran = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
         $akhir = $_FILES['laporan_akhir'];
         $logbook = $_FILES['logbook'];
         $belanja = $_FILES['belanja'];
-        $luaran = $_FILES['luaran'];
 
         if(empty($akhir['name'])){}else{
             $config['allowed_types'] = 'pdf';
@@ -1950,22 +1962,56 @@ class Pengabdian extends CI_Controller
         }
 
         
-        if(empty($luaran['name'])){}else{
-            $config3['allowed_types'] = 'pdf';
-            $config3['encrypt_name'] = TRUE;
-            $config3['upload_path'] = './assets/luaran';
-            $this->load->library('upload',$config3,'luaran');
-            $this->luaran->initialize($config3);
-            if(!$this->luaran->do_upload('luaran')){
-                echo "Upload Gagal"; die();
-            } else {
-                $luaran=$this->luaran->data('file_name');
-                $data = [
-                    'luaran'=>$luaran,
-                ];
-                $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
+        for($i=0, $count = count($cekLuaran);$i<$count;$i++) {
+            $id_luaran = $this->input->post("id_luaran$i");
+            $jenis_luaran = $this->input->post("jenis$i");
+            $judul = $this->input->post("judul$i");
+            $nama = $this->input->post("nama$i");
+            $author = $this->input->post("author$i");
+            $tahun = $this->input->post("tahun$i");
+            $link = $this->input->post("link$i");
+            $file_luaran = $_FILES["file_luaran$i"];
+
+            if(empty($file_luaran['name'])){
+                $datafile = [
+                    "pengusul"=>$nip,
+                    "judul"=>$judul,
+                    "jenis_luaran"=>$jenis_luaran,
+                    "nama"=>$nama,
+                    "author"=>$author,
+                    "tahun"=>$tahun,
+                    "link"=>$link,];
+                    $proposal=$this->M_PropPengabdian->update_luaran($datafile,$id,$id_luaran);
             }
-        }
+            else{
+                $config['upload_path'] = './assets/luaran';
+                $config['allowed_types'] = 'pdf';
+                $config['encrypt_name'] = TRUE;
+                $this->load->library('upload',$config);
+                if(!$this->upload->do_upload("file_luaran$i")){
+                    echo "Upload Gagal"; die();
+                } else {
+                    $file_luaran=$this->upload->data('file_name');
+                }
+                $datafile = [
+                    "pengusul"=>$nip,
+                    "judul"=>$judul,
+                    "jenis_luaran"=>$jenis_luaran,
+                    "nama"=>$nama,
+                    "author"=>$author,
+                    "tahun"=>$tahun,
+                    "link"=>$link,
+                    "file"=>$file_luaran,];
+                    $this->M_PropPengabdian->update_luaran($datafile,$id,$id_luaran);
+                }
+            
+        };
+
+
+    $data = [
+        "luaran"=>"done",
+    ];
+    $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
         
 
         redirect("admin/pengabdian/akhir"."/".$jadwal);

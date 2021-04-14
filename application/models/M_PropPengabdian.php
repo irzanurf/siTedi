@@ -22,6 +22,23 @@ class M_PropPengabdian extends CI_Model
     {
         return $this->db->get_where('proposal_pengabdian',$data);
     }
+
+    public function get_luaran($data)
+    {
+        $query = $this->db->select('luaran_prop_pengabdian.*,luaran_pengabdian.luaran')
+        ->from('luaran_prop_pengabdian')
+        ->join('luaran_pengabdian','luaran_prop_pengabdian.id_luaran=luaran_pengabdian.id','inner')
+        ->where($data)
+        ->get();
+        return $query;
+    }
+
+    public function update_luaran($data,$id,$id_luaran)
+    {
+        $condition="id_proposal='$id' AND id_luaran='$id_luaran'";
+        $this->db->where($condition);
+        $this->db->update('luaran_prop_pengabdian', $data);
+    }
     
     public function get_viewpengajuan($username)
     {
@@ -73,13 +90,13 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
-    public function get_viewApproval()
+    public function get_viewApproval($data)
     {
         $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
                         ->from('proposal_pengabdian')
                         ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
                         ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')
-                        // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
+                        ->where($data)
                         ->get();
         return $query;
     }

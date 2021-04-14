@@ -1035,11 +1035,88 @@ class Pengabdian extends CI_Controller {
 
     }
 
+    public function luaran(){
+        $id = $this->input->post('id');
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        if($id==NULL){
+            redirect("dosen/pengabdian/laporanAkhir");
+        }
+        $nip = $this->session->userdata('user_name');
+        $data['luaran'] = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
+        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
+        $this->load->view('pengabdian/header', $nama);
+        $this->load->view('dosen/uploadluaran',$data);
+        $this->load->view("pengabdian/footer");
+    }
+
+    public function upLuaran(){
+        $id=$this->input->post('id');
+        $cekLuaran = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
+        $nip = $this->session->userdata('user_name');
+
+            for($i=0, $count = count($cekLuaran);$i<$count;$i++) {
+                $id_luaran = $this->input->post("id_luaran$i");
+                $jenis_luaran = $this->input->post("jenis$i");
+                $judul = $this->input->post("judul$i");
+                $nama = $this->input->post("nama$i");
+                $author = $this->input->post("author$i");
+                $tahun = $this->input->post("tahun$i");
+                $link = $this->input->post("link$i");
+                $file_luaran = $_FILES["file_luaran$i"];
+
+                if(empty($file_luaran['name'])){
+                    $datafile = [
+                        "pengusul"=>$nip,
+                        "judul"=>$judul,
+                        "jenis_luaran"=>$jenis_luaran,
+                        "nama"=>$nama,
+                        "author"=>$author,
+                        "tahun"=>$tahun,
+                        "link"=>$link,];
+                        $proposal=$this->M_PropPengabdian->update_luaran($datafile,$id,$id_luaran);
+                }
+                else{
+                    $config['upload_path'] = './assets/luaran';
+                    $config['allowed_types'] = 'pdf';
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    if(!$this->upload->do_upload("file_luaran$i")){
+                        echo "Upload Gagal"; die();
+                    } else {
+                        $file_luaran=$this->upload->data('file_name');
+                    }
+                    $datafile = [
+                        "pengusul"=>$nip,
+                        "judul"=>$judul,
+                        "jenis_luaran"=>$jenis_luaran,
+                        "nama"=>$nama,
+                        "author"=>$author,
+                        "tahun"=>$tahun,
+                        "link"=>$link,
+                        "file"=>$file_luaran,];
+                        $this->M_PropPengabdian->update_luaran($datafile,$id,$id_luaran);
+                    }
+                
+            };
+
+
+        $data = [
+            "luaran"=>"done",
+        ];
+        $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengumpulan luaran laporan akhir <br> Laporan akhir dapat dirubah selama jadwal pengumpulan belum berakhir <br> Pastikan Anda telah mengecek kembali laporan akhir Anda sebelum jadwal pengumpulan berakhir </p>');
+        $this->session->set_flashdata('button', 'dosen/pengabdian/laporanAkhir');
+        redirect("dosen/pengabdian/success"); 
+    }
+
     public function laporanAkhir()
     {
+        $id = $this->input->post('id');
         $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        $data['luaran'] = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
         $this->load->view('pengabdian/header',$nama);
         $cekjad=$data['jadwal'] = $this->M_JadwalPengabdian->get_last_jadwal()->row();
         if (empty($cekjad)){

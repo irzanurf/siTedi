@@ -15,8 +15,10 @@
                             </div>
                             <div class="form-group"> 
 											<h3>Logbook</h3>
+											<?php if (!empty($monev->file1)){ ?>
 											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file1?>" width="93%" height="400px" >
                             </iframe>
+							<?php } ?>
 							</div>
 							<div class="form-group"> 
 											<input type="file" accept="application/pdf" name="file1"></br>
@@ -25,8 +27,10 @@
 
                             <div class="form-group"> 
 											<h3>Laporan Kemajuan</h3>
+											<?php if (!empty($monev->file2)){ ?>
 											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file2?>" width="93%" height="400px" >
                             </iframe>
+							<?php } ?>
 							</div>
 							<div class="form-group"> 
 											<input type="file" accept="application/pdf" name="file2"></br> 
@@ -35,8 +39,10 @@
 
                             <div class="form-group"> 
 											<h3>Laporan Belanja 70%</h3>
+											<?php if (!empty($monev->file3)){ ?>
 											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file3?>" width="93%" height="400px" >
                             </iframe>
+							<?php } ?>
 							</div>
 							<div class="form-group">
 											<input type="file" accept="application/pdf" name="file3"></br>

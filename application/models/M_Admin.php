@@ -12,6 +12,10 @@ class M_Admin extends CI_Model
         return $this->db->get('admin');
         
     }
+    public function get_akhir(array $data)
+    {
+        return $this->db->get_where('laporan_akhir_pengabdian',$data);
+    }
 
     public function get_propPenelitian($id_penelitian)
     {

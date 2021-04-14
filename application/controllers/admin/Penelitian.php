@@ -342,9 +342,10 @@ class Penelitian extends CI_Controller
         
     }
 
-    public function approval()
+    public function approval($id)
     {
-        $data['view'] = $this->M_AdminPenelitian->get_viewApproval()->result();
+        $data['view'] = $this->M_AdminPenelitian->get_viewApproval(array('id_jadwal'=>$id))->result();
+        $data['id'] = $id;
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/approval',$data);
         $this->load->view('layout/footer'); 
@@ -606,6 +607,7 @@ class Penelitian extends CI_Controller
 
     public function acceptProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
         $status = [
             'status' => '2'
         ];
@@ -620,22 +622,24 @@ class Penelitian extends CI_Controller
             $this->M_PropPenelitian->insert_monev($insert,$id);
             $this->M_PropPenelitian->insert_akhir($insert,$id);
 
-        redirect('admin/penelitian/approval');
+            redirect("admin/penelitian/approval"."/".$jadwal);
     }
 
     public function rejectProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
         $status = [
             'status' => '5'
         ];
 
         $this->M_AdminPenelitian->approval($id,$status);
-        redirect('admin/penelitian/approval');
+        redirect("admin/penelitian/approval"."/".$jadwal);
 
     }
 
     public function cancelProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
         $status = [
             'status' => '13'
         ];
@@ -647,7 +651,7 @@ class Penelitian extends CI_Controller
         $this->M_AdminPenelitian->approval($id,$status);
         $this->M_PropPenelitian->cancel_monev($id,$del);
         $this->M_PropPenelitian->cancel_akhir($id,$del);
-        redirect('admin/penelitian/approval');
+        redirect("admin/penelitian/approval"."/".$jadwal);
 
     }
 
@@ -1458,6 +1462,15 @@ class Penelitian extends CI_Controller
         $this->load->view('layout/footer'); 
     }
 
+    public function listApproval()
+    {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'admin/penelitian/approval';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
     public function statusProp(){
         $id = $this->input->post('id');
         $jadwal = $this->input->post('jadwal');
@@ -1490,6 +1503,7 @@ class Penelitian extends CI_Controller
     public function editMonev($id){
         $jadwal = $this->input->post('jadwal');
         $data['jadwal'] = $jadwal;
+        $data['monev'] = $this->M_ReviewerPenelitian->get_monev(array('id_proposal'=>$id))->row();
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/editmonev',$data);
@@ -1507,38 +1521,46 @@ class Penelitian extends CI_Controller
         $prop2 = $_FILES['file2'];
         $prop3 = $_FILES['file3'];
         
-        if($prop1=''){}else{
+        if(empty($prop1['name'])){}else{
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file1')){
                 echo "Upload Gagal, Terdapat Field Kosong"; die();
             } else {
                 $prop1=$this->upload->data('file_name');
+                $data = [
+                    'file1' => $prop1,
+                ];
+                $this->M_PropPenelitian->update_monev($data,$id);
             }
         }
 
-        if($prop2=''){}else{
+        if(empty($prop2['name'])){}else{
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file2')){
                 echo "Upload Gagal"; die();
             } else {
                 $prop2=$this->upload->data('file_name');
+                $data = [
+                    'file2' => $prop2,
+                ];
+                $this->M_PropPenelitian->update_monev($data,$id);
             }
         }
 
-        if($prop3=''){}else{
+        if(empty($prop3['name'])){}else{
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file3')){
                 echo "Upload Gagal"; die();
             } else {
                 $prop3=$this->upload->data('file_name');
+                $data = [
+                    'file3' => $prop3,
+                ];
+                $this->M_PropPenelitian->update_monev($data,$id);
             }
         }
 
         $data = [
-            "id_proposal"=>$id,
-            "file1"=>$prop1,
-            "file2"=>$prop2,
-            "file3"=>$prop3,
             "catatan"=>$this->input->post('catatan',true),
             "tgl_upload"=>$date,
             "status"=>1,
@@ -1553,7 +1575,9 @@ class Penelitian extends CI_Controller
 
     public function editAkhir($id){
         $jadwal = $this->input->post('jadwal');
+        $data['luaran'] = $this->M_PropPenelitian->get_luaran(array('id_proposal'=>$id))->result();
         $data['jadwal'] = $jadwal;
+        $data['akhir'] = $this->M_ReviewerPenelitian->get_akhir(array('id_proposal'=>$id))->row();
         $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/editakhir', $data);
@@ -1561,61 +1585,121 @@ class Penelitian extends CI_Controller
     }
 
     public function uploadAkhir(){
-        $jadwal = $this->input->post('jadwal');
         $id=$this->input->post('id');
+        $jadwal = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row()->id_jadwal;
+        $cekLuaran = $this->M_PropPenelitian->get_luaran(array('id_proposal'=>$id))->result();
+        $nip = $this->session->userdata('user_name');
         $date = date('Y-m-d');
-        $config['upload_path'] = './assets/lap_akhir_penelitian';
-        $config['allowed_types'] = 'pdf';
-        $config['encrypt_name'] = TRUE;
         $prop1 = $_FILES['file1'];
         $prop2 = $_FILES['file2'];
         $prop3 = $_FILES['file3'];
-        $prop4 = $_FILES['file4'];
         
-        if($prop1=''){}else{
+        if(empty($prop1['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file1')){
                 echo "Upload Gagal"; die();
             } else {
                 $prop1=$this->upload->data('file_name');
             }
-        }
+            $datafile = [
+                "file1"=>$prop1,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
+        
 
-        if($prop2=''){}else{
+            if(empty($prop2['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file2')){
                 echo "Upload Gagal"; die();
             } else {
                 $prop2=$this->upload->data('file_name');
             }
-        }
+            $datafile = [
+                "file2"=>$prop2,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
+            }
 
-        if($prop3=''){}else{
+            if(empty($prop3['name'])){}
+            else{
+                $config['upload_path'] = './assets/lap_akhir_penelitian';
+            $config['allowed_types'] = 'pdf';
+            $config['encrypt_name'] = TRUE;
+
             $this->load->library('upload',$config);
             if(!$this->upload->do_upload('file3')){
                 echo "Upload Gagal"; die();
             } else {
                 $prop3=$this->upload->data('file_name');
             }
-        }
-
-        if($prop4=''){}else{
-            $this->load->library('upload',$config);
-            if(!$this->upload->do_upload('file4')){
-                echo "Upload Gagal"; die();
-            } else {
-                $prop4=$this->upload->data('file_name');
+            $datafile = [
+                "file3"=>$prop3,];
+                $proposal=$this->M_PropPenelitian->update_akhir($datafile,$id);
             }
-        }
+
+            for($i=0, $count = count($cekLuaran);$i<$count;$i++) {
+                $id_luaran = $this->input->post("id_luaran$i");
+                $jenis_luaran = $this->input->post("jenis$i");
+                $judul = $this->input->post("judul$i");
+                $nama = $this->input->post("nama$i");
+                $author = $this->input->post("author$i");
+                $tahun = $this->input->post("tahun$i");
+                $link = $this->input->post("link$i");
+                $file_luaran = $_FILES["file_luaran$i"];
+
+                if(empty($file_luaran['name'])){
+                    
+                        $datafile = [
+                            "pengusul"=>$nip,
+                            "judul"=>$judul,
+                            "jenis_luaran"=>$jenis_luaran,
+                            "nama"=>$nama,
+                            "author"=>$author,
+                            "tahun"=>$tahun,
+                            "link"=>$link,];
+                            $proposal=$this->M_PropPenelitian->update_luaran($datafile,$id,$id_luaran);
+                    
+                }
+                else{
+                    $config['upload_path'] = './assets/lap_akhir_penelitian';
+                    $config['allowed_types'] = 'pdf';
+                    $config['encrypt_name'] = TRUE;
+                    $this->load->library('upload',$config);
+                    if(!$this->upload->do_upload("file_luaran$i")){
+                        echo "Upload Gagal"; die();
+                    } else {
+                        $file_luaran=$this->upload->data('file_name');
+                    }
+                    $datafile = [
+                        "pengusul"=>$nip,
+                        "judul"=>$judul,
+                        "jenis_luaran"=>$jenis_luaran,
+                        "nama"=>$nama,
+                        "author"=>$author,
+                        "tahun"=>$tahun,
+                        "link"=>$link,
+                        "file"=>$file_luaran,];
+                        $proposal=$this->M_PropPenelitian->update_luaran($datafile,$id,$id_luaran);
+                    }
+                
+            };
+
 
         $data = [
             "id_proposal"=>$id,
-            "file1"=>$prop1,
-            "file2"=>$prop2,
-            "file3"=>$prop3,
-            "file4"=>$prop4,
+            "nip"=>$nip,
             "catatan"=>$this->input->post('catatan',true),
             "tgl_upload"=>$date,
+            "file4"=>"done",
             "status"=>1,
         ];
         $this->M_PropPenelitian->update_akhir($data,$id);

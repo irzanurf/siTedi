@@ -22,7 +22,12 @@
                             <td align="center"><?= $v->judul?></td>
                             <td align="center">
                             
-                            <?php if($v->file1=='' || $v->file1==NULL) : ?>
+                            <?php if($v->status==4 || $v->status==5) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit File
+                                    </button>
+                               
+                            <?php elseif($v->status_monev==0 || $v->status_monev==NULL || $v->status_monev=='') : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/upmonev');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn-sm btn-primary">
@@ -31,11 +36,7 @@
                                     
                                 </form>
                             
-                            <?php elseif($v->status==4 || $v->status==5) : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Edit File
-                                    </button>
-                               
+                            
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/editMonev');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">

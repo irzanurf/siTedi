@@ -35,6 +35,7 @@
                 <th>Nilai Reviewer1</th>
                 <th>Nilai Reviewer2</th>
                 <th>Nilai rata-rata</th>
+                <th>Status</th>
                 <th>Aksi</th>
 
             </tr>
@@ -58,17 +59,70 @@
                 <?php endif ?>
                 </td>
                 <td>
+                <?php if($v->status==0) : ?>
+                Submited 
+
+                <?php elseif($v->status==1) : ?>
+                Submited
+
+                <?php elseif($v->status==2) : ?>
+                Accepted
+
+                <?php elseif($v->status==11||$v->status==12) : ?>
+                Review
+
+                <?php elseif($v->status==13) : ?>
+                    Review
+
+                <?php elseif($v->status==3) : ?>
+                Monev
+
+                <?php elseif($v->status==4) : ?>
+                Laporan Akhir
+
+                <?php elseif($v->status==5) : ?>
+                Rejected
+
+                <?php else: ?>
+
+                    <?php endif;?>
+                </td>
+                <td>
+                
                 <?php if($v->status==13) :?>
-                <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
+                <div style="display:flex;">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-success">
+                                    Accept
+                                    </button>
+                                </form>
+                                
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-danger">
+                                    Reject
+                                    </button>
+                                </form>
+                </div>
+                <!-- <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Accept
                 </a>
                 <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Reject
-                </a>     
-                <?php elseif($v->status==2) :?> 
-                    <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id_proposal;?>" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');">
+                </a>      -->
+                <?php elseif($v->status==2 || $v->status==5) :?> 
+                <div style="text-align: center;">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');" action="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id_proposal; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-danger">
+                                    Cancel
+                                    </button>
+                                </form>
+                </div>
+                    <!-- <a type="button" class="btn btn-danger" href="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id_proposal;?>" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');">
                     Cancel
-                </a> 
+                </a>  -->
                 <?php else : ?> 
                 <?php endif ?>         
                 </td>

@@ -7,14 +7,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">
-                Edit Proposal
+                Monitoring & Evaluasi
             </h1>
             <ol class="breadcrumb">
                 <li>
                     <i class="fa fa-dashboard"></i>  <a href="<?= base_url('admin/dashboard/');?>">Dashboard</a>
                 </li>
                 <li class="active">
-                    <i class="fa fa-edit"></i> Edit Proposal
+                    <i class="fa fa-edit"></i> Monitoring & Evaluasi
                 </li>
             </ol>
         </div>
@@ -32,7 +32,11 @@
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                             </div>
                             <div class="form-group"> 
-											<label><br>Logbook</label></br> 
+											<h4><br>Logbook</h4>
+                                            <?php if (!empty($monev->file1)){ ?>
+											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file1?>" width="100%" height="400px" >
+                                            </iframe>
+							                <?php } ?>
 											<input type="file" accept="application/pdf" name="file1"></br>
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 
@@ -41,13 +45,21 @@
                                 </div>
 
                             <div class="form-group"> 
-											<label><br>Laporan Kemajuan</label> </br>
+											<h4><br>Laporan Kemajuan</h4>
+                                            <?php if (!empty($monev->file2)){ ?>
+											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file2?>" width="100%" height="400px" >
+                                            </iframe>
+							                <?php } ?>
 											<input type="file" accept="application/pdf" name="file2"></br> 
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 
 
                             <div class="form-group"> 
-											<label><br>Laporan Belanja 70%</label> </br>
+											<h4><br>Laporan Belanja 70%</h4>
+                                            <?php if (!empty($monev->file3)){ ?>
+											<iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$monev->file3?>" width="100%" height="400px" >
+                                            </iframe>
+							                <?php } ?>
 											<input type="file" accept="application/pdf" name="file3"></br>
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
                             </div> 

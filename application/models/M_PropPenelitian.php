@@ -80,6 +80,16 @@ class M_PropPenelitian extends CI_Model
     }
 
 
+    public function get_luaran($data)
+    {
+        $query = $this->db->select('luaran_prop_penelitian.*,luaran_penelitian.luaran')
+        ->from('luaran_prop_penelitian')
+        ->join('luaran_penelitian','luaran_prop_penelitian.id_luaran=luaran_penelitian.id','inner')
+        ->where($data)
+        ->get();
+        return $query;
+    }
+
     public function get_proposal()
     {
         return $this->db->get('proposal_penelitian');
@@ -277,7 +287,7 @@ class M_PropPenelitian extends CI_Model
 
     public function getwhere_viewakhir(array $data)
     {
-        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,laporan_akhir_penelitian.file1,laporan_akhir_penelitian.status as status_monev,jadwal_penelitian.tgl_akhir')
+        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,laporan_akhir_penelitian.file1,laporan_akhir_penelitian.status as status_akhir,jadwal_penelitian.tgl_akhir')
                         ->from('proposal_penelitian')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
@@ -301,6 +311,13 @@ class M_PropPenelitian extends CI_Model
             $this->db->where('id_proposal', $id);
             $this->db->update('laporan_akhir_penelitian', $data);  
         }          
+    }
+
+    public function update_luaran($data,$id,$id_luaran)
+    {
+        $condition="id_proposal='$id' AND id_luaran='$id_luaran'";
+        $this->db->where($condition);
+        $this->db->update('luaran_prop_penelitian', $data);
     }
 
     public function get_viewAnnouncement($data)

@@ -25,8 +25,13 @@
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             <td align="center">
+
+                            <?php if($v->status==5 || $now >= $akhir) : ?>
+                                <button type="button" class="btn-sm btn-default" dissabled>
+                                        Edit File
+                                    </button>
                             
-                            <?php if($v->file1=='0' || $v->file1=='' || $v->file1==NULL) : ?>
+                            <?php elseif($v->status_akhir==0 || $v->status_akhir=='' || $v->status_akhir==NULL) : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/upAkhir');?>>
                                     <input type='hidden' name="id" value="<?= $v->id ?>">
                                     <button type="submit" class="btn-sm btn-primary">
@@ -34,11 +39,6 @@
                                     </button>
                                     
                                 </form>
-                            
-                            <?php elseif($v->status==5 || $now >= $akhir) : ?>
-                                <button type="button" class="btn-sm btn-default" dissabled>
-                                        Edit File
-                                    </button>
                                
                             <?php else : ?>
                                 <form method="post" action=<?= base_url('dosen/penelitian/editAkhir');?>>

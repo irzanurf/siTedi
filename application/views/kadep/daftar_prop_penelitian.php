@@ -72,10 +72,10 @@
                 Review
 
                 <?php elseif($v->status==13) : ?>
-                Monev
+                    Review
 
                 <?php elseif($v->status==3) : ?>
-                Monev Submited
+                Monev
 
                 <?php elseif($v->status==4) : ?>
                 Laporan Akhir

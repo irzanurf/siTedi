@@ -110,13 +110,13 @@ class M_AdminPenelitian extends CI_Model
         return $query;
     }
 
-    public function get_viewApproval()
+    public function get_viewApproval($data)
     {
         $query = $this->db->select('nilai_proposal_penelitian.*, dosen.*, proposal_penelitian.*')
                         ->from('proposal_penelitian')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
-                       
+                        ->where($data)
                         ->get();
         return $query;
     }

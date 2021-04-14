@@ -62,10 +62,14 @@
                     </button>
                 </td>
                 <td>
-                    <button type="button" class="btn-sm btn-info" data-toggle="modal" data-target="#uploadLuaran<?= $v->id?>">
-                        <span class="glyphicon glyphicon-upload"></span><?php if ($v->luaran==NULL) : ?> Upload 
-                            <?php elseif($v->luaran != NULL) : ?> Edit <?php endif; ?>
-                    </button>
+                <form method="post" action=<?= base_url('dosen/pengabdian/luaran');?>>
+                                    <input type='hidden' name="id" value="<?= $v->id ?>">
+                                    <button type="submit" class="btn-sm btn-info">
+                                    <?php if ($v->luaran==NULL) : ?> Upload
+                                    <?php elseif($v->luaran != NULL) : ?> Edit <?php endif; ?>
+                                    </button>
+                                    
+                                </form>
                 </td>
                 <td>
                     <button type="button" class="btn-sm btn-info" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">

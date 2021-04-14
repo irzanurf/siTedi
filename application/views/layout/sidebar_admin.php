@@ -89,7 +89,7 @@
                                 <a href="<?= base_url('admin/penelitian/assignProposal/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                             </li></br>
                             <li>
-                                <a href="<?= base_url('admin/penelitian/approval/');?>"><i class="fa fa-fw fa-edit"></i> Aproval Penelitian</a>
+                                <a href="<?= base_url('admin/penelitian/listApproval/');?>"><i class="fa fa-fw fa-edit"></i> Aproval Penelitian</a>
                             </li></br>
                             <li>
                                 <a href="<?= base_url('admin/penelitian/listMonev/');?>"><i class="fa fa-fw fa-clipboard"></i> Monitoring & Evaluasi</a>
@@ -124,7 +124,7 @@
                                     <a href="<?= base_url('admin/pengabdian/assignproposal/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                                 </li></br>
                                 <li>
-                                    <a href="<?= base_url('admin/pengabdian/approval/');?>"><i class="fa fa-fw fa-edit"></i> Approval Proposal</a>
+                                    <a href="<?= base_url('admin/pengabdian/listApproval/');?>"><i class="fa fa-fw fa-edit"></i> Approval Proposal</a>
                                 </li></br>
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/listAkhir/');?>"><i class="fa fa-fw fa-clipboard"></i> List Laporan Akhir</a>
