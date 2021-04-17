@@ -44,7 +44,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" >
+    <div class="sidebar"  >
 
     <!--
 
@@ -53,7 +53,7 @@
 
     -->
 
-    	<div class="sidebar-wrapper">
+    	<div class="sidebar-wrapper" style="background-color:#6B0E6B;">
             <div class="logo">
                 <a href="<?= base_url('/');?>" class="simple-text">
                     SiTedi
