@@ -28,9 +28,10 @@
                     <table class="table">
                         <col style='width:5%'>
                         <col style='width:45%'>
-                        <col style='width:15%'>
-                        <col style='width:15%'>
-                        <col style='width:20%'> 
+                        <col style='width:10%'>
+                        <col style='width:8%'>
+                        <col style='width:24%'> 
+                        <col style='width:8%'> 
                         <thead>
                         <tr>
                             <th>No</th>
@@ -84,10 +85,14 @@
                             <td>
                             <?php if($v->id_mitra==0 || $v->id_mitra==NULL) : ?>
                                 <?php if($v->status==NULL ) : ?>
+                                    <a href="<?=base_url('dosen/pengabdian/formtambahmitra');?>/<?=$v->id?>"><button   class="btn-sm btn-info"> Tambah Mitra </button></a>
+                
                                     <a href="<?=base_url('dosen/pengabdian/editproposaltanpamitra');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>
                                     <a href="<?=base_url('dosen/pengabdian/hapusproposaltanpamitra');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');"><button class="btn-sm btn-danger">Hapus</button></a>
                             
                                 <?php else: ?>
+                                    <a href="<?=base_url('dosen/pengabdian/formtambahmitra');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Tambah Mitra </button></a>
+                
                                     <a href="#" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
                                     
                                         <a href="#"  ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
@@ -96,18 +101,20 @@
                                 
                             <?php else: ?>
                                 <?php if(($v->status_mitra==0 || $v->file_persetujuan==NULL)&& $v->status==NULL ) : ?>
-                                    <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>
-                                    <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');"><button class="btn-sm btn-danger">Hapus</button>  </a>
+                                    <a href="<?=base_url('dosen/pengabdian/editmitra');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit Mitra</button></a>
+                                    <a href="<?=base_url('dosen/pengabdian/deletemitra');?>/<?=$v->id?>" onclick="return confirm('Apakah anda yakin ingin menghapus mitra kerjasama?');"><button class="btn-sm btn-danger">Hapus Mitra</button>  </a>
+                                    <a href="<?=base_url('dosen/pengabdian/editproposaltanpamitra');?>/<?=$v->id?>"><button   class="btn-sm btn-success"> Edit </button></a>
+                                    <a href="<?=base_url('dosen/pengabdian/hapusproposaltanpamitra');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');"><button class="btn-sm btn-danger">Hapus</button>  </a>
                             <?php elseif($v->status_mitra == 1 && $v->file_persetujuan!=NULL && $v->status==NULL) : ?>
                                 <!--  <form method='get' action=" -->
                                 <!-- <?php echo site_url('dosen/pengabdian/submitproposal');?> -->
-                                    <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>" ><button  class="btn-sm btn-success"> Edit</button> </a>
-                                    <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-danger">Hapus</button> </a>
+                                    <a href="<?=base_url('dosen/pengabdian/editproposaltanpamitra');?>/<?=$v->id?>" ><button  class="btn-sm btn-success"> Edit</button> </a>
+                                    <a href="<?=base_url('dosen/pengabdian/hapusproposaltanpamitra');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-danger">Hapus</button> </a>
                                     
                             <?php else: ?>
-                                <a href="<?=base_url('dosen/pengabdian/editproposal');?>/<?=$v->id?>" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
+                                <a href="<?=base_url('dosen/pengabdian/editproposaltanpamitra');?>/<?=$v->id?>" disable><button  class="btn-sm btn-light" disabled> Edit</button> </a>
                                 
-                                    <a href="<?=base_url('dosen/pengabdian/hapusproposal');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
+                                    <a href="<?=base_url('dosen/pengabdian/hapusproposaltanpamitra');?>/<?=$v->id?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus?');" ><button class="btn-sm btn-light" disabled>Hapus</button> </a>
                          
                             <?php endif;?>
                             <?php endif;?>

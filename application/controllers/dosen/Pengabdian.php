@@ -360,6 +360,69 @@ class Pengabdian extends CI_Controller {
         $this->load->view('pengabdian/footer');
     }
 
+    public function formTambahMitra($id)
+    {
+
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+
+    
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        
+        $this->load->view('pengabdian/header',$nama);
+        $this->load->view('dosen/form_tambah_mitra',$data);
+        $this->load->view('pengabdian/footer');
+    }
+
+    public function addFormMitra()
+    {
+        $data = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+
+        ];
+        $data_check = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+        ];
+        $checkMitra = $this->M_Mitra->getwhere_mitra($data_check);
+        if($checkMitra->num_rows() > 0){
+            $mitra = $checkMitra->row()->id;
+        } else{
+            $mitra=$this->M_Mitra->insert_mitra($data);
+        }
+
+        $id_prop = $this->input->post('id');
+        $data_prop = [
+            'id_mitra' => $mitra,
+        ];
+
+        $role_mitra='4';
+        $password= md5($this->input->post('password',true));
+        $user_mitra = [
+            "username"=>$this->input->post('username',true),
+            "password"=>$password,
+            "role"=>$role_mitra
+        ];
+        $this->M_User->insert_user($user_mitra);
+
+        $this->M_PropPengabdian->update_prop($id_prop,$data_prop);
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan penambahan mitra <br> Detail mitra dapat diedit selama Mitra belum menyetujui kerjasama<br> Pastikan Anda telah mengecek kembali detail mitra pengabdian Anda<br></p>');
+        $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+        redirect("dosen/pengabdian/success");
+
+
+    }
+
     public function PengisianFormTanpaMitra()
     {
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
@@ -445,6 +508,26 @@ class Pengabdian extends CI_Controller {
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/formpengabdian', $data);
+        $this->load->view('pengabdian/footer');
+
+    }
+
+    public function mitra()
+    {
+        $nip = $this->session->userdata('user_name');
+        $username = $this->session->userdata('user_name');
+        $data['view']= $this->M_PropPengabdian->get_viewpengajuan($username)->result();
+        $data['anggota']= $this->M_PropPengabdian->get_viewanggota($username)->result();
+        $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
+        $data['dosen']= $this->M_Dosen->get_dosen()->result();
+        $data['mahasiswa']= $this->M_Mahasiswa->get_mahasiswa()->result();
+        // $data = array(
+        //     'sumberdana' => $this->M_SumberDana->get_sumberdana(),
+        //     'sumberdana_selected' => '',
+        // );
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        $this->load->view('pengabdian/header',$nama);
+        $this->load->view('dosen/penambahanmitra', $data);
         $this->load->view('pengabdian/footer');
 
     }
@@ -553,6 +636,25 @@ class Pengabdian extends CI_Controller {
         $this->M_LaporanAkhirPengabdian->update_laporan($id,$data);
         redirect('dosen/pengabdian/laporanakhir');
     }
+
+    public function editMitra($id){
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+
+
+        $id_mitra = $data['prop']->id_mitra;
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $nip = $this->session->userdata('user_name');
+        $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
+        $this->load->view('pengabdian/header',$nama);
+        $this->load->view('dosen/edit_mitra',$data);
+        $this->load->view('pengabdian/footer');
+    }
+
+    
 
     public function editProposal($id){
         $data['sumberdana']= $this->M_SumberDana->get_sumberdana()->result();
@@ -1032,6 +1134,60 @@ class Pengabdian extends CI_Controller {
         $this->load->view('pengabdian/header',$nama);
         $this->load->view('dosen/daftar_permohonan_pengabdian', $data);
         $this->load->view('pengabdian/footer');
+
+    }
+
+    public function updateMitra()
+    {
+        $id = $this->input->post('id');
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        
+        $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
+        $id_mitra = $this->input->post('id_mitra');
+        $data_mitra = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+        ];
+
+        $this->M_Mitra->update_mitra($id_mitra, $data_mitra);
+
+        $pass = $this->input->post('password');
+        $username_mitra = $this->input->post('username');
+        if($pass != null){
+                $data_user_mitra = [
+                    'username' =>$username_mitra,
+                    'password' =>md5($pass)
+                ];
+                $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+          
+        } else{
+            $data_user_mitra = [
+                'username' => $this->input->post('username')
+            ];
+            $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+        }
+
+        $this->session->set_flashdata('pesan', '<p>Terimakasih Anda berhasil melakukan pengubahan data mitra <br> Data mitra dapat diedit selama mitra belum menyetujui kerjasama <br> Pastikan Anda telah mengecek kembali data mitra Anda<br></p>');
+        $this->session->set_flashdata('button', 'dosen/pengabdian/submitpermohonan');
+        redirect("dosen/pengabdian/success");
+
+
+    }
+
+    public function deleteMitra($id)
+    {
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        $id_mitra = $data_proposal->id_mitra;
+        $data = [
+            'id_mitra' => 0,
+        ];
+        $this->M_PropPengabdian->update_prop($id, $data);
+        $this->M_Mitra->delete_mitra($id_mitra);
+        redirect('dosen/pengabdian/submitpermohonan');
 
     }
 

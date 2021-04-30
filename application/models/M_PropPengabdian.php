@@ -105,8 +105,7 @@ class M_PropPengabdian extends CI_Model
     {
         $query = $this->db->select('proposal_pengabdian.*, mitra.status as mitra_status')
                         ->from('proposal_pengabdian')
-                        ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','inner')
-                        ->where('proposal_pengabdian.status="" AND mitra.status=1')
+                        ->where('proposal_pengabdian.status=""')
                         // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')
                         ->get();
         return $query;

@@ -118,11 +118,14 @@
                         <li> <a class="waves-effect waves-dark" href="javascript:;" aria-expanded="true"><i style="color:white"
                                     class="fa fa-check-square-o nav_icon"></i><span class="hide-menu"></span><h5 style="color:white;">Pengajuan Proposal</h5></a>
                                     <ul id="demo" class="collapse">
-                                    <li>
+                                    <!-- <li>
                                     <a href="<?= base_url('dosen/pengabdian/pengisianform/');?>"><h5 style="color:white;">Form Pengajuan dengan Mitra</h5></a>
+                                </li> -->
+                                <li>
+                                    <a href="<?= base_url('dosen/pengabdian/pengisianformtanpamitra/');?>"><h5 style="color:white;">Form Pengajuan Proposal</h5></a>
                                 </li>
                                 <li>
-                                    <a href="<?= base_url('dosen/pengabdian/pengisianformtanpamitra/');?>"><h5 style="color:white;">Form Pengajuan tanpa Mitra</h5></a>
+                                    <!-- <a href="<?= base_url('dosen/pengabdian/mitra/');?>"><h5 style="color:white;">Penambahan Mitra</h5></a> -->
                                 </li>
                                 <li>
                                     <a href="<?= base_url('dosen/pengabdian/submitpermohonan/');?>"><h5 style="color:white;">Submit Proposal</h5></a>

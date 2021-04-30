@@ -134,6 +134,18 @@ class Pengabdian extends CI_Controller
     }
 
 
+    public function detailSuratMitra($id)
+    {
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/detail_surat_mitra',$data);
+        $this->load->view('layout/footer'); 
+
+    }
+
+
     public function daftarPengabdian($id)
     {
         $data['view'] = $this->M_Admin->get_wherePengabdian(array('id_jadwal'=>$id))->result();
@@ -142,6 +154,142 @@ class Pengabdian extends CI_Controller
         $this->load->view('admin/daftar_prop_pengabdian',$data);
         $this->load->view('layout/footer'); 
     }
+
+    public function formTambahMitra($id)
+    {
+
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+
+
+        
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/form_tambah_mitra',$data);
+        $this->load->view('layout/footer');
+    }
+
+    public function addFormMitra()
+    {
+        $data = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+
+        ];
+        $data_check = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "username"=>$this->input->post('username',true),
+            "status"=>"0"
+        ];
+        $checkMitra = $this->M_Mitra->getwhere_mitra($data_check);
+        if($checkMitra->num_rows() > 0){
+            $mitra = $checkMitra->row()->id;
+        } else{
+            $mitra=$this->M_Mitra->insert_mitra($data);
+        }
+
+        $role_mitra='4';
+        $password= md5($this->input->post('password',true));
+        $user_mitra = [
+            "username"=>$this->input->post('username',true),
+            "password"=>$password,
+            "role"=>$role_mitra
+        ];
+        $this->M_User->insert_user($user_mitra);
+
+        $id_prop = $this->input->post('id');
+        $jadwal = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id_prop))->row()->id_jadwal;
+        $data_prop = [
+            'id_mitra' => $mitra,
+        ];
+
+        $this->M_PropPengabdian->update_prop($id_prop,$data_prop);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Penambahan mitra berhasil dilakukan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+
+
+    }
+
+    public function editMitra($id){
+        $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_mitra = $data['prop']->id_mitra;
+        $nip = $data['prop']->nip;
+        $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
+
+
+        $id_mitra = $data['prop']->id_mitra;
+        $data['luaran']= $this->M_Luaran->get_luaran_pengabdian()->result();
+        $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/edit_mitra',$data);
+        $this->load->view('layout/footer');
+    }
+
+    public function updateMitra()
+    {
+        $id = $this->input->post('id');
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        $jadwal = $data_proposal->id_jadwal;
+        $old_username_mitra = $this->M_Mitra->getwhere_mitra(array('id'=>$data_proposal->id_mitra))->row()->username;
+        $id_mitra = $this->input->post('id_mitra');
+        $data_mitra = [
+            "nama_instansi"=> $this->input->post('instansi',true),
+            "penanggung_jwb"=>$this->input->post('pj',true),
+            "no_telp"=> $this->input->post('no_telp',true),
+            "alamat"=>$this->input->post('alamat',true),
+            "email"=>$this->input->post('email',true),
+            "username"=>$this->input->post('username',true),
+        ];
+
+        $this->M_Mitra->update_mitra($id_mitra, $data_mitra);
+
+        $pass = $this->input->post('password');
+        $username_mitra = $this->input->post('username');
+        if($pass != null){
+                $data_user_mitra = [
+                    'username' =>$username_mitra,
+                    'password' =>md5($pass)
+                ];
+                $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+          
+        } else{
+            $data_user_mitra = [
+                'username' => $this->input->post('username')
+            ];
+            $this->M_User->update_user($old_username_mitra, $data_user_mitra);
+        }
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Edit mitra berhasil dilakukan</strong></div>');
+        redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+
+
+    }
+
+    public function deleteMitra($id)
+    {
+        $data_proposal = $this->M_PropPengabdian->getwhere_proposal(array('id'=> $id))->row();
+        $jadwal = $data_proposal->id_jadwal;
+        $id_mitra = $data_proposal->id_mitra;
+        $data = [
+            'id_mitra' => 0,
+        ];
+        $this->M_PropPengabdian->update_prop($id, $data);
+        $this->M_Mitra->delete_mitra($id_mitra);
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-block" align="center"><strong>Delete mitra berhasil dilakukan</strong></div>');
+            redirect("admin/pengabdian/daftarPengabdian"."/".$jadwal);
+
+    }
+
+
+
+
+
 
     public function addformProposal()
     {
@@ -458,13 +606,13 @@ class Pengabdian extends CI_Controller
             ];
             $this->M_PropPengabdian->update_prop($prop->id,$stat);
         }
-        $props_no_mitra = $this->M_PropPengabdian->get_needSubmitPropNoMitra()->result();
-        foreach($props_no_mitra as $prop){
-            $stat = [
-                'status' => 'SUBMITTED'
-            ];
-            $this->M_PropPengabdian->update_prop($prop->id,$stat);
-        }
+        // $props_no_mitra = $this->M_PropPengabdian->get_needSubmitPropNoMitra()->result();
+        // foreach($props_no_mitra as $prop){
+        //     $stat = [
+        //         'status' => 'SUBMITTED'
+        //     ];
+        //     $this->M_PropPengabdian->update_prop($prop->id,$stat);
+        // }
         redirect('admin/pengabdian/assignProposal');
 
 
