@@ -72,7 +72,7 @@
                         <ul id="penelitian" class="collapse">
                             
                             <li>
-                                <a href="<?= base_url('kadep/kadep/assignProposalPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                <a href="<?= base_url('kadep/kadep/listAssignPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                             </li></br>
                             <li>
                             <a href="<?= base_url('kadep/kadep/listSubmitPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal</a>
@@ -90,7 +90,7 @@
                             <ul id="demo" class="collapse">
                                 
                                 <li>
-                                    <a href="<?= base_url('kadep/kadep/assignproposalPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                    <a href="<?= base_url('kadep/kadep/listAssignPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                                 </li></br>
                                 <li>
                                     <a href="<?= base_url('kadep/kadep/listSubmitPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal</a>

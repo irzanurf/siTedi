@@ -28,6 +28,7 @@
                         <div class="col-lg-8">
                             <p><?=$prop->judul;?></p>
                         </div>
+                        
                     </div>
                     <label>Ketua Penelitian</label>
                     <div class='form-group row'>
@@ -57,7 +58,9 @@
                         </div>
                     </div>
                     <form action="<?=base_url('admin/penelitian/submitAssignEdit')?>" method="post">
-                    
+                    <div class="form-group">
+                                    <input type="hidden" class="form-control" name="jadwal" value=<?= $jadwal?>  >
+                                </div>
                     <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Assign reviewer</label>
                                 <div class="col-lg-8">

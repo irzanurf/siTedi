@@ -12,7 +12,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li>
-                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('kadep/kadep');?>">Dashboard</a>
+                    <i class="fa fa-dashboard"></i>  <a href="<?= base_url('kadep/kadep/');?>">Dashboard</a>
                 </li>
                 <li class="active">
                     <i class="fa fa-edit"></i> Monitoring & Evaluasi
@@ -21,7 +21,7 @@
         </div>
     </div>
     <!-- /.row -->
-     <div class="row">
+    <div class="row">
         <div class="col-lg-12">
         
         
@@ -37,6 +37,7 @@
                 <th class='text-center'>Catatan Pengusul</th>
                 <th class='text-center'>Komentar Reviewer 1</th>
                 <th class='text-center'>Komentar Reviewer 2</th>
+                <th class='text-center'>Action</th>
             </tr>
             <?php 
             $no = 1;
@@ -49,25 +50,25 @@
                 <td><?= $v->nama ?></td>
                 <td class='text-center'>
                     <?php if ($v->file1==NULL) : ?> -
-                        <?php elseif($v->file1 != NULL) : ?>
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadLogbook<?= $v->id?>">
-                    <span class="glyphicon glyphicon-edit"></span>
+                        <?php elseif($v->file1 != NULL) : ?>  
+                    <button type="button" class="btn btn-success" >
+                    <span class="glyphicon glyphicon-ok"></span>
                     </button>
                     <?php endif; ?>
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file2==NULL) : ?> -
                         <?php elseif($v->file2 != NULL) : ?> 
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadCatatan<?= $v->id?>">
-                        <span class="glyphicon glyphicon-edit"></span>
+                    <button type="button" class="btn btn-success" >
+                        <span class="glyphicon glyphicon-ok"></span>
                     </button>
                     <?php endif; ?>
                 </td>
                 <td class='text-center'>
                     <?php if ($v->file3==NULL) : ?> - 
-                        <?php elseif($v->file3 != NULL) : ?> 
-                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#uploadBelanja<?= $v->id?>">
-                        <span class="glyphicon glyphicon-edit"></span>
+                        <?php elseif($v->file3 != NULL) : ?>  
+                    <button type="button" class="btn btn-success" >
+                        <span class="glyphicon glyphicon-ok"></span>
                     </button>
                     <?php endif; ?>
                 </td>
@@ -87,6 +88,15 @@
                         <?php elseif($v->cr_monev2 != NULL) : ?> <?= $v->cr_monev2?>
                     
                     <?php endif; ?>
+                </td>
+                
+                <td>
+                <form style="display:inline-block;" method="post" action="<?= base_url('kadep/kadep/detailMonevPenelitian') ;?>/<?= $v->id_proposal; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$id?>>
+                                    <button type="Submit" class="btn btn-info">
+                                       Detail
+                                    </button>
+                                </form>
                 </td>
                 
                 
@@ -119,109 +129,7 @@
 </div>
 <!-- /.container-fluid -->
 
-                <?php 
-                    foreach ($view as $v) :
-                        $id=$v->id;
-                        
-                     ?>
-
-                    <!-- Modal Logbook -->
-                    <div class="modal fade" id="uploadLogbook<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">File Logbook</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Laporan Akhir</label>
-                                
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file1?>" width='100%' height="300px" >
-                                </iframe>
                 
-
-                            </div>
-                            <div class="form-group">
-                                <input type="hidden" class="form-control" name="id" value=<?=$id?>  >
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        
-
-                            
-                        </div>
-                        
-                        </div>
-                    </div>
-                    </div>
-
-
-                    <!-- Modal Catatan -->
-                    <div class="modal fade" id="uploadCatatan<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">File Laporan Kemajuan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Logbook</label>
-                                
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file2?>" width='100%' height="300px" >
-                                </iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                
-                            </div>
-
-                            
-                        </div>
-                        
-                        </div>
-                    </div>
-                    </div>
-
-
-
-                    <!-- Modal Belanja -->
-                    <div class="modal fade" id="uploadBelanja<?= $id?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">File Catatan Belanja</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Catatan Belanja</label>
-                                <iframe src="<?= base_url('assets/monev_penelitian');?>/<?=$v->file3?>" width='100%' height="300px" >
-                                </iframe>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-
-                            
-                        </div>
-                        
-                        </div>
-                    </div>
-                    </div>
-
-
-
-                    <?php endforeach;?>
-
 </div>
 <!-- /#page-wrapper -->
 

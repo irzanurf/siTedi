@@ -534,10 +534,19 @@ class Pengabdian extends CI_Controller
       }
 
     
-
-    public function assignProposal()
+    public function listAssign()
     {
-        $data['view'] = $this->M_PropPengabdian->get_viewAssign()->result();
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'admin/pengabdian/assignProposal';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function assignProposal($jadwal)
+    {
+        $data['jadwal'] = $jadwal;
+        $data['view'] = $this->M_PropPengabdian->getwhere_viewAssign(array('proposal_pengabdian.id_jadwal'=>$jadwal))->result();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/assign_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -545,6 +554,8 @@ class Pengabdian extends CI_Controller
 
     public function assignReviewerProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['prop']->id_mitra;
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
@@ -583,6 +594,8 @@ class Pengabdian extends CI_Controller
 
     public function editReviewerProposal($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['prop']->id_mitra;
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
@@ -667,6 +680,7 @@ class Pengabdian extends CI_Controller
 
     public function submitAssignReviewer()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -683,12 +697,13 @@ class Pengabdian extends CI_Controller
         // $this->M_AssignProposalPengabdian->insert_assignment($data2);
         $this->M_PropPengabdian->update_prop($idProp,$status);
         
-        redirect('admin/pengabdian/assignproposal');
+        redirect("admin/pengabdian/assignproposal"."/".$jadwal);
 
     }
 
     public function updateAssignReviewer()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -698,7 +713,7 @@ class Pengabdian extends CI_Controller
         ];
 
         $this->M_AssignProposalPengabdian->update_reviewerAssign($idProp,$data);
-        redirect('admin/pengabdian/assignproposal');
+        redirect("admin/pengabdian/assignproposal"."/".$jadwal);
 
     }
 

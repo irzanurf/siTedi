@@ -68,15 +68,23 @@
                 </td>
                 <td>
                 <?php if(($v->status == 1 || $v->status == 0) && ($v->nama_reviewer1 ==""||$v->nama_reviewer1 =="0"||$v->nama_reviewer1 ==NULL)) : ?>
-                <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
-                    Assign
-                </a>
+                
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/setReviewer') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$jadwal?>>
+                                    <button type="Submit" class="btn btn-info">
+                                    Assign
+                                    </button>
+                                </form>
                 <?php elseif($v->status == 11 || $v->status == 12 || $v->status == 13 || $v->status == 2|| $v->status == 3|| $v->status == 4|| $v->status == 5|| $v->status == 0 ) :?>
                 
                 <?php else :?>
-                    <a type="button" class="btn btn-info" href="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">
-                    Edit reviewer
-                </a>
+                    
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/EditReviewer') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$jadwal?>>
+                                    <button type="Submit" class="btn btn-info">
+                                    Edit reviewer
+                                    </button>
+                                </form>
                 <?php endif;?>
 
                 </td>
