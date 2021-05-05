@@ -11,6 +11,7 @@
                     <thead>
                         <tr>
                             <th>Tanggal Upload</th>
+                            <th>Periode</th>
                             <th>Jenis Skema Penelitian</th>
                             <th>Judul Proposal</th>
                             <th>Edit Isian Proposal</th>
@@ -24,6 +25,7 @@
                         <?php $akhir = date('Y-m-d', strtotime($v->tgl_selesai)); ?>
                         <tr>
                             <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             
@@ -45,6 +47,7 @@
                             
                             
                             </td>
+                            
                             <td align="center">
                             
                             <?php if($now >= $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
@@ -145,6 +148,7 @@
                         foreach($anggota as $v) { ?>
                         <tr>
                             <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             

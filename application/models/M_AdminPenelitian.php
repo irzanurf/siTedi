@@ -13,9 +13,9 @@ class M_AdminPenelitian extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function insert_proposal($prop,$ketua,$jadwal)
+    public function insert_proposal($prop,$ketua,$judul,$jadwal)
     {
-        $query = $this->db->query("SELECT * FROM proposal_penelitian WHERE nip = '$ketua' AND id_jadwal='$jadwal' ");
+        $query = $this->db->query("SELECT * FROM proposal_penelitian WHERE nip = '$ketua' AND judul='$judul' ");
         $result = $query->result_array();
         $count = count($result);
     

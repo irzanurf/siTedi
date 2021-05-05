@@ -1768,6 +1768,7 @@ class Penelitian extends CI_Controller
             }
         }
         $jadwal = $this->input->post('id_jadwal',true);
+        $judul = $this->input->post('judul',true);
         $ketua = $this->input->post('nip',true);
         $biaya = str_replace('.','',$this->input->post('biaya',true));
         $prop = [
@@ -1786,7 +1787,7 @@ class Penelitian extends CI_Controller
             "file"=>$prop_file
 
         ];
-        $proposal=$this->M_AdminPenelitian->insert_proposal($prop,$ketua,$jadwal);
+        $proposal=$this->M_AdminPenelitian->insert_proposal($prop,$ketua,$judul,$jadwal);
         $nip= $this->input->post('dosen[]');
         
         $data_dosen = array();

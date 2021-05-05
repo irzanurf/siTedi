@@ -8,21 +8,30 @@
                     <thead>
                         <tr>
                             <th>Tanggal Upload</th>
+                            <th>Periode</th>
                             <th>Jenis Skema Penelitian</th>
                             <th>Judul Proposal</th>
                             <th>Upload Laporan Monev</th>
                         </tr>
                     </thead>
+                    <?php 
+                        $now =  date('Y-m-d', strtotime(date('Y-m-d')));
+                        ?>
                         <?php 
                         $no = 1;
                         foreach($view as $v) { ?>
+                        <?php $monev = date('Y-m-d', strtotime($v->tgl_monev)); ?>
                         <tr>
                             <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             <td align="center">
-                            
-                            <?php if($v->status==4 || $v->status==5) : ?>
+
+                            <?php if($now > $monev) : ?>
+                                Periode telah berakhir
+
+                            <?php elseif($v->status==4 || $v->status==5) : ?>
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit File
                                     </button>
