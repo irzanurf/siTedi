@@ -110,7 +110,7 @@ class M_PropPenelitian extends CI_Model
 
     public function getwhere_viewpenelitian(array $data)
     {
-        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,jadwal_penelitian.*')
+        $query = $this->db->select('proposal_penelitian.*,jenispenelitian.jenis as jenis,jadwal_penelitian.keterangan,jadwal_penelitian.tgl_selesai')
                         ->from('proposal_penelitian')
                         ->join('jenispenelitian','proposal_penelitian.id_jenis=jenispenelitian.id','inner')
                         ->join('jadwal_penelitian','proposal_penelitian.id_jadwal=jadwal_penelitian.id','inner')

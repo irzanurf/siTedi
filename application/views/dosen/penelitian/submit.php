@@ -31,7 +31,8 @@
                             
                             <td align="center">
 
-                            <?php if($now >= $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
+                            
+                            <?php if($now > $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>

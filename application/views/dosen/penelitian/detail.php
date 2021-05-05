@@ -37,15 +37,10 @@
                         </tr>
                         <?php 
                         $no = 1;
-                        for($i=0, $count = count($komponen);$i<$count;$i++) {?>
+                        for($i=0, $count = count($jenis);$i<$count;$i++) {?>
                             <tr>
                             <td><?= $no+$i?></td>
-                        <td> <?php if($komponen[$i]->komponen!=""||$komponen[$i]->komponen!=NULL) : ?>
-                        <?= $komponen[$i]->komponen?>
-                        <?php else : ?>
-                            <?= $komponen2[$i]->komponen?>
-                            <?php endif;?>
-                               </td>
+                        <td> <?= $jenis[$i]->komponen?></td>
                         <td><?=$komponen[$i]->nilai?></td>         
                         <td><?=$komponen2[$i]->nilai?></td> 
                         <?php }?>
