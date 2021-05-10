@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>SiTeDI</title>
+    <link rel="shortcut icon" href="<?= base_url('assets/sitedi.png');?>" width="20" height="20">
 
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url('assets/template/css/bootstrap.min.css');?>" rel="stylesheet">

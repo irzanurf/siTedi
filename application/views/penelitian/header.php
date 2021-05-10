@@ -13,7 +13,8 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Penelitian</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/elegant-admin-lite/" />
-    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/sitedi.png');?>" width="20" height="20">
+    <!-- Favicon icon --> 
     <!-- This page CSS -->
     <!-- chartist CSS -->
     <link href="<?= base_url('assets/layout/assets/node_modules/morrisjs/morris.css');?>" rel="stylesheet">
