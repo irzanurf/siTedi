@@ -16,7 +16,7 @@
 
 <body  id="page-top">
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark" id="mainNav">
-        <div class="container"><a class="navbar-brand" href="#page-top"><img src="<?= base_url('assets/sitedi.png');?>" alt="logo" width="50" height="40"/> Penelitian Dan Pengabdian</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive"
+        <div class="container"><a class="navbar-brand" href="#page-top"><img src="<?= base_url('assets/undip.png');?>" alt="logo" width="60" height="70"/> Penelitian Dan Pengabdian</a><button data-toggle="collapse" data-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" data-toogle="collapse" aria-controls="navbarResponsive"
                 aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto text-uppercase">
