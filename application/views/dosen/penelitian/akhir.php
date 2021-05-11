@@ -20,9 +20,10 @@
                         <?php 
                         $no = 1;
                         foreach($view as $v) { ?>
-                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_akhir)); ?>
+                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_akhir)); 
+                        $tgl = date('d-m-Y', strtotime($v->tgl_upload));?>
                         <tr>
-                            <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $tgl?></td>
                             <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
