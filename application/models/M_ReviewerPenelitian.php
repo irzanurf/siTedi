@@ -114,7 +114,7 @@ class M_ReviewerPenelitian extends CI_Model
         //                 ->get();
         // return $query;
         
-        return $this->db->query("SELECT * FROM nilai_penelitian WHERE id_proposal=$id AND reviewer=$data ORDER BY id_komponen ASC");
+        return $this->db->query("SELECT * FROM nilai_penelitian WHERE id_proposal=$id AND reviewer='$data' ORDER BY id_komponen ASC");
     }
 
 

@@ -27,7 +27,7 @@ class M_KomponenNilaiPengabdian extends CI_Model
         //                 ->where($data)
         //                 ->get();
         // return $query;
-        return $this->db->query("SELECT * FROM detail_nilai_proposal_pengabdian WHERE id_proposal=$id AND reviewer=$data ORDER BY id_komponen_nilai ASC");
+        return $this->db->query("SELECT * FROM detail_nilai_proposal_pengabdian WHERE id_proposal=$id AND reviewer='$data' ORDER BY id_komponen_nilai ASC");
     }
 
     public function insert_komponen($data){

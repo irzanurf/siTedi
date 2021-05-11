@@ -54,12 +54,9 @@ class Penelitian extends CI_Controller {
         $id_jenis = $proposal->id_jenis;
         $reviewer = $this->M_PropPenelitian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer;
         $reviewer2 = $this->M_PropPenelitian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer2;
-        echo "$id";
-        echo "$reviewer2";
         $data['jenis'] = $this->M_ReviewerPenelitian->get_komponen(array('id_jenis'=>$id_jenis))->result();
         $data['komponen'] = $this->M_ReviewerPenelitian->get_nilai($id, $reviewer)->result();
         $data['komponen2'] = $this->M_ReviewerPenelitian->get_nilai($id,$reviewer2)->result();
-        if (empty($data['komponen2'])){echo "kosong";};
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
 
