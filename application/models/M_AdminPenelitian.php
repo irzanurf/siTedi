@@ -23,10 +23,14 @@ class M_AdminPenelitian extends CI_Model
             $this->db->insert('proposal_penelitian',$prop);
         return $this->db->insert_id();
         }
-        else{
+        elseif (!empty($count)){
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Judul telah ada dan dimasukkan oleh ketua yang sama</strong></div>');
             redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
         }   
+        else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-block" align="center"><strong>Mohon maaf terjadi masalah, tolong periksa kembali apakah ada judul yang sama</strong></div>');
+            redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
+        }
         
     }
 
@@ -40,6 +44,7 @@ class M_AdminPenelitian extends CI_Model
                         ->join('reviewer_penelitian r1', 'assign_proposal_penelitian.reviewer=r1.nip','left')
                         ->join('reviewer_penelitian r2', 'assign_proposal_penelitian.reviewer2=r2.nip','left')
                         ->where($data)
+                        ->order_by("tgl_upload", "desc")
                         ->get();
 
         return $query;
@@ -132,6 +137,7 @@ class M_AdminPenelitian extends CI_Model
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                         ->where($data)
+                        ->order_by("tgl_upload", "desc")
                         ->get();
         return $query;
     }
