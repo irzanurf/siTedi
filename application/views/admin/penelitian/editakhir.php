@@ -30,6 +30,9 @@
                                 <form action="<?= base_url('admin/penelitian/uploadAkhir');?>" method="post" enctype="multipart/form-data"> 
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
+                                </div>	
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="nip" value=<?= $proposal->nip?>  >
                                 </div>		
                             </div> 
                             <div class="form-group"> 
