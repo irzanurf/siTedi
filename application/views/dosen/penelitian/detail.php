@@ -1,7 +1,7 @@
 <!-- input-forms -->
 <div class="grids">
 					<div class="progressbar-heading grids-heading">
-                        <h2>Detail Nilai</h2>
+                    <center><h2>Detail Nilai Proposal</h2></center><br>
                     </div>
                     <div class="panel panel-widget forms-panel">
 						<div class="forms">
@@ -53,6 +53,7 @@
                             <td><?= $nilai ?></td>
                             <td><?= $nilai2 ?></td>
                             </tr>
+
                             <input type="text" id="total" value=<?=$no?> hidden>
                         </table>
                     <div class="form-group">
@@ -67,6 +68,27 @@
                             <?= $komentar2 ?>
                         </div>
                         </div>
+
+                        
+                        <div class="progressbar-heading grids-heading">
+                        <?php if(!empty($monev->cr_monev) || !empty($monev->cr_monev2)) : ?>
+                            <hr class="solid">
+                        <center><h2><br>Review Laporan Monev</h2></center><br>
+                        </div>
+                        <table class="table">
+                        <tr>
+                            <th style="text-align: left; vertical-align: middle;">Reviewer 1</th>
+                        </tr>
+                        <td style="text-align: left; vertical-align: middle;"><?=$monev->cr_monev?></td>
+                        </table>
+                        <br>
+                        <table class="table">
+                        <tr>
+                            <th style="text-align: left; vertical-align: middle;">Reviewer 2</th>
+                        </tr>
+                        <td style="text-align: left; vertical-align: middle;"><?=$monev->cr_monev2?></td>
+                        </table>
+                        <?php endif;?>
                     </form>
 </div>
                         </div>

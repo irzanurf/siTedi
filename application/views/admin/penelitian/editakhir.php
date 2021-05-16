@@ -118,7 +118,7 @@
 
                             <div class="form-group"> 
 											<label>Catatan</label> 
-											<textarea name="catatan" rows="4" class="form-control"> </textarea>
+											<textarea name="catatan" rows="4" class="form-control"><?=$akhir->catatan?></textarea>
 							</div> 
 
 										<button type="submit" class="btn btn-success">Submit</button> 

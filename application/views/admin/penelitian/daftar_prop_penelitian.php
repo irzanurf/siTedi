@@ -39,7 +39,7 @@
         <table class="table">
             <tr>
                 <th>No</th>
-                <th>Ket. Jadwal</th>
+                <th>Tgl Upload</th>
                 <th>Judul Proposal</th>
                 <th>Jenis Penelitian</th>
                 <th>Ketua Penelitian</th>
@@ -51,11 +51,12 @@
             </tr>
             <?php 
             $no = 1;
-            foreach($view as $v) { ?>
+            foreach($view as $v) { 
+                $tgl = date('d-m-Y', strtotime($v->tgl_upload));?>
             
             <tr>
                 <td><?= $no++?></td>
-                <td><?= $v->ket?></td>
+                <td><?= $tgl?></td>
                 <td><?= $v->judul?></td>
                 <td><?= $v->jenis ?></td>
                 <td><?= $v->nama_dosen ?></td>
