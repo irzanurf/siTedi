@@ -2067,6 +2067,7 @@ class Pengabdian extends CI_Controller
         $id=$this->input->post('id');
         $jadwal = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row()->id_jadwal;
         $cekLuaran = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
+        $nip = $this->input->post('nip');
         $akhir = $_FILES['laporan_akhir'];
         $logbook = $_FILES['logbook'];
         $belanja = $_FILES['belanja'];

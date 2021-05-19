@@ -150,25 +150,25 @@ class M_AdminPenelitian extends CI_Model
     
     public function getwhere_viewmonev($data)
     {
-        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan,laporan_monev_penelitian.status as stat,nilai_proposal_penelitian.*')
+        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_monev_penelitian.file1 as file1,laporan_monev_penelitian.file2 as file2,laporan_monev_penelitian.file3 as file3,laporan_monev_penelitian.catatan as catatan,laporan_monev_penelitian.status as stat,laporan_monev_penelitian.tgl_upload as tgl,nilai_proposal_penelitian.*')
                         ->from('proposal_penelitian')
                         ->join('laporan_monev_penelitian','proposal_penelitian.id=laporan_monev_penelitian.id_proposal','inner')
                         ->join('nilai_proposal_penelitian','proposal_penelitian.id=nilai_proposal_penelitian.id_proposal','left')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                         ->where($data)
-                        ->order_by("tgl_upload", "desc")
+                        ->order_by("tgl", "desc")
                         ->get();
         return $query;
     }
 
     public function getwhere_viewakhir($data)
     {
-        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, laporan_akhir_penelitian.status as stat, laporan_akhir_penelitian.catatan as catatan')
+        $query = $this->db->select('proposal_penelitian.*,dosen.*,laporan_akhir_penelitian.file1 as file1,laporan_akhir_penelitian.file2 as file2,laporan_akhir_penelitian.file3 as file3,laporan_akhir_penelitian.file4 as file4, laporan_akhir_penelitian.status as stat, laporan_akhir_penelitian.catatan as catatan,laporan_akhir_penelitian.tgl_upload as tgl')
                         ->from('proposal_penelitian')
                         ->join('laporan_akhir_penelitian','proposal_penelitian.id=laporan_akhir_penelitian.id_proposal','inner')
                         ->join('dosen ','proposal_penelitian.nip=dosen.nip','inner')
                         ->where($data)
-                        ->order_by("tgl_upload", "desc")
+                        ->order_by("tgl", "desc")
                         ->get();
         return $query;
     }

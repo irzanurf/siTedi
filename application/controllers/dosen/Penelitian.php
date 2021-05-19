@@ -66,6 +66,7 @@ class Penelitian extends CI_Controller {
             $data['nilai2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai2;
             $data['komentar2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
         
+        $data['monev'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('dosen/penelitian/detail', $data);
         $this->load->view("penelitian/footer");

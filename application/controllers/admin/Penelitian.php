@@ -1608,7 +1608,7 @@ class Penelitian extends CI_Controller
         $id=$this->input->post('id');
         $jadwal = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row()->id_jadwal;
         $cekLuaran = $this->M_PropPenelitian->get_luaran(array('id_proposal'=>$id))->result();
-        $nip = $this->session->userdata('user_name');
+        $nip = $this->input->post('nip');
         $date = date('Y-m-d');
         $prop1 = $_FILES['file1'];
         $prop2 = $_FILES['file2'];

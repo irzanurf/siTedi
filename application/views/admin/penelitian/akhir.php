@@ -32,22 +32,29 @@
         <table class="table">
             <tr>
                 <th>No</th>
+                <th>Tgl Upload</th>
                 <th>Judul Proposal</th>
                 <th>Ketua Penelitian</th>
                 <th class='text-center'>Laporan Final</th>
                 <th class='text-center'>Logbook</th>
                 <th class='text-center'>Laporan Belanja 100%</th>
                 <th class='text-center'>Luaran</th>
-                <th class='text-center'>Catatan Pengusul</th>
                 <th class='text-center'>Action</th>
             </tr>
             <?php 
             $no = 1;
-            foreach($view as $v) { ?>
+            foreach($view as $v) { 
+                if(($v->tgl)=="0000-00-00"){
+                    $tgl="-";
+                }
+                else{
+                $tgl = date('d-m-Y', strtotime($v->tgl));
+                }?>
             <?php if ($v->status > 1 && $v->status < 5) : ?>
             
             <tr>
                 <td><?= $no++?></td>
+                <td><?= $tgl?></td>
                 <td><?= $v->judul?></td>
                 <td><?= $v->nama ?></td>
                 <td class='text-center'>
@@ -83,15 +90,10 @@
                     <?php endif; ?>
                 </td>
                 <td>
-                <?php if ($v->catatan==NULL) : ?> - 
-                    <?php elseif($v->catatan != NULL) : ?> <?= $v->catatan?>
-                    <?php endif; ?>
-                </td>
-                <td>
                 <form style="display:inline-block;" method="post" action="<?= base_url('admin/penelitian/editAkhir') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-info">
-                                       Deatail & Edit
+                                       Detail & Edit
                                     </button>
                                 </form>
                 </td>

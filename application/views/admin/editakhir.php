@@ -31,6 +31,9 @@
                             <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                             </div>
+                            <div class="form-group">
+                                    <input type="hidden" class="form-control" name="nip" value=<?= $proposal->nip?>  >
+                                </div>	
                             <div class="form-group"> 
 											<h4>Laporan Akhir</h4> 
                                             <?php if (!empty($akhir->laporan_akhir)){ ?>

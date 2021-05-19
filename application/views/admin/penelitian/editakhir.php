@@ -30,6 +30,9 @@
                                 <form action="<?= base_url('admin/penelitian/uploadAkhir');?>" method="post" enctype="multipart/form-data"> 
                                 <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
+                                </div>	
+                                <div class="form-group">
+                                    <input type="hidden" class="form-control" name="nip" value=<?= $proposal->nip?>  >
                                 </div>		
                             </div> 
                             <div class="form-group"> 
@@ -115,7 +118,7 @@
 
                             <div class="form-group"> 
 											<label>Catatan</label> 
-											<textarea name="catatan" rows="4" class="form-control"> </textarea>
+											<textarea name="catatan" rows="4" class="form-control"><?=$akhir->catatan?></textarea>
 							</div> 
 
 										<button type="submit" class="btn btn-success">Submit</button> 
