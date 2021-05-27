@@ -103,7 +103,7 @@ class M_PropPengabdian extends CI_Model
 
     public function get_needSubmitProp()
     {
-        $query = $this->db->select('proposal_pengabdian.*, mitra.status as mitra_status')
+        $query = $this->db->select('proposal_pengabdian.*')
                         ->from('proposal_pengabdian')
                         ->where('proposal_pengabdian.status=""')
                         // ->where('proposal_pengabdian.status= "NEED_APPROVAL"')

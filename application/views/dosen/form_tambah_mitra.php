@@ -104,7 +104,7 @@
 
                                 <h3>File Proposal</h3>
                                 <div>
-                                    <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$proposal->file?>" width="93%" height="400px" >
+                                    <iframe src="<?= base_url('assets/prop_pengabdian');?>/<?=$prop->file?>" width="93%" height="400px" >
                                     </iframe>
                                 </div>
                                 <button type="submit" id='submit' class="btn btn-primary">Submit</button>
