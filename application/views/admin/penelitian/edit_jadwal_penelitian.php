@@ -32,7 +32,7 @@
                             <label>Tanggal Awal</label>
                             <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal" value = <?=$jadwal->tgl_mulai?>><br>
                             <label>Batas Pengajuan Proposal</label>
-                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>>
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" value = <?=$jadwal->tgl_selesai?>><br>
                             <label>Batas Pengumpulan Monev</label>
                             <input type="date" class="form-control"  name="tgl_monev" id="tgl_monev" value = <?=$jadwal->tgl_monev?>><br>
                             <label>Batas Pengumpulan Laporan Akhir</label>
@@ -48,7 +48,6 @@
                     </table>
                     
                     
-                    <button type="submit">Submit</button>
                     </form>
                     </section>
                     

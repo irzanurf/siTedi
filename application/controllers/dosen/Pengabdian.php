@@ -48,12 +48,14 @@ class Pengabdian extends CI_Controller {
         }
         // $id_jenis = $this->input->post('id_skema');
         $nip = $this->session->userdata('user_name');
-        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $proposal = $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $id_jenis = $proposal->id_skema;
+        
+        $data['jenis'] = $this->M_KomponenNilaiPengabdian->getwhere_komponen(array('id_skema_pengabdian'=>$id_jenis))->result();
         $reviewer = $this->M_PropPengabdian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer;
         $reviewer2 = $this->M_PropPengabdian->getwhere_rev(array('id_proposal'=>$id))->row()->reviewer2;
-        $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id, 'reviewer'=>$reviewer))->result();
-        $data['komponen2'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen(array('id_proposal'=>$id, 'reviewer'=>$reviewer2))->result();
-        $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
+        $data['komponen'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen($id, $reviewer)->result();
+        $data['komponen2'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponen($id,$reviewer2)->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
 
             $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;

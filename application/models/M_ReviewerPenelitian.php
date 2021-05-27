@@ -92,16 +92,31 @@ class M_ReviewerPenelitian extends CI_Model
         return $this->db->get_where('komp_penilaian_penelitian',$data);
     }
 
-    public function get_nilai(array $data)
+    // public function get_nilai(array $data)
+    // {
+    //     $query = $this->db->select('komp_penilaian_penelitian.*, nilai_penelitian.skor as skor, nilai_penelitian.nilai as nilai, proposal_penelitian.id as id_proposal')
+    //                     ->from('komp_penilaian_penelitian')
+    //                     ->join('proposal_penelitian','komp_penilaian_penelitian.id_jenis=proposal_penelitian.id_jenis','inner')
+    //                     ->join('nilai_penelitian','proposal_penelitian.id=nilai_penelitian.id_proposal and komp_penilaian_penelitian.id=nilai_penelitian.id_komponen','left')
+    //                     ->where($data)
+    //                     ->get();
+    //     return $query;
+    // }
+
+
+    public function get_nilai($id,$data)
     {
-        $query = $this->db->select('komp_penilaian_penelitian.*, nilai_penelitian.skor as skor, nilai_penelitian.nilai as nilai, proposal_penelitian.id as id_proposal')
-                        ->from('komp_penilaian_penelitian')
-                        ->join('proposal_penelitian','komp_penilaian_penelitian.id_jenis=proposal_penelitian.id_jenis','inner')
-                        ->join('nilai_penelitian','proposal_penelitian.id=nilai_penelitian.id_proposal and komp_penilaian_penelitian.id=nilai_penelitian.id_komponen','left')
-                        ->where($data)
-                        ->get();
-        return $query;
+        // $condition="id_proposal='$id' AND reviewer='$data'";
+        // $query = $this->db->select('*')
+        //                 ->from('nilai_penelitian')
+        //                 ->where($condition)
+        //                 ->order_by("id_komponen", "asc")
+        //                 ->get();
+        // return $query;
+        
+        return $this->db->query("SELECT * FROM nilai_penelitian WHERE id_proposal=$id AND reviewer='$data' ORDER BY id_komponen ASC");
     }
+
 
     public function insert_detailnilai($data)
     {

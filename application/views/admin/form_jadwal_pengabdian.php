@@ -28,13 +28,13 @@
                 
                     <div class="panel-body">
                             <label>keterangan</label>
-                            <input type="text" class="form-control"  name="keterangan" id="keterangan"><br>
+                            <input type="text" class="form-control"  name="keterangan" id="keterangan" required=""><br>
                             <label>Tanggal Awal</label>
-                            <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal"><br>
+                            <input type="date" class="form-control"  name="tgl_mulai" id="tgl_awal" required=""><br>
                             <label>Batas Pengajuan Permohonan</label>
-                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai"><br>
+                            <input type="date" class="form-control" name="tgl_selesai" id="tgl_selesai" required=""><br>
                             <label>Batas Pengumpulan Laporan Akhir</label>
-                            <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir"><br>
+                            <input type="date" class="form-control"  name="tgl_akhir" id="tgl_akhir" required=""><br>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                         

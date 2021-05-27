@@ -58,7 +58,9 @@
                         </div>
                     </div>
                     <form action="<?=base_url('admin/pengabdian/updateassignreviewer')?>" method="post">
-                    
+                    <div class="form-group">
+                                    <input type="hidden" class="form-control" name="jadwal" value=<?= $jadwal?>  >
+                                </div>
                     <div class="form-group row">
                                 <label class="col-lg-4 col-form-label">Assign reviewer 1</label>
                                 <div class="col-lg-8">

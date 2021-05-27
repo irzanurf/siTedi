@@ -1,7 +1,7 @@
 <!-- input-forms -->
 <div class="grids">
 					<div class="progressbar-heading grids-heading">
-                        <h2>Detail Nilai</h2>
+                    <center><h2>Detail Nilai Proposal</h2></center><br>
                     </div>
                     <div class="panel panel-widget forms-panel">
 						<div class="forms">
@@ -37,15 +37,10 @@
                         </tr>
                         <?php 
                         $no = 1;
-                        for($i=0, $count = count($komponen);$i<$count;$i++) {?>
+                        for($i=0, $count = count($jenis);$i<$count;$i++) {?>
                             <tr>
                             <td><?= $no+$i?></td>
-                        <td> <?php if($komponen[$i]->komponen!=""||$komponen[$i]->komponen!=NULL) : ?>
-                        <?= $komponen[$i]->komponen?>
-                        <?php else : ?>
-                            <?= $komponen2[$i]->komponen?>
-                            <?php endif;?>
-                               </td>
+                        <td> <?= $jenis[$i]->komponen?></td>
                         <td><?=$komponen[$i]->nilai?></td>         
                         <td><?=$komponen2[$i]->nilai?></td> 
                         <?php }?>
@@ -58,6 +53,7 @@
                             <td><?= $nilai ?></td>
                             <td><?= $nilai2 ?></td>
                             </tr>
+
                             <input type="text" id="total" value=<?=$no?> hidden>
                         </table>
                     <div class="form-group">
@@ -72,6 +68,27 @@
                             <?= $komentar2 ?>
                         </div>
                         </div>
+
+                        
+                        <div class="progressbar-heading grids-heading">
+                        <?php if(!empty($monev->cr_monev) || !empty($monev->cr_monev2)) : ?>
+                            <hr class="solid">
+                        <center><h2><br>Review Laporan Monev</h2></center><br>
+                        </div>
+                        <table class="table">
+                        <tr>
+                            <th style="text-align: left; vertical-align: middle;">Reviewer 1</th>
+                        </tr>
+                        <td style="text-align: left; vertical-align: middle;"><?=$monev->cr_monev?></td>
+                        </table>
+                        <br>
+                        <table class="table">
+                        <tr>
+                            <th style="text-align: left; vertical-align: middle;">Reviewer 2</th>
+                        </tr>
+                        <td style="text-align: left; vertical-align: middle;"><?=$monev->cr_monev2?></td>
+                        </table>
+                        <?php endif;?>
                     </form>
 </div>
                         </div>

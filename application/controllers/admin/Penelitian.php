@@ -189,9 +189,19 @@ class Penelitian extends CI_Controller
 
     }
 
-    public function assignProposal()
+    public function listAssign()
     {
-        $data['view'] = $this->M_AdminPenelitian->get_viewAssign()->result();
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'admin/penelitian/assignProposal';
+        $this->load->view('layout/sidebar_admin');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function assignProposal($jadwal)
+    {
+        $data['jadwal'] = $jadwal;
+        $data['view']= $this->M_AdminPenelitian->getwhere_viewAssign(array('proposal_penelitian.id_jadwal'=>$jadwal))->result();
         $this->load->view('layout/sidebar_admin');
         $this->load->view('admin/penelitian/assign',$data);
         $this->load->view('layout/footer'); 
@@ -200,6 +210,8 @@ class Penelitian extends CI_Controller
 
     public function setReviewer($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
@@ -211,6 +223,8 @@ class Penelitian extends CI_Controller
 
     public function EditReviewer($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
@@ -224,6 +238,7 @@ class Penelitian extends CI_Controller
 
     public function submitAssignEdit()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -234,11 +249,12 @@ class Penelitian extends CI_Controller
         ];
         
         $this->M_AdminPenelitian->update_reviewer($data,$idProp);
-        redirect('admin/penelitian/assignProposal');
+        redirect("admin/penelitian/assignProposal"."/".$jadwal);
     }
 
     public function submitAssignReviewer()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -251,7 +267,7 @@ class Penelitian extends CI_Controller
             'reviewer2' => $reviewer2
         ];
         $this->M_AdminPenelitian->insert_reviewer($data,$proposalid);
-        redirect('admin/penelitian/assignProposal');
+        redirect("admin/penelitian/assignProposal"."/".$jadwal);
     }
 
     public function showReviewer()
@@ -1482,6 +1498,8 @@ class Penelitian extends CI_Controller
         redirect("admin/penelitian/daftarPenelitian"."/".$jadwal);
     }
 
+    
+
     public function listMonev()
     {
         $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
@@ -1490,6 +1508,8 @@ class Penelitian extends CI_Controller
         $this->load->view('admin/chooseJadwal', $data);
         $this->load->view('layout/footer'); 
     }
+
+    
 
     public function listAkhir()
     {
@@ -1588,7 +1608,7 @@ class Penelitian extends CI_Controller
         $id=$this->input->post('id');
         $jadwal = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row()->id_jadwal;
         $cekLuaran = $this->M_PropPenelitian->get_luaran(array('id_proposal'=>$id))->result();
-        $nip = $this->session->userdata('user_name');
+        $nip = $this->input->post('nip');
         $date = date('Y-m-d');
         $prop1 = $_FILES['file1'];
         $prop2 = $_FILES['file2'];
@@ -1748,6 +1768,7 @@ class Penelitian extends CI_Controller
             }
         }
         $jadwal = $this->input->post('id_jadwal',true);
+        $judul = $this->input->post('judul',true);
         $ketua = $this->input->post('nip',true);
         $biaya = str_replace('.','',$this->input->post('biaya',true));
         $prop = [
@@ -1766,7 +1787,7 @@ class Penelitian extends CI_Controller
             "file"=>$prop_file
 
         ];
-        $proposal=$this->M_AdminPenelitian->insert_proposal($prop,$ketua,$jadwal);
+        $proposal=$this->M_AdminPenelitian->insert_proposal($prop,$ketua,$judul,$jadwal);
         $nip= $this->input->post('dosen[]');
         
         $data_dosen = array();

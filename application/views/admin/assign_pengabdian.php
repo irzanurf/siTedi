@@ -68,13 +68,21 @@
                 </td>
                 <td>
                 <?php if($v->status =="SUBMITTED") : ?>
-                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/assignreviewerproposal') ;?>/<?= $v->id; ?>">
-                    Assign
-                </a>
+                
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/pengabdian/assignreviewerproposal') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$jadwal?>>
+                                    <button type="Submit" class="btn btn-info">
+                                    Assign
+                                    </button>
+                                </form>
                 <?php elseif($v->status == "ASSIGNED" ) :?>
-                <a type="button" class="btn btn-info" href="<?= base_url('admin/pengabdian/editreviewerproposal') ;?>/<?= $v->id; ?>">
-                    Edit reviewer
-                </a>
+                
+                <form style="display:inline-block;" method="post" action="<?= base_url('admin/pengabdian/editreviewerproposal') ;?>/<?= $v->id; ?>">
+                                    <input type='hidden' name="jadwal" value=<?=$jadwal?>>
+                                    <button type="Submit" class="btn btn-info">
+                                    Edit reviewer
+                                    </button>
+                                </form>
                 <?php else :?>
                     
                 <?php endif;?>

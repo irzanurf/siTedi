@@ -11,6 +11,7 @@
                     <thead>
                         <tr>
                             <th>Tanggal Upload</th>
+                            <th>Periode</th>
                             <th>Jenis Skema Penelitian</th>
                             <th>Judul Proposal</th>
                             <th>Edit Isian Proposal</th>
@@ -21,15 +22,18 @@
                         <?php 
                         $no = 1;
                         foreach($view as $v) { ?>
-                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_selesai)); ?>
+                        <?php $akhir = date('Y-m-d', strtotime($v->tgl_selesai)); 
+                        $tgl = date('d-m-Y', strtotime($v->tgl_upload));?>
                         <tr>
-                            <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $tgl?></td>
+                            <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             
                             <td align="center">
 
-                            <?php if($now >= $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
+                            
+                            <?php if($now > $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
                                 <button type="button" class="btn-sm btn-default" dissabled>
                                         Edit
                                     </button>
@@ -45,6 +49,7 @@
                             
                             
                             </td>
+                            
                             <td align="center">
                             
                             <?php if($now >= $akhir || $v->status==11 || $v->status==12 || $v->status==13 || $v->status==2 || $v->status==3 || $v->status==4 || $v->status==5) : ?> 
@@ -142,9 +147,11 @@
                         <?php } ?>
 
                         <?php 
-                        foreach($anggota as $v) { ?>
+                        foreach($anggota as $v) { 
+                            $tgl = date('d-m-Y', strtotime($v->tgl_upload));?>
                         <tr>
-                            <td align="center"><?= $v->tgl_upload?></td>
+                            <td align="center"><?= $tgl?></td>
+                            <td align="center"><?= $v->keterangan?></td>
                             <td align="center"><?= $v->jenis?></td>
                             <td align="center"><?= $v->judul?></td>
                             

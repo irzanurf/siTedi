@@ -121,6 +121,21 @@ class M_PropPengabdian extends CI_Model
         return $query;
     }
 
+    public function getwhere_viewAssign($data)
+    {
+        $query = $this->db->select('proposal_pengabdian.*, dosen.*, r1.nama as nama_reviewer1, r2.nama as nama_reviewer2')
+                        ->from('proposal_pengabdian')
+                        ->join('dosen ','proposal_pengabdian.nip=dosen.nip','inner')
+                        ->join('assign_proposal_pengabdian','proposal_pengabdian.id=assign_proposal_pengabdian.id_proposal','left')
+                        ->join('reviewer_pengabdian r1', 'assign_proposal_pengabdian.reviewer=r1.nip','left')
+                        ->join('reviewer_pengabdian r2', 'assign_proposal_pengabdian.reviewer2=r2.nip','left')
+                        // ->where('proposal_pengabdian.status= "SUBMITTED"')
+                        ->where($data)
+                        ->get();
+
+        return $query;
+    }
+
     public function get_viewAssign()
     {
         $query = $this->db->select('proposal_pengabdian.*, dosen.*, r1.nama as nama_reviewer1, r2.nama as nama_reviewer2')

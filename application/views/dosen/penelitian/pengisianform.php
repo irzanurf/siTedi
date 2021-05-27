@@ -11,6 +11,20 @@ label    {color: black; font-size:15px;}
                         <div class="form">
 								<div class="form-body">
 									<form action="<?= base_url('dosen/penelitian/addformproposal');?>" method="post" enctype="multipart/form-data"> 
+                                    
+                                    <div class="form-group">
+                                    <label>Periode Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
+                                    <select class="form-control" name="jadwal" id="jadwal" required="">
+                                        <?php
+                                        foreach ($periode as $p) {
+                                            ?>
+                                            <option value="<?php echo $p->id; ?>"><?php echo $p->keterangan; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+
                                     <div class="form-group">
                                     <label>Jenis Penelitian</label><label style="color:red; font-size:12px;"> (*Wajib diisi)</label>
                                     <select class="form-control" name="jenis" id="jenis" required="">

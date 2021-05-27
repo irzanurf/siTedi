@@ -46,14 +46,18 @@
             </tr>
             <?php 
             $no = 1;
-            foreach($jadwal as $v) { ?>
+            foreach($jadwal as $v) { 
+                $tgl_mulai = date('d-m-Y', strtotime($v->tgl_mulai));
+                $tgl_monev = date('d-m-Y', strtotime($v->tgl_monev));
+                $tgl_akhir = date('d-m-Y', strtotime($v->tgl_akhir));
+                $tgl_selesai = date('d-m-Y', strtotime($v->tgl_selesai));?>
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->keterangan?></td>
-                <td><?= $v->tgl_mulai?></td>
-                <td><?= $v->tgl_monev?></td>
-                <td><?= $v->tgl_akhir?></td>
-                <td><?= $v->tgl_selesai?></td>
+                <td><?= $tgl_mulai?></td>
+                <td><?= $tgl_monev?></td>
+                <td><?= $tgl_akhir?></td>
+                <td><?= $tgl_selesai?></td>
                 <td>
                 <a type="button" class="btn btn-success" href="<?= base_url('admin/penelitian/editJadwalPenelitian') ;?>/<?= $v->id; ?>">
                     Edit Jadwal

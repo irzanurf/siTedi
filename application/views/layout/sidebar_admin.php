@@ -5,6 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Admin || SiTeDi</title>
+    <link rel="shortcut icon" href="<?= base_url('assets/sitedi.png');?>" width="20" height="20">
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -86,7 +87,7 @@
                                 <a href="<?= base_url('admin/penelitian/showReviewer/');?>"><i class="fa fa-fw fa-edit"></i> Reviewer Penelitian</a>
                             </li></br>
                             <li>
-                                <a href="<?= base_url('admin/penelitian/assignProposal/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                <a href="<?= base_url('admin/penelitian/listAssign/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                             </li></br>
                             <li>
                                 <a href="<?= base_url('admin/penelitian/listApproval/');?>"><i class="fa fa-fw fa-edit"></i> Aproval Penelitian</a>
@@ -121,7 +122,7 @@
                                     <a href="<?= base_url('admin/pengabdian/showReviewer/');?>"><i class="fa fa-fw fa-edit"></i> Reviewer Pengabdian</a>
                                 </li></br>
                                 <li>
-                                    <a href="<?= base_url('admin/pengabdian/assignproposal/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                    <a href="<?= base_url('admin/pengabdian/listAssign/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                                 </li></br>
                                 <li>
                                     <a href="<?= base_url('admin/pengabdian/listApproval/');?>"><i class="fa fa-fw fa-edit"></i> Approval Proposal</a>

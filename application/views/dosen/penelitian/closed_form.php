@@ -7,7 +7,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                         <?php if(empty($jadwal->tgl_mulai) || empty($jadwal->tgl_selesai)) : ?>
-                            <label>Belum ada jadwal pengajuan proposal Penelitian</label>
+                            <label>Maaf belum ada jadwal penelitian dalam periode ini</label>
                             <?php else : ?>
 
                             <label>Jadwal terdekat pengajuan proposal Penelitian <?=$jadwal->tgl_mulai?> sampai tanggal <?=$jadwal->tgl_selesai?></label>

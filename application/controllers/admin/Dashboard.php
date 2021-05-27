@@ -25,7 +25,7 @@ class Dashboard extends CI_Controller {
         $user = $this->session->userdata('user_name');
         $id_penelitian= $this->M_JadwalPenelitian->get_jadwalPenelitian()->row()->id;
         $id_pengabdian= $this->M_JadwalPengabdian->get_jadwalPengabdian()->row()->id;
-        $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last_jadwal()->result();
+        $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last()->result();
         $data['jadwal_pengabdian'] = $this->M_JadwalPengabdian->get_last_jadwal()->result();
         $data['prop_penelitian'] = $this->M_Admin->get_propPenelitian(array('id_jadwal'=>$id_penelitian));
         $data['monev_penelitian'] = $this->M_Admin->get_monevPenelitian(array('id_jadwal'=>$id_penelitian));

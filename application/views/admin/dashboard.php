@@ -14,8 +14,10 @@
                                 <div class="panel panel-warning">
                                 <div class="panel-heading"><h3><center>
                                  <?php 
-                        			foreach($jadwal_penelitian as $v) { ?>
-								    <?= $v->tgl_mulai ?> sampai <?= $v->tgl_selesai ?> (<?= $v->keterangan ?>)
+                        			foreach($jadwal_penelitian as $v) { 
+                                        $mulai = date('d-m-Y', strtotime($v->tgl_mulai)); 
+                                        $selesai = date('d-m-Y', strtotime($v->tgl_selesai)); ?>
+								    <?= $mulai ?> sampai <?= $selesai ?> (<?= $v->keterangan ?>)
 								    <?php }?></center></h3></div>
  
                                     <div class="panel-body">
@@ -39,8 +41,10 @@
                                 <div class="panel panel-warning">
                                 <div class="panel-heading"><h3><center>
                                  <?php 
-                                foreach($jadwal_pengabdian as $v) { ?>
-                                <?= $v->tgl_mulai ?> sampai <?= $v->tgl_selesai ?> (<?= $v->keterangan ?>)
+                                foreach($jadwal_pengabdian as $v) {
+                                    $mulai = date('d-m-Y', strtotime($v->tgl_mulai)); 
+                                    $selesai = date('d-m-Y', strtotime($v->tgl_selesai)); ?>
+                                <?= $mulai ?> sampai <?= $selesai ?> (<?= $v->keterangan ?>)
                                 <?php }?></center></h3></div>
 
                                 <div class="panel-body">

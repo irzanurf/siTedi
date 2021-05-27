@@ -31,13 +31,16 @@
                             <div class="form-group">
                                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                             </div>
+                            <div class="form-group">
+                                    <input type="hidden" class="form-control" name="nip" value=<?= $proposal->nip?>  >
+                                </div>	
                             <div class="form-group"> 
-											<label><br>Laporan Akhir</label> </br>
+											<h4>Laporan Akhir</h4> 
                                             <?php if (!empty($akhir->laporan_akhir)){ ?>
                                                 <iframe src="<?= base_url('assets/laporan_akhir');?>/<?=$akhir->laporan_akhir?>" width="93%" height="400px" >
                             </iframe>
 							<?php } ?>
-											<input type="file" accept="application/pdf" name="laporan_akhir"></br>
+											<input type="file" accept="application/pdf" name="laporan_akhir">
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label> 
                             </div> 
                             <div class="form-group">
@@ -45,7 +48,7 @@
                                 </div>
 
                             <div class="form-group"> 
-											<label><br>Logbook</label> </br>
+											<h4>Logbook</h4> 
                                             <?php if (!empty($akhir->logbook)){ ?>
                                                 <iframe src="<?= base_url('assets/logbook');?>/<?=$akhir->logbook?>" width="93%" height="400px" >
                             </iframe>
@@ -55,7 +58,7 @@
 							</div> 
 
                             <div class="form-group"> 
-											<label><br>Laporan Belanja 100%</label> </br>
+											<h4>Laporan Belanja 100%</h4>
                                             <?php if (!empty($akhir->belanja)){ ?>
                                                 <iframe src="<?= base_url('assets/belanja');?>/<?=$akhir->belanja?>" width="93%" height="400px" >
                             </iframe>
@@ -69,8 +72,7 @@
 											<?php
 												for($i=0, $count = count($luaran);$i<$count;$i++) {?>
 											<div class="form-group" style="background: #FFFFFF; padding: 0px 10px 0px 10px;"> 
-                                            <a href="#" data-toggle="collapse" style="color: black; font-size: 17px;" data-target=<?="#penelitian".$i.""?>><i class="fa fa-fw fa-edit"></i> <?= $luaran[$i]->luaran?><i class="fa fa-fw fa-caret-down"></i></a>
-                        					<ul id=<?="penelitian".$i.""?> class="collapse">
+                                           
 											<div class="form-group">
                                     		<h5><br><b><?= $luaran[$i]->luaran?></b></h5>
 											
@@ -115,7 +117,6 @@
 											<label style="color:red; font-size:12px;">.pdf maks 10mb</label>
 											</div>
                                 			</div>
-                                            </ul>
 											<?php } ?>
 
                             <div class="form-group"> 

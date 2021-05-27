@@ -41,7 +41,7 @@ class Kadep extends CI_Controller {
         $data['nama']= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
         $id_penelitian= $this->M_JadwalPenelitian->get_jadwalPenelitian()->row()->id;
         $id_pengabdian= $this->M_JadwalPengabdian->get_jadwalPengabdian()->row()->id;
-        $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last_jadwal()->result();
+        $data['jadwal_penelitian'] = $this->M_JadwalPenelitian->get_last()->result();
         $data['jadwal_pengabdian'] = $this->M_JadwalPengabdian->get_last_jadwal()->result();
         $data['prop_penelitian'] = $this->M_Admin->get_propPenelitian(array('id_jadwal'=>$id_penelitian));
         $data['monev_penelitian'] = $this->M_Admin->get_monevPenelitian(array('id_jadwal'=>$id_penelitian));
@@ -114,6 +114,38 @@ class Kadep extends CI_Controller {
         $data['id'] = $jadwal;
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/akhir_penelitian', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function detailAkhirPenelitian($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['luaran'] = $this->M_PropPenelitian->get_luaran(array('id_proposal'=>$id))->result();
+        $data['jadwal'] = $jadwal;
+        $data['akhir'] = $this->M_ReviewerPenelitian->get_akhir(array('id_proposal'=>$id))->row();
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/akhir_penelitian_detail', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function detailMonevPenelitian($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['monev'] = $this->M_ReviewerPenelitian->get_monev(array('id_proposal'=>$id))->row();
+        $data['proposal'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/monev_penelitian_detail',$data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function detailAkhirPengabdian($id){
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
+        $data['akhir'] = $this->M_Admin->get_akhir(array('id_proposal'=>$id))->row();
+        $data['luaran'] = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();
+        $data['proposal'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('kadep/akhir_pengabdian_detail', $data);
         $this->load->view('layout/footer'); 
     }
 
@@ -214,11 +246,21 @@ class Kadep extends CI_Controller {
         $this->load->view('layout/footer'); 
     }
 
-    public function assignProposalPenelitian()
+    public function listAssignPenelitian()
     {
+        $data['jadwal'] = $this->M_JadwalPenelitian->get_jadwal()->result();
+        $data['jenis'] = 'kadep/kadep/assignProposalPenelitian';
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function assignProposalPenelitian($jadwal)
+    {
+        $data['jadwal'] = $jadwal;
         $user = $this->session->userdata('user_name');
         $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
-        $data['view'] = $this->M_Kadep->get_viewAssignPenelitian(array('dosen.program_studi'=>$dep))->result();
+        $data['view']= $this->M_Kadep->get_viewAssignPenelitian(array('proposal_penelitian.id_jadwal'=>$jadwal, 'dosen.program_studi'=>$dep,))->result();
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/assign_penelitian',$data);
         $this->load->view('layout/footer'); 
@@ -226,6 +268,8 @@ class Kadep extends CI_Controller {
 
     public function setReviewerPenelitian($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
@@ -237,6 +281,8 @@ class Kadep extends CI_Controller {
 
     public function EditReviewerPenelitian($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPenelitian->getwhere_proposal(array('id'=>$id))->row();
         $nip = $data['prop']->nip;
         $data['dosen'] = $this->M_Dosen->getwhere_dosen(array('nip'=>$nip))->row();
@@ -250,6 +296,7 @@ class Kadep extends CI_Controller {
 
     public function submitAssignEditPenelitian()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -260,28 +307,42 @@ class Kadep extends CI_Controller {
         ];
 
         $this->M_AdminPenelitian->update_reviewer($data,$idProp);
-        redirect('kadep/kadep/assignProposalPenelitian');
+        redirect("kadep/kadep/assignProposalPenelitian"."/".$jadwal);
     }
 
     public function submitAssignReviewerPenelitian()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
+        $proposalid = [
+            'id_proposal'=>$idProp,
+        ];
         $data = [
             'id_proposal' => $idProp,
             'reviewer' => $reviewer,
             'reviewer2' => $reviewer2
         ];
-        $this->M_AdminPenelitian->insert_reviewer($data);
-        redirect('kadep/kadep/assignProposalPenelitian');
+        $this->M_AdminPenelitian->insert_reviewer($data,$proposalid);
+        redirect("kadep/kadep/assignProposalPenelitian"."/".$jadwal);
     }
 
-    public function assignProposalPengabdian()
+    public function listAssignPengabdian()
     {
+        $data['jadwal'] = $this->M_JadwalPengabdian->get_jadwal()->result();
+        $data['jenis'] = 'kadep/kadep/assignProposalPengabdian';
+        $this->load->view('layout/sidebar_kadep');
+        $this->load->view('admin/chooseJadwal', $data);
+        $this->load->view('layout/footer'); 
+    }
+
+    public function assignProposalPengabdian($jadwal)
+    {
+        $data['jadwal'] = $jadwal;
         $user = $this->session->userdata('user_name');
         $dep= $this->M_Kadep->getwhere_profile(array('nip'=>$user))->row()->dep;
-        $data['view'] = $this->M_Kadep->get_viewAssignPengabdian(array('dosen.program_studi'=>$dep))->result();
+        $data['view'] = $this->M_Kadep->get_viewAssignPengabdian(array('proposal_pengabdian.id_jadwal'=>$jadwal, 'dosen.program_studi'=>$dep,))->result();
         $this->load->view('layout/sidebar_kadep');
         $this->load->view('kadep/assign_pengabdian',$data);
         $this->load->view('layout/footer'); 
@@ -289,6 +350,8 @@ class Kadep extends CI_Controller {
 
     public function setReviewerPengabdian($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['prop']->id_mitra;
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
@@ -306,6 +369,8 @@ class Kadep extends CI_Controller {
 
     public function EditReviewerPengabdian($id)
     {
+        $jadwal = $this->input->post('jadwal');
+        $data['jadwal'] = $jadwal;
         $data['prop'] = $this->M_PropPengabdian->getwhere_proposal(array('id'=>$id))->row();
         $id_mitra = $data['prop']->id_mitra;
         $data['mitra'] = $this->M_Mitra->getwhere_mitra(array('id'=>$id_mitra))->row();
@@ -322,6 +387,7 @@ class Kadep extends CI_Controller {
 
     public function submitAssignReviewerPengabdian()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -338,12 +404,13 @@ class Kadep extends CI_Controller {
         // $this->M_AssignProposalPengabdian->insert_assignment($data2);
         $this->M_PropPengabdian->update_prop($idProp,$status);
         
-        redirect('kadep/kadep/assignProposalPengabdian');
+        redirect("kadep/kadep/assignProposalPengabdian"."/".$jadwal);
 
     }
 
     public function submitAssignEditPengabdian()
     {
+        $jadwal = $this->input->post('jadwal');
         $idProp = $this->input->post('id');
         $reviewer = $this->input->post('reviewer');
         $reviewer2 = $this->input->post('reviewer2');
@@ -353,7 +420,7 @@ class Kadep extends CI_Controller {
         ];
 
         $this->M_AssignProposalPengabdian->update_reviewerAssign($idProp,$data);
-        redirect('kadep/kadep/assignProposalPengabdian');
+        redirect("kadep/kadep/assignProposalPengabdian"."/".$jadwal);
 
     }
 

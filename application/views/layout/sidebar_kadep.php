@@ -4,7 +4,8 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Admin || SiTeDi</title>
+	<title>Ketua Departemen || SiTeDi</title>
+    <link rel="shortcut icon" href="<?= base_url('assets/sitedi.png');?>" width="20" height="20">
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -72,7 +73,7 @@
                         <ul id="penelitian" class="collapse">
                             
                             <li>
-                                <a href="<?= base_url('kadep/kadep/assignProposalPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                <a href="<?= base_url('kadep/kadep/listAssignPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                             </li></br>
                             <li>
                             <a href="<?= base_url('kadep/kadep/listSubmitPenelitian/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal</a>
@@ -90,7 +91,7 @@
                             <ul id="demo" class="collapse">
                                 
                                 <li>
-                                    <a href="<?= base_url('kadep/kadep/assignproposalPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
+                                    <a href="<?= base_url('kadep/kadep/listAssignPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Assign Proposal</a>
                                 </li></br>
                                 <li>
                                     <a href="<?= base_url('kadep/kadep/listSubmitPengabdian/');?>"><i class="fa fa-fw fa-edit"></i> Daftar Proposal</a>

@@ -13,6 +13,7 @@
     <meta name="robots" content="noindex,nofollow">
     <title>Pengabdian</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/elegant-admin-lite/" />
+    <link rel="shortcut icon" href="<?= base_url('assets/sitedi.png');?>" width="20" height="20">
     <!-- Favicon icon -->
     <!-- This page CSS -->
     <!-- chartist CSS -->
