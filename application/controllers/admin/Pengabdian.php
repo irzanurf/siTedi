@@ -612,6 +612,7 @@ class Pengabdian extends CI_Controller
 
     public function submitAllProposal()
     {
+        $jadwal = $this->input->post('jadwal');
         $props = $this->M_PropPengabdian->get_needSubmitProp()->result();
         foreach($props as $prop){
             $stat = [
@@ -626,7 +627,7 @@ class Pengabdian extends CI_Controller
         //     ];
         //     $this->M_PropPengabdian->update_prop($prop->id,$stat);
         // }
-        redirect('admin/pengabdian/assignProposal');
+        redirect("admin/pengabdian/assignProposal"."/".$jadwal);
 
 
     }

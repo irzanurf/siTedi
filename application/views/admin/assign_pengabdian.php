@@ -24,7 +24,12 @@
 
     <div class="row">
         <div class="col-lg-12">
-        <a href="<?=base_url('admin/pengabdian/submitAllProposal');?>" ><button  class="btn btn-success">Submit all proposal pengabdian</button></a>
+        <form style="display:inline-block;" method="post" action="<?= base_url('admin/pengabdian/submitAllProposal');?>">
+        <input type='hidden' name="jadwal" value=<?=$jadwal?>>
+                                    <button type="Submit" class="btn btn-success">
+                                    Submit all proposal pengabdian
+                                    </button>
+                                </form>
         
         
         <section class="content">
