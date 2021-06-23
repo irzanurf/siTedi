@@ -1271,7 +1271,8 @@ class Pengabdian extends CI_Controller {
     public function laporanAkhir()
     {
         $id = $this->input->post('id');
-        $data['view']= $this->M_PropPengabdian->get_viewlaporanakhir()->result();
+        $username = $this->session->userdata('user_name');
+        $data['view']= $this->M_PropPengabdian->get_whereAkhir(array('proposal_pengabdian.nip'=>$username))->result();
         $nip = $this->session->userdata('user_name');
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
         $data['luaran'] = $this->M_PropPengabdian->get_luaran(array('id_proposal'=>$id))->result();

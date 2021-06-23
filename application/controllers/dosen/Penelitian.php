@@ -514,7 +514,7 @@ class Penelitian extends CI_Controller {
     public function deleteForm(){
         $id = $this->input->post('id');
         
-            $this->M_PropPenelitian->delete_prop($id,$data);
+            $this->M_PropPenelitian->delete_prop($id);
 
         redirect('dosen/penelitian/submit');
     }
