@@ -14,7 +14,15 @@ class M_ReviewerPenelitian extends CI_Model
 
     public function getwhere_nilai(array $data)
     {
-        return $this->db->get_where('nilai_proposal_penelitian', $data);
+        $query = $this->db->get_where('nilai_proposal_penelitian', $data);
+        $result = $query->result_array();
+        $count = count($result);
+        if (empty($count)){
+           return false;
+        }
+        else{
+            return $query;
+        }        
     }
 
     public function update_detailnilai($id_detail,$detail)

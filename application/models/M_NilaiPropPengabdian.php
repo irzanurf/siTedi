@@ -5,7 +5,15 @@ class M_NilaiPropPengabdian extends CI_Model
 
     public function getwhere_nilai(array $data)
     {
-        return $this->db->get_where('nilai_proposal_pengabdian',$data);
+        $query = $this->db->get_where('nilai_proposal_pengabdian',$data);
+        $result = $query->result_array();
+        $count = count($result);
+        if (empty($count)){
+           return false;
+        }
+        else{
+            return $query;
+        }          
     }
 
     

@@ -60,13 +60,17 @@ class Penelitian extends CI_Controller {
         $nama['nama']= $this->M_Profile->getwhere_profile(array('nip'=>$nip))->result();
         $nama['cek']= $this->M_Profile->cekRevPenelitian(array('nip'=>$nip))->result();
 
-            $data['nilai'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
+            $cek = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id));
+            if ($cek!=false) :
+            $data['nilai'] = $cek->row()->nilai;
+            $data['nilai2'] = $cek->row()->nilai2;
             $data['komentar'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
-
-            $data['nilai2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai2;
             $data['komentar2'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
+            $data['monev'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row();
+            else :
+            endif;
         
-        $data['monev'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row();
+        // $data['monev'] = $this->M_ReviewerPenelitian->getwhere_nilai(array('id_proposal'=>$id))->row();
         $this->load->view('penelitian/header', $nama);
         $this->load->view('dosen/penelitian/detail', $data);
         $this->load->view("penelitian/footer");
@@ -81,6 +85,7 @@ class Penelitian extends CI_Controller {
         $nip = $this->session->userdata('user_name');
         $date = date('Y-m-d');
         $bulan = $this->input->post('bulan',true);
+        $jadwal = $this->input->post('jadwal',true);
         $prop_file = $_FILES['file_prop'];
         if($prop_file=''){}else{
             $config['upload_path'] = './assets/prop_penelitian';

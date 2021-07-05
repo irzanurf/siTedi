@@ -92,7 +92,7 @@ class M_PropPengabdian extends CI_Model
 
     public function get_viewApproval($data)
     {
-        $query = $this->db->select('nilai_proposal_pengabdian.*, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
+        $query = $this->db->select('nilai_proposal_pengabdian.nilai, nilai_proposal_pengabdian.nilai2, proposal_pengabdian.*, mitra.nama_instansi as nama_instansi, mitra.status as status_mitra, mitra.file_persetujuan as file_persetujuan, mitra.id as mitra_id')
                         ->from('proposal_pengabdian')
                         ->join('mitra ','proposal_pengabdian.id_mitra=mitra.id','left')
                         ->join('nilai_proposal_pengabdian','proposal_pengabdian.id=nilai_proposal_pengabdian.id_proposal','left')

@@ -42,7 +42,6 @@
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nilai!==NULL) : ?>
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
@@ -89,16 +88,16 @@
                 </td>
                 <td>
                 
-                <?php if($v->status==13) :?>
+                <?php if($v->status==13 || $v->status==0 || $v->status==1 || $v->status==11 || $v->status==12) :?>
                 <div style="display:flex;">
-                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/acceptProposal') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-success">
                                     Accept
                                     </button>
                                 </form>
                                 
-                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/penelitian/rejectProposal') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-danger">
                                     Reject
@@ -113,7 +112,7 @@
                 </a>      -->
                 <?php elseif($v->status==2 || $v->status==5) :?> 
                 <div style="text-align: center;">
-                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');" action="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id_proposal; ?>">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin ingin melakukan Pembatalan?');" action="<?= base_url('admin/penelitian/cancelProposal') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-danger">
                                     Cancel
@@ -128,7 +127,6 @@
                 </td>
                 
             </tr>
-            <?php endif; ?>
             <?php } ?>
         </table>
         </section>

@@ -27,6 +27,9 @@
                         <div class="col-lg-1"></div>
                     
                     </div>
+                    <?php if (empty($nilai) || empty($nilai2)) : ?>
+                        <hr><h3><center>Proposal di-approved langsung oleh Admin</center></h3>
+                    <?php else: ?>
                     <table class="table">
                     <input type="hidden" class="form-control" name="id" value=<?= $proposal->id?>  >
                         <tr>
@@ -67,6 +70,8 @@
                             <?= $komentar2 ?>
                         </div>
                         </div>
+                            
+                        <?php endif; ?>
                     </form>
 </div>
                         </div>

@@ -48,7 +48,6 @@
             <?php 
             $no = 1;
             foreach($view as $v) { ?>
-            <?php if ($v->nilai!==NULL || $v->nilai2!==NULL) : ?>
             <tr>
                 <td><?= $no++?></td>
                 <td><?= $v->judul?></td>
@@ -71,22 +70,22 @@
                 <?php endif ?>
                 </td>
                 <td>
-                <?php if($v->status=='NEED_APPROVAL') :?>
-                <!-- <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
+                <?php if($v->status=='NEED_APPROVAL' || $v->status=='SUBMITTED' || $v->status=='ASSIGNED' || $v->status=='GRADED1' || $v->status=='GRADED2') :?>
+                <!-- <a type="button" class="btn btn-success" href="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Accept
                 </a>
-                <a type="button" class="btn btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
+                <a type="button" class="btn btn-danger" href="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id; ?>" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');">
                     Reject
                 </a>        -->
                 <div style="display:flex;">
-                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id_proposal; ?>">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/pengabdian/acceptProposal') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-success">
                                     Accept
                                     </button>
                                 </form>
                                 
-                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id_proposal; ?>">
+                    <form style="display:inline-block;" method="post" onclick="return confirm('Apakah Anda Yakin dengan Pilihan Approval?');" action="<?= base_url('admin/pengabdian/rejectProposal') ;?>/<?= $v->id; ?>">
                                     <input type='hidden' name="jadwal" value=<?=$id?>>
                                     <button type="Submit" class="btn btn-danger">
                                     Reject
@@ -98,7 +97,6 @@
                 </td>
                 
             </tr>
-            <?php endif; ?>
             <?php } ?>
         </table>
         </section>

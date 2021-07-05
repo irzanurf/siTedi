@@ -58,12 +58,15 @@ class Pengabdian extends CI_Controller {
         $data['komponen2'] = $this->M_KomponenNilaiPengabdian->get_nilaikomponenProp($id,$reviewer2)->result();
         $nama['cek']= $this->M_Profile->cekRevPengabdian(array('nip'=>$nip))->result();
 
-            $data['nilai'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai;
-            $data['komentar'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;
-
-            $data['nilai2'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->nilai2;
+            $cek = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id));
+            if ($cek!=false) :
+            $data['nilai'] = $cek->row()->nilai;
+            $data['nilai2'] = $cek->row()->nilai2;
+            $data['komentar'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar;    
             $data['komentar2'] = $this->M_NilaiPropPengabdian->getwhere_nilai(array('id_proposal'=>$id))->row()->komentar2;
-        
+            else :
+            endif;
+            
         $this->load->view('pengabdian/header', $nama);
         $this->load->view('dosen/detail', $data);
         $this->load->view("pengabdian/footer");
@@ -1090,7 +1093,7 @@ class Pengabdian extends CI_Controller {
         $pass = $this->input->post('password');
         $username_mitra = $this->input->post('username');
         if($pass != null){
-            $if_exists = $this->M_User->checkUserexist($username_mitra);
+            $if_exist = $this->M_User->checkUserexist($username_mitra);
             if($if_exist>0){
                 $data_user_mitra = [
                     'username' =>$username_mitra,
